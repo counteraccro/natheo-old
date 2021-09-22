@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Administration - {% block title %} {% endblock %}</title>
+
+    {% include 'include/assets.html.twig' %}
+    {% include 'admin/include/admin-assets.html.twig' %}
+    {% block stylesheets %}{% endblock %}
+
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+            {% include 'admin/include/left-menu.html.twig' %}
+
+            <div class="col py-3 pt-5">
+                {% block body %}{% endblock %}
+            </div>
+        </div>
+    </div>
+{% block javascripts %}{% endblock %}
+</body>
+</html>

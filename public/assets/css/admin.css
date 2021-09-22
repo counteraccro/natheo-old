@@ -1,0 +1,5 @@
+/** CSS MENU LEFT **/
+.bg-primary {
+    --bs-bg-opacity: 1;
+    background-color: #866EC7 !important;
+}
