@@ -2,12 +2,12 @@
 
 namespace App\Controller\Admin;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Controller\AppController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/admin/dashboard', name: 'admin_dashboard_')]
-class DashboardController extends AbstractController
+class DashboardController extends AppController
 {
     #[Route('/index', name: 'index')]
     public function index(): Response

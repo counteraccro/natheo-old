@@ -3,6 +3,7 @@
 namespace App\Twig;
 
 use App\Twig\Admin\LeftMenuAdmin;
+use App\Twig\Admin\System\Breadcrumb;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -46,6 +47,7 @@ class AppExtension extends AbstractExtension
         return [
             // the logic of this filter is now implemented in a different class
             new TwigFilter('leftMenuAdmin', [LeftMenuAdmin::class, 'htmlRender']),
+            new TwigFilter('breadcrumb', [Breadcrumb::class, 'htmlRender'])
         ];
     }
 }
