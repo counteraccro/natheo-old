@@ -1,0 +1,13 @@
+menu-left-admin:
+  Dashboard:
+    icon: 'fa-tachometer-alt'
+    target: 'admin_dashboard_index'
+  Permission:
+    icon: 'fa-dice-d6'
+    sub-menu:
+      Gestion des routes:
+        icon: 'fa-road'
+        target: 'admin_routing_index'
+      Gestion des roles:
+        icon: 'fa-user-tag'
+        target: 'app_logout'

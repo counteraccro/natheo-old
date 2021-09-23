@@ -1,81 +1,30 @@
+<div id="left-menu-admin" class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-primary">
+    <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-5 text-white min-vh-100">
+        <h2><a href="/" class=" align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                <i class="fas fa-bars"></i> <span class="d-none d-sm-inline">Nathéo CMS</span>
+            </a></h2>
+        <ul class="nav nav-pills mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
 
-        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-primary">
-            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-5 text-white min-vh-100">
-                <h2><a href="/" class=" align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                        <i class="fas fa-bars"></i> <span class="d-none d-sm-inline">Nathéo CMS</span>
-                    </a></h2>
-                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link link-light align-middle px-0">
-                            <i class="fas fa-home"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link link-light px-0 align-middle dropdown-toggle">
-                            <i class="fas fa-tachometer-alt"></i> <span class="ms-1 d-none d-sm-inline">Dashboard</span> </a>
-                        <ul class="collapse show nav flex-column ms-0" id="submenu1" data-bs-parent="#menu">
-                            <li class="w-100">
-                                <a href="#" class="nav-link link-light px-0"> <i class="fa fa-star"></i> <span class="d-none d-sm-inline">Item</span></a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link link-light px-0"> <i class="fa fa-star"></i> <span class="d-none d-sm-inline">Item</span></a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link link-light px-0 align-middle">
-                            <i class="fa fa-solar-panel"></i> <span class="ms-1 d-none d-sm-inline">Orders</span></a>
-                    </li>
-                    <li>
-                        <a href="#submenu2" data-bs-toggle="collapse" class="nav-link link-light px-0 align-middle dropdown-toggle">
-                            <i class="fas fa-tachometer-alt"></i> <span class="ms-1 d-none d-sm-inline">Bootstrap</span></a>
-                        <ul class="collapse nav flex-column ms-0" id="submenu2" data-bs-parent="#menu">
-                            <li class="w-100">
-                                <a href="#" class="nav-link link-light px-0"> <i class="fa fa-star"></i> <span class="d-none d-sm-inline">Item</span></a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link link-light px-0"> <i class="fa fa-star"></i> <span class="d-none d-sm-inline">Item</span></a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#submenu3" data-bs-toggle="collapse" class="nav-link link-light px-0 align-middle dropdown-toggle">
-                            <i class="fas fa-calculator"></i> <span class="ms-1 d-none d-sm-inline">Products</span> </a>
-                        <ul class="collapse nav flex-column ms-0" id="submenu3" data-bs-parent="#menu">
-                            <li class="w-100">
-                                <a href="#" class="nav-link link-light px-0"> <i class="fas fa-calculator"></i> <span class="d-none d-sm-inline">Product</span></a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link link-light px-0"> <i class="fas fa-calculator"></i> <span class="d-none d-sm-inline">Product</span></a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link link-light px-0"> <i class="fas fa-calculator"></i>  <span class="d-none d-sm-inline">Product</span></a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link link-light px-0">  <i class="fas fa-calculator"></i> <span class="d-none d-sm-inline">Product</span></a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link link-light px-0 align-middle">
-                            <i class="fas fa-user"></i> <span class="ms-1 d-none d-sm-inline">Customers</span> </a>
-                    </li>
-                </ul>
-                <hr>
-                <div class="dropdown pb-4">
-                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
-                        <span class="d-none d-sm-inline mx-1">loser</span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                        <li><a class="dropdown-item" href="#">New project...</a></li>
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="{{ path('app_logout') }}">logout</a></li>
-                    </ul>
-                </div>
-            </div>
+            {% set current_path = app.request.get('_route') %}
+            {{ current_path | leftMenuAdmin() | raw }}
+
+        </ul>
+        <hr>
+        <div class="dropdown pb-4">
+            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+               id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
+                <span class="d-none d-sm-inline mx-1">loser</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                <li><a class="dropdown-item" href="#">New project...</a></li>
+                <li><a class="dropdown-item" href="#">Settings</a></li>
+                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="{{ path('app_logout') }}">logout</a></li>
+            </ul>
         </div>
+    </div>
+</div>

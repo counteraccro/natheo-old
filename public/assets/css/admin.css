@@ -1,5 +1,7 @@
 /** CSS MENU LEFT **/
-.bg-primary {
-    --bs-bg-opacity: 1;
-    background-color: #866EC7 !important;
-}
+#left-menu-admin.bg-primary { --bs-bg-opacity: 1; background-color: #866EC7 !important; }
+#left-menu-admin ul li a { padding: 10px 0px 10px 10px; display: block; color: rgba(255,255,255,.8); border-bottom: 1px solid rgba(255,255,255,.1);}
+#left-menu-admin a:hover { background-color: #6749B9; }
+#left-menu-admin ul li { width: 100%; }
+#left-menu-admin .active { background-color: #6749B9; }
+#left-menu-admin #menu { width: auto;}
