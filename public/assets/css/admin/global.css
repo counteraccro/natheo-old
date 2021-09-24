@@ -1,0 +1,52 @@
+/**
+ * CSS surcharge boostrap 5
+ * @author Gourdon Aymeric
+ * @version 1.0
+ */
+
+a,
+a:hover,
+a:focus {
+    color: var(--bg-primary);
+    transition: all 0.3s;
+}
+
+.page-link {
+    color: var(--bg-primary);
+}
+
+.page-link:hover {
+    color: var(--hover-primary);
+}
+
+.card-header {
+    background-color: var(--bg-primary-light);
+    border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+.btn-primary {
+    background-color: var(--bg-primary);
+    border-color: var(--bg-primary);
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: var(--hover-primary);
+    border-color: var(--hover-primary);
+}
+
+.btn-check:focus + .btn-primary, .btn-primary:focus {
+    color: #fff;
+    background-color: var(--hover-primary);
+    border-color: var(--hover-primary);
+    box-shadow: 0 0 0 0.25rem rgb(var(--hover-primary-rgb) / 50%);
+}
+
+.form-control:focus {
+    border-color: var(--bg-primary);
+    box-shadow: 0 0 0 0.25rem rgb(var(--hover-primary-rgb) / 50%);
+}
+
+.btn-check:active + .btn-primary:focus, .btn-check:checked + .btn-primary:focus, .btn-primary.active:focus, .btn-primary:active:focus, .show > .btn-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.25rem rgb(var(--hover-primary-rgb) / 50%);
+}

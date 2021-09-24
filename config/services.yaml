@@ -5,9 +5,10 @@
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
     locale: 'fr'
-    app_locales: 'en|fr|de|el'
+    app_locales: 'en|fr|de|it|es'
     app_path_config_cms : '%kernel.project_dir%/config/cms'
     app_path_menu_left_admin : '%app_path_config_cms%/admin/left-menu-admin.yaml'
+    app_path_routes_modules : '%app_path_config_cms%/admin/routes_modules.yaml'
     app_path_js : '%kernel.project_dir%/public/assets/js'
     app_path_js_admin : '%app_path_js%/admin'
     app_path_js_admin_asset : '/assets/js/admin/'

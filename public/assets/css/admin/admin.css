@@ -1,0 +1,34 @@
+/**
+ * CSS custom de l'administration
+ * @author Gourdon Aymeric
+ * @version 1.0
+ */
+
+/** CSS MENU LEFT **/
+#left-menu-admin.bg-primary {
+    --bs-bg-opacity: 1;
+    background-color: var(--bg-primary) !important;
+}
+
+#left-menu-admin #menu li a {
+    padding: 10px 0px 10px 10px;
+    display: block;
+    color: rgba(255, 255, 255, .8);
+    border-bottom: 1px solid rgba(255, 255, 255, .1);
+}
+
+#left-menu-admin #menu a:hover {
+    background-color: var(--hover-primary);
+}
+
+#left-menu-admin #menu li {
+    width: 100%;
+}
+
+#left-menu-admin #menu .active {
+    background-color: var(--hover-primary);
+}
+
+#left-menu-admin #menu {
+    width: auto;
+}

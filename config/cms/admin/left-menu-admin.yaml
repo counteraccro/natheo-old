@@ -10,4 +10,4 @@ menu-left-admin:
         target: 'admin_route_index'
       Gestion des roles:
         icon: 'fa-user-tag'
-        target: 'app_logout'
+        target: 'front_security_app_logout'
