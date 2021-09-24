@@ -1,4 +1,10 @@
 <?php
+/**
+ * Route repository
+ * @author Gourdon Aymeric
+ * @version 1.0
+ * @package App\Repository\Admin
+ */
 
 namespace App\Repository\Admin;
 
@@ -17,6 +23,21 @@ class RouteRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Route::class);
+    }
+
+    /**
+     * Met à jour à 1 la valeur is_depreciate pour toutes les routes
+     * @return int|mixed|string
+     */
+    public function updateIsdepreciateAllRoute()
+    {
+        return $this->createQueryBuilder('r')
+            ->update(Route::class, 'r')
+            ->set('r.is_depreciate',':val')
+            ->setParameter('val', 1)
+            ->getQuery()
+            ->execute()
+            ;
     }
 
     // /**

@@ -8,6 +8,9 @@ parameters:
     app_locales: 'en|fr|de|el'
     app_path_config_cms : '%kernel.project_dir%/config/cms'
     app_path_menu_left_admin : '%app_path_config_cms%/admin/left-menu-admin.yaml'
+    app_path_js : '%kernel.project_dir%/public/assets/js'
+    app_path_js_admin : '%app_path_js%/admin'
+    app_path_js_admin_asset : '/assets/js/admin/'
 
 services:
     # default configuration for services in *this* file
