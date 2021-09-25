@@ -5,6 +5,7 @@ namespace App\Twig;
 use App\Twig\Admin\LeftMenuAdmin;
 use App\Twig\Admin\System\Asset;
 use App\Twig\Admin\System\Breadcrumb;
+use App\Twig\Admin\System\Paginate;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -52,7 +53,8 @@ class AppExtension extends AbstractExtension
             // the logic of this filter is now implemented in a different class
             new TwigFilter('leftMenuAdmin', [LeftMenuAdmin::class, 'htmlRender']),
             new TwigFilter('breadcrumb', [Breadcrumb::class, 'htmlRender']),
-            new TwigFilter('assetRender', [Asset::class, 'assetAdmin'])
+            new TwigFilter('assetRender', [Asset::class, 'assetAdmin']),
+            new TwigFilter('paginate', [Paginate::class, 'htmlRender'])
         ];
     }
 }

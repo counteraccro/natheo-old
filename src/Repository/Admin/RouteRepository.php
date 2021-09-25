@@ -10,6 +10,7 @@ namespace App\Repository\Admin;
 
 use App\Entity\Admin\Route;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -29,7 +30,7 @@ class RouteRepository extends ServiceEntityRepository
      * Met à jour à 1 la valeur is_depreciate pour toutes les routes
      * @return int|mixed|string
      */
-    public function updateIsdepreciateAllRoute()
+    public function updateIsdepreciateAllRoute(): mixed
     {
         return $this->createQueryBuilder('r')
             ->update(Route::class, 'r')
@@ -38,6 +39,26 @@ class RouteRepository extends ServiceEntityRepository
             ->getQuery()
             ->execute()
             ;
+    }
+
+    /**
+     * Retourne une liste de route paginée
+     * @param $current_page
+     * @param $limit
+     * @return Paginator
+     */
+    public function listeRoutePaginate($current_page, $limit): Paginator
+    {
+        $dql = $this->createQueryBuilder('r')
+            ->orderBy('r.id')
+            ->getQuery();
+
+        $paginator = new Paginator($dql);
+
+        $paginator->getQuery()
+            ->setFirstResult($limit * ($current_page - 1))
+            ->setMaxResults($limit);
+        return $paginator;
     }
 
     // /**

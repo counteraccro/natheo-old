@@ -39,6 +39,7 @@ class RouteController extends AppController
 
     /**
      * Mise à jour des routes
+     * @param RouteService $routeService
      * @return JsonResponse
      */
     #[Route('/ajax/update', name: 'ajax_update_route')]
@@ -46,5 +47,25 @@ class RouteController extends AppController
     {
         $routeService->updateRoutes();
         return $this->json(['success' => true]);
+    }
+
+    /**
+     * Liste des routes de l'application
+     * @param int $page
+     * @return Response
+     */
+    #[Route('/ajax/listing/{page}', name: 'ajax_listing_route')]
+    public function listingRoute(int $page = 1): Response
+    {
+        $limit = 1;
+
+        $listeRoutes = $this->getDoctrine()->getRepository(\App\Entity\Admin\Route::class)->listeRoutePaginate($page, $limit);
+
+        return $this->render('admin/route/ajax_listing.html.twig', [
+            'listeRoutes' => $listeRoutes,
+            'page' => $page,
+            'limit' => $limit,
+            'route' => 'admin_route_ajax_listing_route'
+        ]);
     }
 }
