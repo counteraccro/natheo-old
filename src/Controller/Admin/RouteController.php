@@ -9,6 +9,7 @@
 namespace App\Controller\Admin;
 
 use App\Controller\AppController;
+use App\Repository\Admin\RouteRepository;
 use App\Service\Admin\System\RouteService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -57,15 +58,19 @@ class RouteController extends AppController
     #[Route('/ajax/listing/{page}', name: 'ajax_listing_route')]
     public function listingRoute(int $page = 1): Response
     {
-        $limit = 1;
+        $limit = 6;
 
-        $listeRoutes = $this->getDoctrine()->getRepository(\App\Entity\Admin\Route::class)->listeRoutePaginate($page, $limit);
+        /** @var RouteRepository $routeRepo */
+        $routeRepo = $this->getDoctrine()->getRepository(\App\Entity\Admin\Route::class);
+        $listeRoutes = $routeRepo->listeRoutePaginate($page, $limit);
+        $nbRoutesDepreciate = $routeRepo->findBy(['is_depreciate' => 1]);
 
         return $this->render('admin/route/ajax_listing.html.twig', [
             'listeRoutes' => $listeRoutes,
             'page' => $page,
             'limit' => $limit,
-            'route' => 'admin_route_ajax_listing_route'
+            'route' => 'admin_route_ajax_listing_route',
+            'nbRoutesDepreciate' => count($nbRoutesDepreciate),
         ]);
     }
 }

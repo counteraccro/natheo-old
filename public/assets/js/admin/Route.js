@@ -37,4 +37,27 @@ Route.Launch = function() {
         let str_loading = $(id).data('loading');
         System.Ajax(url, id, true, str_loading);
     };
+
+    /**
+     * Evènement sur le tableau des routes
+     * @constructor
+     */
+    Route.ListingEvent = function()
+    {
+
+    };
+
+    /**
+     * Mise à jour de l'entete du tableau de route
+     * @constructor
+     */
+    Route.UpdateInfoListing = function(nb_depreciate, nb_total, txtNb, txtDepreciate)
+    {
+        let id = Route.globalId + ' #info-route';
+        $(id).html('<b>' + nb_total + '</b> ' + txtNb);
+        if(nb_depreciate > 0)
+        {
+            $(id).append(' - <span class="text-danger"></i><i class="fas fa-exclamation-circle"></i><i>&nbsp;<b>' + nb_depreciate + '</b> ' + txtDepreciate + '</i></span>');
+        }
+    }
 }

@@ -3,31 +3,44 @@
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">{{ "Route" | trans }}</th>
+            <th scope="col">{{ "Module" | trans }}</th>
+            <th scope="col">{{ "Action" | trans }}</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-        </tr>
+        {% for route in listeRoutes %}
+            <tr>
+                <th scope="row">{{ route.id }}</th>
+                <td>{{ route.route }}
+                    {% if route.isDepreciate == 1 %}
+                        <i class="text-danger fas fa-exclamation-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ "Cette route est dépréciée, vous pouvez la supprimer" }}"></i>
+                    {% endif %}
+                </td>
+                <td>{{ route.module }}</td>
+                <td>
+                    {% if route.isDepreciate == 1 %}
+                        <a href="#"><i class="text-danger fas fa-minus-circle"></i></a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
         </tbody>
     </table>
 
     {{ listeRoutes | paginate(page, limit, route, '#admin-route-globale .card-body') | raw }}
+
+    <script>
+        $( document ).ready(function() {
+            let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl)
+            });
+
+            let txtNb = '{{ 'Routes' | trans }}';
+            let txtDepreciate = '{{ 'route(s) détectée(s) comme obsolète(s)' | trans }}' +  ' - <a href="#">{{ 'Purger' | trans }}</a>';
+
+            Route.UpdateInfoListing('{{ nbRoutesDepreciate }}', '{{ listeRoutes.count }}', txtNb, txtDepreciate);
+        });
+    </script>
 </div>
