@@ -28,6 +28,7 @@ Route.Launch = function() {
                 url: url,
             })
                 .done(function (html) {
+                    $(id).removeLoader();
                     Route.LoadListingRoute();
                 });
 
