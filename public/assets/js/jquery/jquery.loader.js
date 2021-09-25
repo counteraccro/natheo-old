@@ -8,6 +8,10 @@
 
     let element = '';
 
+    /**
+     * Affichage loader
+     * @param str_loading
+     */
     $.fn.loader = function(str_loading)
     {
         let height = $(this).height();
@@ -30,6 +34,9 @@
         $(this).prepend(element);
     };
 
+    /**
+     * Supression du loader courant
+     */
     $.fn.removeLoader = function()
     {
         element.remove();
