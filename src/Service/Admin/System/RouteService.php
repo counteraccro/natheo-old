@@ -34,10 +34,10 @@ class RouteService extends AppService
             {
                 continue;
             }
-            $module = 'error';
-            if(isset($tabRouteModule['routes_modules'][$explode[1]][$this->local]))
+            $module = $explode[1];
+            if(isset($tabRouteModule['routes_modules'][$explode[1]]))
             {
-                $module = $tabRouteModule['routes_modules'][$explode[1]][$this->local];
+                $module = $tabRouteModule['routes_modules'][$explode[1]];
             }
 
             /** @var Route $route */

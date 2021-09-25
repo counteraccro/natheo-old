@@ -36,26 +36,17 @@ class AppService
     protected ParameterBagInterface $parameterBag;
 
     /**
-     * Local global de l'application
-     * @var string
-     */
-    protected string $local = 'fr';
-
-    /**
      * @param Doctrine $doctrine
      * @param RouterInterface $router
+     * @param RequestStack $request
+     * @param ParameterBagInterface $parameterBag
      */
     public function __construct(Doctrine $doctrine, RouterInterface $router, RequestStack $request,
             ParameterBagInterface $parameterBag)
     {
         $this->doctrine = $doctrine;
         $this->router = $router;
-        if($request->getCurrentRequest() != null)
-        {
-            $this->request = $request->getCurrentRequest();
-            $this->local = $this->request->getLocale();
-        }
-
+        $this->request = $request->getCurrentRequest();
         $this->parameterBag = $parameterBag;
     }
 }

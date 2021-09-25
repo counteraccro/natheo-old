@@ -1,3 +1,17 @@
+Dashboard: __Dashboard
+'Gestion des routes': '__Gestion des routes'
+'Bock pagination': '__Bock pagination'
+'Chargement des données...': '__Chargement des données...'
+Précédent: __Précédent
+Suivant: __Suivant
+Route: __Route
+Module: __Module
+Action: __Action
+Routes: __Routes
+'route(s) détectée(s) comme obsolète(s)': '__route(s) détectée(s) comme obsolète(s)'
+Purger: __Purger
+'Mise à jour des routes': '__Mise à jour des routes'
+Rechercher: __Rechercher
 'Authentification demandée': '__Authentification demandée'
 'Vous êtes connecté en tant que': '__Vous êtes connecté en tant que'
 Déconnection: __Déconnection

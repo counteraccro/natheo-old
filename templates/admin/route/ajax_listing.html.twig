@@ -17,7 +17,7 @@
                         <i class="text-danger fas fa-exclamation-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ "Cette route est dépréciée, vous pouvez la supprimer" }}"></i>
                     {% endif %}
                 </td>
-                <td>{{ route.module }}</td>
+                <td>{{ route.module | trans }}</td>
                 <td>
                     {% if route.isDepreciate == 1 %}
                         <a href="#"><i class="text-danger fas fa-minus-circle"></i></a>

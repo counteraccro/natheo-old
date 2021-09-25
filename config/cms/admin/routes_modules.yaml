@@ -1,26 +1,6 @@
 routes_modules:
-  dashboard:
-    fr: 'Dashboard'
-    en: '__Dashboard__en'
-    es: '__Dashboard__es'
-    it: '__Dashboard__it'
-    de: '__Dashboard__de'
-  route:
-    fr: 'Gestion des routes'
-    en: 'Route management'
-    es: '__route__es'
-    it: '__route__it'
-    de: '__route__de'
-  front:
-    fr: 'Site public'
-    en: 'Front'
-    es: '__front__es'
-    it: '__front__it'
-    de: '__front__de'
-  security:
-    fr: 'Authentification'
-    en: 'Auth'
-    es: '__security__es'
-    it: '__security__it'
-    de: '__security__de'
+  dashboard: 'Dashboard'
+  route: 'Gestion des routes'
+  front: 'Site public'
+  security: 'Authentification'
 
