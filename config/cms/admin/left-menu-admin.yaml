@@ -17,9 +17,9 @@ menu-left-admin:
   admin_system#System:
     icon: 'fa-cogs'
     sub-menu:
-      admin_translation#Traductions:
+      admin_translation#Gestion des traductions:
         icon: 'fa-language'
         target: 'admin_translation_index'
-      admin_global_option#Option globales:
+      admin_global_option#Options globales:
         icon: 'fa-cog'
         target : 'admin_option_index'

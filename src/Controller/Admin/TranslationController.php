@@ -20,7 +20,7 @@ class TranslationController extends AppController
     public function index(TranslationService $translationService): Response
     {
 
-        $translationService->updateTranslateFromYamlFileToBDD();
+        //$translationService->updateTranslateFromBDDtoYamlFile();
 
         $breadcrumb = [
             $this->translator->trans('admin_dashboard#Dashboard') => 'admin_dashboard_index',

@@ -22,13 +22,72 @@ class TranslationService extends AppService
 {
 
     /**
+     * Met à jour les traductions depuis la base de données vers les fichiers yaml
+     * Attention cette action écrase l'ensemble des données présent dans les fichier yaml
+     */
+    public function updateTranslateFromBDDtoYamlFile()
+    {
+        $path_translation = $this->parameterBag->get('app_path_translation');
+        $locales = explode('|', $this->parameterBag->get('app_locales'));
+        $tranlationKeyRepo = $this->doctrine->getRepository(TranslationKey::class);
+
+        //messages+intl-icu.de.yaml
+
+        $finder = new Finder();
+        $finder->name('messages+intl-icu*');
+        foreach ($finder->files()->in($path_translation) as $file) {
+           unlink($file->getPathname());
+        }
+
+        $tabGlobalTrans = [];
+        $allTranslation = $tranlationKeyRepo->findAll();
+        foreach($locales as $locale)
+        {
+            /** @var TranslationKey $translationKey */
+            foreach($allTranslation as $translationKey)
+            {
+                foreach($translationKey->getTranslationLabels() as $translationLabel)
+                {
+                    if($translationLabel->getLanguage() == $locale)
+                    {
+                        $tabGlobalTrans[$locale][$translationKey->getName()] = $translationLabel->getLabel();
+                    }
+                }
+            }
+        }
+
+        foreach($tabGlobalTrans as $locale => $tabTrans)
+        {
+            $yaml = Yaml::dump($tabTrans);
+            file_put_contents($path_translation . '/messages+intl-icu.' . $locale . '.yaml', $yaml);
+        }
+
+        // On vide le cache applicatif
+        $application = new Application($this->kernel);
+        $application->setAutoExit(false);
+
+        $input = new ArrayInput([
+            'command' => 'cache:clear'
+        ]);
+        $output = new NullOutput();
+        $application->run($input, $output);
+    }
+
+    /**
      * Met à jour la base de données à partir des fichiers de traductions
      */
     public function updateTranslateFromYamlFileToBDD()
     {
         $path_translation = $this->parameterBag->get('app_path_translation');
+        $path_config = $this->parameterBag->get('app_path_config_cms');
         $locales = $this->parameterBag->get('app_locales');
         $tabLocales = explode('|', $locales);
+
+        $finder = new Finder();
+        $finder->name('config-translate.yaml');
+        foreach ($finder->files()->in($path_config) as $file) {
+            $this->createUpdateTranslationByYamlFile($file, $tabLocales);
+        }
 
         $ref_local = $tabLocales[0];
         $finder = new Finder();
@@ -105,7 +164,14 @@ class TranslationService extends AppService
                 {
                     $translationLabel = new TranslationLabel();
                     $translationLabel->setLanguage($locale);
-                    $translationLabel->setLabel('__' . $label);
+
+                    $__ = '__';
+                    if($locale == 'fr')
+                    {
+                        $__ = '';
+                    }
+
+                    $translationLabel->setLabel($__ . $label);
                     $translationLabel->setTranslationKey($translationKey);
                     $this->doctrine->getManager()->persist($translationLabel);
                 }

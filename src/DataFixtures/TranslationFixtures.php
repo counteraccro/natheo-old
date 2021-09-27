@@ -22,6 +22,8 @@ class TranslationFixtures extends Fixture
     {
         $this->transtaltionService->generateTranslationByCommande();
         $this->transtaltionService->updateTranslateFromYamlFileToBDD();
+        //$manager->flush();
+        //$this->transtaltionService->updateTranslateFromBDDtoYamlFile();
 
         // $product = new Product();
         // $manager->persist($product);

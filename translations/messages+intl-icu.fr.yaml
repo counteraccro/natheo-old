@@ -1,39 +1,39 @@
-'admin_global_option#front': '__admin_global_option#front'
-'admin_global_option#administration': '__admin_global_option#administration'
-'admin_global_option#Titre du site': '__admin_global_option#Titre du site'
-'admin_global_option#Site Web propulsé par Nathéo CMS': '__admin_global_option#Site Web propulsé par Nathéo CMS'
-'admin_global_option#Rendre le front accessible aux visiteurs ?': '__admin_global_option#Rendre le front accessible aux visiteurs ?'
-'admin_global_option#Si vous fermé le front, l''administration restera toujours accessible.': '__admin_global_option#Si vous fermé le front, l''administration restera toujours accessible.'
-'admin_global_option#Changer le theme de l''administraton': '__admin_global_option#Changer le theme de l''administraton'
-'admin_global_option#purple': '__admin_global_option#purple'
-'admin_global_option#red': '__admin_global_option#red'
-'admin_global_option#orange': '__admin_global_option#orange'
-'admin_global_option#pink': '__admin_global_option#pink'
-'admin_permission#Permission': '__ admin_permission#Permission'
-'admin_system#System': '__admin_system#System'
-'admin_role#Gestion des rôles': '__admin_role#Gestion des rôles'
-'admin_dashboard#Dashboard': '__admin_dashboard#Dashboard'
-'admin_global_option#Options globales': '__admin_global_option#Options globales'
-'admin_route#Gestion des routes': '__admin_route#Gestion des routes'
-'admin_translation#Gestion des traductions': '__admin_translation#Gestion des traductions'
-'admin_pagination#Bock pagination': '__admin_pagination#Bock pagination'
-'admin_pagination#Chargement des données...': '__admin_pagination#Chargement des données...'
-'admin_pagination#Précédent': '__admin_pagination#Précédent'
-'admin_pagination#Suivant': '__admin_pagination#Suivant'
-'admin_route#Route': '__admin_route#Route'
-'admin_route#Module': '__admin_route#Module'
-'admin_route#Action': '__admin_route#Action'
-'admin_route#Routes': '__admin_route#Routes'
-'admin_route#route(s) détectée(s) comme obsolète(s)': '__admin_route#route(s) détectée(s) comme obsolète(s)'
-'admin_route#Purger': '__admin_route#Purger'
-'admin_route#Mise à jour des routes': '__admin_route#Mise à jour des routes'
-'admin_route#Rechercher': '__admin_route#Rechercher'
-'admin_route#Chargement des données...': '__admin_route#Chargement des données...'
-'front_auth#Authentification demandée': '__front_auth#Authentification demandée'
-'front_auth#Vous êtes connecté en tant que': '__front_auth#Vous êtes connecté en tant que'
-'front_auth#Déconnection': '__front_auth#Déconnection'
-'front_auth#Authentification': '__front_auth#Authentification'
-'front_auth#Adresse email': '__front_auth#Adresse email'
-'front_auth#Mot de passe': '__front_auth#Mot de passe'
-'front_auth#Ce souvenir de moi': '__front_auth#Ce souvenir de moi'
-'front_auth#Me connecter': '__front_auth#Me connecter'
+'admin_global_option#front': front
+'admin_global_option#administration': administration
+'admin_global_option#Titre du site': 'Titre du site'
+'admin_global_option#Site Web propulsé par Nathéo CMS': 'Site Web propulsé par Nathéo CMS'
+'admin_global_option#Rendre le front accessible aux visiteurs ?': 'Rendre le front accessible aux visiteurs ?'
+'admin_global_option#Si vous fermé le front, l''administration restera toujours accessible.': 'Si vous fermé le front, l''administration restera toujours accessible.'
+'admin_global_option#Changer le theme de l''administraton': 'Changer le theme de l''administraton'
+'admin_global_option#purple': purple
+'admin_global_option#red': red
+'admin_global_option#orange': orange
+'admin_global_option#pink': pink
+'admin_permission#Permission': Permission
+'admin_system#System': System
+'admin_role#Gestion des rôles': 'Gestion des rôles'
+'admin_dashboard#Dashboard': Dashboard
+'admin_global_option#Options globales': 'Options globales'
+'admin_route#Gestion des routes': 'Gestion des routes'
+'admin_translation#Gestion des traductions': 'Gestion des traductions'
+'admin_pagination#Bock pagination': 'Bock pagination'
+'admin_pagination#Chargement des données...': 'Chargement des données...'
+'admin_pagination#Précédent': Précédent
+'admin_pagination#Suivant': Suivant
+'admin_route#Route': Route
+'admin_route#Module': Module
+'admin_route#Action': Action
+'admin_route#Routes': Routes
+'admin_route#route(s) détectée(s) comme obsolète(s)': 'route(s) détectée(s) comme obsolète(s)'
+'admin_route#Purger': Purger
+'admin_route#Mise à jour des routes': 'Mise à jour des routes'
+'admin_route#Rechercher': Rechercher
+'admin_route#Chargement des données...': 'Chargement des données...'
+'front_auth#Authentification demandée': 'Authentification demandée'
+'front_auth#Vous êtes connecté en tant que': 'Vous êtes connecté en tant que'
+'front_auth#Déconnection': Déconnection
+'front_auth#Authentification': Authentification
+'front_auth#Adresse email': 'Adresse email'
+'front_auth#Mot de passe': 'Mot de passe'
+'front_auth#Ce souvenir de moi': 'Ce souvenir de moi'
+'front_auth#Me connecter': 'Me connecter'

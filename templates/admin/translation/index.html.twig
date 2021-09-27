@@ -9,5 +9,59 @@
 
         {{ breadcrumb | breadcrumb | raw }}
 
+        <div class="float-end mb-3">
+            <div class="btn btn-danger"><i class="fa fa-exclamation-triangle"></i> {{ "admin_translation#Réinitialiser les traductions" | trans}}</div>
+            <div class="btn btn-primary"><i class="fa fa-sync-alt"></i> {{"admin_translation#Regénérer les traductions" | trans}}</div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                        <div class="col-4">
+
+                            <label for="inputState" class="form-label">State</label>
+                            <select id="inputState" class="form-select">
+                                <option selected>Choose...</option>
+                                <option>...</option>
+                            </select>
+                            <br />
+                            <label for="inputState" class="form-label">State</label>
+                            <select id="inputState" class="form-select">
+                                <option selected>Choose...</option>
+                                <option>...</option>
+                            </select>
+
+                        </div>
+                    <div class="col-4">
+                        <label for="inputState" class="form-label">State</label>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
+                        </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                            <label class="form-check-label" for="flexSwitchCheckChecked">Checked switch checkbox input</label>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1">
+
+                        <br />
+                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1">
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="card-footer">
+                <div class="btn btn-primary float-end"> {{"admin_translation#Filter les données" | trans}}</div>
+            </div>
+        </div>
+
+
     </div>
 {% endblock %}

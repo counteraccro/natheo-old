@@ -11,6 +11,7 @@ parameters:
     app_path_menu_left_admin : '%app_path_config_cms%/admin/left-menu-admin.yaml'
     app_path_routes_modules : '%app_path_config_cms%/admin/translate_modules.yaml'
     app_path_global_options : '%app_path_config_cms%/admin/global_options.yaml'
+    app_path_config_tranlate : '%app_path_config_cms%/admin/config-translate.yaml'
     app_path_js : '%kernel.project_dir%/public/assets/js'
     app_path_js_admin : '%app_path_js%/admin'
     app_path_js_admin_asset : '/assets/js/admin/'
