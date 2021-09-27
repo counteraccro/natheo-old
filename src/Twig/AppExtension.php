@@ -3,6 +3,7 @@
 namespace App\Twig;
 
 use App\Twig\Admin\LeftMenuAdmin;
+use App\Twig\Admin\Option;
 use App\Twig\Admin\System\Asset;
 use App\Twig\Admin\System\Breadcrumb;
 use App\Twig\Admin\System\Paginate;
@@ -54,7 +55,8 @@ class AppExtension extends AbstractExtension
             new TwigFilter('leftMenuAdmin', [LeftMenuAdmin::class, 'htmlRender']),
             new TwigFilter('breadcrumb', [Breadcrumb::class, 'htmlRender']),
             new TwigFilter('assetRender', [Asset::class, 'assetAdmin']),
-            new TwigFilter('paginate', [Paginate::class, 'htmlRender'])
+            new TwigFilter('paginate', [Paginate::class, 'htmlRender']),
+            new TwigFilter('optionRender', [Option::class, 'htmlRender'])
         ];
     }
 }

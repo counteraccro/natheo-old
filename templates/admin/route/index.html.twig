@@ -4,24 +4,24 @@
 
 {% block body %}
 <div id="admin-route-globale">
-    <h1>{{ "Gestion des routes" | trans }}</h1>
+    <h1>{{ "admin_route#Gestion des routes" | trans }}</h1>
 
     {{ breadcrumb | breadcrumb | raw }}
 
     <div class="float-end">
-        <div id="btn-update-route" data-loading="{{ "Mise à jour des routes..." }}" data-url="{{ path('admin_route_ajax_update_route') }}" class="btn btn-primary mb-2">
-            <i class="fas fa-sync-alt"></i> {{ "Mise à jour des routes" | trans }}
+        <div id="btn-update-route" data-loading="{{ "admin_route#Mise à jour des routes..." }}" data-url="{{ path('admin_route_ajax_update_route') }}" class="btn btn-primary mb-2">
+            <i class="fas fa-sync-alt"></i> {{ "admin_route#Mise à jour des routes" | trans }}
         </div>
     </div>
     <div class="clearfix"></div>
     <div class="card">
         <div class="card-header">
             <div class="mt-2 float-start" id="info-route">
-                - {{ "Routes" | trans }}
+                - {{ "admin_route#Routes" | trans }}
             </div>
             <div class="float-end">
             <div class="input-group">
-                <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="{{ "Rechercher" | trans }}">
+                <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="{{ "admin_route#Rechercher" | trans }}">
                 <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</button>
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li><a class="dropdown-item" href="#">Action</a></li>
@@ -33,7 +33,7 @@
             </div>
             </div>
         </div>
-        <div class="card-body" data-url="{{ path('admin_route_ajax_listing_route') }}" data-loading="{{ "Chargement des données..." }}">
+        <div class="card-body" data-url="{{ path('admin_route_ajax_listing_route') }}" data-loading="{{ "admin_route#Chargement des données..." | trans }}">
 
         </div>
     </div>

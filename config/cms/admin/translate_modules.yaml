@@ -1,6 +1,6 @@
+# Traductions des modules des routes
 routes_modules:
   dashboard: 'Dashboard'
   route: 'Gestion des routes'
   front: 'Site public'
   security: 'Authentification'
-

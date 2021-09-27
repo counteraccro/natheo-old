@@ -1,0 +1,32 @@
+# OPTIONS GLOBAL DU CMS
+# Un changement ici peut potentiellement casser le site.
+
+global_options:
+  admin_global_option#front:
+    GO_TITRE_SITE:
+      type: 'text'
+      label : 'admin_global_option#Titre du site'
+      require : 1
+      default : 'admin_global_option#Site Web propulsé par Nathéo CMS'
+    GO_OPEN_FRONT:
+      type: 'boolean'
+      label: 'admin_global_option#Rendre le front accessible aux visiteurs ?'
+      help: "admin_global_option#Si vous fermé le front, l'administration restera toujours accessible."
+      default: 1
+  admin_global_option#administration:
+    GO_GLOBAL_ELEMENT_PAR_PAGE :
+      type: 'list'
+      label: "admin_global_option#Nombre d'éléments par page sur l'administration"
+      list_value: '5|10|20|50|100'
+      default: '20'
+    GO_GLOBAL_LANGUE:
+      type: 'list'
+      label: "admin_global_option#Langue par défaut de l'administration"
+      list_value: '%app_locales%'
+      default: 'fr'
+    GO_THEME_ADMIN:
+      type: 'list'
+      label: "admin_global_option#Changer le theme de l'administraton"
+      list_value: 'admin_global_option#purple|admin_global_option#red|admin_global_option#orange|admin_global_option#pink'
+      default: 'purple'
+

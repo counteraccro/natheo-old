@@ -1,4 +1,10 @@
 <?php
+/**
+ * Génération du menu de gauche
+ * @author Gourdon Aymeric
+ * @version 1.0
+ * @package App\Twig\Admin
+ */
 
 namespace App\Twig\Admin;
 
@@ -100,11 +106,13 @@ class LeftMenuAdmin extends AppExtension implements RuntimeExtensionInterface
                           </li>';
         }
 
+        $html_id = "menu-" . mt_rand();
+
         return '<li>
-                    <a href="#submenu1" data-bs-toggle="collapse" class="nav-link link-light align-middle dropdown-toggle">
+                    <a href="#' . $html_id . '" data-bs-toggle="collapse" class="nav-link link-light align-middle dropdown-toggle">
                         <i class="fas ' . $element[self::KEY_ICON] . '"></i> <span class="ms-1 d-none d-sm-inline">' . $this->translator->trans($label) . '</span> 
                     </a>
-                        <ul class="collapse ' . $show . ' nav flex-column ms-0" id="submenu1" data-bs-parent="#menu">' . $html . '
+                        <ul class="collapse ' . $show . ' nav flex-column ms-0" id="' . $html_id . '" data-bs-parent="#menu">' . $html . '
                         </ul>
                  </li>';
     }

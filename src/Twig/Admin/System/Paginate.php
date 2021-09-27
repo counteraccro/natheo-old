@@ -36,10 +36,10 @@ class Paginate extends AppExtension implements RuntimeExtensionInterface
             $next = 'disabled';
         }
 
-        $html = '<nav aria-label="' . $this->translator->trans('Bock pagination') . '">
-                <ul class="pagination justify-content-end" data-id="' . $global_id . '" data-loading="' . $this->translator->trans('Chargement des données...') . '">
+        $html = '<nav aria-label="' . $this->translator->trans('admin_pagination#Bock pagination') . '">
+                <ul class="pagination justify-content-end" data-id="' . $global_id . '" data-loading="' . $this->translator->trans('admin_pagination#Chargement des données...') . '">
                     <li class="page-item ' . $previous . '">
-                        <a class="page-link" href="' . $this->urlGenerator->generate($route, ['page' => ($page-1)]) . '" tabindex="-1" aria-disabled="true">' . $this->translator->trans('Précédent') . '</a>
+                        <a class="page-link" href="' . $this->urlGenerator->generate($route, ['page' => ($page-1)]) . '" tabindex="-1" aria-disabled="true">' . $this->translator->trans('admin_pagination#Précédent') . '</a>
                     </li>';
 
         for ($i = 1; $i <= $maxPages; $i++) {
@@ -55,7 +55,7 @@ class Paginate extends AppExtension implements RuntimeExtensionInterface
         }
 
         $html .= '<li class="page-item ' . $next . '">
-                        <a class="page-link" href="' . $this->urlGenerator->generate($route, ['page' => ($page+1)]) . '">' . $this->translator->trans('Suivant') . '</a>
+                        <a class="page-link" href="' . $this->urlGenerator->generate($route, ['page' => ($page+1)]) . '">' . $this->translator->trans('admin_pagination#Suivant') . '</a>
                     </li>
                 </ul>
             </nav>';

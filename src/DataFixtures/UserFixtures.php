@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Fixture pour les users
+ * @author Gourdon Aymeric
+ * @version 1.0
+ * @package App\DataFixtures
+ */
 namespace App\DataFixtures;
 
 use App\Entity\User;

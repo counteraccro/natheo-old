@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=RouteRepository::class)
+ * @ORM\Table(name="`cms_route`")
  */
 class Route
 {

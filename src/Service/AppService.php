@@ -10,6 +10,7 @@ use Doctrine\Persistence\ManagerRegistry as Doctrine;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\RouterInterface;
 
 class AppService
@@ -28,12 +29,17 @@ class AppService
     /**
      * @var Request
      */
-    protected ?Request $request;
+    protected mixed $request;
 
     /**
      * @var ParameterBagInterface
      */
     protected ParameterBagInterface $parameterBag;
+
+    /**
+     * @var KernelInterface
+     */
+    protected KernelInterface $kernel;
 
     /**
      * @param Doctrine $doctrine
@@ -42,11 +48,12 @@ class AppService
      * @param ParameterBagInterface $parameterBag
      */
     public function __construct(Doctrine $doctrine, RouterInterface $router, RequestStack $request,
-            ParameterBagInterface $parameterBag)
+            ParameterBagInterface $parameterBag, KernelInterface $kernel)
     {
         $this->doctrine = $doctrine;
         $this->router = $router;
         $this->request = $request->getCurrentRequest();
         $this->parameterBag = $parameterBag;
+        $this->kernel = $kernel;
     }
 }

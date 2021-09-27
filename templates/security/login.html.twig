@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title> {{ "Authentification demandée" | trans }}</title>
+    <title> {{ "front_auth#Authentification demandée" | trans }}</title>
 
     {% include 'include/assets.html.twig' %}
     {% include 'include/front-assets.html.twig' %}
@@ -35,21 +35,21 @@
 
         {% if app.user %}
             <div class="text-info">
-                {{ "Vous êtes connecté en tant que" | trans }} {{ app.user.username }}, <a href="{{ path('app_logout') }}">{{ "Déconnection" | trans }}</a>
+                {{ "front_auth#Vous êtes connecté en tant que" | trans }} {{ app.user.username }}, <a href="{{ path('app_logout') }}">{{ "front_auth#Déconnection" | trans }}</a>
             </div>
         {% endif %}
 
-        <h1 class="h3 mb-3 fw-normal">{{ "Authentification requise" | trans }}</h1>
+        <h1 class="h3 mb-3 fw-normal">{{ "front_auth#Authentification" | trans }}</h1>
 
         <div class="form-floating">
             <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control"
                    placeholder="name@example.com" autocomplete="email" required autofocus>
-            <label for="floatingInput">{{ "Adresse email" | trans }}</label>
+            <label for="floatingInput">{{ "front_auth#Adresse email" | trans }}</label>
         </div>
         <div class="form-floating">
-            <input type="password" name="password" id="inputPassword" class="form-control" placeholder="{{ "Mot de passe" | trans }}"
+            <input type="password" name="password" id="inputPassword" class="form-control" placeholder="{{ "front_auth#Mot de passe" | trans }}"
                    autocomplete="current-password" required>
-            <label for="floatingPassword">{{ "Mot de passe" | trans }}</label>
+            <label for="floatingPassword">{{ "front_auth#Mot de passe" | trans }}</label>
         </div>
 
         <input type="hidden" name="_csrf_token"
@@ -58,10 +58,10 @@
 
         <div class="checkbox mb-3">
             <label>
-                <input type="checkbox" name="_remember_me"> {{ "Ce souvenir de moi" | trans }}
+                <input type="checkbox" name="_remember_me"> {{ "front_auth#Ce souvenir de moi" | trans }}
             </label>
         </div>
-        <button class="w-100 btn btn-lg btn-primary" type="submit">{{ "Me connecter" | trans }}</button>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">{{ "front_auth#Me connecter" | trans }}</button>
         <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
     </form>
 </main>

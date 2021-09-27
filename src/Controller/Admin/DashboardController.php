@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Controller qui va génrer le dashboard
+ * @author Gourdon Aymeric
+ * @version 1.0
+ * @package App\Controller\Admin;
+ */
 namespace App\Controller\Admin;
 
 use App\Controller\AppController;

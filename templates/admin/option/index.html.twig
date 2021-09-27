@@ -1,0 +1,14 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block title %}Hello OptionController!{% endblock %}
+
+{% block body %}
+
+<div id="admin-options-globales">
+    <h1>{{ "admin_global_option#Options globales" | trans }}</h1>
+
+    {{ breadcrumb | breadcrumb | raw }}
+
+    {{ 'global_options' | optionRender | raw }}
+</div>
+{% endblock %}

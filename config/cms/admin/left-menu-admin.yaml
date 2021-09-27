@@ -1,13 +1,25 @@
+# MENU DE GAUCHE DE l'ADMINISTRATION
+# Assurez-vous que les targets (routes) soit exact avant de les changer sinon risque de casser le site
+
 menu-left-admin:
-  Dashboard:
+  admin_dashboard#Dashboard:
     icon: 'fa-tachometer-alt'
     target: 'admin_dashboard_index'
-  Permission:
+  admin_permission#Permission:
     icon: 'fa-dice-d6'
     sub-menu:
-      Gestion des routes:
+      admin_route#Gestion des routes:
         icon: 'fa-road'
         target: 'admin_route_index'
-      Gestion des roles:
+      admin_role#Gestion des roles:
         icon: 'fa-user-tag'
         target: 'front_security_app_logout'
+  admin_system#System:
+    icon: 'fa-cogs'
+    sub-menu:
+      admin_translation#Traductions:
+        icon: 'fa-language'
+        target: 'admin_translation_index'
+      admin_global_option#Option globales:
+        icon: 'fa-cog'
+        target : 'admin_option_index'

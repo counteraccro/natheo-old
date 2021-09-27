@@ -1,0 +1,13 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block title %}Hello TranslationController!{% endblock %}
+
+{% block body %}
+
+    <div id="admin-translation-globale">
+        <h1>{{ "admin_translation#Gestion des traductions" | trans }}</h1>
+
+        {{ breadcrumb | breadcrumb | raw }}
+
+    </div>
+{% endblock %}

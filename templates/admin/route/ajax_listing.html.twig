@@ -3,9 +3,9 @@
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">{{ "Route" | trans }}</th>
-            <th scope="col">{{ "Module" | trans }}</th>
-            <th scope="col">{{ "Action" | trans }}</th>
+            <th scope="col">{{ "admin_route#Route" | trans }}</th>
+            <th scope="col">{{ "admin_route#Module" | trans }}</th>
+            <th scope="col">{{ "admin_route#Action" | trans }}</th>
         </tr>
         </thead>
         <tbody>
@@ -14,7 +14,7 @@
                 <th scope="row">{{ route.id }}</th>
                 <td>{{ route.route }}
                     {% if route.isDepreciate == 1 %}
-                        <i class="text-danger fas fa-exclamation-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ "Cette route est dépréciée, vous pouvez la supprimer" }}"></i>
+                        <i class="text-danger fas fa-exclamation-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ "admin_route#Cette route est dépréciée, vous pouvez la supprimer" }}"></i>
                     {% endif %}
                 </td>
                 <td>{{ route.module | trans }}</td>
@@ -37,8 +37,8 @@
                 return new bootstrap.Tooltip(tooltipTriggerEl)
             });
 
-            let txtNb = '{{ 'Routes' | trans }}';
-            let txtDepreciate = '{{ 'route(s) détectée(s) comme obsolète(s)' | trans }}' +  ' - <a href="#">{{ 'Purger' | trans }}</a>';
+            let txtNb = '{{ 'admin_route#Routes' | trans }}';
+            let txtDepreciate = '{{ 'admin_route#route(s) détectée(s) comme obsolète(s)' | trans }}' +  ' - <a href="#">{{ 'admin_route#Purger' | trans }}</a>';
 
             Route.UpdateInfoListing('{{ nbRoutesDepreciate }}', '{{ listeRoutes.count }}', txtNb, txtDepreciate);
         });

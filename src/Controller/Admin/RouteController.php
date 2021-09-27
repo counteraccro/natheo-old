@@ -29,8 +29,8 @@ class RouteController extends AppController
     public function index(): Response
     {
         $breadcrumb = [
-            $this->translator->trans('Dashboard') => 'admin_dashboard_index',
-            $this->translator->trans('Gestion des routes') => '',
+            $this->translator->trans('admin_dashboard#Dashboard') => 'admin_dashboard_index',
+            $this->translator->trans('admin_route#Gestion des routes') => '',
         ];
 
         return $this->render('admin/route/index.html.twig', [
