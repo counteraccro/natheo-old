@@ -5,10 +5,12 @@
  * @version 1.0
  * @package App\Service\Admin\System
  */
+
 namespace App\Service\Admin\System;
 
 use App\Entity\Admin\TranslationKey;
 use App\Entity\Admin\TranslationLabel;
+use App\Repository\Admin\TranslationKeyRepository;
 use App\Service\AppService;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
@@ -28,36 +30,29 @@ class TranslationService extends AppService
     public function updateTranslateFromBDDtoYamlFile()
     {
         $path_translation = $this->parameterBag->get('app_path_translation');
-        $locales = explode('|', $this->parameterBag->get('app_locales'));
+        $locales = $this->getLocales();
         $tranlationKeyRepo = $this->doctrine->getRepository(TranslationKey::class);
-
-        //messages+intl-icu.de.yaml
 
         $finder = new Finder();
         $finder->name('messages+intl-icu*');
         foreach ($finder->files()->in($path_translation) as $file) {
-           unlink($file->getPathname());
+            unlink($file->getPathname());
         }
 
         $tabGlobalTrans = [];
         $allTranslation = $tranlationKeyRepo->findAll();
-        foreach($locales as $locale)
-        {
+        foreach ($locales as $locale) {
             /** @var TranslationKey $translationKey */
-            foreach($allTranslation as $translationKey)
-            {
-                foreach($translationKey->getTranslationLabels() as $translationLabel)
-                {
-                    if($translationLabel->getLanguage() == $locale)
-                    {
+            foreach ($allTranslation as $translationKey) {
+                foreach ($translationKey->getTranslationLabels() as $translationLabel) {
+                    if ($translationLabel->getLanguage() == $locale) {
                         $tabGlobalTrans[$locale][$translationKey->getName()] = $translationLabel->getLabel();
                     }
                 }
             }
         }
 
-        foreach($tabGlobalTrans as $locale => $tabTrans)
-        {
+        foreach ($tabGlobalTrans as $locale => $tabTrans) {
             $yaml = Yaml::dump($tabTrans);
             file_put_contents($path_translation . '/messages+intl-icu.' . $locale . '.yaml', $yaml);
         }
@@ -80,8 +75,7 @@ class TranslationService extends AppService
     {
         $path_translation = $this->parameterBag->get('app_path_translation');
         $path_config = $this->parameterBag->get('app_path_config_cms');
-        $locales = $this->parameterBag->get('app_locales');
-        $tabLocales = explode('|', $locales);
+        $tabLocales = $this->getLocales();
 
         $finder = new Finder();
         $finder->name('config-translate.yaml');
@@ -105,8 +99,7 @@ class TranslationService extends AppService
      */
     public function generateTranslationByCommande()
     {
-        $locales = $this->parameterBag->get('app_locales');
-        $tabLocales = explode('|', $locales);
+        $tabLocales = $this->getLocales();
 
         foreach ($tabLocales as $locale) {
             $application = new Application($this->kernel);
@@ -136,17 +129,14 @@ class TranslationService extends AppService
         $content = Yaml::parseFile($file->getRealPath());
         $translationKeyRepo = $this->doctrine->getRepository(TranslationKey::class);
 
-        foreach($content as $key => $label)
-        {
+        foreach ($content as $key => $label) {
             $application = $module = $label = '';
             $tmp = explode('#', $key);
-            if(count($tmp) > 1)
-            {
+            if (count($tmp) > 1) {
                 $info = explode('_', $tmp[0]);
                 $application = $info[0];
                 unset($info[0]);
-                foreach($info as $char)
-                {
+                foreach ($info as $char) {
                     $module .= $char . '_';
                 }
                 $module = substr($module, 0, -1);
@@ -154,20 +144,18 @@ class TranslationService extends AppService
             }
 
             $transKey = $translationKeyRepo->findBy(['name' => $key]);
-            if($transKey == null) {
+            if ($transKey == null) {
                 $translationKey = new TranslationKey();
                 $translationKey->setName($key);
                 $translationKey->setApplication($application);
                 $translationKey->setModule($module);
 
-                foreach($locales as $locale)
-                {
+                foreach ($locales as $locale) {
                     $translationLabel = new TranslationLabel();
                     $translationLabel->setLanguage($locale);
 
                     $__ = '__';
-                    if($locale == 'fr')
-                    {
+                    if ($locale == 'fr') {
                         $__ = '';
                     }
 
@@ -180,5 +168,35 @@ class TranslationService extends AppService
             }
         }
         $this->doctrine->getManager()->flush();
+    }
+
+    /**
+     * Retourne un tableau des locales du site
+     * @return array
+     */
+    public function getLocales(): array
+    {
+        $locales = $this->parameterBag->get('app_locales');
+        return explode('|', $locales);
+    }
+
+    /**
+     * Retourne la liste des applications des traductions
+     */
+    public function getApplications()
+    {
+        /** @var TranslationKeyRepository $translationKeyRepo */
+        $translationKeyRepo = $this->doctrine->getRepository(TranslationKey::class);
+        return $translationKeyRepo->listeApplications();
+    }
+
+    /**
+     * Retourne la liste des modules des traductions
+     */
+    public function getModules()
+    {
+        /** @var TranslationKeyRepository $translationKeyRepo */
+        $translationKeyRepo = $this->doctrine->getRepository(TranslationKey::class);
+        return $translationKeyRepo->listeModules();
     }
 }

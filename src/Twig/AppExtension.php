@@ -7,6 +7,7 @@ use App\Twig\Admin\Option;
 use App\Twig\Admin\System\Asset;
 use App\Twig\Admin\System\Breadcrumb;
 use App\Twig\Admin\System\Paginate;
+use App\Twig\Admin\Translation;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -56,7 +57,8 @@ class AppExtension extends AbstractExtension
             new TwigFilter('breadcrumb', [Breadcrumb::class, 'htmlRender']),
             new TwigFilter('assetRender', [Asset::class, 'assetAdmin']),
             new TwigFilter('paginate', [Paginate::class, 'htmlRender']),
-            new TwigFilter('optionRender', [Option::class, 'htmlRender'])
+            new TwigFilter('optionRender', [Option::class, 'htmlRender']),
+            new TwigFilter('formSearchTranslation', [Translation::class, 'formSearchTranslation'])
         ];
     }
 }

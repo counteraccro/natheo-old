@@ -12,3 +12,4 @@
 'admin_permission#Permission': '__ admin_permission#Permission'
 'admin_system#System': '__admin_system#System'
 'admin_role#Gestion des rôles': '__admin_role#Gestion des rôles'
+'front_front#Site public' : '__front_front#Site public'

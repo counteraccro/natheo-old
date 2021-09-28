@@ -1,0 +1,35 @@
+<div id="listing-translation-tab">
+    <table class="table table-responsive">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">{{ "admin_translation#Application" | trans }}</th>
+            <th scope="col">{{ "admin_translation#Module" | trans }}</th>
+            <th scope="col">{{ "admin_translation#Clée" | trans }}</th>
+            <th scope="col">{{ "admin_translation#fr" | trans }}</th>
+            <th scope="col">{{ "admin_translation#en" | trans }}</th>
+            <th scope="col">{{ "admin_translation#de" | trans }}</th>
+            <th scope="col">{{ "admin_translation#it" | trans }}</th>
+            <th scope="col">{{ "admin_translation#es" | trans }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for tranlationKey in listeTranslation %}
+            <tr>
+                <th scope="row">{{ tranlationKey.id }}</th>
+                <td>{{ tranlationKey.application | trans }}</td>
+                <td>{{ tranlationKey.module | trans }}</td>
+                <td>{{ tranlationKey.name }}</td>
+
+                {%  for translationLabel in tranlationKey.translationLabels %}
+                    <td>{{ translationLabel.label }}</td>
+                {% endfor %}
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {{ listeTranslation | paginate(page, limit, route, '#admin-translation-globale #listing-translation') | raw }}
+</div>
+
