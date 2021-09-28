@@ -183,20 +183,34 @@ class TranslationService extends AppService
     /**
      * Retourne la liste des applications des traductions
      */
-    public function getApplications()
+    public function getApplications(): array
     {
         /** @var TranslationKeyRepository $translationKeyRepo */
         $translationKeyRepo = $this->doctrine->getRepository(TranslationKey::class);
-        return $translationKeyRepo->listeApplications();
+        $result = $translationKeyRepo->listeApplications();
+
+        $return = [];
+        foreach($result as $value)
+        {
+            $return[] = $value['application'];
+        }
+        return $return;
     }
 
     /**
      * Retourne la liste des modules des traductions
      */
-    public function getModules()
+    public function getModules(): array
     {
         /** @var TranslationKeyRepository $translationKeyRepo */
         $translationKeyRepo = $this->doctrine->getRepository(TranslationKey::class);
-        return $translationKeyRepo->listeModules();
+        $result = $translationKeyRepo->listeModules();
+
+        $return = [];
+        foreach($result as $value)
+        {
+            $return[] = $value['module'];
+        }
+        return $return;
     }
 }

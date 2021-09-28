@@ -12,6 +12,7 @@ use App\Entity\Admin\TranslationKey;
 use App\Repository\Admin\TranslationKeyRepository;
 use App\Service\Admin\System\TranslationService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -19,10 +20,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class TranslationController extends AppController
 {
     #[Route('/', name: 'index')]
-    public function index(TranslationService $translationService): Response
+    public function index(): Response
     {
-
-        //$translationService->updateTranslateFromBDDtoYamlFile();
 
         $breadcrumb = [
             $this->translator->trans('admin_dashboard#Dashboard') => 'admin_dashboard_index',
@@ -54,5 +53,17 @@ class TranslationController extends AppController
             'limit' => $limit,
             'route' => 'admin_translation_ajax_listing_translation',
         ]);
+    }
+
+    /**
+     * Permet de régénérer les traductions depuis le code
+     */
+    #[Route('/ajax/reset-translation', name: 'ajax_reset_translation')]
+    public function ResetAllTranslation(TranslationService $translationService): JsonResponse
+    {
+        $translationService->generateTranslationByCommande();
+        $translationService->updateTranslateFromYamlFileToBDD();
+        $translationService->updateTranslateFromBDDtoYamlFile();
+        return $this->json(['success' => true]);
     }
 }

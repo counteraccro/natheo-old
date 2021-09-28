@@ -37,3 +37,27 @@
 'front_auth#Mot de passe': 'Mot de passe'
 'front_auth#Ce souvenir de moi': 'Ce souvenir de moi'
 'front_auth#Me connecter': 'Me connecter'
+'front_front#Site public': 'Site public'
+'admin_system#Systeme': Systeme
+'admin_pagination#Pagination': Pagination
+'admin_translation#fr': fr
+'admin_translation#en': en
+'admin_translation#de': de
+'admin_translation#it': it
+'admin_translation#es': es
+'admin_translation#Application': Application
+'admin_translation#Module': Module
+'admin_translation#Langue': Langue
+'admin_translation#Rechercher par clé': 'Rechercher par clé'
+'admin_translation#Rechercher un traduction par sa clée': 'Rechercher un traduction par sa clée'
+'admin_translation#Rechercher par label': 'Rechercher par label'
+'admin_translation#Rechercher un traduction par son label': 'Rechercher un traduction par son label'
+'admin_translation#': ''
+'admin_translation#Clée': Clée
+'admin_translation#Regénération des traductions, cela peut prendre du temps...': 'Regénération des traductions, cela peut prendre du temps...'
+'admin_translation#Réinitialiser les traductions': 'Réinitialiser les traductions'
+'admin_translation#Regénérer les traductions': 'Regénérer les traductions'
+'admin_translation#Filter les données': 'Filter les données'
+'admin_translation#Chargement des traductions...': 'Chargement des traductions...'
+'admin_translation#Rechargement de la page...': 'Rechargement de la page...'
+'admin_translation#Traductions': Traductions

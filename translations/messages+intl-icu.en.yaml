@@ -37,3 +37,27 @@
 'front_auth#Mot de passe': '__Mot de passe'
 'front_auth#Ce souvenir de moi': '__Ce souvenir de moi'
 'front_auth#Me connecter': '__Me connecter'
+'front_front#Site public': '__Site public'
+'admin_system#Systeme': __Systeme
+'admin_pagination#Pagination': __Pagination
+'admin_translation#fr': __fr
+'admin_translation#en': __en
+'admin_translation#de': __de
+'admin_translation#it': __it
+'admin_translation#es': __es
+'admin_translation#Application': __Application
+'admin_translation#Module': __Module
+'admin_translation#Langue': __Langue
+'admin_translation#Rechercher par clé': '__Rechercher par clé'
+'admin_translation#Rechercher un traduction par sa clée': '__Rechercher un traduction par sa clée'
+'admin_translation#Rechercher par label': '__Rechercher par label'
+'admin_translation#Rechercher un traduction par son label': '__Rechercher un traduction par son label'
+'admin_translation#': __
+'admin_translation#Clée': __Clée
+'admin_translation#Regénération des traductions, cela peut prendre du temps...': '__Regénération des traductions, cela peut prendre du temps...'
+'admin_translation#Réinitialiser les traductions': '__Réinitialiser les traductions'
+'admin_translation#Regénérer les traductions': '__Regénérer les traductions'
+'admin_translation#Filter les données': '__Filter les données'
+'admin_translation#Chargement des traductions...': '__Chargement des traductions...'
+'admin_translation#Rechargement de la page...': '__Rechargement de la page...'
+'admin_translation#Traductions': __Traductions
