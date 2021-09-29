@@ -30,7 +30,7 @@ class TranslationKeyRepository extends ServiceEntityRepository
     public function listeRoutePaginate(int $current_page, int $limit, array $filter): Paginator
     {
         $dql = $this->createQueryBuilder('tk')
-            ->join('App\Entity\Admin\TranslationLabel', 'tl');
+            ->join('tk.translationLabels', 'tl');
 
         if($filter['application'] != '')
         {
