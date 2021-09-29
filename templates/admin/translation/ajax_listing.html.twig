@@ -7,7 +7,8 @@
             <th scope="col">{{ "admin_translation#Module" | trans }}</th>
             <th scope="col">{{ "admin_translation#Clée" | trans }}</th>
             {% for langue in languages%}
-                <th scope="col">{{ "admin_translation#"~langue | trans }}</th>
+                {% set lg = "admin_translation#"~langue %}
+                <th scope="col">{{ lg | trans }}</th>
             {% endfor %}
         </tr>
         </thead>
@@ -39,7 +40,7 @@
                    {% for langue in languages%}
                         {% if(langue == translationLabel.language) %}
                             <td>
-                                {{ translationLabel.label | inputHidden | raw }}
+                                {{ translationLabel.label | inputHidden(path('admin_translation_ajax_update_translation', {'id' : translationLabel.id})) | raw }}
                             </td>
                        {% endif %}
                    {% endfor %}
@@ -52,4 +53,10 @@
 
     {{ listeTranslation | paginate(page, limit, route, '#admin-translation-globale #listing-translation') | raw }}
 </div>
+
+<script>
+    $( document ).ready(function() {
+        System.EventHiddenInput();
+    });
+</script>
 

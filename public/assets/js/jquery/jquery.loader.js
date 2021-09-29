@@ -28,7 +28,7 @@
             '<div class="spinner-border spinner-border-sm text-primary" role="status">' +
             '<span class="sr-only">Loading...</span>' +
             '</div>' +
-            '<i> ' + str_loading + '</i> ' +
+            '<i><b> ' + str_loading + '</b></i> ' +
             '</div></div>');
 
         $(this).prepend(element);

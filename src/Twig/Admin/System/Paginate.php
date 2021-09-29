@@ -41,6 +41,9 @@ class Paginate extends AppExtension implements RuntimeExtensionInterface
                      <li class="page-item disabled me-2">
                         <a class="page-link" href="#">' . $paginator->count() . ' ' . $this->translator->trans('admin_pagination#Elements') . '</a>
                     </li>
+                     <li class="page-item disabled me-2">
+                        <a class="page-link" href="#">' . $limit . ' ' . $this->translator->trans('admin_pagination#Par page') . '</a>
+                    </li>
                     <li class="page-item ' . $previous . '">
                         <a class="page-link" href="' . $this->urlGenerator->generate($route, ['page' => ($page-1)]) . '" tabindex="-1" aria-disabled="true">' . $this->translator->trans('admin_pagination#Précédent') . '</a>
                     </li>';

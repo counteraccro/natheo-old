@@ -67,3 +67,7 @@
 'admin_translation#Vous devez cocher au moins une langue pour effectuer une recherche': '__Vous devez cocher au moins une langue pour effectuer une recherche'
 'admin_translation#Tout': __Tout
 'admin_pagination#Elements': __Elements
+'admin_system#Valider': __Valider
+'admin_system#Annuler': __Annuler
+'admin_system#Mise à jour réussi': '__Mise à jour réussi'
+'admin_pagination#Par page': '__Par page'

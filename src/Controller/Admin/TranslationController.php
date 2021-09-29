@@ -9,6 +9,7 @@ namespace App\Controller\Admin;
 
 use App\Controller\AppController;
 use App\Entity\Admin\TranslationKey;
+use App\Entity\Admin\TranslationLabel;
 use App\Repository\Admin\TranslationKeyRepository;
 use App\Service\Admin\System\OptionService;
 use App\Service\Admin\System\TranslationService;
@@ -99,6 +100,21 @@ class TranslationController extends AppController
     public function ReloadAllTranslation(TranslationService $translationService): JsonResponse
     {
         $translationService->updateTranslateFromBDDtoYamlFile();
+        return $this->json(['success' => true]);
+    }
+
+    /**
+     * Met à jour un translationLabel
+     * @param TranslationLabel $translationLabel
+     */
+    #[Route('/ajax/update-label/{id}', name: 'ajax_update_translation')]
+    public function updateLabel(TranslationLabel $translationLabel): JsonResponse
+    {
+        $label = $this->request->getCurrentRequest()->get('label');
+        $translationLabel->setLabel($label);
+        $this->getDoctrine()->getManager()->persist($translationLabel);
+        $this->getDoctrine()->getManager()->flush();
+
         return $this->json(['success' => true]);
     }
 }
