@@ -6,23 +6,43 @@
             <th scope="col">{{ "admin_translation#Application" | trans }}</th>
             <th scope="col">{{ "admin_translation#Module" | trans }}</th>
             <th scope="col">{{ "admin_translation#Clée" | trans }}</th>
-            <th scope="col">{{ "admin_translation#fr" | trans }}</th>
-            <th scope="col">{{ "admin_translation#en" | trans }}</th>
-            <th scope="col">{{ "admin_translation#de" | trans }}</th>
-            <th scope="col">{{ "admin_translation#it" | trans }}</th>
-            <th scope="col">{{ "admin_translation#es" | trans }}</th>
+            {% for langue in languages%}
+                <th scope="col">{{ "admin_translation#"~langue | trans }}</th>
+            {% endfor %}
         </tr>
         </thead>
         <tbody>
         {% for tranlationKey in listeTranslation %}
             <tr>
                 <th scope="row">{{ tranlationKey.id }}</th>
-                <td>{{ tranlationKey.application | trans }}</td>
-                <td>{{ tranlationKey.module | trans }}</td>
-                <td>{{ tranlationKey.name }}</td>
+                <td>
+                    {% if tranlationKey.application in translationModules|keys %}
+                        {{ translationModules[tranlationKey.application] | trans }}
+                    {% else %}
+                        {{ tranlationKey.application | trans }}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if tranlationKey.module in translationModules|keys %}
+                        {{ translationModules[tranlationKey.module] | trans }}
+                    {% else %}
+                        {{ tranlationKey.module | trans }}
+                    {% endif %}
 
-                {%  for translationLabel in tranlationKey.translationLabels %}
-                    <td>{{ translationLabel.label }}</td>
+                </td>
+                <td>
+                    {{ tranlationKey.name }}
+                </td>
+
+               {%  for translationLabel in tranlationKey.translationLabels %}
+
+                   {% for langue in languages%}
+                        {% if(langue == translationLabel.language) %}
+                            <td>
+                                {{ translationLabel.label | inputHidden | raw }}
+                            </td>
+                       {% endif %}
+                   {% endfor %}
                 {% endfor %}
 
             </tr>

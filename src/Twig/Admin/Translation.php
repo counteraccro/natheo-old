@@ -34,7 +34,11 @@ class Translation extends AppExtension implements RuntimeExtensionInterface
         $listeModules = $this->translationService->getModules();
         $listeLangues = $this->translationService->getLocales();
 
-        $html = '<div class="col-4">';
+
+        $html = '<div class="row-cols-auto">
+                    <div class="alert alert-danger" id="translation-error-langue" style="display: none">' . $this->translator->trans('admin_translation#Vous devez cocher au moins une langue pour effectuer une recherche') . '</div>
+                </div>
+                <div class="col-4">';
         $html .= $this->generateSelect($this->translator->trans('admin_translation#Application'), $listeApp, 'application');
         $html .= '<br >';
         $html .= $this->generateSelect($this->translator->trans('admin_translation#Module'), $listeModules, 'module');
@@ -73,13 +77,18 @@ class Translation extends AppExtension implements RuntimeExtensionInterface
      */
     public function generateCheckbox(string $label, array $liste): string
     {
+        $current = $this->translator->getLocale();
         $html = '<label for="inputState" class="form-label">' . $label . '</label>';
-        foreach($liste as $element)
-        {
+        foreach ($liste as $element) {
+            $checked = '';
+            if ($current == $element) {
+                $checked = 'checked';
+            }
+
             $id = mt_rand();
             $html .= '
                         <div class="form-check form-switch">
-                            <input class="form-check-input" name="translation_' . $element . '" type="checkbox" id="' . $id . '">
+                            <input class="form-check-input" name="translation_' . $element . '" type="checkbox" id="' . $id . '" ' . $checked . '>
                             <label class="form-check-label" for="' . $id . '">' . $this->translator->trans('admin_translation#' . $element) . '</label>
                         </div>';
         }
@@ -96,12 +105,20 @@ class Translation extends AppExtension implements RuntimeExtensionInterface
      */
     private function generateSelect(string $label, array $liste, string $name): string
     {
+        $translationModule = $this->translationService->getTranslationModule();
         $for = mt_rand();
 
         $html = '<label for="' . $for . '" class="form-label">' . $label . '</label>
-                            <select name="' . $name . '" id="' . $for . '" class="form-select">';
+                            <select name="' . $name . '" id="' . $for . '" class="form-select">
+                                <option value="">' . $this->translator->trans('admin_translation#Tout') . '</option>';
         foreach ($liste as $element) {
-            $html .= '<option value="' . $element . '">' . $element . '</option>';
+
+            $optionLabel = $element;
+            if (isset($translationModule[$element])) {
+                $optionLabel = $translationModule[$element];
+            }
+
+            $html .= '<option value="' . $element . '">' . $this->translator->trans($optionLabel) . '</option>';
         }
 
         $html .= '</select>';

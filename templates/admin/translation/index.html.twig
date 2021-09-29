@@ -13,19 +13,23 @@
             <div class="btn btn-danger" id="btn-reset-translate" data-url="{{ path('admin_translation_ajax_reset_translation') }}"
                  data-loading="{{"admin_translation#Regénération des traductions, cela peut prendre du temps..." | trans}}"
                  data-loading2="{{"admin_translation#Rechargement de la page..." | trans}}"><i class="fa fa-exclamation-triangle"></i> {{ "admin_translation#Réinitialiser les traductions" | trans}}</div>
-            <div class="btn btn-primary"><i class="fa fa-sync-alt"></i> {{"admin_translation#Regénérer les traductions" | trans}}</div>
+            <div class="btn btn-primary" id="btn-reload-translate" data-url="{{ path('admin_translation_ajax_reload_translation') }}"
+            data-loading="{{"admin_translation#Reconstruction des traductions depuis la base de données, cela peut prendre du temps..." | trans}}"
+            data-loading2="{{"admin_translation#Rechargement de la page..." | trans}}"><i class="fa fa-sync-alt"></i> {{"admin_translation#Regénérer les traductions" | trans}}</div>
         </div>
 
         <div class="clearfix"></div>
 
         <div class="card">
             <div class="card-body">
-                <div class="row">
-                    {{ "" | formSearchTranslation | raw }}
-                </div>
+                <form id="form-search-translation">
+                    <div class="row">
+                            {{ "" | formSearchTranslation | raw }}
+                    </div>
+                </form>
             </div>
             <div class="card-footer">
-                <div class="btn btn-primary float-end"><i class="fa fa-search"></i> {{"admin_translation#Filter les données" | trans}}</div>
+                <div class="btn btn-primary float-end" id="btn-form-search-translation"><i class="fa fa-search"></i> {{"admin_translation#Filter les données" | trans}}</div>
             </div>
         </div>
 

@@ -20,7 +20,7 @@ Route.Launch = function() {
             let url = $(this).data('url');
             let str_loading = $(this).data('loading');
             let id = Route.globalId + ' .card-body';
-            //System.Ajax(url, id, true, str_loading);
+            //GlobalFunction.Ajax(url, id, true, str_loading);
 
             $(id).loader(str_loading);
             $.ajax({

@@ -10,3 +10,5 @@ routes_modules:
   system : 'admin_system#Systeme'
   pagination : 'admin_pagination#Pagination'
   role : 'admin_role#Gestion des rôles'
+  admin: 'admin_system#Administration'
+  auth: 'admin_auth#Authentification'

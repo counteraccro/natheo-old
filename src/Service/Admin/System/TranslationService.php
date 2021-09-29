@@ -3,7 +3,7 @@
  * Service regroupant les fonctions sur les traductions de l'application
  * @author Gourdon Aymeric
  * @version 1.0
- * @package App\Service\Admin\System
+ * @package App\Service\Admin\GlobalFunction
  */
 
 namespace App\Service\Admin\System;
@@ -166,6 +166,9 @@ class TranslationService extends AppService
 
                 $this->doctrine->getManager()->persist($translationKey);
             }
+            else {
+
+            }
         }
         $this->doctrine->getManager()->flush();
     }
@@ -212,5 +215,14 @@ class TranslationService extends AppService
             $return[] = $value['module'];
         }
         return $return;
+    }
+
+    /**
+     * Permet de récupérer le tableau de traduction des modules
+     * @return array
+     */
+    public function getTranslationModule() : array {
+
+        return Yaml::parseFile($this->parameterBag->get('app_path_translate_modules'))['routes_modules'];
     }
 }

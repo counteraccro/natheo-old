@@ -1,4 +1,4 @@
-'admin_global_option#front': __front
+'admin_global_option#front': '__front it'
 'admin_global_option#administration': __administration
 'admin_global_option#Titre du site': '__Titre du site'
 'admin_global_option#Site Web propulsé par Nathéo CMS': '__Site Web propulsé par Nathéo CMS'
@@ -61,3 +61,9 @@
 'admin_translation#Chargement des traductions...': '__Chargement des traductions...'
 'admin_translation#Rechargement de la page...': '__Rechargement de la page...'
 'admin_translation#Traductions': __Traductions
+'admin_translation#Reconstruction des traductions depuis la base de données, cela peut prendre du temps...': '__Reconstruction des traductions depuis la base de données, cela peut prendre du temps...'
+'admin_system#Administration': __Administration
+'admin_auth#Authentification': __Authentification
+'admin_translation#Vous devez cocher au moins une langue pour effectuer une recherche': '__Vous devez cocher au moins une langue pour effectuer une recherche'
+'admin_translation#Tout': __Tout
+'admin_pagination#Elements': __Elements

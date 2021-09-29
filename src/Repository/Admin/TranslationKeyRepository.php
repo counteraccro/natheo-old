@@ -21,17 +21,42 @@ class TranslationKeyRepository extends ServiceEntityRepository
     }
 
     /**
-     * Retourne une liste de translationKey paginée
-     * @param $current_page
-     * @param $limit
+     * Retourne une liste de translationKey paginée en fonction du filtre de recherche
+     * @param int $current_page
+     * @param int $limit
+     * @param array $filter
      * @return Paginator
      */
-    public function listeRoutePaginate($current_page, $limit): Paginator
+    public function listeRoutePaginate(int $current_page, int $limit, array $filter): Paginator
     {
         $dql = $this->createQueryBuilder('tk')
-            ->orderBy('tk.id')
-            ->getQuery();
+            ->join('App\Entity\Admin\TranslationLabel', 'tl');
 
+        if($filter['application'] != '')
+        {
+            $dql->andWhere('tk.application = :application')
+                ->setParameter('application', $filter['application']);
+        }
+
+        if($filter['module'] != '')
+        {
+            $dql->andWhere('tk.module = :module')
+                ->setParameter('module', $filter['module']);
+        }
+
+        if($filter['key'] != '')
+        {
+            $dql->andWhere('tk.name LIKE :name')
+                ->setParameter('name', '%' . $filter['key'] . '%');
+        }
+
+        if($filter['label'] != '')
+        {
+            $dql->andWhere('tl.label LIKE :label')
+                ->setParameter('label', '%' . $filter['label'] . '%');
+        }
+
+        $dql->orderBy('tk.id')->getQuery();
         $paginator = new Paginator($dql);
 
         $paginator->getQuery()

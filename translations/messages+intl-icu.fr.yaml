@@ -1,4 +1,4 @@
-'admin_global_option#front': front
+'admin_global_option#front': 'front edit'
 'admin_global_option#administration': administration
 'admin_global_option#Titre du site': 'Titre du site'
 'admin_global_option#Site Web propulsé par Nathéo CMS': 'Site Web propulsé par Nathéo CMS'
@@ -10,7 +10,7 @@
 'admin_global_option#orange': orange
 'admin_global_option#pink': pink
 'admin_permission#Permission': Permission
-'admin_system#System': System
+'admin_system#System': GlobalFunction
 'admin_role#Gestion des rôles': 'Gestion des rôles'
 'admin_dashboard#Dashboard': Dashboard
 'admin_global_option#Options globales': 'Options globales'
@@ -61,3 +61,9 @@
 'admin_translation#Chargement des traductions...': 'Chargement des traductions...'
 'admin_translation#Rechargement de la page...': 'Rechargement de la page...'
 'admin_translation#Traductions': Traductions
+'admin_translation#Reconstruction des traductions depuis la base de données, cela peut prendre du temps...': 'Reconstruction des traductions depuis la base de données, cela peut prendre du temps...'
+'admin_system#Administration': Administration
+'admin_auth#Authentification': Authentification
+'admin_translation#Vous devez cocher au moins une langue pour effectuer une recherche': 'Vous devez cocher au moins une langue pour effectuer une recherche'
+'admin_translation#Tout': Tout
+'admin_pagination#Elements': Elements

@@ -3,7 +3,7 @@
  * Ajout des assets de l'application de façon automatique
  * @author Gourdon Aymeric
  * @version 1.0
- * @package App\Twig\Admin\System
+ * @package App\Twig\Admin\GlobalFunction
  */
 
 namespace App\Twig\Admin\System;

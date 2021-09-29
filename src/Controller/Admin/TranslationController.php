@@ -10,6 +10,7 @@ namespace App\Controller\Admin;
 use App\Controller\AppController;
 use App\Entity\Admin\TranslationKey;
 use App\Repository\Admin\TranslationKeyRepository;
+use App\Service\Admin\System\OptionService;
 use App\Service\Admin\System\TranslationService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -19,6 +20,8 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/admin/translate', name: 'admin_translation_')]
 class TranslationController extends AppController
 {
+    const SESSION_KEY_FILTER = 'session_translation_filter';
+
     #[Route('/', name: 'index')]
     public function index(): Response
     {
@@ -41,17 +44,39 @@ class TranslationController extends AppController
     #[Route('/ajax/listing/{page}', name: 'ajax_listing_translation')]
     public function listingRoute(int $page = 1): Response
     {
-        $limit = 6;
+        $limit = $this->optionService->getOptionByKey(OptionService::GO_GLOBAL_ELEMENT_PAR_PAGE, true);
+
+        if($page == 1)
+        {
+            $filter = [];
+            $tmpfilter = $this->request->getCurrentRequest()->get('translation_filter');
+            foreach($tmpfilter as $filtre)
+            {
+                $tmp = explode('_', $filtre['name']);
+                if(count($tmp) > 1)
+                {
+                    $filter['language'][] = $tmp[1];
+                }
+                else {
+                    $filter[$filtre['name']] = $filtre['value'];
+                }
+            }
+            $this->session->set(self::SESSION_KEY_FILTER, $filter);
+        } else {
+            $filter = $this->session->get(self::SESSION_KEY_FILTER);
+        }
 
         /** @var TranslationKeyRepository $translationKeyRepo */
         $translationKeyRepo = $this->getDoctrine()->getRepository(TranslationKey::class);
-        $listeTranslation = $translationKeyRepo->listeRoutePaginate($page, $limit);
+        $listeTranslation = $translationKeyRepo->listeRoutePaginate($page, $limit, $filter);
 
         return $this->render('admin/translation/ajax_listing.html.twig', [
             'listeTranslation' => $listeTranslation,
             'page' => $page,
             'limit' => $limit,
             'route' => 'admin_translation_ajax_listing_translation',
+            'languages' => $filter['language'],
+            'translationModules' => $this->translationService->getTranslationModule()
         ]);
     }
 
@@ -63,6 +88,16 @@ class TranslationController extends AppController
     {
         $translationService->generateTranslationByCommande();
         $translationService->updateTranslateFromYamlFileToBDD();
+        $translationService->updateTranslateFromBDDtoYamlFile();
+        return $this->json(['success' => true]);
+    }
+
+    /**
+     * Permet de régénérer les traductions depuis la base de données
+     */
+    #[Route('/ajax/reload-translation', name: 'ajax_reload_translation')]
+    public function ReloadAllTranslation(TranslationService $translationService): JsonResponse
+    {
         $translationService->updateTranslateFromBDDtoYamlFile();
         return $this->json(['success' => true]);
     }

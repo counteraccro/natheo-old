@@ -3,7 +3,7 @@
  * Gestion de la pagination
  * @author Gourdon Aymeric
  * @version 1.0
- * @package App\Twig\Admin\System
+ * @package App\Twig\Admin\GlobalFunction
  */
 namespace App\Twig\Admin\System;
 
@@ -36,8 +36,11 @@ class Paginate extends AppExtension implements RuntimeExtensionInterface
             $next = 'disabled';
         }
 
-        $html = '<nav aria-label="' . $this->translator->trans('admin_pagination#Bock pagination') . '">
+        $html .= '<nav aria-label="' . $this->translator->trans('admin_pagination#Bock pagination') . '">
                 <ul class="pagination justify-content-end" data-id="' . $global_id . '" data-loading="' . $this->translator->trans('admin_pagination#Chargement des données...') . '">
+                     <li class="page-item disabled me-2">
+                        <a class="page-link" href="#">' . $paginator->count() . ' ' . $this->translator->trans('admin_pagination#Elements') . '</a>
+                    </li>
                     <li class="page-item ' . $previous . '">
                         <a class="page-link" href="' . $this->urlGenerator->generate($route, ['page' => ($page-1)]) . '" tabindex="-1" aria-disabled="true">' . $this->translator->trans('admin_pagination#Précédent') . '</a>
                     </li>';

@@ -6,6 +6,7 @@
  * @package App\Service
  */
 namespace App\Service;
+use App\Service\Admin\System\TranslationService;
 use Doctrine\Persistence\ManagerRegistry as Doctrine;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Request;

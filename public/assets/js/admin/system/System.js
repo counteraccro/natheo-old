@@ -20,9 +20,18 @@ System.Paginate = function() {
         let url = $(this).attr('href');
         let str_loader = $('.pagination').data('loading');
         let id = $('.pagination').data('id');
-
         System.Ajax(url, id, true, str_loader);
 
         return false;
+    });
+};
+
+System.EventHiddenInput = function()
+{
+    $('.txt-input-switch').click(function() {
+
+        let id = $(this).attr('id');
+        $(this).hide();
+        $('#input-' + id).show();
     });
 }

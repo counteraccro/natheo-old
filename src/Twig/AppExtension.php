@@ -7,9 +7,9 @@ use App\Twig\Admin\Option;
 use App\Twig\Admin\System\Asset;
 use App\Twig\Admin\System\Breadcrumb;
 use App\Twig\Admin\System\Paginate;
+use App\Twig\Admin\System\GlobalFunction;
 use App\Twig\Admin\Translation;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
-use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Extension\AbstractExtension;
@@ -58,7 +58,8 @@ class AppExtension extends AbstractExtension
             new TwigFilter('assetRender', [Asset::class, 'assetAdmin']),
             new TwigFilter('paginate', [Paginate::class, 'htmlRender']),
             new TwigFilter('optionRender', [Option::class, 'htmlRender']),
-            new TwigFilter('formSearchTranslation', [Translation::class, 'formSearchTranslation'])
+            new TwigFilter('formSearchTranslation', [Translation::class, 'formSearchTranslation']),
+            new TwigFilter('inputHidden', [GlobalFunction::class, 'generateHiddenInput'])
         ];
     }
 }
