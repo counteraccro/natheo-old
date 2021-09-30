@@ -1,6 +1,6 @@
 <?php
 /**
- * Code associé au options de l'applications
+ * Code associé aux options de l'application
  * @author Gourdon Aymeric
  * @version 1.0
  * @package App\Service\Admin\GlobalFunction

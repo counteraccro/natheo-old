@@ -95,5 +95,23 @@ Translation.Launch = function () {
                $(id).html(html);
             });
 
+    };
+
+    /**
+     * Permet de check si les translations doivent être  à jour ou non
+     * @constructor
+     */
+    Translation.CheckReloadTranslation = function() {
+        let id = Translation.globalId + ' #msg-reload-translation';
+        let url = $(id).data('url');
+
+        $.ajax({
+            method: 'GET',
+            url: url,
+        })
+            .done(function (json) {
+                console.log(json);
+                $(id).html(json.msg);
+            });
     }
 }

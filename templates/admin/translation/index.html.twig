@@ -34,7 +34,11 @@
         </div>
 
         <div class="card mt-3">
-            <div class="card-header">- {{ 'admin_translation#Traductions' | trans }}</div>
+            <div class="card-header">
+                <div class="float-end" id="msg-reload-translation" data-url="{{ path('admin_translation_ajax_check_reload_translation') }}">
+                    <i>{{ "admin_translation#Chargement des informations de traduction..." | trans}}</i>
+                </div>
+            </div>
             <div class="card-body" id="listing-translation" data-url="{{ path('admin_translation_ajax_listing_translation') }}" data-loading="{{ "admin_translation#Chargement des traductions..." | trans }}">
             </div>
         </div>
@@ -50,6 +54,12 @@
             Translation.Launch();
             Translation.PageListingEvent();
             Translation.LoadListingTranslation();
+            setInterval(
+                function(){
+                    Translation.CheckReloadTranslation();
+                },
+                2000
+            );
         });
     </script>
 

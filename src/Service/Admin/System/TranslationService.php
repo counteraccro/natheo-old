@@ -12,20 +12,35 @@ use App\Entity\Admin\TranslationKey;
 use App\Entity\Admin\TranslationLabel;
 use App\Repository\Admin\TranslationKeyRepository;
 use App\Service\AppService;
+use Doctrine\Persistence\ManagerRegistry as Doctrine;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\ArrayInput;
-use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Console\Output\NullOutput;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpKernel\KernelInterface;
+use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Yaml\Yaml;
 
 class TranslationService extends AppService
 {
+    /**
+     * @var DataSystemService
+     */
+    private DataSystemService $dataSystemService;
+
+    public function __construct(Doctrine          $doctrine, RouterInterface $router, RequestStack $request, ParameterBagInterface $parameterBag, KernelInterface $kernel,
+                                DataSystemService $dataSystemService)
+    {
+        parent::__construct($doctrine, $router, $request, $parameterBag, $kernel);
+        $this->dataSystemService = $dataSystemService;
+    }
 
     /**
      * Met à jour les traductions depuis la base de données vers les fichiers yaml
-     * Attention cette action écrase l'ensemble des données présent dans les fichier yaml
+     * Attention cette action écrase l'ensemble des données présent dans les fichiers yaml
      */
     public function updateTranslateFromBDDtoYamlFile()
     {
@@ -66,6 +81,9 @@ class TranslationService extends AppService
         ]);
         $output = new NullOutput();
         $application->run($input, $output);
+
+        $this->dataSystemService->update(DataSystemService::DATA_SYSTEM_TRANSLATION_GENERATE, 0, DataSystemService::REMPLACE);
+
     }
 
     /**
@@ -165,8 +183,7 @@ class TranslationService extends AppService
                 }
 
                 $this->doctrine->getManager()->persist($translationKey);
-            }
-            else {
+            } else {
 
             }
         }
@@ -193,8 +210,7 @@ class TranslationService extends AppService
         $result = $translationKeyRepo->listeApplications();
 
         $return = [];
-        foreach($result as $value)
-        {
+        foreach ($result as $value) {
             $return[] = $value['application'];
         }
         return $return;
@@ -210,8 +226,7 @@ class TranslationService extends AppService
         $result = $translationKeyRepo->listeModules();
 
         $return = [];
-        foreach($result as $value)
-        {
+        foreach ($result as $value) {
             $return[] = $value['module'];
         }
         return $return;
@@ -221,7 +236,8 @@ class TranslationService extends AppService
      * Permet de récupérer le tableau de traduction des modules
      * @return array
      */
-    public function getTranslationModule() : array {
+    public function getTranslationModule(): array
+    {
 
         return Yaml::parseFile($this->parameterBag->get('app_path_translate_modules'))['routes_modules'];
     }

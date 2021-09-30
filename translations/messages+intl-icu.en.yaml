@@ -71,3 +71,6 @@
 'admin_system#Annuler': __Annuler
 'admin_system#Mise à jour réussi': '__Mise à jour réussi'
 'admin_pagination#Par page': '__Par page'
+'admin_translation#Les traductions sont à jour': '__Les traductions sont à jour'
+'admin_translation#traduction(s) doivent être mise à jour pour être prise en compte, régénérer les traductions': '__traduction(s) doivent être mise à jour pour être prise en compte, régénérer les traductions'
+'admin_translation#Chargement des informations de traduction...': '__Chargement des informations de traduction...'

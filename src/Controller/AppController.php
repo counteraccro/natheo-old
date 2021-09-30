@@ -7,6 +7,7 @@
  */
 namespace App\Controller;
 
+use App\Service\Admin\System\DataSystemService;
 use App\Service\Admin\System\OptionService;
 use App\Service\Admin\System\TranslationService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -43,14 +44,20 @@ class AppController extends AbstractController
      */
     protected TranslationService $translationService;
 
+    /**
+     * @var DataSystemService
+     */
+    protected DataSystemService $dataSystemService;
+
     public function __construct(TranslatorInterface $translator, RequestStack $request, OptionService $optionService, SessionInterface $session,
-        TranslationService $translationService)
+        TranslationService $translationService, DataSystemService $dataSystemService)
     {
         $this->translator = $translator;
         $this->request = $request;
         $this->optionService = $optionService;
         $this->session = $session;
         $this->translationService = $translationService;
+        $this->dataSystemService = $dataSystemService;
     }
 
 }

@@ -5,12 +5,14 @@
  * @version 1.0
  * @package App\Controller\Admin;
  */
+
 namespace App\Controller\Admin;
 
 use App\Controller\AppController;
 use App\Entity\Admin\TranslationKey;
 use App\Entity\Admin\TranslationLabel;
 use App\Repository\Admin\TranslationKeyRepository;
+use App\Service\Admin\System\DataSystemService;
 use App\Service\Admin\System\OptionService;
 use App\Service\Admin\System\TranslationService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -46,19 +48,16 @@ class TranslationController extends AppController
     public function listingRoute(int $page = 1): Response
     {
         $limit = $this->optionService->getOptionByKey(OptionService::GO_GLOBAL_ELEMENT_PAR_PAGE, true);
+        $tmpfilter = $this->request->getCurrentRequest()->get('translation_filter', null);
 
-        if($page == 1)
-        {
+        if ($page == 1 && $tmpfilter != null) {
             $filter = [];
-            $tmpfilter = $this->request->getCurrentRequest()->get('translation_filter');
-            foreach($tmpfilter as $filtre)
-            {
+
+            foreach ($tmpfilter as $filtre) {
                 $tmp = explode('_', $filtre['name']);
-                if(count($tmp) > 1)
-                {
+                if (count($tmp) > 1) {
                     $filter['language'][] = $tmp[1];
-                }
-                else {
+                } else {
                     $filter[$filtre['name']] = $filtre['value'];
                 }
             }
@@ -111,10 +110,30 @@ class TranslationController extends AppController
     public function updateLabel(TranslationLabel $translationLabel): JsonResponse
     {
         $label = $this->request->getCurrentRequest()->get('label');
-        $translationLabel->setLabel($label);
-        $this->getDoctrine()->getManager()->persist($translationLabel);
-        $this->getDoctrine()->getManager()->flush();
 
+        if ($translationLabel->getLabel() != $label) {
+            $translationLabel->setLabel($label);
+            $this->getDoctrine()->getManager()->persist($translationLabel);
+            $this->getDoctrine()->getManager()->flush();
+            $this->dataSystemService->update(DataSystemService::DATA_SYSTEM_TRANSLATION_GENERATE, 1, DataSystemService::ADDITION);
+        }
         return $this->json(['success' => true]);
+    }
+
+    /**
+     * Permet de vérifier si on doit régénérer les translations ou non
+     */
+    #[Route('/ajax/check-reload-translation/', name: 'ajax_check_reload_translation')]
+    public function checkReloadTranslation(): JsonResponse
+    {
+        $dataSystem = $this->dataSystemService->getDataSystem(DataSystemService::DATA_SYSTEM_TRANSLATION_GENERATE);
+
+        if ($dataSystem->getValue() == "" || $dataSystem->getValue() <= 0) {
+            $msg = '<div class="text-success"><i class="fa fa-info-circle"></i> <i>' . $this->translator->trans('admin_translation#Les traductions sont à jour') . '</i></div>';
+        } else {
+            $msg = '<div class="text-warning"><i class="fa fa-exclamation-circle"></i> <i>' . $dataSystem->getValue() . ' ' . $this->translator->trans('admin_translation#traduction(s) doivent être mise à jour pour être prise en compte, régénérer les traductions') . '</i></div>';
+        }
+
+        return $this->json(['msg' => $msg]);
     }
 }
