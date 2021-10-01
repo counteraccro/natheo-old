@@ -14,7 +14,9 @@
         <div class="row flex-nowrap">
             {% include 'admin/include/left-menu.html.twig' %}
 
-            <div class="col py-3 pt-5">
+
+            <div class="col py-3 pt-1">
+                {% include 'admin/include/top-menu.html.twig' %}
                 {% block body %}{% endblock %}
             </div>
         </div>

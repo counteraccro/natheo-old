@@ -6,7 +6,11 @@
 
 :root {
     --bg-primary: #866EC7;
-    --bg-primary-light: #ebe8f7;
     --hover-primary: #6749B9;
+
+    --text-primary: #866EC7;
+    --text-hover-primary: #6749B9;
+
+    --bg-primary-light: #ebe8f7;
     --hover-primary-rgb : 103 73 185;
 }

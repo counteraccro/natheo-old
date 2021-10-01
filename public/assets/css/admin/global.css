@@ -7,21 +7,29 @@
 a,
 a:hover,
 a:focus {
-    color: var(--bg-primary);
+    color: var(--text-primary);
     transition: all 0.3s;
 }
 
+.nav-link, .nav-link.show {
+    color: var(--text-primary);
+}
+
+.nav-link:hover {
+    color: var(--text-hover-primary);
+}
+
 .page-link {
-    color: var(--bg-primary);
+    color: var(--text-primary);
 }
 
 .page-link:hover {
-    color: var(--hover-primary);
+    color: var(--text-hover-primary);
 }
 
 .card-header {
     background-color: var(--bg-primary-light);
-    border-bottom: 1px solid rgba(0,0,0,.125);
+    border-bottom: 1px solid rgba(0, 0, 0, .125);
 }
 
 .btn-primary {

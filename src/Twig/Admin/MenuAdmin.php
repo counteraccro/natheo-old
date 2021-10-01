@@ -19,7 +19,7 @@ use Twig\Extension\RuntimeExtensionInterface;
 /**
  * Permet de générer le menu de gauche de l'administration
  */
-class LeftMenuAdmin extends AppExtension implements RuntimeExtensionInterface
+class MenuAdmin extends AppExtension implements RuntimeExtensionInterface
 {
 
     /**
@@ -40,7 +40,7 @@ class LeftMenuAdmin extends AppExtension implements RuntimeExtensionInterface
      * @param string $currentPath
      * @return string
      */
-    public function htmlRender(string $currentPath): string
+    public function leftMenuAdmin(string $currentPath): string
     {
         $this->getYamlMenu();
 
@@ -123,5 +123,46 @@ class LeftMenuAdmin extends AppExtension implements RuntimeExtensionInterface
     private function getYamlMenu()
     {
         $this->menu = Yaml::parseFile($this->parameterBag->get('app_path_menu_left_admin'));
+    }
+
+    /**
+     * Point d'entrée pour le menu top de l'admin
+     */
+    public function topMenuAdmin()
+    {
+        $currentLocal = $this->requestStack->getCurrentRequest()->getLocale();
+        $listeLangues = $this->translationService->getLocales();
+        $user = $this->security->getUser();
+
+        $html = '<ul class="nav justify-content-end">';
+
+        $html .= '<li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                        <i class="fa fa-globe-europe"></i> ' . $this->translator->trans('admin_translation#' . $currentLocal) . '
+                    </a>
+                    <ul class="dropdown-menu">';
+
+                        foreach($listeLangues as $langue)
+                        {
+                            $html .= '<li><a class="dropdown-item" href="' . $this->urlGenerator->generate('admin_dashboard_index', ['_locale' => $langue]) . '"><i class="fa fa-flag"></i> ' . $this->translator->trans('admin_translation#' . $langue) . '</a></li>';
+                        }
+                    $html .= '</ul>
+                </li>';
+
+        $html .= '<li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                        <i class="fa fa-user-circle"></i> ' . $user->getEmail() . '
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#"><i class="fa fa-user"></i> ' . $this->translator->trans('admin_topmenu#Mon compte') . '</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="fa fa-bell"></i> ' . $this->translator->trans('admin_topmenu#Mes notifications') . '</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="' . $this->urlGenerator->generate('front_security_app_logout') . '"><i class="fa fa-sign-out-alt"></i> ' . $this->translator->trans('front_auth#Déconnexion') . '</a></li>
+                    </ul>
+                </li>';
+
+        $html .= '</ul>';
+
+        return $html;
     }
 }
