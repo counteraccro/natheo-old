@@ -12,3 +12,5 @@ routes_modules:
   role : 'admin_role#Gestion des rôles'
   admin: 'admin_system#Administration'
   auth: 'admin_auth#Authentification'
+  permission : 'admin_permission#Permission'
+  topmenu : 'admin_topmenu#Menu Top'

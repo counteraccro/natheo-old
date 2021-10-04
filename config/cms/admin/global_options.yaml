@@ -2,31 +2,46 @@
 # Un changement ici peut potentiellement casser le site.
 
 global_options:
-  admin_global_option#front:
-    GO_TITRE_SITE:
+  admin_global_option#Options pour le front:
+    GO_FRONT_TITRE_SITE:
       type: 'text'
       label : 'admin_global_option#Titre du site'
       require : 1
       default : 'admin_global_option#Site Web propulsé par Nathéo CMS'
-    GO_OPEN_FRONT:
+    GO_FRONT_OPEN:
       type: 'boolean'
       label: 'admin_global_option#Rendre le front accessible aux visiteurs ?'
-      help: "admin_global_option#Si vous fermé le front, l'administration restera toujours accessible."
+      help: 'admin_global_option#Si vous fermez le front, l''administration restera toujours accessible.'
       default: 1
-  admin_global_option#administration:
-    GO_GLOBAL_ELEMENT_PAR_PAGE :
+    GO_FRONT_SCRIPT_TOP:
+      type: 'textarea'
+      label: 'admin_global_option#Script dans la balise HEAD'
+      help: 'admin_global_option#Ajouter vos scripts qui doivent être exécutés dans la balise HEAD.'
+      default: ""
+    GO_FRONT_SCRIPT_START_BODY:
+      type: 'textarea'
+      label: 'admin_global_option#Script juste après l''ouverture de la balise BODY'
+      help: 'admin_global_option#Ajouter vos scripts qui doivent être exécutés à l''ouverture de la balise BODY.'
+      default: ""
+    GO_FRONT_SCRIPT_END_BODY:
+      type: 'textarea'
+      label: 'admin_global_option#Script juste avant la fermeture de la balise BODY'
+      help: 'admin_global_option#Ajouter vos scripts qui doivent être exécutés à la fermeture de la balise BODY.'
+      default: ""
+  admin_global_option#Options sur l'administration:
+    GO_ADM_GLOBAL_ELEMENT_PAR_PAGE :
       type: 'list'
-      label: "admin_global_option#Nombre d'éléments par page sur l'administration"
+      label: 'admin_global_option#Nombre d''éléments par page sur l''administration'
       list_value: '5|10|20|50|100'
       default: '20'
-    GO_GLOBAL_LANGUE:
+    GO_ADM_GLOBAL_LANGUE:
       type: 'list'
-      label: "admin_global_option#Langue par défaut de l'administration"
+      label: 'admin_global_option#Langue par défaut de l''administration'
       list_value: '%app_locales%'
       default: 'fr'
-    GO_THEME_ADMIN:
+    GO_ADM_THEME_ADMIN:
       type: 'list'
-      label: "admin_global_option#Changer le theme de l'administraton"
+      label: 'admin_global_option#Changer le theme de l''administration'
       list_value: 'admin_global_option#purple|admin_global_option#red|admin_global_option#orange|admin_global_option#pink'
       default: 'purple'
 

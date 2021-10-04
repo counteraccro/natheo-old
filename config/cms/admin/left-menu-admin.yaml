@@ -11,7 +11,7 @@ menu-left-admin:
       admin_route#Gestion des routes:
         icon: 'fa-road'
         target: 'admin_route_index'
-      admin_role#Gestion des roles:
+      admin_role#Gestion des rôles:
         icon: 'fa-user-tag'
         target: 'front_security_app_logout'
   admin_system#System:

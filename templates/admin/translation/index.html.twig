@@ -54,12 +54,13 @@
             Translation.Launch();
             Translation.PageListingEvent();
             Translation.LoadListingTranslation();
-            setInterval(
+            Translation.CheckReloadTranslation();
+            /*setInterval(
                 function(){
                     Translation.CheckReloadTranslation();
                 },
                 2000
-            );
+            );*/
         });
     </script>
 

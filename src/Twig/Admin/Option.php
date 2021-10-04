@@ -22,6 +22,7 @@ class Option extends AppExtension implements RuntimeExtensionInterface
     const KEY_HELP = 'help';
     const TYPE_TEXT = 'text';
     const TYPE_BOOLEAN = 'boolean';
+    const TYPE_TEXTAREA = 'textarea';
     const TYPE_LIST = 'list';
 
     /**
@@ -46,16 +47,88 @@ class Option extends AppExtension implements RuntimeExtensionInterface
 
                var_dump($option);
 
-                switch ($option[self::KEY_TYPE])
-                {
-                    case self::TYPE_TEXT :
-                        $html .= $this->InputText($key, $option);
-                        break;
-                }
+               $html .= match ($option[self::KEY_TYPE]) {
+                   self::TYPE_TEXT => $this->inputText($key, $option),
+                   self::TYPE_BOOLEAN => $this->checkBox($key, $option),
+                   self::TYPE_TEXTAREA => $this->textarea($key, $option),
+                   self::TYPE_LIST => $this->select($key, $option),
+                   default => ''
+               };
            }
 
             $html .= '</div></div>';
         }
+
+        return $html;
+    }
+
+    /**
+     * @param string $key
+     * @param array $option
+     * @return string
+     */
+    private function select(string $key, array $option) : string
+    {
+        $value = $this->optionService->getOptionByKey($key, $option[self::KEY_DEFAULT], true);
+        $html = '<div class="mb-3">
+        <label for="' . $key . '" class="form-label">' . $this->translator->trans($option[self::KEY_LABEL]) . '</label>
+        <select class="form-select" aria-label="Default select example"  id="' . $key . '">
+          <option value="">Open this select menu</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>';
+
+
+        $html .= '</select>';
+        $html .= $this->addHelp($option);
+        $html .= '</div>';
+
+        return $html;
+    }
+
+    /**
+     * Permet de générer un input de type textarea
+     * @param string $key
+     * @param array $option
+     * @return string
+     */
+    private function textarea(string $key, array $option): string
+    {
+        $value = $this->optionService->getOptionByKey($key, $option[self::KEY_DEFAULT], true);
+
+        $html = '<div class="mb-3">
+          <label for="' . $key . '" class="form-label">' . $this->translator->trans($option[self::KEY_LABEL]) . '</label>
+          <textarea class="form-control" id="' . $key . '" rows="3">
+            ' . $value . '
+            </textarea>';
+        $html .= $this->addHelp($option);
+        $html .= '</div>';
+
+        return $html;
+
+    }
+
+    /**
+     * Permet de générer un système de checkbox
+     * @param string $key
+     * @param array $option
+     * @return string
+     */
+    private function checkBox(string $key, array $option): string
+    {
+        $value = $this->optionService->getOptionByKey($key, $option[self::KEY_DEFAULT], true);
+
+        $checked = '';
+        if($value == 1)
+        {
+            $checked = 'checked';
+        }
+
+        $html = '<div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="' . $key . '" ' . $checked . '>
+          <label class="form-check-label" for="' . $key . '">' . $this->translator->trans($option[self::KEY_LABEL]) . '</label>';
+        $html .= $this->addHelp($option);
+        $html .= '</div>';
 
         return $html;
     }
@@ -66,19 +139,32 @@ class Option extends AppExtension implements RuntimeExtensionInterface
      * @param array $option
      * @return string
      */
-    private function InputText(String $key, Array $option): string
+    private function inputText(String $key, array $option): string
     {
+        $value = $this->optionService->getOptionByKey($key, $option[self::KEY_DEFAULT], true);
+
         $html = '<div class="mb-3">
                 <label for="' . $key . '" class="form-label">' . $this->translator->trans($option[self::KEY_LABEL]) . '</label>
-                <input type="text" class="form-control" id="' . $key . '">';
+                <input type="text" class="form-control" id="' . $key . '" value="' . $this->translator->trans($value). '">';
 
-        if(isset($option[self::KEY_HELP]))
-        {
-            $html .= '<div id="emailHelp" class="form-text">' . $this->translator->trans($option[self::KEY_HELP]) . '</div>';
-        }
+        $html .= $this->addHelp($option);
         $html .= '</div>';
 
         return $html;
+    }
+
+    /**
+     * Ajout le code html pour afficher le help texte
+     * @param array $option
+     * @return string
+     */
+    private function addHelp(array $option): string
+    {
+        if(isset($option[self::KEY_HELP]))
+        {
+            return '<div id="emailHelp" class="form-text">' . $this->translator->trans($option[self::KEY_HELP]) . '</div>';
+        }
+        return '';
     }
 
 

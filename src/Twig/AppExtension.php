@@ -2,6 +2,7 @@
 
 namespace App\Twig;
 
+use App\Service\Admin\System\OptionService;
 use App\Service\Admin\System\TranslationService;
 use App\Twig\Admin\MenuAdmin;
 use App\Twig\Admin\Option;
@@ -12,6 +13,7 @@ use App\Twig\Admin\System\GlobalFunction;
 use App\Twig\Admin\Translation;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -51,17 +53,29 @@ class AppExtension extends AbstractExtension
     protected Security $security;
 
     /**
+     * @var SessionInterface
+     */
+    protected SessionInterface $session;
+
+    /**
+     * @var OptionService
+     */
+    protected OptionService $optionService;
+
+    /**
      * @param ParameterBagInterface $parameterBag
      * @param UrlGeneratorInterface $urlGenerator
      * @param TranslatorInterface $translator
      * @param Security $security
      * @param RequestStack $requestStack
      * @param TranslationService $translationService
+     * @param SessionInterface $session
+     * @param OptionService $optionService
      */
-    public function __construct(ParameterBagInterface $parameterBag,
-                                UrlGeneratorInterface $urlGenerator,
+    public function __construct(ParameterBagInterface $parameterBag, UrlGeneratorInterface $urlGenerator,
                                 TranslatorInterface $translator, Security $security,
-                                RequestStack $requestStack, TranslationService $translationService)
+                                RequestStack $requestStack, TranslationService $translationService,
+                                SessionInterface $session, OptionService $optionService)
     {
         $this->parameterBag = $parameterBag;
         $this->urlGenerator = $urlGenerator;
@@ -69,6 +83,8 @@ class AppExtension extends AbstractExtension
         $this->requestStack = $requestStack;
         $this->translationService = $translationService;
         $this->security = $security;
+        $this->session = $session;
+        $this->optionService = $optionService;
     }
 
     /**

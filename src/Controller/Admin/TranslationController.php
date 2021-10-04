@@ -47,7 +47,7 @@ class TranslationController extends AppController
     #[Route('/ajax/listing/{page}', name: 'ajax_listing_translation')]
     public function listingRoute(int $page = 1): Response
     {
-        $limit = $this->optionService->getOptionByKey(OptionService::GO_GLOBAL_ELEMENT_PAR_PAGE, true);
+        $limit = $this->optionService->getOptionByKey(OptionService::GO_ADM_GLOBAL_ELEMENT_PAR_PAGE, OptionService::GO_ADM_GLOBAL_ELEMENT_PAR_PAGE_DEFAULT_VALUE,true);
         $tmpfilter = $this->request->getCurrentRequest()->get('translation_filter', null);
 
         if ($page == 1 && $tmpfilter != null) {
