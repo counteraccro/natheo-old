@@ -131,7 +131,7 @@ class TranslationController extends AppController
         if ($dataSystem->getValue() == "" || $dataSystem->getValue() <= 0) {
             $msg = '<div class="text-success"><i class="fa fa-info-circle"></i> <i>' . $this->translator->trans('admin_translation#Les traductions sont à jour') . '</i></div>';
         } else {
-            $msg = '<div class="text-warning"><i class="fa fa-exclamation-circle"></i> <i>' . $dataSystem->getValue() . ' ' . $this->translator->trans('admin_translation#traduction(s) doivent être mise à jour pour être prise en compte, régénérer les traductions') . '</i></div>';
+            $msg = '<div class="text-warning"><i class="fa fa-exclamation-circle"></i> <i>' . $this->translator->trans('admin_translation#Les traductions ne sont plus à jour vis à vis de la base de données, Vous devez régénérer les traductions depuis la base de données') . '</i></div>';
         }
 
         return $this->json(['msg' => $msg]);

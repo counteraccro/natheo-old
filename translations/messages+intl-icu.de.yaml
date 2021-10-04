@@ -54,9 +54,9 @@
 'admin_translation#Rechercher un traduction par son label': '__Rechercher un traduction par son label'
 'admin_translation#': __
 'admin_translation#Clée': __Clée
-'admin_translation#Regénération des traductions, cela peut prendre du temps...': '__Regénération des traductions, cela peut prendre du temps...'
+'admin_translation#Régénération des traductions, cela peut prendre du temps...': '__Regénération des traductions, cela peut prendre du temps...'
 'admin_translation#Réinitialiser les traductions': '__Réinitialiser les traductions'
-'admin_translation#Regénérer les traductions': '__Regénérer les traductions'
+'admin_translation#Régénérer les traductions': '__Regénérer les traductions'
 'admin_translation#Filter les données': '__Filter les données'
 'admin_translation#Chargement des traductions...': '__Chargement des traductions...'
 'admin_translation#Rechargement de la page...': '__Rechargement de la page...'
@@ -90,3 +90,5 @@
 'admin_global_option#Script juste avant la fermeture de la balise BODY': '__Script juste avant la fermeture de la balise BODY'
 'admin_global_option#Ajouter vos scripts qui doivent être exécutés à la fermeture de la balise BODY.': '__Ajouter vos scripts qui doivent être exécutés à la fermeture de la balise BODY.'
 'admin_topmenu#Menu Top': '__Menu Top'
+'admin_translation#Les traductions ne sont plus à jour vis à vis de la base de données, Vous devez régénérer les traductions depuis la base de données': '__Les traductions ne sont plus à jour vis à vis de la base de données, Vous devez régénérer les traductions depuis la base de données'
+'admin_translation#Réinitialisation des traductions depuis le code source du site, cela peut prendre du temps...': '__Réinitialisation des traductions depuis le code source du site, cela peut prendre du temps...'

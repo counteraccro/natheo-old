@@ -1,5 +1,5 @@
-'admin_global_option#front': front
-'admin_global_option#administration': administration
+'admin_global_option#front': 'front 2'
+'admin_global_option#administration': 'administration 5'
 'admin_global_option#Titre du site': 'Titre du site'
 'admin_global_option#Site Web propulsé par Nathéo CMS': 'Site Web propulsé par Nathéo CMS'
 'admin_global_option#Rendre le front accessible aux visiteurs ?': 'Rendre le front accessible aux visiteurs ?'
@@ -54,9 +54,9 @@
 'admin_translation#Rechercher un traduction par son label': 'Rechercher un traduction par son label'
 'admin_translation#': ''
 'admin_translation#Clée': Clée
-'admin_translation#Regénération des traductions, cela peut prendre du temps...': 'Regénération des traductions, cela peut prendre du temps...'
+'admin_translation#Régénération des traductions, cela peut prendre du temps...': 'Regénération des traductions, cela peut prendre du temps...'
 'admin_translation#Réinitialiser les traductions': 'Réinitialiser les traductions'
-'admin_translation#Regénérer les traductions': 'Regénérer les traductions'
+'admin_translation#Régénérer les traductions': 'Regénérer les traductions'
 'admin_translation#Filter les données': 'Filter les données'
 'admin_translation#Chargement des traductions...': 'Chargement des traductions...'
 'admin_translation#Rechargement de la page...': 'Rechargement de la page...'
@@ -90,3 +90,5 @@
 'admin_global_option#Script juste avant la fermeture de la balise BODY': 'Script juste avant la fermeture de la balise BODY'
 'admin_global_option#Ajouter vos scripts qui doivent être exécutés à la fermeture de la balise BODY.': 'Ajouter vos scripts qui doivent être exécutés à la fermeture de la balise BODY.'
 'admin_topmenu#Menu Top': 'Menu Top'
+'admin_translation#Les traductions ne sont plus à jour vis à vis de la base de données, Vous devez régénérer les traductions depuis la base de données': 'Les traductions ne sont plus à jour vis à vis de la base de données, Vous devez régénérer les traductions depuis la base de données'
+'admin_translation#Réinitialisation des traductions depuis le code source du site, cela peut prendre du temps...': 'Réinitialisation des traductions depuis le code source du site, cela peut prendre du temps...'

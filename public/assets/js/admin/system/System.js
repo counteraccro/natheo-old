@@ -30,7 +30,7 @@ System.Paginate = function() {
  * Gestion de l'input qui apparait au click sur un text
  * @constructor
  */
-System.EventHiddenInput = function()
+System.EventHiddenInput = function(scriptToExectAfter = null)
 {
     $('.span-input-hidden .txt-input-switch').click(function() {
 
@@ -80,6 +80,11 @@ System.EventHiddenInput = function()
                 $('#' + id).show();
                 $('#success-' + id).show('slow').delay(1000).hide('slow');
                 $(this).parent().parent().parent().removeLoader();
+
+                if(scriptToExectAfter != null)
+                {
+                    eval(scriptToExectAfter);
+                }
             });
     });
 
