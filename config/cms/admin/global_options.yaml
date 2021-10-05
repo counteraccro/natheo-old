@@ -28,20 +28,27 @@ global_options:
       label: 'admin_global_option#Script juste avant la fermeture de la balise BODY'
       help: 'admin_global_option#Ajouter vos scripts qui doivent être exécutés à la fermeture de la balise BODY.'
       default: ""
+  admin_global_option#Format de la date et de l'heure:
+    GO_DATE_FORMAT_TIME_FORMAT:
+      type: 'list'
+      label: 'admin_global_option#Format de l''heure'
+      list_value: 'special:time_format'
+      help: 'admin_global_option#Ce format est utilisé pour afficher l''heure sur le site (front et admin).'
+      default: ""
   admin_global_option#Options sur l'administration:
     GO_ADM_GLOBAL_ELEMENT_PAR_PAGE :
       type: 'list'
       label: 'admin_global_option#Nombre d''éléments par page sur l''administration'
-      list_value: '5|10|20|50|100'
+      list_value: '5:5|10:10|20:20|50:50|100:100'
       default: '20'
     GO_ADM_GLOBAL_LANGUE:
       type: 'list'
       label: 'admin_global_option#Langue par défaut de l''administration'
-      list_value: '%app_locales%'
+      list_value: 'special:app_locales'
       default: 'fr'
     GO_ADM_THEME_ADMIN:
       type: 'list'
       label: 'admin_global_option#Changer le theme de l''administration'
-      list_value: 'admin_global_option#purple|admin_global_option#red|admin_global_option#orange|admin_global_option#pink'
+      list_value: 'purple:admin_global_option#Violet|red:admin_global_option#Rouge|orange:admin_global_option#Orange|pink:admin_global_option#Rose'
       default: 'purple'
 

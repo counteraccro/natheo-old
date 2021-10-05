@@ -1,17 +1,43 @@
-'admin_global_option#front': '__front en'
+'admin_global_option#front': __front
 'admin_global_option#administration': __administration
 'admin_global_option#Titre du site': '__Titre du site'
 'admin_global_option#Site Web propulsé par Nathéo CMS': '__Site Web propulsé par Nathéo CMS'
 'admin_global_option#Rendre le front accessible aux visiteurs ?': '__Rendre le front accessible aux visiteurs ?'
+'admin_global_option#Si vous fermez le front, l''administration restera toujours accessible.': '__Si vous fermez le front, l''administration restera toujours accessible.'
+'admin_global_option#Changer le theme de l''administration': '__Changer le theme de l''administration'
+'admin_global_option#Nombre d''éléments par page sur l''administration': '__Nombre d''éléments par page sur l''administration'
+'admin_global_option#Langue par défaut de l''administration': '__Langue par défaut de l''administration'
+'admin_global_option#Violet': __Violet
+'admin_global_option#Rouge': __Rouge
+'admin_global_option#Orange': __Orange
+'admin_global_option#Rose': __Rose
+'admin_permission#Permission': __Permission
+'admin_system#System': __System
+'admin_role#Gestion des rôles': '__Gestion des rôles'
+'front_front#Site public': '__Site public'
+'admin_system#Systeme': __Systeme
+'admin_pagination#Pagination': __Pagination
+'admin_topmenu#Menu Top': '__Menu Top'
+'admin_translation#fr': __fr
+'admin_translation#en': __en
+'admin_translation#de': __de
+'admin_translation#it': __it
+'admin_translation#es': __es
+'admin_system#Administration': __Administration
+'admin_auth#Authentification': __Authentification
+'admin_global_option#Options pour le front': '__Options pour le front'
+'admin_global_option#Options sur l''administration': '__Options sur l''administration'
+'admin_global_option#Script dans la balise HEAD': '__Script dans la balise HEAD'
+'admin_global_option#Ajouter vos scripts qui doivent être exécutés dans la balise HEAD.': '__Ajouter vos scripts qui doivent être exécutés dans la balise HEAD.'
+'admin_global_option#Script juste après l''ouverture de la balise BODY': '__Script juste après l''ouverture de la balise BODY'
+'admin_global_option#Ajouter vos scripts qui doivent être exécutés à l''ouverture de la balise BODY.': '__Ajouter vos scripts qui doivent être exécutés à l''ouverture de la balise BODY.'
+'admin_global_option#Script juste avant la fermeture de la balise BODY': '__Script juste avant la fermeture de la balise BODY'
+'admin_global_option#Ajouter vos scripts qui doivent être exécutés à la fermeture de la balise BODY.': '__Ajouter vos scripts qui doivent être exécutés à la fermeture de la balise BODY.'
 'admin_global_option#Si vous fermé le front, l''administration restera toujours accessible.': '__Si vous fermé le front, l''administration restera toujours accessible.'
 'admin_global_option#Changer le theme de l''administraton': '__Changer le theme de l''administraton'
 'admin_global_option#purple': __purple
 'admin_global_option#red': __red
-'admin_global_option#orange': __orange
 'admin_global_option#pink': __pink
-'admin_permission#Permission': __Permission
-'admin_system#System': __System
-'admin_role#Gestion des rôles': '__Gestion des rôles'
 'admin_dashboard#Dashboard': __Dashboard
 'admin_global_option#Options globales': '__Options globales'
 'admin_route#Gestion des routes': '__Gestion des routes'
@@ -37,14 +63,6 @@
 'front_auth#Mot de passe': '__Mot de passe'
 'front_auth#Ce souvenir de moi': '__Ce souvenir de moi'
 'front_auth#Me connecter': '__Me connecter'
-'front_front#Site public': '__Site public'
-'admin_system#Systeme': __Systeme
-'admin_pagination#Pagination': __Pagination
-'admin_translation#fr': __fr
-'admin_translation#en': __en
-'admin_translation#de': __de
-'admin_translation#it': __it
-'admin_translation#es': __es
 'admin_translation#Application': __Application
 'admin_translation#Module': __Module
 'admin_translation#Langue': __Langue
@@ -54,16 +72,14 @@
 'admin_translation#Rechercher un traduction par son label': '__Rechercher un traduction par son label'
 'admin_translation#': __
 'admin_translation#Clée': __Clée
-'admin_translation#Régénération des traductions, cela peut prendre du temps...': '__Regénération des traductions, cela peut prendre du temps...'
+'admin_translation#Régénération des traductions, cela peut prendre du temps...': '__Régénération des traductions, cela peut prendre du temps...'
 'admin_translation#Réinitialiser les traductions': '__Réinitialiser les traductions'
-'admin_translation#Régénérer les traductions': '__Regénérer les traductions'
+'admin_translation#Régénérer les traductions': '__Régénérer les traductions'
 'admin_translation#Filter les données': '__Filter les données'
 'admin_translation#Chargement des traductions...': '__Chargement des traductions...'
 'admin_translation#Rechargement de la page...': '__Rechargement de la page...'
 'admin_translation#Traductions': __Traductions
 'admin_translation#Reconstruction des traductions depuis la base de données, cela peut prendre du temps...': '__Reconstruction des traductions depuis la base de données, cela peut prendre du temps...'
-'admin_system#Administration': __Administration
-'admin_auth#Authentification': __Authentification
 'admin_translation#Vous devez cocher au moins une langue pour effectuer une recherche': '__Vous devez cocher au moins une langue pour effectuer une recherche'
 'admin_translation#Tout': __Tout
 'admin_pagination#Elements': __Elements
@@ -77,18 +93,8 @@
 'admin_topmenu#Mon compte': '__Mon compte'
 'admin_topmenu#Mes notifications': '__Mes notifications'
 'front_auth#Déconnexion': __Déconnexion
-'admin_global_option#Si vous fermez le front, l''administration restera toujours accessible.': '__Si vous fermez le front, l''administration restera toujours accessible.'
-'admin_global_option#Changer le theme de l''administration': '__Changer le theme de l''administration'
-'admin_global_option#Nombre d''éléments par page sur l''administration': '__Nombre d''éléments par page sur l''administration'
-'admin_global_option#Langue par défaut de l''administration': '__Langue par défaut de l''administration'
-'admin_global_option#Options pour le front': '__Options pour le front'
-'admin_global_option#Options sur l''administration': '__Options sur l''administration'
-'admin_global_option#Script dans la balise HEAD': '__Script dans la balise HEAD'
-'admin_global_option#Ajouter vos scripts qui doivent être exécutés dans la balise HEAD.': '__Ajouter vos scripts qui doivent être exécutés dans la balise HEAD.'
-'admin_global_option#Script juste après l''ouverture de la balise BODY': '__Script juste après l''ouverture de la balise BODY'
-'admin_global_option#Ajouter vos scripts qui doivent être exécutés à l''ouverture de la balise BODY.': '__Ajouter vos scripts qui doivent être exécutés à l''ouverture de la balise BODY.'
-'admin_global_option#Script juste avant la fermeture de la balise BODY': '__Script juste avant la fermeture de la balise BODY'
-'admin_global_option#Ajouter vos scripts qui doivent être exécutés à la fermeture de la balise BODY.': '__Ajouter vos scripts qui doivent être exécutés à la fermeture de la balise BODY.'
-'admin_topmenu#Menu Top': '__Menu Top'
 'admin_translation#Les traductions ne sont plus à jour vis à vis de la base de données, Vous devez régénérer les traductions depuis la base de données': '__Les traductions ne sont plus à jour vis à vis de la base de données, Vous devez régénérer les traductions depuis la base de données'
 'admin_translation#Réinitialisation des traductions depuis le code source du site, cela peut prendre du temps...': '__Réinitialisation des traductions depuis le code source du site, cela peut prendre du temps...'
+'admin_global_option#Format de l''heure': '__Format de l''heure'
+'admin_global_option#Ce format est utilisé pour afficher l''heure sur le site (front et admin).': '__Ce format est utilisé pour afficher l''heure sur le site (front et admin).'
+'admin_global_option#Format de la date et de l''heure': '__Format de la date et de l''heure'

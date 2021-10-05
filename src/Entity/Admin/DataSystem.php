@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=DataSystemRepository::class)
+ * @ORM\Table(name="`cms_data_system`")
  */
 class DataSystem
 {

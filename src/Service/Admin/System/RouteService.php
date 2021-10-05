@@ -49,7 +49,7 @@ class RouteService extends AppService
         $routeRepo->updateIsdepreciateAllRoute();
 
 
-        $tabRouteModule = Yaml::parseFile($this->parameterBag->get('app_path_routes_modules'));
+        $tabRouteModule = Yaml::parseFile($this->parameterBag->get('app_path_translate_modules'));
 
         foreach($this->router->getRouteCollection()->all() as $key => $_route)
         {

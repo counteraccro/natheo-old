@@ -24,6 +24,7 @@ class Option extends AppExtension implements RuntimeExtensionInterface
     const TYPE_BOOLEAN = 'boolean';
     const TYPE_TEXTAREA = 'textarea';
     const TYPE_LIST = 'list';
+    const KEY_VAL_SPECIAL = 'special';
 
     /**
      * Point d'entrée pour la génération des options
@@ -72,17 +73,67 @@ class Option extends AppExtension implements RuntimeExtensionInterface
         $value = $this->optionService->getOptionByKey($key, $option[self::KEY_DEFAULT], true);
         $html = '<div class="mb-3">
         <label for="' . $key . '" class="form-label">' . $this->translator->trans($option[self::KEY_LABEL]) . '</label>
-        <select class="form-select" aria-label="Default select example"  id="' . $key . '">
-          <option value="">Open this select menu</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>';
+        <select class="form-select" aria-label="Default select example"  id="' . $key . '">';
+
+        $tab = explode('|', $option['list_value']);
+        foreach ($tab as $element) {
+
+            $tab2 = explode(':', $element);
+            $itemVal = $tab2[0];
+            $item = $tab2[1];
+
+
+            if ($itemVal == self::KEY_VAL_SPECIAL)
+            {
+               switch ($item)
+               {
+                   case 'app_locales' :
+                       $html .= $this->generateListLocal($value);
+                       break;
+                   case 'time_format' :
+                       break;
+                   default :
+                       break;
+               }
+            }
+            else {
+                $select = '';
+                if($value == $itemVal)
+                {
+                    $select = 'selected';
+                }
+                $html .= '<option value="' . $itemVal . '" ' . $select . '>' . $this->translator->trans($item) . '</option>';
+            }
+        }
 
 
         $html .= '</select>';
         $html .= $this->addHelp($option);
         $html .= '</div>';
 
+        return $html;
+    }
+
+    /**
+     * Génère une liste de langues
+     * @param string $value
+     * @return string
+     */
+    private function generateListLocal(string $value): string
+    {
+        $html = '';
+        $tabLocal = $this->translationService->getLocales();
+
+        foreach($tabLocal as $local)
+        {
+            $select = '';
+            if($value == $local)
+            {
+                $select = 'selected';
+            }
+
+            $html .= '<option value="' . $local . '" ' . $select . '>' . $this->translator->trans('admin_translation#' . $local) . '</option>';
+        }
         return $html;
     }
 
