@@ -2,6 +2,7 @@
 
 namespace App\Twig;
 
+use App\Service\Admin\System\DateService;
 use App\Service\Admin\System\OptionService;
 use App\Service\Admin\System\TranslationService;
 use App\Twig\Admin\MenuAdmin;
@@ -63,6 +64,11 @@ class AppExtension extends AbstractExtension
     protected OptionService $optionService;
 
     /**
+     * @var DateService
+     */
+    protected DateService $dateService;
+
+    /**
      * @param ParameterBagInterface $parameterBag
      * @param UrlGeneratorInterface $urlGenerator
      * @param TranslatorInterface $translator
@@ -75,7 +81,7 @@ class AppExtension extends AbstractExtension
     public function __construct(ParameterBagInterface $parameterBag, UrlGeneratorInterface $urlGenerator,
                                 TranslatorInterface $translator, Security $security,
                                 RequestStack $requestStack, TranslationService $translationService,
-                                SessionInterface $session, OptionService $optionService)
+                                SessionInterface $session, OptionService $optionService, DateService $dateService)
     {
         $this->parameterBag = $parameterBag;
         $this->urlGenerator = $urlGenerator;
@@ -85,6 +91,7 @@ class AppExtension extends AbstractExtension
         $this->security = $security;
         $this->session = $session;
         $this->optionService = $optionService;
+        $this->dateService = $dateService;
     }
 
     /**

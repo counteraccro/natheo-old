@@ -7,10 +7,13 @@
 'admin_global_option#Changer le theme de l''administration': '__Changer le theme de l''administration'
 'admin_global_option#Nombre d''éléments par page sur l''administration': '__Nombre d''éléments par page sur l''administration'
 'admin_global_option#Langue par défaut de l''administration': '__Langue par défaut de l''administration'
+'admin_global_option#Format de la date et de l''heure': '__Format de la date et de l''heure'
 'admin_global_option#Violet': __Violet
 'admin_global_option#Rouge': __Rouge
 'admin_global_option#Orange': __Orange
 'admin_global_option#Rose': __Rose
+'admin_global_option#Format de l''heure': '__Format de l''heure'
+'admin_global_option#Ce format est utilisé pour afficher l''heure sur le site (front et admin).': '__Ce format est utilisé pour afficher l''heure sur le site (front et admin).'
 'admin_permission#Permission': __Permission
 'admin_system#System': __System
 'admin_role#Gestion des rôles': '__Gestion des rôles'
@@ -95,6 +98,7 @@
 'front_auth#Déconnexion': __Déconnexion
 'admin_translation#Les traductions ne sont plus à jour vis à vis de la base de données, Vous devez régénérer les traductions depuis la base de données': '__Les traductions ne sont plus à jour vis à vis de la base de données, Vous devez régénérer les traductions depuis la base de données'
 'admin_translation#Réinitialisation des traductions depuis le code source du site, cela peut prendre du temps...': '__Réinitialisation des traductions depuis le code source du site, cela peut prendre du temps...'
-'admin_global_option#Format de l''heure': '__Format de l''heure'
-'admin_global_option#Ce format est utilisé pour afficher l''heure sur le site (front et admin).': '__Ce format est utilisé pour afficher l''heure sur le site (front et admin).'
-'admin_global_option#Format de la date et de l''heure': '__Format de la date et de l''heure'
+'admin_global_option#Format de la date raccourcie': '__Format de la date raccourcie'
+'admin_global_option#Ce format est utilisé pour afficher la date dans les tableaux.': '__Ce format est utilisé pour afficher la date dans les tableaux.'
+'admin_global_option#Format de la date': '__Format de la date'
+'admin_global_option#Ce format est utilisé pour afficher la date sur le site (front et admin).': '__Ce format est utilisé pour afficher la date sur le site (front et admin).'

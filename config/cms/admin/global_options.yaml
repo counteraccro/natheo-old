@@ -34,7 +34,19 @@ global_options:
       label: 'admin_global_option#Format de l''heure'
       list_value: 'special:time_format'
       help: 'admin_global_option#Ce format est utilisé pour afficher l''heure sur le site (front et admin).'
-      default: ""
+      default: 'H:i:s'
+    GO_DATE_FORMAT_SHORT_DATE_FORMAT:
+      type: 'list'
+      label: 'admin_global_option#Format de la date raccourcie'
+      list_value: 'special:date_short_format'
+      help: 'admin_global_option#Ce format est utilisé pour afficher la date dans les tableaux.'
+      default: '%d/%m/%G'
+    GO_DATE_FORMAT_DATE_FORMAT:
+      type: 'list'
+      label: 'admin_global_option#Format de la date'
+      list_value: 'special:date_format'
+      help: 'admin_global_option#Ce format est utilisé pour afficher la date sur le site (front et admin).'
+      default: '%A %e %B %Y'
   admin_global_option#Options sur l'administration:
     GO_ADM_GLOBAL_ELEMENT_PAR_PAGE :
       type: 'list'

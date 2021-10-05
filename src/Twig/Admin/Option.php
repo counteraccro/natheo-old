@@ -91,6 +91,13 @@ class Option extends AppExtension implements RuntimeExtensionInterface
                        $html .= $this->generateListLocal($value);
                        break;
                    case 'time_format' :
+                       $html .= $this->generateListeTimeFormat($value);
+                       break;
+                   case 'date_format' :
+                        $html .= $this->generateListeDateFormat($value);
+                       break;
+                   case 'date_short_format' :
+                       $html .= $this->generateListeDateShortFormat($value);
                        break;
                    default :
                        break;
@@ -110,6 +117,91 @@ class Option extends AppExtension implements RuntimeExtensionInterface
         $html .= '</select>';
         $html .= $this->addHelp($option);
         $html .= '</div>';
+
+        return $html;
+    }
+
+    /**
+     * Permet de générer une liste de format de date
+     * @param string $value
+     * @return string
+     */
+    private function generateListeDateShortFormat(string $value) : string
+    {
+        $date = new \DateTime();
+        $html = '';
+        $tabFormat = ['%e/%m/%G', '%e-%m-%G', '%e.%m.%G',
+            '%d/%m/%G', '%d-%m-%G', '%d.%m.%G',
+            '%m/%d/%G', '%m-%d-%G', '%m.%d.%G',
+            '%e/%m/%g', '%e-%m-%g', '%e.%m.%g',
+            '%d/%m/%g', '%d-%m-%g', '%d.%m.%g',
+            '%m/%d/%g', '%m-%d-%g', '%m.%d.%g'];
+
+        foreach($tabFormat as $format)
+        {
+            $select = '';
+            if($value == $format)
+            {
+                $select = 'selected';
+            }
+
+            $html .= '<option value="' . $format . '" ' . $select . '>' . $this->dateService->getDateFormatTranslate($format, $date) . '</option>';
+        }
+
+        return $html;
+    }
+
+    /**
+     * Permet de générer une liste de format de date
+     * @param string $value
+     * @return string
+     */
+    private function generateListeDateFormat(string $value) : string
+    {
+        $date = new \DateTime();
+        $html = '';
+        $tabFormat = ['%e %B %Y', '%a %e %B %Y', '%A %e %B %Y',
+                '%e %B, %Y', '%a %e %B, %Y', '%A %e %B, %Y',
+                '%d %B, %Y', '%d %B %Y',
+                '%B %d %Y',
+                '%a %B %e %Y', '%A %B %e %Y',
+                '%a %B %d, %Y', '%A %B %d, %Y'];
+
+        foreach($tabFormat as $format)
+        {
+            $select = '';
+            if($value == $format)
+            {
+                $select = 'selected';
+            }
+
+            $html .= '<option value="' . $format . '" ' . $select . '>' . $this->dateService->getDateFormatTranslate($format, $date) . '</option>';
+        }
+
+        return $html;
+    }
+
+    /**
+     * Permet de générer une liste de format d'heure
+     * @param string $value
+     * @return string
+     */
+    private function generateListeTimeFormat(string $value) : string
+    {
+        $date = new \DateTime();
+        $html = '';
+        $tabFormat = ['H:i', 'H:i:s', 'g:i a', 'g:i: A'];
+
+        foreach($tabFormat as $format)
+        {
+            $select = '';
+            if($value == $format)
+            {
+                $select = 'selected';
+            }
+
+            $html .= '<option value="' . $format . '" ' . $select . '>' . $date->format($format) . '</option>';
+        }
 
         return $html;
     }
