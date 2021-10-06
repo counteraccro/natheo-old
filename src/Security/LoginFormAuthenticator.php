@@ -58,11 +58,14 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
         $theme = $this->optionService->getOptionByKey(OptionService::GO_ADM_THEME_ADMIN, OptionService::GO_ADM_THEME_ADMIN_DEFAULT_VALUE, true);
         $this->session->set(OptionService::KEY_SESSION_THEME_ADMIN, $theme);
 
-        if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
-            return new RedirectResponse($targetPath);
-        }
+        $default_local = $this->optionService->getOptionByKey(OptionService::GO_ADM_GLOBAL_LANGUE, OptionService::GO_ADM_GLOBAL_LANGUE_DEFAULT_VALUE, true);
 
-        return new RedirectResponse($this->urlGenerator->generate('admin_dashboard_index'));
+
+        /*if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
+            return new RedirectResponse($targetPath);
+        }*/
+
+        return new RedirectResponse($this->urlGenerator->generate('admin_dashboard_index', ['_locale' => $default_local]));
         //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 

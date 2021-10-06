@@ -17,6 +17,8 @@ class OptionService extends AppService
     const GO_ADM_GLOBAL_ELEMENT_PAR_PAGE_DEFAULT_VALUE = 20;
     const GO_ADM_THEME_ADMIN = 'GO_ADM_THEME_ADMIN';
     const GO_ADM_THEME_ADMIN_DEFAULT_VALUE = 'purple';
+    const GO_ADM_GLOBAL_LANGUE = 'GO_ADM_GLOBAL_LANGUE';
+    const GO_ADM_GLOBAL_LANGUE_DEFAULT_VALUE = 'fr';
 
     const KEY_SESSION_THEME_ADMIN = 'cms.global.theme_admin';
 

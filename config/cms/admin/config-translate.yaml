@@ -8,6 +8,7 @@
 'admin_global_option#Changer le theme de l''administration': 'admin_global_option#Changer le theme de l''administration'
 'admin_global_option#Nombre d''éléments par page sur l''administration' : '__admin_global_option#Nombre d''éléments par page sur l''administration'
 'admin_global_option#Langue par défaut de l''administration' : '__admin_global_option#Langue par défaut de l''administration'
+'admin_global_option#La langue choisie sera utilisée comme langue par défaut à chaque connexion sur l''administration.' : '__admin_global_option#La langue choisie sera utilisée comme langue par défaut à chaque connexion sur l''administration.'
 'admin_global_option#Format de la date et de l''heure' : '__admin_global_option#Format de la date et de l''heure'
 'admin_global_option#Violet': '__admin_global_option#Violet'
 'admin_global_option#Rouge': '__admin_global_option#Rouge'

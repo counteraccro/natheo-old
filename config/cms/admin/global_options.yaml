@@ -58,6 +58,7 @@ global_options:
       type: 'list'
       label: 'admin_global_option#Langue par défaut de l''administration'
       list_value: 'special:app_locales'
+      help: 'admin_global_option#La langue choisie sera utilisée comme langue par défaut à chaque connexion sur l''administration.'
       default: 'fr'
     GO_ADM_THEME_ADMIN:
       type: 'list'
