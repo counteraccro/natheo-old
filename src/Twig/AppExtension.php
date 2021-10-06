@@ -75,13 +75,12 @@ class AppExtension extends AbstractExtension
      * @param Security $security
      * @param RequestStack $requestStack
      * @param TranslationService $translationService
-     * @param SessionInterface $session
      * @param OptionService $optionService
      */
     public function __construct(ParameterBagInterface $parameterBag, UrlGeneratorInterface $urlGenerator,
                                 TranslatorInterface $translator, Security $security,
-                                RequestStack $requestStack, TranslationService $translationService,
-                                SessionInterface $session, OptionService $optionService, DateService $dateService)
+                                RequestStack $requestStack, TranslationService $translationService
+                                , OptionService $optionService, DateService $dateService)
     {
         $this->parameterBag = $parameterBag;
         $this->urlGenerator = $urlGenerator;
@@ -89,7 +88,7 @@ class AppExtension extends AbstractExtension
         $this->requestStack = $requestStack;
         $this->translationService = $translationService;
         $this->security = $security;
-        $this->session = $session;
+        $this->session = $this->requestStack->getSession();
         $this->optionService = $optionService;
         $this->dateService = $dateService;
     }

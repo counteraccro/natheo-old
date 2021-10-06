@@ -1,0 +1,50 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block title %}{{ "admin_system#Configuration System" | trans }}{% endblock %}
+
+{% block body %}
+    <div id="admin-system-globale">
+        <h1>{{ "admin_system#Configuration System" | trans }}</h1>
+
+        {{ breadcrumb | breadcrumb | raw }}
+
+        <div class="card border-warning">
+            <div class="card-header bg-warning">
+                {{ "admin_system#Warning Zone" | trans }}
+            </div>
+            <div class="card-body">
+                <div class="text-warning mb-2">
+                    <i class="fa fa-exclamation-triangle"></i> {{ "admin_system#Attention, les manipulations faites ici peuvent endomager votre site" | trans }}
+                </div>
+
+                <div class="mb-2">
+                    <div>{{ "admin_system#Si vous avez des traductions qui ne change pas malgré la régénération des données, des données qui semble statiques alors que cela ne devrais pas être le cas, videz le cache" | trans }}</div>
+                    <button type="button" class="btn btn-primary">{{ "admin_system#Vider le cache applicatif" | trans }}</button>
+                    <button type="button" class="btn btn-primary me-2">{{ "admin_system#Vider le cache SQL" | trans }}</button>
+                </div>
+
+                <div class="mb-2">
+                    <div>{{ "admin_system#Dans le cas ou une ou plusieurs valeurs d'options posent problème vous pouvez réinitialiser l'ensemble des options à leurs valeurs par défaut" | trans }}</div>
+                    <button type="button" class="btn btn-primary">{{ "admin_system#Réinitialiser l'ensemble des options du site" | trans }}</button>
+                </div>
+
+
+            </div>
+        </div>
+
+        <br />
+
+        <div class="card">
+            <div class="card-header bg-danger">
+                {{ "admin_system#Danger Zone" | trans }}
+            </div>
+            <div class="card-body">
+                <div class="text-danger mb-2">
+                    <i class="fa fa-skull-crossbones"></i> {{ "admin_system#Attention, les manipulations faites ici peuvent détruire votre site" | trans }}
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+{% endblock %}

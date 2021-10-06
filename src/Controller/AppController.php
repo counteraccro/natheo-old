@@ -49,13 +49,13 @@ class AppController extends AbstractController
      */
     protected DataSystemService $dataSystemService;
 
-    public function __construct(TranslatorInterface $translator, RequestStack $request, OptionService $optionService, SessionInterface $session,
+    public function __construct(TranslatorInterface $translator, RequestStack $request, OptionService $optionService,
         TranslationService $translationService, DataSystemService $dataSystemService)
     {
         $this->translator = $translator;
         $this->request = $request;
         $this->optionService = $optionService;
-        $this->session = $session;
+        $this->session = $this->request->getSession();
         $this->translationService = $translationService;
         $this->dataSystemService = $dataSystemService;
     }

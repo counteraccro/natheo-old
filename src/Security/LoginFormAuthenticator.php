@@ -27,14 +27,11 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 
     private UrlGeneratorInterface $urlGenerator;
 
-    private SessionInterface $session;
-
     private OptionService $optionService;
 
-    public function __construct(UrlGeneratorInterface $urlGenerator, SessionInterface $session, OptionService $optionService)
+    public function __construct(UrlGeneratorInterface $urlGenerator, OptionService $optionService)
     {
         $this->urlGenerator = $urlGenerator;
-        $this->session = $session;
         $this->optionService = $optionService;
     }
 
@@ -56,7 +53,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
         $theme = $this->optionService->getOptionByKey(OptionService::GO_ADM_THEME_ADMIN, OptionService::GO_ADM_THEME_ADMIN_DEFAULT_VALUE, true);
-        $this->session->set(OptionService::KEY_SESSION_THEME_ADMIN, $theme);
+        $request->getSession()->set(OptionService::KEY_SESSION_THEME_ADMIN, $theme);
 
         $default_local = $this->optionService->getOptionByKey(OptionService::GO_ADM_GLOBAL_LANGUE, OptionService::GO_ADM_GLOBAL_LANGUE_DEFAULT_VALUE, true);
 
