@@ -1,16 +1,16 @@
 {% extends 'admin/admin.html.twig' %}
 
-{% block title %}{{ "admin_system#Configuration System" | trans }}{% endblock %}
+{% block title %}{{ "admin_system#Debug System" | trans }}{% endblock %}
 
 {% block body %}
     <div id="admin-system-globale">
-        <h1>{{ "admin_system#Configuration System" | trans }}</h1>
+        <h1>{{ "admin_system#Debug System" | trans }}</h1>
 
         {{ breadcrumb | breadcrumb | raw }}
 
         <div class="card border-warning">
             <div class="card-header bg-warning">
-                {{ "admin_system#Warning Zone" | trans }}
+                <i class="fa fa-exclamation-triangle"></i> {{ "admin_system#Warning Zone" | trans }}
             </div>
             <div class="card-body">
                 <div class="text-warning mb-2">
@@ -28,20 +28,49 @@
                     <button type="button" class="btn btn-primary">{{ "admin_system#Réinitialiser l'ensemble des options du site" | trans }}</button>
                 </div>
 
+                <div class="mb-2">
+                    <div>{{ "admin_system#Détruire toutes les sessions actives du site, vous devrez vous reconnecter après cette action" | trans }}</div>
+                    <button type="button" class="btn btn-primary">{{ "admin_system#Détruire toutes les sessions actives" | trans }}</button>
+                </div>
+
 
             </div>
         </div>
 
-        <br />
 
-        <div class="card">
+        <div class="card mt-2 border-danger">
             <div class="card-header bg-danger">
-                {{ "admin_system#Danger Zone" | trans }}
+                <i class="fa fa-skull-crossbones"></i> {{ "admin_system#Danger Zone" | trans }}
             </div>
             <div class="card-body">
                 <div class="text-danger mb-2">
                     <i class="fa fa-skull-crossbones"></i> {{ "admin_system#Attention, les manipulations faites ici peuvent détruire votre site" | trans }}
                 </div>
+
+                {% if app_env == "dev" %}
+
+                    <div class="mb-2">
+                        <div>
+                            {{ "admin_system#Réinitialisation complète du site, toutes les données seront perdu (users, articles, tags, config, traductions) et le site sera remis en configuration avec des données génériques" | trans }}<br >
+                            {{ "admin_system#Vous serez déconnecté et devrez vous reconnecter avec le user par défaut" | trans }}
+                        </div>
+                        <button type="button" class="btn btn-danger">{{ "admin_system#Réinitialiser le site" | trans }}</button>
+                    </div>
+
+                {% else  %}
+                    {{ "admin_system#Pour avoir accès aux options de la Danger zone vous devez modifier dans le fichier .env la ligne suivante" | trans }} <br >
+                    <span class="badge bg-secondary">APP_ENV=prod</span> <br />
+                    {{ "admin_system#Remplacer prod par dev pour passer en mode développement, ce qui donne " | trans }} <br />
+                    <span class="badge bg-secondary">APP_ENV=dev</span>
+
+                    <div class="text-danger mt-2">
+                        <b><i class="fa fa-skull-crossbones"></i>
+                            {{ "admin_system#Attention, le mode developpement ne doit pas être laissé en production et ne doit être utilisé que pour du développement ou de la correction de bugs de façon temporaire" | trans }}
+                        </b>
+                    </div>
+
+                {% endif %}
+
             </div>
         </div>
 

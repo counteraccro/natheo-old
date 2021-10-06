@@ -7,7 +7,7 @@ routes_modules:
   option : 'admin_global_option#Options globales'
   translation: 'admin_translation#Gestion des traductions'
   global_option: 'admin_global_option#Options globales'
-  system : 'admin_system#Systeme'
+  system : 'admin_system#System'
   pagination : 'admin_pagination#Pagination'
   role : 'admin_role#Gestion des rôles'
   admin: 'admin_system#Administration'

@@ -136,6 +136,17 @@ class MenuAdmin extends AppExtension implements RuntimeExtensionInterface
 
         $html = '<ul class="nav justify-content-end">';
 
+        if($this->kernel->getEnvironment() == "dev")
+        {
+            $html .= ' <li class="nav-item">
+                    <a class="nav-link disabled text-danger fw-bold" href="#" tabindex="-1" aria-disabled="true">
+                        <i class="fa fa-skull-crossbones"></i> 
+                        ' . $this->translator->trans('admin_system#APP_ENV=DEV détecté') . '
+                    </a>
+                  </li>';
+        }
+
+
         $html .= '<li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
                         <i class="fa fa-globe-europe"></i> ' . $this->translator->trans('admin_translation#' . $currentLocal) . '

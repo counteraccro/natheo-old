@@ -23,6 +23,6 @@ menu-left-admin:
       admin_global_option#Options globales:
         icon: 'fa-cog'
         target : 'admin_option_index'
-      admin_system#Configuration System:
-        icon: 'fa-cog'
+      admin_system#Debug System:
+        icon: 'fa-bug'
         target: 'admin_system_index'

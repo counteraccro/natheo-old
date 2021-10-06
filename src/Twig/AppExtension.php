@@ -15,6 +15,7 @@ use App\Twig\Admin\Translation;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -69,6 +70,11 @@ class AppExtension extends AbstractExtension
     protected DateService $dateService;
 
     /**
+     * @var KernelInterface
+     */
+    protected KernelInterface $kernel;
+
+    /**
      * @param ParameterBagInterface $parameterBag
      * @param UrlGeneratorInterface $urlGenerator
      * @param TranslatorInterface $translator
@@ -80,7 +86,7 @@ class AppExtension extends AbstractExtension
     public function __construct(ParameterBagInterface $parameterBag, UrlGeneratorInterface $urlGenerator,
                                 TranslatorInterface $translator, Security $security,
                                 RequestStack $requestStack, TranslationService $translationService
-                                , OptionService $optionService, DateService $dateService)
+                                , OptionService $optionService, DateService $dateService, KernelInterface $kernel)
     {
         $this->parameterBag = $parameterBag;
         $this->urlGenerator = $urlGenerator;
@@ -91,6 +97,7 @@ class AppExtension extends AbstractExtension
         $this->session = $this->requestStack->getSession();
         $this->optionService = $optionService;
         $this->dateService = $dateService;
+        $this->kernel = $kernel;
     }
 
     /**

@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Controller pour la gestion du system
+ * @author Gourdon Aymeric
+ * @version 1.0
+ * @package App\Controller\Admin
+ */
 namespace App\Controller\Admin;
 
 use App\Controller\AppController;
@@ -15,11 +20,12 @@ class SystemController extends AppController
     {
         $breadcrumb = [
             $this->translator->trans('admin_dashboard#Dashboard') => 'admin_dashboard_index',
-            $this->translator->trans('admin_system#Configuration System') => '',
+            $this->translator->trans('admin_system#Debug System') => '',
         ];
 
         return $this->render('admin/system/index.html.twig', [
             'breadcrumb' => $breadcrumb,
+            'app_env' => $this->kernel->getEnvironment()
         ]);
     }
 }

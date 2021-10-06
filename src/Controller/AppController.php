@@ -14,6 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class AppController extends AbstractController
@@ -49,8 +50,13 @@ class AppController extends AbstractController
      */
     protected DataSystemService $dataSystemService;
 
+    /**
+     * @var KernelInterface
+     */
+    protected KernelInterface $kernel;
+
     public function __construct(TranslatorInterface $translator, RequestStack $request, OptionService $optionService,
-        TranslationService $translationService, DataSystemService $dataSystemService)
+        TranslationService $translationService, DataSystemService $dataSystemService, KernelInterface $kernel)
     {
         $this->translator = $translator;
         $this->request = $request;
@@ -58,6 +64,7 @@ class AppController extends AbstractController
         $this->session = $this->request->getSession();
         $this->translationService = $translationService;
         $this->dataSystemService = $dataSystemService;
+        $this->kernel = $kernel;
     }
 
 }
