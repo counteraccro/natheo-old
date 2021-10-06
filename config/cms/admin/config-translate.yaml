@@ -2,6 +2,7 @@
 'admin_global_option#administration': '__admin_global_option#administration'
 'admin_global_option#Titre du site': '__admin_global_option#Titre du site'
 'admin_global_option#Site Web propulsé par Nathéo CMS': '__admin_global_option#Site Web propulsé par Nathéo CMS'
+'admin_global_option#Merci de saisir un titre pour votre site' : '__admin_global_option#Merci de saisir un titre pour votre site'
 'admin_global_option#Rendre le front accessible aux visiteurs ?': '__admin_global_option#Rendre le front accessible aux visiteurs ?'
 'admin_global_option#Si vous fermez le front, l''administration restera toujours accessible.': '__admin_global_option#Si vous fermez le front, l''administration restera toujours accessible.'
 'admin_global_option#Changer le theme de l''administration': 'admin_global_option#Changer le theme de l''administration'

@@ -10,10 +10,14 @@
     background-color: var(--bg-primary) !important;
 }
 
+#left-menu-admin h2 a{
+    color: var(--text-primary-contrast) !important;
+}
+
 #left-menu-admin #menu li a {
     padding: 10px 0px 10px 10px;
     display: block;
-    color: rgba(255, 255, 255, .8);
+    color: var(--text-primary-contrast) !important;
     border-bottom: 1px solid rgba(255, 255, 255, .1);
 }
 

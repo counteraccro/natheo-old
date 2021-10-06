@@ -15,6 +15,10 @@ class OptionService extends AppService
 
     const GO_ADM_GLOBAL_ELEMENT_PAR_PAGE = 'GO_ADM_GLOBAL_ELEMENT_PAR_PAGE';
     const GO_ADM_GLOBAL_ELEMENT_PAR_PAGE_DEFAULT_VALUE = 20;
+    const GO_ADM_THEME_ADMIN = 'GO_ADM_THEME_ADMIN';
+    const GO_ADM_THEME_ADMIN_DEFAULT_VALUE = 'purple';
+
+    const KEY_SESSION_THEME_ADMIN = 'cms.global.theme_admin';
 
     /**
      * Permet de récupérer une option en fonction de sa clé. <br />
@@ -27,10 +31,7 @@ class OptionService extends AppService
      */
     public function getOptionByKey(string $key, string $default_value = '', bool $onlyValue = false): string|Option
     {
-        $optionRepo = $this->doctrine->getRepository(Option::class);
-
-        /** @var Option $option */
-        $option = $optionRepo->findOneBy(['name' => $key]);
+        $option = $this->getByKey($key);
 
         if($option == null)
         {
@@ -38,7 +39,7 @@ class OptionService extends AppService
             $option->setName($key);
             $option->setValue($default_value);
             $this->doctrine->getManager()->persist($option);
-            $this->doctrine->getManager()->flush($option);
+            $this->doctrine->getManager()->flush();
         }
 
         if($onlyValue)
@@ -46,5 +47,38 @@ class OptionService extends AppService
             return $option->getValue();
         }
         return $option;
+    }
+
+    /**
+     * Permet de mettre à jour une option
+     * @param string $key
+     * @param string $value
+     * @return bool
+     */
+    public function UpdateByKey(string $key, string $value): bool
+    {
+        $option = $this->getByKey($key);
+
+        // Cas l'option n'existe pas
+        if($option == null)
+        {
+            return false;
+        }
+
+        $option->setValue($value);
+        $this->doctrine->getManager()->persist($option);
+        $this->doctrine->getManager()->flush();
+        return true;
+    }
+
+    /**
+     * Renvoi une option en fonction de sa clé
+     * @param string $key
+     * @return Option|null
+     */
+    private function getByKey(string $key): ?Option
+    {
+        $optionRepo = $this->doctrine->getRepository(Option::class);
+        return $optionRepo->findOneBy(['name' => $key]);
     }
 }

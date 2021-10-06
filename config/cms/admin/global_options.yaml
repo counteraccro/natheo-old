@@ -7,6 +7,7 @@ global_options:
       type: 'text'
       label : 'admin_global_option#Titre du site'
       require : 1
+      msg_error: 'admin_global_option#Merci de saisir un titre pour votre site'
       default : 'admin_global_option#Site Web propulsé par Nathéo CMS'
     GO_FRONT_OPEN:
       type: 'boolean'

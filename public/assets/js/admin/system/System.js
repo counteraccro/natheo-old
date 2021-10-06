@@ -1,3 +1,8 @@
+/**
+ *  JS global system
+ *  @author Gourdon Aymeric
+ *  @version 1.0
+ **/
 let System = {};
 
 System.Ajax = function (url, id_done, loader = true, str_loader = "") {

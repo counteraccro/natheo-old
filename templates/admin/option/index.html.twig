@@ -1,10 +1,10 @@
 {% extends 'admin/admin.html.twig' %}
 
-{% block title %}Hello OptionController!{% endblock %}
+{% block title %}{{ "admin_global_option#Options globales" | trans }}{% endblock %}
 
 {% block body %}
 
-<div id="admin-options-globales">
+<div id="admin-options-globales" data-url="{{ path('admin_option_ajax_save') }}" data-loading="{{ "admin_global_option#Sauvegarde en cours..." | trans }}">
     <h1>{{ "admin_global_option#Options globales" | trans }}</h1>
 
     {{ breadcrumb | breadcrumb | raw }}
@@ -12,3 +12,15 @@
     {{ 'global_options' | optionRender | raw }}
 </div>
 {% endblock %}
+
+{% block javascripts %}
+
+    <script>
+        $( document ).ready(function() {
+            Option.Launch();
+            Option.Event();
+        });
+    </script>
+
+{% endblock %}
+

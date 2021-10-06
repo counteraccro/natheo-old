@@ -2,9 +2,12 @@
 
 namespace App\Security;
 
+use App\Service\Admin\System\OptionService;
+use App\Twig\Admin\Option;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Security;
@@ -24,9 +27,15 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 
     private UrlGeneratorInterface $urlGenerator;
 
-    public function __construct(UrlGeneratorInterface $urlGenerator)
+    private SessionInterface $session;
+
+    private OptionService $optionService;
+
+    public function __construct(UrlGeneratorInterface $urlGenerator, SessionInterface $session, OptionService $optionService)
     {
         $this->urlGenerator = $urlGenerator;
+        $this->session = $session;
+        $this->optionService = $optionService;
     }
 
     public function authenticate(Request $request): PassportInterface
@@ -46,11 +55,13 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
+        $theme = $this->optionService->getOptionByKey(OptionService::GO_ADM_THEME_ADMIN, OptionService::GO_ADM_THEME_ADMIN_DEFAULT_VALUE, true);
+        $this->session->set(OptionService::KEY_SESSION_THEME_ADMIN, $theme);
+
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }
 
-        // For example:
         return new RedirectResponse($this->urlGenerator->generate('admin_dashboard_index'));
         //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }

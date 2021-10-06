@@ -1,0 +1,18 @@
+/**
+ * CSS couleur général du theme
+ * @author Gourdon Aymeric
+ * @version 1.0
+ */
+
+:root {
+    --bg-primary: #B22222;
+    --hover-primary: #8B0000;
+
+    --text-primary: #B22222;
+    --text-hover-primary: #8B0000;
+
+    --bg-primary-light: #B2222240;
+    --hover-primary-rgb : 178 34 34;
+
+    --text-primary-contrast: #FFF;
+}

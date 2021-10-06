@@ -102,3 +102,7 @@
 'admin_global_option#Ce format est utilisé pour afficher la date dans les tableaux.': 'Ce format est utilisé pour afficher la date dans les tableaux.'
 'admin_global_option#Format de la date': 'Format de la date'
 'admin_global_option#Ce format est utilisé pour afficher la date sur le site (front et admin).': 'Ce format est utilisé pour afficher la date sur le site (front et admin).'
+'admin_global_option#Merci de saisir un titre pour votre site': 'Merci de saisir un titre pour votre site'
+'admin_global_option#Option mise à jour avec succès': 'Option mise à jour avec succès'
+'admin_global_option#Une erreur interne est survenue': 'Une erreur interne est survenue'
+'admin_global_option#Sauvegarde en cours...': 'Sauvegarde en cours...'

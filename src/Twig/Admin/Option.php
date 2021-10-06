@@ -25,6 +25,8 @@ class Option extends AppExtension implements RuntimeExtensionInterface
     const TYPE_TEXTAREA = 'textarea';
     const TYPE_LIST = 'list';
     const KEY_VAL_SPECIAL = 'special';
+    const KEY_REQUIRE = 'require';
+    const KEY_MSG_ERROR = 'msg_error';
 
     /**
      * Point d'entrée pour la génération des options
@@ -45,9 +47,6 @@ class Option extends AppExtension implements RuntimeExtensionInterface
 
            foreach($tabOptions as $key => $option)
            {
-
-               var_dump($option);
-
                $html .= match ($option[self::KEY_TYPE]) {
                    self::TYPE_TEXT => $this->inputText($key, $option),
                    self::TYPE_BOOLEAN => $this->checkBox($key, $option),
@@ -64,6 +63,7 @@ class Option extends AppExtension implements RuntimeExtensionInterface
     }
 
     /**
+     * Permet de générer un type select
      * @param string $key
      * @param array $option
      * @return string
@@ -73,7 +73,7 @@ class Option extends AppExtension implements RuntimeExtensionInterface
         $value = $this->optionService->getOptionByKey($key, $option[self::KEY_DEFAULT], true);
         $html = '<div class="mb-3">
         <label for="' . $key . '" class="form-label">' . $this->translator->trans($option[self::KEY_LABEL]) . '</label>
-        <select class="form-select" aria-label="Default select example"  id="' . $key . '">';
+        <select class="form-select input-option" aria-label="Default select example"  id="' . $key . '">';
 
         $tab = explode('|', $option['list_value']);
         foreach ($tab as $element) {
@@ -238,10 +238,16 @@ class Option extends AppExtension implements RuntimeExtensionInterface
     private function textarea(string $key, array $option): string
     {
         $value = $this->optionService->getOptionByKey($key, $option[self::KEY_DEFAULT], true);
+        $require = $dataMsgError = '';
+        if(isset($option[self::KEY_REQUIRE]))
+        {
+            $require = 'require';
+            $dataMsgError = 'data-msg-error = "' . $this->translator->trans($option[self::KEY_MSG_ERROR]) . '"';
+        }
 
         $html = '<div class="mb-3">
           <label for="' . $key . '" class="form-label">' . $this->translator->trans($option[self::KEY_LABEL]) . '</label>
-          <textarea class="form-control" id="' . $key . '" rows="3">
+          <textarea class="form-control input-option ' . $require . '" id="' . $key . '" rows="3" ' . $dataMsgError . '>
             ' . $value . '
             </textarea>';
         $html .= $this->addHelp($option);
@@ -268,7 +274,7 @@ class Option extends AppExtension implements RuntimeExtensionInterface
         }
 
         $html = '<div class="form-check form-switch">
-          <input class="form-check-input" type="checkbox" id="' . $key . '" ' . $checked . '>
+          <input class="form-check-input input-option" type="checkbox" id="' . $key . '" ' . $checked . '>
           <label class="form-check-label" for="' . $key . '">' . $this->translator->trans($option[self::KEY_LABEL]) . '</label>';
         $html .= $this->addHelp($option);
         $html .= '</div>';
@@ -285,10 +291,16 @@ class Option extends AppExtension implements RuntimeExtensionInterface
     private function inputText(String $key, array $option): string
     {
         $value = $this->optionService->getOptionByKey($key, $option[self::KEY_DEFAULT], true);
+        $require = $dataMsgError = '';
+        if(isset($option[self::KEY_REQUIRE]))
+        {
+            $require = 'require';
+            $dataMsgError = 'data-msg-error = "' . $this->translator->trans($option[self::KEY_MSG_ERROR]) . '"';
+        }
 
         $html = '<div class="mb-3">
                 <label for="' . $key . '" class="form-label">' . $this->translator->trans($option[self::KEY_LABEL]) . '</label>
-                <input type="text" class="form-control" id="' . $key . '" value="' . $this->translator->trans($value). '">';
+                <input type="text" class="form-control input-option ' . $require . '" ' . $dataMsgError . ' id="' . $key . '" value="' . $this->translator->trans($value). '">';
 
         $html .= $this->addHelp($option);
         $html .= '</div>';
