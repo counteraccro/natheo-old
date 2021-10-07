@@ -10,6 +10,7 @@ namespace App\Controller\Admin;
 
 use App\Controller\AppController;
 use App\Repository\Admin\RouteRepository;
+use App\Service\Admin\System\OptionService;
 use App\Service\Admin\System\RouteService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -33,8 +34,14 @@ class RouteController extends AppController
             $this->translator->trans('admin_route#Gestion des routes') => '',
         ];
 
+        $fieldSearch = [
+            'route' => $this->translator->trans("admin_route#Route"),
+            'module' => $this->translator->trans("admin_route#Module"),
+        ];
+
         return $this->render('admin/route/index.html.twig', [
             'breadcrumb' => $breadcrumb,
+            'fieldSearch' => $fieldSearch
         ]);
     }
 
@@ -58,7 +65,7 @@ class RouteController extends AppController
     #[Route('/ajax/listing/{page}', name: 'ajax_listing_route')]
     public function listingRoute(int $page = 1): Response
     {
-        $limit = 6;
+        $limit = $this->optionService->getOptionByKey(OptionService::GO_ADM_GLOBAL_ELEMENT_PAR_PAGE, OptionService::GO_ADM_GLOBAL_ELEMENT_PAR_PAGE_DEFAULT_VALUE, true);
 
         /** @var RouteRepository $routeRepo */
         $routeRepo = $this->getDoctrine()->getRepository(\App\Entity\Admin\Route::class);

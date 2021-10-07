@@ -127,3 +127,7 @@
 'admin_system#Vous serez déconnecté et devrez vous reconnecter avec le user par défaut': '__Vous serez déconnecté et devrez vous reconnecter avec le user par défaut'
 'admin_system#Réinitialiser le site': '__Réinitialiser le site'
 'admin_system#Debug System': '__Debug System'
+'admin_system#Recherche...': __Recherche...
+'admin_system#Rechercher': __Rechercher
+'admin_system#Annuler la recherche': '__Annuler la recherche'
+'admin_system#Rechercher sur le champ ': '__Rechercher sur le champ '

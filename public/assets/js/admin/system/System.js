@@ -92,6 +92,34 @@ System.EventHiddenInput = function(scriptToExectAfter = null)
                 }
             });
     });
+}
+/**
+ * Event sur le champ de recherche générique
+ * @param SearchId
+ * @constructor
+ */
+System.EventSearch = function(SearchId) {
 
+    $(SearchId + " .btn-search").click(function() {
+        let field = $(this).data('value');
+        let divId = $(this).data('id');
 
+        let url = $(divId).data('url');
+
+        alert(url);
+    })
+
+    $(SearchId + " .dropdown-item").click(function() {
+        let field = $(this).data('value');
+
+        $(SearchId + " .btn-search").data('value', field);
+        if(field == "reset")
+        {
+            $(SearchId + " .btn-search").html($(SearchId + " .btn-search").data('reset'));
+        }
+        else {
+            $(SearchId + " .btn-search").html($(SearchId + " .btn-search").data('text') + " " + field);
+        }
+
+    })
 }

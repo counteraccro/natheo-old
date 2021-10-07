@@ -114,7 +114,8 @@ class AppExtension extends AbstractExtension
             new TwigFilter('paginate', [Paginate::class, 'htmlRender']),
             new TwigFilter('optionRender', [Option::class, 'htmlRender']),
             new TwigFilter('formSearchTranslation', [Translation::class, 'formSearchTranslation']),
-            new TwigFilter('inputHidden', [GlobalFunction::class, 'generateHiddenInput'])
+            new TwigFilter('inputHidden', [GlobalFunction::class, 'generateHiddenInput']),
+            new TwigFilter('inputSearch', [GlobalFunction::class, 'generateSearchInput'])
         ];
     }
 }
