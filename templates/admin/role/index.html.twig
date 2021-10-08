@@ -3,10 +3,30 @@
 {% block title %}{{ "admin_role#Gestion des rôles" | trans }}{% endblock %}
 
 {% block body %}
-<div id="admin-route-globale">
+<div id="admin-role-globale">
     <h1>{{ "admin_role#Gestion des rôles" | trans }}</h1>
 
     {{ breadcrumb | breadcrumb | raw }}
+
+    <div class="float-end">
+        <a href="#" id="btn-new-role" class="btn btn-primary mb-2">
+            <i class="fas fa-plus"></i> {{ "admin_role#Ajouter un role" | trans }}
+        </a>
+    </div>
+    <div class="clearfix"></div>
+    <div class="card">
+        <div class="card-header">
+            <div class="mt-2 float-start" id="info-route">
+
+            </div>
+            <div class="float-end">
+               {{ fieldSearch | inputSearch('#admin-role-globale .card-body') | raw }}
+            </div>
+        </div>
+        <div class="card-body" data-url="{{ path('admin_role_ajax_listing_role') }}" data-loading="{{ "admin_role#Chargement des données..." | trans }}">
+
+        </div>
+    </div>
 </div>
 {% endblock %}
 
@@ -14,7 +34,8 @@
 
     <script>
         $( document ).ready(function() {
-
+            Role.Launch();
+            Role.LoadListing();
         });
     </script>
 

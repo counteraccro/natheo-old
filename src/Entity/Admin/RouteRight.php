@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=RouteRightRepository::class)
+ * @ORM\Table(name="`cms_route_right`")
  */
 class RouteRight
 {

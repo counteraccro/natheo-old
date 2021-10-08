@@ -64,7 +64,7 @@ class RouteController extends AppController
      * @return Response
      */
     #[Route('/ajax/listing/{page}', name: 'ajax_listing_route')]
-    public function listingRoute(int $page = 1): Response
+    public function listing(int $page = 1): Response
     {
         $limit = $this->optionService->getOptionByKey(OptionService::GO_ADM_GLOBAL_ELEMENT_PAR_PAGE, OptionService::GO_ADM_GLOBAL_ELEMENT_PAR_PAGE_DEFAULT_VALUE, true);
         $filter = $this->request->getCurrentRequest()->get('search_data', []);
