@@ -13,7 +13,7 @@ menu-left-admin:
         target: 'admin_route_index'
       admin_role#Gestion des rôles:
         icon: 'fa-user-tag'
-        target: 'front_security_app_logout'
+        target: 'admin_role_index'
   admin_system#System:
     icon: 'fa-cogs'
     sub-menu:

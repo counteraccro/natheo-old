@@ -2,16 +2,15 @@
 
 namespace App\Entity\Admin;
 
-use App\Repository\Admin\RouteRepository;
+use App\Repository\Admin\RoleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=RouteRepository::class)
- * @ORM\Table(name="`cms_route`")
+ * @ORM\Entity(repositoryClass=RoleRepository::class)
  */
-class Route
+class Role
 {
     /**
      * @ORM\Id
@@ -23,7 +22,12 @@ class Route
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $route;
+    private $name;
+
+    /**
+     * @ORM\Column(type="string", length=30)
+     */
+    private $shortLabel;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -31,17 +35,12 @@ class Route
     private $label;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=20)
      */
-    private $module;
+    private $color;
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    private $is_depreciate;
-
-    /**
-     * @ORM\OneToMany(targetEntity=RouteRight::class, mappedBy="route", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=RouteRight::class, mappedBy="role", orphanRemoval=true)
      */
     private $routeRights;
 
@@ -55,14 +54,26 @@ class Route
         return $this->id;
     }
 
-    public function getRoute(): ?string
+    public function getName(): ?string
     {
-        return $this->route;
+        return $this->name;
     }
 
-    public function setRoute(string $route): self
+    public function setName(string $name): self
     {
-        $this->route = $route;
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getShortLabel(): ?string
+    {
+        return $this->shortLabel;
+    }
+
+    public function setShortLabel(string $shortLabel): self
+    {
+        $this->shortLabel = $shortLabel;
 
         return $this;
     }
@@ -79,26 +90,14 @@ class Route
         return $this;
     }
 
-    public function getModule(): ?string
+    public function getColor(): ?string
     {
-        return $this->module;
+        return $this->color;
     }
 
-    public function setModule(string $module): self
+    public function setColor(string $color): self
     {
-        $this->module = $module;
-
-        return $this;
-    }
-
-    public function getIsDepreciate(): ?bool
-    {
-        return $this->is_depreciate;
-    }
-
-    public function setIsDepreciate(bool $is_depreciate): self
-    {
-        $this->is_depreciate = $is_depreciate;
+        $this->color = $color;
 
         return $this;
     }
@@ -115,7 +114,7 @@ class Route
     {
         if (!$this->routeRights->contains($routeRight)) {
             $this->routeRights[] = $routeRight;
-            $routeRight->setRoute($this);
+            $routeRight->setRole($this);
         }
 
         return $this;
@@ -125,8 +124,8 @@ class Route
     {
         if ($this->routeRights->removeElement($routeRight)) {
             // set the owning side to null (unless already changed)
-            if ($routeRight->getRoute() === $this) {
-                $routeRight->setRoute(null);
+            if ($routeRight->getRole() === $this) {
+                $routeRight->setRole(null);
             }
         }
 
