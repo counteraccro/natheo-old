@@ -14,13 +14,13 @@
                 <th scope="row">{{ route.id }}</th>
                 <td>{{ route.route }}
                     {% if route.isDepreciate == 1 %}
-                        <i class="text-danger fas fa-exclamation-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ "admin_route#Cette route est dépréciée, vous pouvez la supprimer" }}"></i>
+                        <i class="text-danger fas fa-exclamation-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ "admin_route#Cette route est dépréciée, vous pouvez la supprimer" | trans }}"></i>
                     {% endif %}
                 </td>
                 <td>{{ route.module | trans }}</td>
                 <td>
                     {% if route.isDepreciate == 1 %}
-                        <a href="#"><i class="text-danger fas fa-minus-circle"></i></a>
+                        <a href="{{ path('admin_route_ajax_delete_route', {'id' : route.id}) }}" class="delete-route" data-loading="{{ "admin_route#Supression de la route..." | trans }}" data-success="{{ "admin_route#La route à été supprimée avec succès" | trans }}"><i class="text-danger fas fa-minus-circle"></i></a>
                     {% endif %}
                 </td>
             </tr>
@@ -38,9 +38,10 @@
             });
 
             let txtNb = '{{ 'admin_route#Routes' | trans }}';
-            let txtDepreciate = '{{ 'admin_route#route(s) détectée(s) comme obsolète(s)' | trans }}' +  ' - <a href="#">{{ 'admin_route#Purger' | trans }}</a>';
+            let txtDepreciate = '{{ 'admin_route#route(s) détectée(s) comme obsolète(s)' | trans }}' +  ' - <a href="{{ path('admin_route_ajax_purge_route') }}" id="purge-route" data-loading="{{ "admin_route#Purge des routes dépréciées en cours..." | trans }}" data-success="{{ "admin_route#La purge à été effectuée avec succès" | trans }}">{{ 'admin_route#Purger' | trans }}</a>';
 
             Route.UpdateInfoListing('{{ nbRoutesDepreciate }}', '{{ listeRoutes.count }}', txtNb, txtDepreciate);
+            Route.ListingEvent();
         });
     </script>
 </div>

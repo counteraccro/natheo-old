@@ -95,4 +95,36 @@ class RouteController extends AppController
             'nbRoutesDepreciate' => count($nbRoutesDepreciate),
         ]);
     }
+
+    /**
+     * Permet de supprimer une route
+     * @param \App\Entity\Admin\Route $route
+     * @return JsonResponse
+     */
+    #[Route('/ajax/delete/{id}', name: 'ajax_delete_route')]
+    public function delete(\App\Entity\Admin\Route $route): JsonResponse
+    {
+        $this->getDoctrine()->getManager()->remove($route);
+        $this->getDoctrine()->getManager()->flush();
+        return $this->json(['success' => true]);
+    }
+
+    /**
+     * Permet de purger l'ensemble des routes défini comme obsolètes
+     * @return JsonResponse
+     */
+    #[Route('/ajax/purge/', name: 'ajax_purge_route')]
+    public function purge(): JsonResponse
+    {
+        $routeRepo = $this->getDoctrine()->getRepository(\App\Entity\Admin\Route::class);
+        $listeRouteDepreciate = $routeRepo->findBy(['is_depreciate' => 1]);
+
+        foreach($listeRouteDepreciate as $route)
+        {
+            $this->getDoctrine()->getManager()->remove($route);
+        }
+        $this->getDoctrine()->getManager()->flush();
+
+        return $this->json(['success' => true]);
+    }
 }

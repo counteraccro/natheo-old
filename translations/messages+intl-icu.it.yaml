@@ -132,3 +132,8 @@
 'admin_system#Annuler la recherche': '__Annuler la recherche'
 'admin_system#Rechercher sur le champ ': '__Rechercher sur le champ '
 'admin_system#Rechercher sur tout': '__Rechercher sur tout'
+'admin_route#Cette route est dépréciée, vous pouvez la supprimer': '__Cette route est dépréciée, vous pouvez la supprimer'
+'admin_route#Supression de la route...': '__Supression de la route...'
+'admin_route#La route à été supprimée avec succès': '__La route à été supprimée avec succès'
+'admin_route#Purge des routes dépréciées en cours...': '__Purge des routes dépréciées en cours...'
+'admin_route#La purge à été effectuée avec succès': '__La purge à été effectuée avec succès'

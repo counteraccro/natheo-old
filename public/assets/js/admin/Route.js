@@ -54,7 +54,53 @@ Route.Launch = function() {
      */
     Route.ListingEvent = function()
     {
+        /**
+         * Event pour delete une route
+         */
+        $(Route.globalId + ' .delete-route').click(function() {
 
+            Route.Delete($(this));
+            return false;
+        })
+
+        /**
+         * Event pour delete plusieurs routes
+         */
+        $(Route.globalId + ' #purge-route').on('click', function() {
+
+            Route.Delete($(this));
+
+            return false;
+        })
+    };
+
+    /**
+     * Permet de delete / purger les routes
+     * @param element
+     * @constructor
+     */
+    Route.Delete = function (element) {
+
+        let str_loading = element.data('loading');
+        let str_success =  '<span class="text text-success"><i class="fa fa-check"></i> ' + element.data('success') + '</span>';
+        let url = element.attr('href');
+        let id = Route.globalId + ' .card-body';
+
+        $(id).loader(str_loading);
+
+        $.ajax({
+            method: 'GET',
+            url: url,
+        })
+            .done(function (html) {
+                $(id).removeLoader();
+                $(id).loader(str_success);
+                setTimeout(function(){
+                    $(id).removeLoader();
+                    Route.LoadListingRoute();
+                }, 1500);
+
+            });
     };
 
     /**
