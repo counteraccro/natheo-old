@@ -137,3 +137,4 @@
 'admin_route#La route à été supprimée avec succès': '__La route à été supprimée avec succès'
 'admin_route#Purge des routes dépréciées en cours...': '__Purge des routes dépréciées en cours...'
 'admin_route#La purge à été effectuée avec succès': '__La purge à été effectuée avec succès'
+'admin_route#Mise à jour des routes...': '__Mise à jour des routes...'
