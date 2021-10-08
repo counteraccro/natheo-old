@@ -5,6 +5,7 @@
  * @version 1.0
  * @package App\Twig\Admin\GlobalFunction
  */
+
 namespace App\Twig\Admin\System;
 
 use App\Twig\AppExtension;
@@ -27,12 +28,10 @@ class Paginate extends AppExtension implements RuntimeExtensionInterface
         $html = $previous = $next = '';
         $maxPages = ceil($paginator->count() / $limit);
 
-        if($page == 1)
-        {
+        if ($page == 1) {
             $previous = 'disabled';
         }
-        if($page == $maxPages)
-        {
+        if ($page == $maxPages) {
             $next = 'disabled';
         }
 
@@ -45,13 +44,23 @@ class Paginate extends AppExtension implements RuntimeExtensionInterface
                         <a class="page-link" href="#">' . $limit . ' ' . $this->translator->trans('admin_pagination#Par page') . '</a>
                     </li>
                     <li class="page-item ' . $previous . '">
-                        <a class="page-link" href="' . $this->urlGenerator->generate($route, ['page' => ($page-1)]) . '" tabindex="-1" aria-disabled="true">' . $this->translator->trans('admin_pagination#Précédent') . '</a>
+                        <a class="page-link" href="' . $this->urlGenerator->generate($route, ['page' => ($page - 1)]) . '" tabindex="-1" aria-disabled="true">' . $this->translator->trans('admin_pagination#Précédent') . '</a>
                     </li>';
 
-        for ($i = 1; $i <= $maxPages; $i++) {
+        $maxI = ($page + 2);
+        if ($maxI > $maxPages) {
+            $maxI = $maxPages;
+        }
+
+        $minI = ($page - 2);
+        if ($minI < 1) {
+            $minI = 1;
+        }
+
+        for ($i = $minI; $i <= $maxI; $i++) {
             $current = '';
-            if($page == $i)
-            {
+
+            if ($page == $i) {
                 $current = 'active';
             }
 
@@ -61,7 +70,7 @@ class Paginate extends AppExtension implements RuntimeExtensionInterface
         }
 
         $html .= '<li class="page-item ' . $next . '">
-                        <a class="page-link" href="' . $this->urlGenerator->generate($route, ['page' => ($page+1)]) . '">' . $this->translator->trans('admin_pagination#Suivant') . '</a>
+                        <a class="page-link" href="' . $this->urlGenerator->generate($route, ['page' => ($page + 1)]) . '">' . $this->translator->trans('admin_pagination#Suivant') . '</a>
                     </li>
                 </ul>
             </nav>';

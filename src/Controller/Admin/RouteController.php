@@ -21,6 +21,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 #[Route('/admin/route', name: 'admin_route_')]
 class RouteController extends AppController
 {
+    const SESSION_KEY_FILTER = 'session_route_filter';
 
     /**
      * Point d'entrée gestion des routes
@@ -66,10 +67,24 @@ class RouteController extends AppController
     public function listingRoute(int $page = 1): Response
     {
         $limit = $this->optionService->getOptionByKey(OptionService::GO_ADM_GLOBAL_ELEMENT_PAR_PAGE, OptionService::GO_ADM_GLOBAL_ELEMENT_PAR_PAGE_DEFAULT_VALUE, true);
+        $filter = $this->request->getCurrentRequest()->get('search_data', []);
+
+        if ($page == 1 && $filter != null) {
+
+            if($filter['field'] == 'reset')
+            {
+                $filter = null;
+            }
+
+            $this->session->set(self::SESSION_KEY_FILTER, $filter);
+        } else {
+            $filter = $this->session->get(self::SESSION_KEY_FILTER);
+        }
+
 
         /** @var RouteRepository $routeRepo */
         $routeRepo = $this->getDoctrine()->getRepository(\App\Entity\Admin\Route::class);
-        $listeRoutes = $routeRepo->listeRoutePaginate($page, $limit);
+        $listeRoutes = $routeRepo->listeRoutePaginate($page, $limit, $filter);
         $nbRoutesDepreciate = $routeRepo->findBy(['is_depreciate' => 1]);
 
         return $this->render('admin/route/ajax_listing.html.twig', [

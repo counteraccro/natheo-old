@@ -100,20 +100,63 @@ System.EventHiddenInput = function(scriptToExectAfter = null)
  */
 System.EventSearch = function(SearchId) {
 
+    /**
+     * Event sur le bouton search
+     */
     $(SearchId + " .btn-search").click(function() {
         let field = $(this).data('value');
+        let value = $(SearchId + " #input-search").val();
         let divId = $(this).data('id');
-
         let url = $(divId).data('url');
 
-        alert(url);
+        $(SearchId + ' #btn-reset-search').show();
+
+        $(divId).loader($(divId).data('loading'))
+
+        $.ajax({
+            method: 'POST',
+            data : {search_data : {'field' : field, 'value' : value}},
+            url: url,
+        })
+            .done(function (html) {
+                $(divId).removeLoader();
+                $(divId).html(html);
+            });
     })
 
+    /**
+     * Event sur le bouton reset
+     */
+    $(SearchId + ' #btn-reset-search').click(function() {
+
+        let divId = $(SearchId + " .btn-search").data('id');
+        $(SearchId + "  #input-search").val('');
+        let url = $(divId).data('url');
+        $(SearchId + ' #btn-reset-search').hide();
+        $(SearchId + " .btn-search").data('value', 'all');
+        $(SearchId + " .btn-search").html($(SearchId + " .btn-search").data('reset'));
+
+        $(divId).loader($(divId).data('loading'))
+
+        $.ajax({
+            method: 'POST',
+            data : {search_data : {'field' : "reset", 'value' : ""}},
+            url: url,
+        })
+            .done(function (html) {
+                $(divId).removeLoader();
+                $(divId).html(html);
+            });
+    })
+
+    /**
+     * Event sur la selection du champ à rechercher
+     */
     $(SearchId + " .dropdown-item").click(function() {
         let field = $(this).data('value');
 
         $(SearchId + " .btn-search").data('value', field);
-        if(field == "reset")
+        if(field == "all")
         {
             $(SearchId + " .btn-search").html($(SearchId + " .btn-search").data('reset'));
         }

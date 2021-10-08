@@ -47,11 +47,28 @@ class RouteRepository extends ServiceEntityRepository
      * @param $limit
      * @return Paginator
      */
-    public function listeRoutePaginate($current_page, $limit): Paginator
+    public function listeRoutePaginate(int $current_page, int $limit, array $filter = null): Paginator
     {
         $dql = $this->createQueryBuilder('r')
-            ->orderBy('r.id')
-            ->getQuery();
+            ->orderBy('r.id');
+
+        if($filter != null || !empty($filter))
+        {
+            if($filter['field'] == 'all')
+            {
+                $dql->where('r.route LIKE :route' )
+                    ->setParameter('route', '%' . $filter['value'] . '%')
+                    ->orWhere('r.module LIKE :module' )
+                    ->setParameter('module', '%' . $filter['value'] . '%');
+            }
+            else {
+                $dql->where('r.' . $filter['field'] . ' LIKE :value' )
+                    ->setParameter('value', '%' . $filter['value'] . '%');
+            }
+
+        }
+
+        $dql->getQuery();
 
         $paginator = new Paginator($dql);
 
