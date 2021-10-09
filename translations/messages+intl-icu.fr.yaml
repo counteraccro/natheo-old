@@ -138,3 +138,9 @@
 'admin_route#Purge des routes dépréciées en cours...': 'Purge des routes dépréciées en cours...'
 'admin_route#La purge à été effectuée avec succès': 'La purge à été effectuée avec succès'
 'admin_route#Mise à jour des routes...': 'Mise à jour des routes...'
+'admin_role#Nom': Nom
+'admin_role#Label': Label
+'admin_role#Label court': 'Label court'
+'admin_role#Action': Action
+'admin_role#Ajouter un role': 'Ajouter un role'
+'admin_role#Chargement des données...': 'Chargement des données...'

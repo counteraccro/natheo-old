@@ -51,21 +51,9 @@ class RoleController extends AppController
     #[Route('/ajax/listing/{page}', name: 'ajax_listing_role')]
     public function listing(int $page = 1): Response
     {
-        $limit = $this->optionService->getOptionByKey(OptionService::GO_ADM_GLOBAL_ELEMENT_PAR_PAGE, OptionService::GO_ADM_GLOBAL_ELEMENT_PAR_PAGE_DEFAULT_VALUE, true);
-        $filter = $this->request->getCurrentRequest()->get('search_data', []);
 
-        if ($page == 1 && $filter != null) {
-
-            if($filter['field'] == 'reset')
-            {
-                $filter = null;
-            }
-
-            $this->session->set(self::SESSION_KEY_FILTER, $filter);
-        } else {
-            $filter = $this->session->get(self::SESSION_KEY_FILTER);
-        }
-
+        $limit = $this->getOptionElementParPage();
+        $filter = $this->getCriteriaGeneriqueSearch(self::SESSION_KEY_FILTER);
 
         /** @var RoleRepository $routeRepo */
         $roleRepo = $this->getDoctrine()->getRepository(Role::class);

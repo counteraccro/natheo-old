@@ -34,13 +34,30 @@ class GlobalFunction extends AppExtension implements RuntimeExtensionInterface
      * @param string $divId
      * @return string
      */
-    public function generateSearchInput(array $fields, string $divId): string
+    public function generateSearchInput(array $fields, string $divId, string $keySession): string
     {
+
+        $filter = $this->session->get($keySession);
+        $value = '';
+        $field = 'all';
+        $strBtnSearch = $this->translator->trans('admin_system#Rechercher');
+        $showBtnReset = "display: none";
+        if($filter != null)
+        {
+            $showBtnReset = '';
+            $value = $filter['value'];
+            $field = $filter['field'];
+            if($field != 'all')
+            {
+                $strBtnSearch = $this->translator->trans('admin_system#Rechercher sur le champ ') . $field;
+            }
+        }
+
         $id = mt_rand();
 
         $html = '<div class="input-group" id="' . $id . '">
-                  <input type="text" class="form-control" id="input-search" aria-label="Text input with segmented dropdown button" placeholder="' . $this->translator->trans('admin_system#Recherche...') . '">
-                  <button type="button" class="btn btn-primary btn-search" data-id="' . $divId . '" data-value="all" data-reset="' . $this->translator->trans('admin_system#Rechercher') . '" data-text="' . $this->translator->trans('admin_system#Rechercher sur le champ ') . '">' . $this->translator->trans('admin_system#Rechercher') . '</button>
+                  <input type="text" class="form-control" id="input-search" value="' . $value . '" placeholder="' . $this->translator->trans('admin_system#Recherche...') . '">
+                  <button type="button" class="btn btn-primary btn-search" data-id="' . $divId . '" data-value="' . $field . '" data-reset="' . $this->translator->trans('admin_system#Rechercher') . '" data-text="' . $this->translator->trans('admin_system#Rechercher sur le champ ') . '">' . $strBtnSearch  . '</button>
                   <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
                     <span class="visually-hidden">Toggle Dropdown</span>
                   </button>
@@ -54,7 +71,7 @@ class GlobalFunction extends AppExtension implements RuntimeExtensionInterface
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="#" data-value="all">' . $this->translator->trans('admin_system#Rechercher sur tout') . '</a></li>
                   </ul>
-                   <button class="btn btn-secondary" type="button" id="btn-reset-search" style="display: none">' . $this->translator->trans('admin_system#Annuler') . '</button>
+                   <button class="btn btn-secondary" type="button" id="btn-reset-search" style="' . $showBtnReset . '">' . $this->translator->trans('admin_system#Annuler') . '</button>
                 </div>';
 
         $html .= '<script>

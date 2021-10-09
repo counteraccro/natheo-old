@@ -7,6 +7,7 @@
  */
 namespace App\Controller;
 
+use App\Entity\Admin\Option;
 use App\Service\Admin\System\DataSystemService;
 use App\Service\Admin\System\OptionService;
 use App\Service\Admin\System\TranslationService;
@@ -65,6 +66,38 @@ class AppController extends AbstractController
         $this->translationService = $translationService;
         $this->dataSystemService = $dataSystemService;
         $this->kernel = $kernel;
+    }
+
+    /**
+     * Permet de récupérer l'option GO_ADM_GLOBAL_ELEMENT_PAR_PAGE
+     * @param bool $onlyValue True uniquement valeur sinon objet option
+     * @return Option|string
+     */
+    protected function getOptionElementParPage(bool $onlyValue = true): string|Option
+    {
+        return $this->optionService->getOptionByKey(OptionService::GO_ADM_GLOBAL_ELEMENT_PAR_PAGE, OptionService::GO_ADM_GLOBAL_ELEMENT_PAR_PAGE_DEFAULT_VALUE, true);
+    }
+
+    /**
+     * Permet de récupérer les données à filtrée depuis la recherche générique
+     * @param string $sessionKey
+     * @return mixed
+     */
+    protected function getCriteriaGeneriqueSearch(string $sessionKey): mixed
+    {
+        $filter = $this->request->getCurrentRequest()->get('search_data', []);
+        if ($filter != null) {
+
+            if($filter['field'] == 'reset')
+            {
+                $filter = null;
+            }
+
+            $this->session->set($sessionKey, $filter);
+        } else {
+            $filter = $this->session->get($sessionKey);
+        }
+        return $filter;
     }
 
 }

@@ -20,7 +20,7 @@
                 - {{ "admin_route#Routes" | trans }}
             </div>
             <div class="float-end">
-                {{ fieldSearch | inputSearch('#admin-route-globale .card-body') | raw }}
+                {{ fieldSearch | inputSearch('#admin-route-globale .card-body', constant('App\\Controller\\Admin\\RouteController::SESSION_KEY_FILTER')) | raw }}
             </div>
         </div>
         <div class="card-body" data-url="{{ path('admin_route_ajax_listing_route') }}" data-loading="{{ "admin_route#Chargement des données..." | trans }}">
