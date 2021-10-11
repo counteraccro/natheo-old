@@ -41,3 +41,12 @@
 #left-menu-admin #menu {
     width: auto;
 }
+
+/**
+
+ */
+.required:after{
+    content:" *";
+    font-weight:bold;
+    color: var(--text-primary);
+}

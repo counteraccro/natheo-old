@@ -2,11 +2,13 @@
 'admin_global_option#administration': __administration
 'admin_global_option#Titre du site': '__Titre du site'
 'admin_global_option#Site Web propulsé par Nathéo CMS': '__Site Web propulsé par Nathéo CMS'
+'admin_global_option#Merci de saisir un titre pour votre site': '__Merci de saisir un titre pour votre site'
 'admin_global_option#Rendre le front accessible aux visiteurs ?': '__Rendre le front accessible aux visiteurs ?'
 'admin_global_option#Si vous fermez le front, l''administration restera toujours accessible.': '__Si vous fermez le front, l''administration restera toujours accessible.'
 'admin_global_option#Changer le theme de l''administration': '__Changer le theme de l''administration'
 'admin_global_option#Nombre d''éléments par page sur l''administration': '__Nombre d''éléments par page sur l''administration'
 'admin_global_option#Langue par défaut de l''administration': '__Langue par défaut de l''administration'
+'admin_global_option#La langue choisie sera utilisée comme langue par défaut à chaque connexion sur l''administration.': '__La langue choisie sera utilisée comme langue par défaut à chaque connexion sur l''administration.'
 'admin_global_option#Format de la date et de l''heure': '__Format de la date et de l''heure'
 'admin_global_option#Violet': __Violet
 'admin_global_option#Rouge': __Rouge
@@ -14,6 +16,10 @@
 'admin_global_option#Rose': __Rose
 'admin_global_option#Format de l''heure': '__Format de l''heure'
 'admin_global_option#Ce format est utilisé pour afficher l''heure sur le site (front et admin).': '__Ce format est utilisé pour afficher l''heure sur le site (front et admin).'
+'admin_global_option#Format de la date raccourcie': '__Format de la date raccourcie'
+'admin_global_option#Ce format est utilisé pour afficher la date dans les tableaux.': '__Ce format est utilisé pour afficher la date dans les tableaux.'
+'admin_global_option#Format de la date': '__Format de la date'
+'admin_global_option#Ce format est utilisé pour afficher la date sur le site (front et admin).': '__Ce format est utilisé pour afficher la date sur le site (front et admin).'
 'admin_permission#Permission': __Permission
 'admin_system#System': __System
 'admin_role#Gestion des rôles': '__Gestion des rôles'
@@ -22,7 +28,7 @@
 'admin_pagination#Pagination': __Pagination
 'admin_topmenu#Menu Top': '__Menu Top'
 'admin_translation#fr': __fr
-'admin_translation#en': Toto
+'admin_translation#en': __en
 'admin_translation#de': __de
 'admin_translation#it': __it
 'admin_translation#es': __es
@@ -98,15 +104,9 @@
 'front_auth#Déconnexion': __Déconnexion
 'admin_translation#Les traductions ne sont plus à jour vis à vis de la base de données, Vous devez régénérer les traductions depuis la base de données': '__Les traductions ne sont plus à jour vis à vis de la base de données, Vous devez régénérer les traductions depuis la base de données'
 'admin_translation#Réinitialisation des traductions depuis le code source du site, cela peut prendre du temps...': '__Réinitialisation des traductions depuis le code source du site, cela peut prendre du temps...'
-'admin_global_option#Format de la date raccourcie': '__Format de la date raccourcie'
-'admin_global_option#Ce format est utilisé pour afficher la date dans les tableaux.': '__Ce format est utilisé pour afficher la date dans les tableaux.'
-'admin_global_option#Format de la date': '__Format de la date'
-'admin_global_option#Ce format est utilisé pour afficher la date sur le site (front et admin).': '__Ce format est utilisé pour afficher la date sur le site (front et admin).'
-'admin_global_option#Merci de saisir un titre pour votre site': '__Merci de saisir un titre pour votre site'
 'admin_global_option#Option mise à jour avec succès': '__Option mise à jour avec succès'
 'admin_global_option#Une erreur interne est survenue': '__Une erreur interne est survenue'
 'admin_global_option#Sauvegarde en cours...': '__Sauvegarde en cours...'
-'admin_global_option#La langue choisie sera utilisée comme langue par défaut à chaque connexion sur l''administration.': '__La langue choisie sera utilisée comme langue par défaut à chaque connexion sur l''administration.'
 'admin_system#Configuration System': '__Configuration System'
 'admin_system#Warning Zone': '__Warning Zone'
 'admin_system#Attention, les manipulations faites ici peuvent endomager votre site': '__Attention, les manipulations faites ici peuvent endomager votre site'
@@ -144,3 +144,18 @@
 'admin_role#Action': __Action
 'admin_role#Ajouter un role': '__Ajouter un role'
 'admin_role#Chargement des données...': '__Chargement des données...'
+'admin_role#Créer un rôle': '__Créer un rôle'
+'admin_role#Editer le rôle ': '__Editer le rôle '
+'admin_role#Nom du rôle': '__Nom du rôle'
+'admin_role#Information sur le role': '__Information sur le role'
+'admin_role#Attribution des droits': '__Attribution des droits'
+'admin_role#Le nom du rôle doit être unique': '__Le nom du rôle doit être unique'
+'admin_role#Nom court du rôle': '__Nom court du rôle'
+'admin_role#Permet de facilité l''identification du role': '__Permet de facilité l''identification du role'
+'admin_role#Description du rôle': '__Description du rôle'
+'admin_role#Couleur du role': '__Couleur du role'
+'admin_role#Permet de facilité l''identification du rôle': '__Permet de facilité l''identification du rôle'
+'admin_role#Information sur le rôle': '__Information sur le rôle'
+'admin_role#Couleur du rôle': '__Couleur du rôle'
+'admin_role#Valider': __Valider
+'admin_role#Rendu': __Rendu

@@ -81,10 +81,10 @@ class RoleController extends AppController
         if($role == null)
         {
             $role = new Role();
-            $breadcrumb[$this->translator->trans('admin_role#Créer un role')] = '';
+            $breadcrumb[$this->translator->trans('admin_role#Créer un rôle')] = '';
         }
         else {
-            $breadcrumb[$this->translator->trans('admin_role#Editer le role ') . '#' . $role->getId()] = '';
+            $breadcrumb[$this->translator->trans('admin_role#Editer le rôle ') . '#' . $role->getId()] = '';
         }
         $form = $this->createForm(RoleType::class, $role);
 

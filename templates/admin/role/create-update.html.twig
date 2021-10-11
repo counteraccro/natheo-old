@@ -1,10 +1,10 @@
 {% extends 'admin/admin.html.twig' %}
 
-{% block title %}{{ "admin_role#Créer un role" | trans }}{% endblock %}
+{% block title %}{{ "admin_role#Créer un rôle" | trans }}{% endblock %}
 
 {% block body %}
 <div id="admin-create-update-role">
-    <h1>{{ "admin_role#Créer un role" | trans }}</h1>
+    <h1>{{ "admin_role#Créer un rôle" | trans }}</h1>
 
     {{ breadcrumb | breadcrumb | raw }}
 
@@ -13,7 +13,7 @@
         <div class="col-6">
             <div class="card">
                 <div class="card-header">
-                    {{ "admin_role#Information sur le role" | trans }}
+                    {{ "admin_role#Information sur le rôle" | trans }}
                 </div>
                 <div class="card-body">
                     {{ form_start(form) }}
@@ -21,14 +21,14 @@
                     {{ form_row(form.name) }}
 
                     <div class="row">
-                        <div class="col-3">
+                        <div class="col-6">
                             {{ form_row(form.shortLabel, {'id' : 'role-short-label'}) }}
                         </div>
-                        <div class="col-2">
+                        <div class="col-3">
                             {{ form_row(form.color, {'id' : 'role-color'}) }}
                         </div>
-                        <div class="col">
-                            <label for="role_color" class="form-label required">Color</label> <br />
+                        <div class="col-3">
+                            <label for="role_color" class="form-label">{{ "admin_role#Rendu" | trans }}</label> <br />
                             <div class="badge rounded-pill mt-2" style="background-color:#FAFAFA" id="render-exemple-short-role">ADM</div>
                         </div>
                     </div>

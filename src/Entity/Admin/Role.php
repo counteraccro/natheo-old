@@ -33,7 +33,7 @@ class Role
      */
     #[Assert\Length(
         min: 3,
-        max: 6,
+        max: 10,
     )]
     private string $shortLabel;
 

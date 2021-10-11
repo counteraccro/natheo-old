@@ -2,11 +2,13 @@
 'admin_global_option#administration': administration
 'admin_global_option#Titre du site': 'Titre du site'
 'admin_global_option#Site Web propulsé par Nathéo CMS': 'Site Web propulsé par Nathéo CMS'
+'admin_global_option#Merci de saisir un titre pour votre site': 'Merci de saisir un titre pour votre site'
 'admin_global_option#Rendre le front accessible aux visiteurs ?': 'Rendre le front accessible aux visiteurs ?'
 'admin_global_option#Si vous fermez le front, l''administration restera toujours accessible.': 'Si vous fermez le front, l''administration restera toujours accessible.'
 'admin_global_option#Changer le theme de l''administration': 'Changer le theme de l''administration'
 'admin_global_option#Nombre d''éléments par page sur l''administration': 'Nombre d''éléments par page sur l''administration'
 'admin_global_option#Langue par défaut de l''administration': 'Langue par défaut de l''administration'
+'admin_global_option#La langue choisie sera utilisée comme langue par défaut à chaque connexion sur l''administration.': 'La langue choisie sera utilisée comme langue par défaut à chaque connexion sur l''administration.'
 'admin_global_option#Format de la date et de l''heure': 'Format de la date et de l''heure'
 'admin_global_option#Violet': Violet
 'admin_global_option#Rouge': Rouge
@@ -14,6 +16,10 @@
 'admin_global_option#Rose': Rose
 'admin_global_option#Format de l''heure': 'Format de l''heure'
 'admin_global_option#Ce format est utilisé pour afficher l''heure sur le site (front et admin).': 'Ce format est utilisé pour afficher l''heure sur le site (front et admin).'
+'admin_global_option#Format de la date raccourcie': 'Format de la date raccourcie'
+'admin_global_option#Ce format est utilisé pour afficher la date dans les tableaux.': 'Ce format est utilisé pour afficher la date dans les tableaux.'
+'admin_global_option#Format de la date': 'Format de la date'
+'admin_global_option#Ce format est utilisé pour afficher la date sur le site (front et admin).': 'Ce format est utilisé pour afficher la date sur le site (front et admin).'
 'admin_permission#Permission': Permission
 'admin_system#System': System
 'admin_role#Gestion des rôles': 'Gestion des rôles'
@@ -98,15 +104,9 @@
 'front_auth#Déconnexion': Déconnexion
 'admin_translation#Les traductions ne sont plus à jour vis à vis de la base de données, Vous devez régénérer les traductions depuis la base de données': 'Les traductions ne sont plus à jour vis à vis de la base de données, Vous devez régénérer les traductions depuis la base de données'
 'admin_translation#Réinitialisation des traductions depuis le code source du site, cela peut prendre du temps...': 'Réinitialisation des traductions depuis le code source du site, cela peut prendre du temps...'
-'admin_global_option#Format de la date raccourcie': 'Format de la date raccourcie'
-'admin_global_option#Ce format est utilisé pour afficher la date dans les tableaux.': 'Ce format est utilisé pour afficher la date dans les tableaux.'
-'admin_global_option#Format de la date': 'Format de la date'
-'admin_global_option#Ce format est utilisé pour afficher la date sur le site (front et admin).': 'Ce format est utilisé pour afficher la date sur le site (front et admin).'
-'admin_global_option#Merci de saisir un titre pour votre site': 'Merci de saisir un titre pour votre site'
 'admin_global_option#Option mise à jour avec succès': 'Option mise à jour avec succès'
 'admin_global_option#Une erreur interne est survenue': 'Une erreur interne est survenue'
 'admin_global_option#Sauvegarde en cours...': 'Sauvegarde en cours...'
-'admin_global_option#La langue choisie sera utilisée comme langue par défaut à chaque connexion sur l''administration.': 'La langue choisie sera utilisée comme langue par défaut à chaque connexion sur l''administration.'
 'admin_system#Configuration System': 'Configuration System'
 'admin_system#Warning Zone': 'Warning Zone'
 'admin_system#Attention, les manipulations faites ici peuvent endomager votre site': 'Attention, les manipulations faites ici peuvent endomager votre site'
@@ -144,3 +144,18 @@
 'admin_role#Action': Action
 'admin_role#Ajouter un role': 'Ajouter un role'
 'admin_role#Chargement des données...': 'Chargement des données...'
+'admin_role#Créer un rôle': 'Créer un rôle'
+'admin_role#Editer le rôle ': 'Editer le rôle '
+'admin_role#Nom du rôle': 'Nom du rôle'
+'admin_role#Information sur le role': 'Information sur le role'
+'admin_role#Attribution des droits': 'Attribution des droits'
+'admin_role#Le nom du rôle doit être unique': 'Le nom du rôle doit être unique'
+'admin_role#Nom court du rôle': 'Nom court du rôle'
+'admin_role#Permet de facilité l''identification du role': 'Permet de facilité l''identification du role'
+'admin_role#Description du rôle': 'Description du rôle'
+'admin_role#Couleur du role': 'Couleur du role'
+'admin_role#Permet de facilité l''identification du rôle': 'Permet de facilité l''identification du rôle'
+'admin_role#Information sur le rôle': 'Information sur le rôle'
+'admin_role#Couleur du rôle': 'Couleur du rôle'
+'admin_role#Valider': Valider
+'admin_role#Rendu': Rendu
