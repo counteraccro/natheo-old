@@ -5,12 +5,15 @@ namespace App\Entity\Admin;
 use App\Repository\Admin\RoleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=RoleRepository::class)
  * @ORM\Table(name="`cms_role`")
  */
+#[UniqueEntity(['name', 'shortLabel'])]
 class Role
 {
     /**
@@ -22,15 +25,17 @@ class Role
 
     /**
      * @ORM\Column(type="string", length=255)
-     * #[Assert\Unique]
      */
-    private $name;
+    private string $name;
 
     /**
      * @ORM\Column(type="string", length=30)
-     * #[Assert\Unique]
      */
-    private $shortLabel;
+    #[Assert\Length(
+        min: 3,
+        max: 6,
+    )]
+    private string $shortLabel;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)

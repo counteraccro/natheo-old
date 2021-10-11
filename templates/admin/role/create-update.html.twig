@@ -16,7 +16,23 @@
                     {{ "admin_role#Information sur le role" | trans }}
                 </div>
                 <div class="card-body">
-                     {{ form(form) }}
+                    {{ form_start(form) }}
+
+                    {{ form_row(form.name) }}
+
+                    <div class="row">
+                        <div class="col-3">
+                            {{ form_row(form.shortLabel, {'id' : 'role-short-label'}) }}
+                        </div>
+                        <div class="col-2">
+                            {{ form_row(form.color, {'id' : 'role-color'}) }}
+                        </div>
+                        <div class="col">
+                            <label for="role_color" class="form-label required">Color</label> <br />
+                            <div class="badge rounded-pill mt-2" style="background-color:#FAFAFA" id="render-exemple-short-role">ADM</div>
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
                 </div>
             </div>
         </div>
@@ -39,6 +55,7 @@
                                     <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
                                 </div>
                             </div>
+
                         </div>
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingTwo">
@@ -70,7 +87,17 @@
             </div>
         </div>
     </div>
-
-
 </div>
 {% endblock %}
+
+{% block javascripts %}
+
+    <script>
+        $( document ).ready(function() {
+            Role.Launch();
+            Role.CreateUpdate();
+        });
+    </script>
+
+{% endblock %}
+

@@ -5,6 +5,11 @@
  */
 
 /** CSS MENU LEFT **/
+
+#left-menu-admin {
+    width: 14%;
+}
+
 #left-menu-admin.bg-primary {
     --bs-bg-opacity: 1;
     background-color: var(--bg-primary) !important;
