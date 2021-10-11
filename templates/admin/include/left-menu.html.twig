@@ -1,13 +1,20 @@
-<div id="left-menu-admin" class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-primary">
-    <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-5 text-white min-vh-100">
-        <h2><a href="/" class=" align-items-center pb-3 mb-md-0 me-md-auto text-decoration-none">
-                <i class="fas fa-bars"></i> <span class="d-none d-sm-inline">Nathéo CMS</span>
-            </a></h2>
-        <ul class="nav nav-pills mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-
+<div id="left-menu-admin" class="col-auto col-md-2 px-0 bg-primary">
+    <div class="d-flex flex-column px-2 pt-2 text-white min-vh-100">
+        <h2 class="ms-2">
+            <i class="fas fa-bars"></i>
+            <span class="d-none d-md-inline d-lg-none">Nath</span>
+            <span class="d-none d-lg-inline">Nathéo CMS</span>
+        </h2>
+        <ul class="nav nav-pills" id="menu">
             {% set current_path = app.request.get('_route') %}
             {{ current_path | leftMenuAdmin() | raw }}
-
         </ul>
     </div>
 </div>
+
+<script>
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+</script>

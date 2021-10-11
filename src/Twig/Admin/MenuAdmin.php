@@ -74,8 +74,10 @@ class MenuAdmin extends AppExtension implements RuntimeExtensionInterface
         }
 
         return '<li class="nav-item">
-                        <a href="' . $this->urlGenerator->generate($element[self::KEY_TARGET]) . '" class="nav-link link-light align-middle ' . $active . '">
-                            <i class="fas ' . $element[self::KEY_ICON] . '"></i> <span class="ms-1 d-none d-sm-inline">' . $this->translator->trans($label) . '</span>
+                        <a href="' . $this->urlGenerator->generate($element[self::KEY_TARGET]) . '" class="nav-link link-light ' . $active . '">
+                            <i class="fas ' . $element[self::KEY_ICON] . '"></i> 
+                            <span class=" d-none d-lg-inline">' . $this->translator->trans($label) . '</span>
+                            <span class="d-none d-md-inline d-lg-none" data-bs-toggle="tooltip" data-bs-placement="right" title="' . $this->translator->trans($label) . '">' . substr($this->translator->trans($label), 0, 4) . '</span>
                         </a>
                     </li>';
     }
@@ -102,17 +104,22 @@ class MenuAdmin extends AppExtension implements RuntimeExtensionInterface
             }
 
                 $html .= '<li>
-                            <a href="' . $this->urlGenerator->generate($subElement[self::KEY_TARGET]) . '" class="nav-link link-light ' . $active . '"> <i class="fa ' . $subElement[self::KEY_ICON] . '"></i> <span class="d-none d-sm-inline">' . $this->translator->trans($subLabel) . '</span></a>
+                            <a href="' . $this->urlGenerator->generate($subElement[self::KEY_TARGET]) . '" class="nav-link link-light ms-3 ' . $active . '"> <i class="fa ' . $subElement[self::KEY_ICON] . '"></i> 
+                            <span class="d-none d-lg-inline">' . $this->translator->trans($subLabel) . '</span>
+                            <span class="d-none d-md-inline d-lg-none" data-bs-toggle="tooltip" data-bs-placement="right" title="' . $this->translator->trans($subLabel) . '">' . substr($this->translator->trans($subLabel), 0, 4) . '...</span>
+                            </a>
                           </li>';
         }
 
         $html_id = "menu-" . mt_rand();
 
         return '<li>
-                    <a href="#' . $html_id . '" data-bs-toggle="collapse" class="nav-link link-light align-middle dropdown-toggle">
-                        <i class="fas ' . $element[self::KEY_ICON] . '"></i> <span class="ms-1 d-none d-sm-inline">' . $this->translator->trans($label) . '</span> 
+                    <a href="#' . $html_id . '" data-bs-toggle="collapse" class="nav-link link-light dropdown-toggle">
+                        <i class="fas ' . $element[self::KEY_ICON] . '"></i> 
+                            <span class="d-none d-lg-inline">' . $this->translator->trans($label) . '</span>
+                            <span class="d-none d-md-inline d-lg-none" data-bs-toggle="tooltip" data-bs-placement="right" title="' . $this->translator->trans($label) . '">' . substr($this->translator->trans($label), 0, 4) . '</span>
                     </a>
-                        <ul class="collapse ' . $show . ' nav flex-column ms-0" id="' . $html_id . '" data-bs-parent="#menu">' . $html . '
+                        <ul class="collapse ' . $show . ' nav flex-column" id="' . $html_id . '" data-bs-parent="#menu">' . $html . '
                         </ul>
                  </li>';
     }
