@@ -9,7 +9,7 @@
     {{ breadcrumb | breadcrumb | raw }}
 
     <div class="float-end">
-        <a href="#" id="btn-new-role" class="btn btn-primary mb-2">
+        <a href="{{ path('admin_role_add') }}" id="btn-new-role" class="btn btn-primary mb-2">
             <i class="fas fa-plus"></i> {{ "admin_role#Ajouter un role" | trans }}
         </a>
     </div>

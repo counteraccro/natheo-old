@@ -9,6 +9,7 @@ namespace App\Controller\Admin;
 
 use App\Controller\AppController;
 use App\Entity\Admin\Role;
+use App\Form\Admin\RoleType;
 use App\Repository\Admin\RoleRepository;
 use App\Service\Admin\System\OptionService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -64,6 +65,42 @@ class RoleController extends AppController
             'page' => $page,
             'limit' => $limit,
             'route' => 'admin_role_ajax_listing_role',
+        ]);
+    }
+
+    #[Route('/add/', name: 'add')]
+    #[Route('/edit/{id}', name: 'edit')]
+    public function createUpdate(Role $role = null): Response
+    {
+
+        $breadcrumb = [
+            $this->translator->trans('admin_dashboard#Dashboard') => 'admin_dashboard_index',
+            $this->translator->trans('admin_role#Gestion des rôles') => 'admin_role_index',
+        ];
+
+        if($role == null)
+        {
+            $role = new Role();
+            $breadcrumb[$this->translator->trans('admin_role#Créer un role')] = '';
+        }
+        else {
+            $breadcrumb[$this->translator->trans('admin_role#Editer le role ') . '#' . $role->getId()] = '';
+        }
+        $form = $this->createForm(RoleType::class, $role);
+
+        $form->handleRequest($this->request->getCurrentRequest());
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var Role $role */
+            $role = $form->getData();
+
+            $this->getDoctrine()->getManager()->persist($role);
+            $this->getDoctrine()->getManager()->flush();
+        }
+
+
+        return $this->render('admin/role/create-update.html.twig', [
+            'breadcrumb' => $breadcrumb,
+            'form' => $form->createView()
         ]);
     }
 }

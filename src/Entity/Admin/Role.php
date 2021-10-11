@@ -22,11 +22,13 @@ class Role
 
     /**
      * @ORM\Column(type="string", length=255)
+     * #[Assert\Unique]
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=30)
+     * #[Assert\Unique]
      */
     private $shortLabel;
 
