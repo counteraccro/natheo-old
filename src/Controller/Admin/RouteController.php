@@ -64,7 +64,7 @@ class RouteController extends AppController
      * @return Response
      */
     #[Route('/ajax/listing/{page}', name: 'ajax_listing_route')]
-    public function listing(int $page = 1): Response
+    public function listing(RouteService $routeService, int $page = 1): Response
     {
         $limit = $this->getOptionElementParPage();
         $filter = $this->getCriteriaGeneriqueSearch(self::SESSION_KEY_FILTER);
@@ -73,6 +73,7 @@ class RouteController extends AppController
         $routeRepo = $this->getDoctrine()->getRepository(\App\Entity\Admin\Route::class);
         $listeRoutes = $routeRepo->listeRoutePaginate($page, $limit, $filter);
         $nbRoutesDepreciate = $routeRepo->findBy(['is_depreciate' => 1]);
+        $tabModule = $routeService->getTranslateModules();
 
         return $this->render('admin/route/ajax_listing.html.twig', [
             'listeRoutes' => $listeRoutes,
@@ -80,6 +81,7 @@ class RouteController extends AppController
             'limit' => $limit,
             'route' => 'admin_route_ajax_listing_route',
             'nbRoutesDepreciate' => count($nbRoutesDepreciate),
+            'translateModule' => $tabModule
         ]);
     }
 

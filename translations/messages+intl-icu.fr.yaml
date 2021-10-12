@@ -159,3 +159,19 @@
 'admin_role#Couleur du rôle': 'Couleur du rôle'
 'admin_role#Valider': Valider
 'admin_role#Rendu': Rendu
+'admin_system#Action pour le front': 'Action pour le front'
+'admin_system#Point d''entrée du module {module}': 'Point d''entrée du module {module}'
+'admin_system#Appel Ajax pour sauvegarder une donnée de type {data}': 'Appel Ajax pour sauvegarder une donnée de type {data}'
+'admin_system#Appel Ajax pour mettre à jour une donnée de type {data}': 'Appel Ajax pour mettre à jour une donnée de type {data}'
+'admin_system#Appel Ajax pour afficher la liste de {data}': 'Appel Ajax pour afficher la liste de {data}'
+'admin_system#Appel Ajax pour supprimer une donnée de type {data}': 'Appel Ajax pour supprimer une donnée de type {data}'
+'admin_system#Appel Ajax pour purger les données de type {data}': 'Appel Ajax pour purger les données de type {data}'
+'admin_system#Appel Ajax pour réinitialiser les données de type {data}': 'Appel Ajax pour réinitialiser les données de type {data}'
+'admin_system#Appel Ajax pour recharger les données de type {data}': 'Appel Ajax pour recharger les données de type {data}'
+'admin_system#Appel Ajax pour checker les données de type {data}': 'Appel Ajax pour checker les données de type {data}'
+'admin_system#Appel Ajax sans description': 'Appel Ajax sans description'
+'admin_system#Ajoute une donnée de type {data}': 'Ajoute une donnée de type {data}'
+'admin_system#Met à jour une donnée de type {data}': 'Met à jour une donnée de type {data}'
+'admin_system#Route sans description': 'Route sans description'
+'admin_route#Label': Label
+'admin_system#Point d''entrée du module {data}': 'Point d''entrée du module {data}'

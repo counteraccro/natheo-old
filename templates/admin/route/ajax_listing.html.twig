@@ -5,6 +5,7 @@
             <th scope="col">#</th>
             <th scope="col">{{ "admin_route#Route" | trans }}</th>
             <th scope="col">{{ "admin_route#Module" | trans }}</th>
+            <th scope="col">{{ "admin_route#Label" | trans }}</th>
             <th scope="col">{{ "admin_route#Action" | trans }}</th>
         </tr>
         </thead>
@@ -18,6 +19,10 @@
                     {% endif %}
                 </td>
                 <td>{{ route.module | trans }}</td>
+                <td>
+                    {% set tmp = route.route | split('_') %}
+
+                    {{ route.label | trans({'{data}' : tmp[1]}) }}</td>
                 <td>
                     {% if route.isDepreciate == 1 %}
                         <a href="{{ path('admin_route_ajax_delete_route', {'id' : route.id}) }}" class="delete-route" data-loading="{{ "admin_route#Supression de la route..." | trans }}" data-success="{{ "admin_route#La route à été supprimée avec succès" | trans }}"><i class="text-danger fas fa-minus-circle"></i></a>

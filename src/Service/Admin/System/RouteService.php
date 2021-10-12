@@ -51,7 +51,7 @@ class RouteService extends AppService
         $routeRepo->updateIsdepreciateAllRoute();
 
 
-        $tabRouteModule = Yaml::parseFile($this->parameterBag->get('app_path_translate_modules'));
+        $tabRouteModule = $this->getTranslateModules();
 
         foreach ($this->router->getRouteCollection()->all() as $key => $_route) {
             $explode = explode('_', $key);
@@ -59,8 +59,8 @@ class RouteService extends AppService
                 continue;
             }
             $module = $explode[1];
-            if (isset($tabRouteModule['routes_modules'][$explode[1]])) {
-                $module = $tabRouteModule['routes_modules'][$explode[1]];
+            if (isset($tabRouteModule[$explode[1]])) {
+                $module = $tabRouteModule[$explode[1]];
             }
 
             /** @var Route $route */
@@ -84,31 +84,36 @@ class RouteService extends AppService
      */
     private function generateLabel(string $route): string
     {
-        $tabRouteModule = Yaml::parseFile($this->parameterBag->get('app_path_translate_modules'))['routes_modules'];
         $tab = explode('_', $route);
 
         if ($tab[0] == 'front') {
             return $this->translator->trans("admin_system#Action pour le front");
         }
-
-        $module = $this->translator->trans($tabRouteModule[$tab[1]]);
-
         return match ($tab[2]) {
-            "index" => $this->translator->trans("admin_system#Point d'entrée du module {module}", ['{module}' => $module]),
+            "index" => $this->translator->trans("admin_system#Point d'entrée du module {data}"),
             "ajax" => match ($tab[3]) {
-                "save" => $this->translator->trans("admin_system#Appel Ajax pour sauvegarder une donnée de type {data}", ['{data}' => $module]),
-                "update" => $this->translator->trans("admin_system#Appel Ajax pour mettre à jour une donnée de type {data}", ['{data}' => $module]),
-                "listing" => $this->translator->trans("admin_system#Appel Ajax pour afficher la liste de {data}", ['{data}' => $module]),
-                "delete" => $this->translator->trans("admin_system#Appel Ajax pour supprimer une donnée de type {data}", ['{data}' => $module]),
-                "purge" => $this->translator->trans("admin_system#Appel Ajax pour purger les données de type {data}", ['{data}' => $module]),
-                "reset" => $this->translator->trans("admin_system#Appel Ajax pour réinitialiser les données de type {data}", ['{data}' => $module]),
-                "reload" => $this->translator->trans("admin_system#Appel Ajax pour recharger les données de type {data}", ['{data}' => $module]),
-                "check" => $this->translator->trans("admin_system#Appel Ajax pour checker les données de type {data}", ['{data}' => $module]),
+                "save" => $this->translator->trans("admin_system#Appel Ajax pour sauvegarder une donnée de type {data}"),
+                "update" => $this->translator->trans("admin_system#Appel Ajax pour mettre à jour une donnée de type {data}"),
+                "listing" => $this->translator->trans("admin_system#Appel Ajax pour afficher la liste de {data}"),
+                "delete" => $this->translator->trans("admin_system#Appel Ajax pour supprimer une donnée de type {data}"),
+                "purge" => $this->translator->trans("admin_system#Appel Ajax pour purger les données de type {data}"),
+                "reset" => $this->translator->trans("admin_system#Appel Ajax pour réinitialiser les données de type {data}"),
+                "reload" => $this->translator->trans("admin_system#Appel Ajax pour recharger les données de type {data}"),
+                "check" => $this->translator->trans("admin_system#Appel Ajax pour checker les données de type {data}"),
                 default => $this->translator->trans("admin_system#Appel Ajax sans description"),
             },
-            "add" => $this->translator->trans("admin_system#Ajoute une donnée de type {data}", ['{data}' => $module]),
-            "edit" => $this->translator->trans("admin_system#Met à jour une donnée de type {data}", ['{data}' => $module]),
+            "add" => $this->translator->trans("admin_system#Ajoute une donnée de type {data}"),
+            "edit" => $this->translator->trans("admin_system#Met à jour une donnée de type {data}"),
             default => $this->translator->trans("admin_system#Route sans description"),
         };
+    }
+
+    /**
+     * Retourne la liste des traductions pour les modules
+     * @return array
+     */
+    public function getTranslateModules(): array
+    {
+        return Yaml::parseFile($this->parameterBag->get('app_path_translate_modules'))['routes_modules'];
     }
 }
