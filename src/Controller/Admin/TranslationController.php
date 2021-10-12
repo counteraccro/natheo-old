@@ -44,7 +44,7 @@ class TranslationController extends AppController
      * @param int $page
      * @return Response
      */
-    #[Route('/ajax/listing/{page}', name: 'ajax_listing_translation')]
+    #[Route('/ajax/listing/{page}', name: 'ajax_listing')]
     public function listingRoute(int $page = 1): Response
     {
         $limit = $this->optionService->getOptionByKey(OptionService::GO_ADM_GLOBAL_ELEMENT_PAR_PAGE, OptionService::GO_ADM_GLOBAL_ELEMENT_PAR_PAGE_DEFAULT_VALUE,true);
@@ -74,7 +74,7 @@ class TranslationController extends AppController
             'listeTranslation' => $listeTranslation,
             'page' => $page,
             'limit' => $limit,
-            'route' => 'admin_translation_ajax_listing_translation',
+            'route' => 'admin_translation_ajax_listing',
             'languages' => $filter['language'],
             'translationModules' => $this->translationService->getTranslationModule()
         ]);
@@ -83,7 +83,7 @@ class TranslationController extends AppController
     /**
      * Permet de régénérer les traductions depuis le code
      */
-    #[Route('/ajax/reset-translation', name: 'ajax_reset_translation')]
+    #[Route('/ajax/reset-translation', name: 'ajax_reset')]
     public function ResetAllTranslation(TranslationService $translationService): JsonResponse
     {
         $translationService->generateTranslationByCommande();
@@ -95,7 +95,7 @@ class TranslationController extends AppController
     /**
      * Permet de régénérer les traductions depuis la base de données
      */
-    #[Route('/ajax/reload-translation', name: 'ajax_reload_translation')]
+    #[Route('/ajax/reload-translation', name: 'ajax_reload')]
     public function ReloadAllTranslation(TranslationService $translationService): JsonResponse
     {
         $translationService->updateTranslateFromBDDtoYamlFile();
@@ -106,7 +106,7 @@ class TranslationController extends AppController
      * Met à jour un translationLabel
      * @param TranslationLabel $translationLabel
      */
-    #[Route('/ajax/update-label/{id}', name: 'ajax_update_translation')]
+    #[Route('/ajax/update-label/{id}', name: 'ajax_update')]
     public function updateLabel(TranslationLabel $translationLabel): JsonResponse
     {
         $label = $this->request->getCurrentRequest()->get('label');
@@ -123,7 +123,7 @@ class TranslationController extends AppController
     /**
      * Permet de vérifier si on doit régénérer les translations ou non
      */
-    #[Route('/ajax/check-reload-translation/', name: 'ajax_check_reload_translation')]
+    #[Route('/ajax/check-reload-translation/', name: 'ajax_check_reload')]
     public function checkReloadTranslation(): JsonResponse
     {
         $dataSystem = $this->dataSystemService->getDataSystem(DataSystemService::DATA_SYSTEM_TRANSLATION_GENERATE);

@@ -23,7 +23,7 @@
                {{ fieldSearch | inputSearch('#admin-role-globale .card-body', constant('App\\Controller\\Admin\\RoleController::SESSION_KEY_FILTER')) | raw }}
             </div>
         </div>
-        <div class="card-body" data-url="{{ path('admin_role_ajax_listing_role') }}" data-loading="{{ "admin_role#Chargement des données..." | trans }}">
+        <div class="card-body" data-url="{{ path('admin_role_ajax_listing') }}" data-loading="{{ "admin_role#Chargement des données..." | trans }}">
 
         </div>
     </div>

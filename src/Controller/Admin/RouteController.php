@@ -51,7 +51,7 @@ class RouteController extends AppController
      * @param RouteService $routeService
      * @return JsonResponse
      */
-    #[Route('/ajax/update', name: 'ajax_update_route')]
+    #[Route('/ajax/update', name: 'ajax_update')]
     public function updateRoute(RouteService $routeService): JsonResponse
     {
         $routeService->updateRoutes();
@@ -63,7 +63,7 @@ class RouteController extends AppController
      * @param int $page
      * @return Response
      */
-    #[Route('/ajax/listing/{page}', name: 'ajax_listing_route')]
+    #[Route('/ajax/listing/{page}', name: 'ajax_listing')]
     public function listing(RouteService $routeService, int $page = 1): Response
     {
         $limit = $this->getOptionElementParPage();
@@ -79,7 +79,7 @@ class RouteController extends AppController
             'listeRoutes' => $listeRoutes,
             'page' => $page,
             'limit' => $limit,
-            'route' => 'admin_route_ajax_listing_route',
+            'route' => 'admin_route_ajax_listing',
             'nbRoutesDepreciate' => count($nbRoutesDepreciate),
             'translateModule' => $tabModule
         ]);
@@ -90,7 +90,7 @@ class RouteController extends AppController
      * @param \App\Entity\Admin\Route $route
      * @return JsonResponse
      */
-    #[Route('/ajax/delete/{id}', name: 'ajax_delete_route')]
+    #[Route('/ajax/delete/{id}', name: 'ajax_delete')]
     public function delete(\App\Entity\Admin\Route $route): JsonResponse
     {
         $this->getDoctrine()->getManager()->remove($route);
@@ -102,7 +102,7 @@ class RouteController extends AppController
      * Permet de purger l'ensemble des routes défini comme obsolètes
      * @return JsonResponse
      */
-    #[Route('/ajax/purge/', name: 'ajax_purge_route')]
+    #[Route('/ajax/purge/', name: 'ajax_purge')]
     public function purge(): JsonResponse
     {
         $routeRepo = $this->getDoctrine()->getRepository(\App\Entity\Admin\Route::class);

@@ -10,10 +10,10 @@
         {{ breadcrumb | breadcrumb | raw }}
 
         <div class="float-end mb-3">
-            <div class="btn btn-danger" id="btn-reset-translate" data-url="{{ path('admin_translation_ajax_reset_translation') }}"
+            <div class="btn btn-danger" id="btn-reset-translate" data-url="{{ path('admin_translation_ajax_reset') }}"
                  data-loading="{{"admin_translation#Réinitialisation des traductions depuis le code source du site, cela peut prendre du temps..." | trans}}"
                  data-loading2="{{"admin_translation#Rechargement de la page..." | trans}}"><i class="fa fa-exclamation-triangle"></i> {{ "admin_translation#Réinitialiser les traductions" | trans}}</div>
-            <div class="btn btn-primary" id="btn-reload-translate" data-url="{{ path('admin_translation_ajax_reload_translation') }}"
+            <div class="btn btn-primary" id="btn-reload-translate" data-url="{{ path('admin_translation_ajax_reload') }}"
             data-loading="{{"admin_translation#Reconstruction des traductions depuis la base de données, cela peut prendre du temps..." | trans}}"
             data-loading2="{{"admin_translation#Rechargement de la page..." | trans}}"><i class="fa fa-sync-alt"></i> {{"admin_translation#Régénérer les traductions" | trans}}</div>
         </div>
@@ -35,11 +35,11 @@
 
         <div class="card mt-3">
             <div class="card-header">
-                <div class="float-end" id="msg-reload-translation" data-url="{{ path('admin_translation_ajax_check_reload_translation') }}">
+                <div class="float-end" id="msg-reload-translation" data-url="{{ path('admin_translation_ajax_check_reload') }}">
                     <i>{{ "admin_translation#Chargement des informations de traduction..." | trans}}</i>
                 </div>
             </div>
-            <div class="card-body" id="listing-translation" data-url="{{ path('admin_translation_ajax_listing_translation') }}" data-loading="{{ "admin_translation#Chargement des traductions..." | trans }}">
+            <div class="card-body" id="listing-translation" data-url="{{ path('admin_translation_ajax_listing') }}" data-loading="{{ "admin_translation#Chargement des traductions..." | trans }}">
             </div>
         </div>
 

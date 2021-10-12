@@ -49,7 +49,7 @@ class RoleController extends AppController
      * Permet de lister les roles
      * @param int $page
      */
-    #[Route('/ajax/listing/{page}', name: 'ajax_listing_role')]
+    #[Route('/ajax/listing/{page}', name: 'ajax_listing')]
     public function listing(int $page = 1): Response
     {
 
@@ -64,7 +64,7 @@ class RoleController extends AppController
             'listeRoles' => $listeRoles,
             'page' => $page,
             'limit' => $limit,
-            'route' => 'admin_role_ajax_listing_role',
+            'route' => 'admin_role_ajax_listing',
         ]);
     }
 
