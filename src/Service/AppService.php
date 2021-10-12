@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\RouterInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class AppService
 {
@@ -43,18 +44,24 @@ class AppService
     protected KernelInterface $kernel;
 
     /**
+     * @var TranslatorInterface
+     */
+    protected TranslatorInterface $translator;
+
+    /**
      * @param Doctrine $doctrine
      * @param RouterInterface $router
      * @param RequestStack $request
      * @param ParameterBagInterface $parameterBag
      */
     public function __construct(Doctrine $doctrine, RouterInterface $router, RequestStack $request,
-            ParameterBagInterface $parameterBag, KernelInterface $kernel)
+            ParameterBagInterface $parameterBag, KernelInterface $kernel, TranslatorInterface $translator)
     {
         $this->doctrine = $doctrine;
         $this->router = $router;
         $this->request = $request->getCurrentRequest();
         $this->parameterBag = $parameterBag;
         $this->kernel = $kernel;
+        $this->translator = $translator;
     }
 }

@@ -23,6 +23,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Yaml\Yaml;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class TranslationService extends AppService
 {
@@ -32,9 +33,9 @@ class TranslationService extends AppService
     private DataSystemService $dataSystemService;
 
     public function __construct(Doctrine          $doctrine, RouterInterface $router, RequestStack $request, ParameterBagInterface $parameterBag, KernelInterface $kernel,
-                                DataSystemService $dataSystemService)
+                                DataSystemService $dataSystemService, TranslatorInterface $translator)
     {
-        parent::__construct($doctrine, $router, $request, $parameterBag, $kernel);
+        parent::__construct($doctrine, $router, $request, $parameterBag, $kernel, $translator);
         $this->dataSystemService = $dataSystemService;
     }
 
