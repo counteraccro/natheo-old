@@ -87,24 +87,24 @@ class RouteService extends AppService
         $tab = explode('_', $route);
 
         if ($tab[0] == 'front') {
-            return $this->translator->trans("admin_system#Action pour le front");
+            return "admin_system#Action pour le front";
         }
         return match ($tab[2]) {
-            "index" => $this->translator->trans("admin_system#Point d'entrée du module {data}"),
+            "index" => "admin_system#Point d'entrée du module {data}",
             "ajax" => match ($tab[3]) {
-                "save" => $this->translator->trans("admin_system#Appel Ajax pour sauvegarder une donnée de type {data}"),
-                "update" => $this->translator->trans("admin_system#Appel Ajax pour mettre à jour une donnée de type {data}"),
-                "listing" => $this->translator->trans("admin_system#Appel Ajax pour afficher la liste de {data}"),
-                "delete" => $this->translator->trans("admin_system#Appel Ajax pour supprimer une donnée de type {data}"),
-                "purge" => $this->translator->trans("admin_system#Appel Ajax pour purger les données de type {data}"),
-                "reset" => $this->translator->trans("admin_system#Appel Ajax pour réinitialiser les données de type {data}"),
-                "reload" => $this->translator->trans("admin_system#Appel Ajax pour recharger les données de type {data}"),
-                "check" => $this->translator->trans("admin_system#Appel Ajax pour checker les données de type {data}"),
-                default => $this->translator->trans("admin_system#Appel Ajax sans description"),
+                "save" => "admin_system#Appel Ajax pour sauvegarder une donnée de type {data}",
+                "update" => "admin_system#Appel Ajax pour mettre à jour une donnée de type {data}",
+                "listing" => "admin_system#Appel Ajax pour afficher la liste de {data}",
+                "delete" => "admin_system#Appel Ajax pour supprimer une donnée de type {data}",
+                "purge" => "admin_system#Appel Ajax pour purger les données de type {data}",
+                "reset" => "admin_system#Appel Ajax pour réinitialiser les données de type {data}",
+                "reload" => "admin_system#Appel Ajax pour recharger les données de type {data}",
+                "check" => "admin_system#Appel Ajax pour checker les données de type {data}",
+                default => "admin_system#Appel Ajax sans description",
             },
-            "add" => $this->translator->trans("admin_system#Ajoute une donnée de type {data}"),
-            "edit" => $this->translator->trans("admin_system#Met à jour une donnée de type {data}"),
-            default => $this->translator->trans("admin_system#Route sans description"),
+            "add" => "admin_system#Ajoute une donnée de type {data}",
+            "edit" => "admin_system#Met à jour une donnée de type {data}",
+            default => "admin_system#Route sans description",
         };
     }
 
