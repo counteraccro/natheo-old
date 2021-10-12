@@ -11,6 +11,7 @@ use App\Controller\AppController;
 use App\Entity\Admin\Role;
 use App\Form\Admin\RoleType;
 use App\Repository\Admin\RoleRepository;
+use App\Repository\Admin\RouteRepository;
 use App\Service\Admin\System\OptionService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -78,6 +79,11 @@ class RoleController extends AppController
             $this->translator->trans('admin_role#Gestion des rôles') => 'admin_role_index',
         ];
 
+
+        /** @var RouteRepository $RouteRepo */
+        $RouteRepo = $this->getDoctrine()->getRepository(\App\Entity\Admin\Route::class);
+        $listeRoutes = $RouteRepo->getListeOrderBy();
+
         if($role == null)
         {
             $role = new Role();
@@ -100,7 +106,8 @@ class RoleController extends AppController
 
         return $this->render('admin/role/create-update.html.twig', [
             'breadcrumb' => $breadcrumb,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'listeRoutes' => $listeRoutes
         ]);
     }
 }

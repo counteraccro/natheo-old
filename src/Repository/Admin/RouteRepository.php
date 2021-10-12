@@ -78,6 +78,23 @@ class RouteRepository extends ServiceEntityRepository
         return $paginator;
     }
 
+    /**
+     * Retourne une liste de route en fonction des paramètres
+     * @param bool $is_depreciate
+     * @param string $sort
+     * @param string $order
+     * @return mixed
+     */
+    public function getListeOrderBy(bool $is_depreciate = false, string $sort = 'module', string $order = 'ASC'): mixed
+    {
+        return $this->createQueryBuilder('r')
+            ->where('r.is_depreciate = :is_depreciate' )
+            ->setParameter('is_depreciate', $is_depreciate)
+            ->orderBy('r.' . $sort, $order)
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Route[] Returns an array of Route objects
     //  */

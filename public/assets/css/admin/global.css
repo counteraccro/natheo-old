@@ -58,3 +58,8 @@ a:focus {
 .btn-check:active + .btn-primary:focus, .btn-check:checked + .btn-primary:focus, .btn-primary.active:focus, .btn-primary:active:focus, .show > .btn-primary.dropdown-toggle:focus {
     box-shadow: 0 0 0 0.25rem rgb(var(--hover-primary-rgb) / 50%);
 }
+
+.accordion-button:not(.collapsed) {
+    color: var(--text-primary-contrast);
+    background-color: var(--bg-primary);
+}

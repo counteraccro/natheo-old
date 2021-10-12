@@ -7,6 +7,7 @@ use App\Service\Admin\System\OptionService;
 use App\Service\Admin\System\TranslationService;
 use App\Twig\Admin\MenuAdmin;
 use App\Twig\Admin\Option;
+use App\Twig\Admin\Role;
 use App\Twig\Admin\System\Asset;
 use App\Twig\Admin\System\Breadcrumb;
 use App\Twig\Admin\System\Paginate;
@@ -115,7 +116,8 @@ class AppExtension extends AbstractExtension
             new TwigFilter('optionRender', [Option::class, 'htmlRender']),
             new TwigFilter('formSearchTranslation', [Translation::class, 'formSearchTranslation']),
             new TwigFilter('inputHidden', [GlobalFunction::class, 'generateHiddenInput']),
-            new TwigFilter('inputSearch', [GlobalFunction::class, 'generateSearchInput'])
+            new TwigFilter('inputSearch', [GlobalFunction::class, 'generateSearchInput']),
+            new TwigFilter('listeRouteRight', [Role::class, 'generateRouteRight'])
         ];
     }
 }
