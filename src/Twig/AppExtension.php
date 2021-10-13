@@ -117,7 +117,8 @@ class AppExtension extends AbstractExtension
             new TwigFilter('formSearchTranslation', [Translation::class, 'formSearchTranslation']),
             new TwigFilter('inputHidden', [GlobalFunction::class, 'generateHiddenInput']),
             new TwigFilter('inputSearch', [GlobalFunction::class, 'generateSearchInput']),
-            new TwigFilter('listeRouteRight', [Role::class, 'generateRouteRight'])
+            new TwigFilter('listeRouteRight', [Role::class, 'generateRouteRight']),
+            new TwigFilter('listeModules', [Role::class, 'getListeModules'])
         ];
     }
 }

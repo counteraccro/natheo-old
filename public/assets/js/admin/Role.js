@@ -25,6 +25,8 @@ Role.Launch = function() {
 
         Role.createUpdateId = '#admin-create-update-role';
         $(Role.createUpdateId + ' #render-exemple-short-role').css({"background-color" : $(Role.createUpdateId + ' #role-color').val()});
+        $(Role.createUpdateId + ' #render-exemple-short-role').html( $(Role.createUpdateId + ' #role-short-label').val());
+        Role.updateHidenInputRoute();
 
         /**
          * Au changement du short label, on met à jour l'exemple
@@ -40,6 +42,45 @@ Role.Launch = function() {
             $(Role.createUpdateId + ' #render-exemple-short-role').css({"background-color" : $(this).val()});
         });
 
+        /**
+         * Evenement pour checker toute les checkbox d'un module
+         */
+        $(Role.createUpdateId + ' .role-checkbox-all').change(function() {
 
+            let id = $(this).parent().data('bs-target');
+            let checkId = $(this).data('class');
+            let show = false;
+
+            if($(this).is(':checked'))
+            {
+                show = true;
+            }
+
+            $(Role.createUpdateId + ' .' + checkId).each(function() {
+                $(this).prop('checked', show);
+            })
+
+            let myCollapse = document.getElementById(id.substr(1));
+            let bsCollapse = new bootstrap.Collapse(myCollapse, {
+                toggle: show
+            });
+            Role.updateHidenInputRoute();
+        });
+
+    }
+
+    /**
+     * Permet de remplir le champs maqué d'id pour l'attributions des routes pour le role
+     */
+    Role.updateHidenInputRoute = function()
+    {
+        let str_id = '';
+        $(Role.createUpdateId + ' .role-checkbox').each(function() {
+            if($(this).is(':checked'))
+            {
+                str_id += $(this).data('route-id') + '-';
+            }
+        });
+        $(Role.createUpdateId + ' #hidden-route-id').val(str_id.substr(0, str_id.length - 1));
     }
 }

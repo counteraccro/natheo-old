@@ -29,9 +29,17 @@
                         </div>
                         <div class="col-3">
                             <label for="role_color" class="form-label">{{ "admin_role#Rendu" | trans }}</label> <br />
-                            <div class="badge rounded-pill mt-2" style="background-color:#FAFAFA" id="render-exemple-short-role">ADM</div>
+                            <div class="badge rounded-pill mt-2" style="background-color:#FAFAFA" id="render-exemple-short-role"></div>
                         </div>
                     </div>
+
+                    {{ form_row(form.label) }}
+
+                    <input type="hidden" name="role[routes]" id="hidden-route-id" />
+                    <div class="float-end mt-2 text-muted"><i>{{ "admin_role#Les champs marqués d'une * sont obligatoire" | trans }}</i></div>
+
+                    {{ form_row(form.valider, {'id' : 'role-submit'}) }}
+
                     {{ form_end(form) }}
                 </div>
             </div>

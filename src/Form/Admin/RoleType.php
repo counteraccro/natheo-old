@@ -36,7 +36,7 @@ class RoleType extends AppType
             ->add('color', ColorType::class, [
                 'label' => $this->translator->trans('admin_role#Couleur du rôle'),
             ])
-            ->add("Valider", SubmitType::class, [
+            ->add("valider", SubmitType::class, [
                 'label' => $this->translator->trans('admin_role#Valider')
             ])
         ;
@@ -46,6 +46,7 @@ class RoleType extends AppType
     {
         $resolver->setDefaults([
             'data_class' => Role::class,
+            'allow_extra_fields' => true
         ]);
     }
 }

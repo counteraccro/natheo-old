@@ -5,7 +5,7 @@
             <th scope="col">#</th>
             <th scope="col">{{ "admin_role#Nom" | trans }}</th>
             <th scope="col">{{ "admin_role#Label" | trans }}</th>
-            <th scope="col">{{ "admin_role#Label court" | trans }}</th>
+            <th scope="col">{{ "admin_role#Module" | trans }}</th>
             <th scope="col">{{ "admin_role#Action" | trans }}</th>
         </tr>
         </thead>
@@ -13,9 +13,12 @@
         {% for role in listeRoles %}
             <tr>
                 <th scope="row">{{ role.id }}</th>
-                <td>{{ role.name }}</td>
-                <td>{{ role.label | trans }}</td>
-                <td>{{ role.shortLabel | trans }}</td>
+                <td>{{ role.name }} <span class="badge float-end" style="background-color: {{ role.color }}">{{ role.shortLabel }}</span></td>
+                <td>{{ role.label }}</td>
+                <td>
+                   {{ role.routeRights.toArray | listeModules | raw }}
+
+                </td>
                 <td>
                     action
                 </td>

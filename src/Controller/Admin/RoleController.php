@@ -9,6 +9,7 @@ namespace App\Controller\Admin;
 
 use App\Controller\AppController;
 use App\Entity\Admin\Role;
+use App\Entity\Admin\RouteRight;
 use App\Form\Admin\RoleType;
 use App\Repository\Admin\RoleRepository;
 use App\Repository\Admin\RouteRepository;
@@ -79,7 +80,6 @@ class RoleController extends AppController
             $this->translator->trans('admin_role#Gestion des rôles') => 'admin_role_index',
         ];
 
-
         /** @var RouteRepository $RouteRepo */
         $RouteRepo = $this->getDoctrine()->getRepository(\App\Entity\Admin\Route::class);
         $listeRoutes = $RouteRepo->getListeOrderBy();
@@ -88,9 +88,11 @@ class RoleController extends AppController
         {
             $role = new Role();
             $breadcrumb[$this->translator->trans('admin_role#Créer un rôle')] = '';
+            $flashMsg = $this->translator->trans('admin_role#Rôle créé avec succès');
         }
         else {
             $breadcrumb[$this->translator->trans('admin_role#Editer le rôle ') . '#' . $role->getId()] = '';
+            $flashMsg = $this->translator->trans('admin_role#Rôle édité avec succès');
         }
         $form = $this->createForm(RoleType::class, $role);
 
@@ -99,8 +101,23 @@ class RoleController extends AppController
             /** @var Role $role */
             $role = $form->getData();
 
+            $listeIdRoutes = explode('-', $this->request->getCurrentRequest()->request->all()['role']['routes']);
+            if(!empty($listeIdRoutes))
+            {
+                foreach ($listeIdRoutes as $id) {
+                    $routeRight = new RouteRight();
+                    $routeRight->setRoute($RouteRepo->findOneBy(['id' => $id]));
+                    $routeRight->setRole($role);
+                    $routeRight->setCanDelete(true)->setCanEdit(true)->setCanRead(true);
+                    $this->getDoctrine()->getManager()->persist($routeRight);
+                    $role->addRouteRight($routeRight);
+                }
+            }
+
             $this->getDoctrine()->getManager()->persist($role);
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('success', $flashMsg);
+            return $this->redirectToRoute('admin_role_index');
         }
 
 
