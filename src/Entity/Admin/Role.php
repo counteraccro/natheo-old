@@ -52,6 +52,11 @@ class Role
      */
     private $routeRights;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $can_update;
+
     public function __construct()
     {
         $this->routeRights = new ArrayCollection();
@@ -136,6 +141,18 @@ class Role
                 $routeRight->setRole(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCanUpdate(): ?bool
+    {
+        return $this->can_update;
+    }
+
+    public function setCanUpdate(bool $can_update): self
+    {
+        $this->can_update = $can_update;
 
         return $this;
     }

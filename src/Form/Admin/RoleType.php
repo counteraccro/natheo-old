@@ -5,6 +5,7 @@ namespace App\Form\Admin;
 use App\Entity\Admin\Role;
 use App\Form\AppType;
 use SebastianBergmann\CodeCoverage\Report\Text;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ColorType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -35,6 +36,10 @@ class RoleType extends AppType
             ])
             ->add('color', ColorType::class, [
                 'label' => $this->translator->trans('admin_role#Couleur du rôle'),
+            ])
+            ->add('canUpdate', CheckboxType::class, [
+                'label' => $this->translator->trans('admin_role#Autoriser la mise à jour des droits lors de la mise à jour de l\'application'),
+                'required' => false
             ])
             ->add("valider", SubmitType::class, [
                 'label' => $this->translator->trans('admin_role#Valider')
