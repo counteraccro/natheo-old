@@ -8,15 +8,15 @@ menu-left-admin:
   admin_permission#Permission:
     icon: 'fa-dice-d6'
     sub-menu:
-      admin_route#Gestion des routes:
-        icon: 'fa-road'
-        target: 'admin_route_index'
       admin_role#Gestion des rôles:
         icon: 'fa-user-tag'
         target: 'admin_role_index'
   admin_system#System:
     icon: 'fa-cogs'
     sub-menu:
+      admin_route#Gestion des routes:
+        icon: 'fa-road'
+        target: 'admin_route_index'
       admin_translation#Gestion des traductions:
         icon: 'fa-language'
         target: 'admin_translation_index'

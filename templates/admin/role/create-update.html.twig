@@ -1,10 +1,10 @@
 {% extends 'admin/admin.html.twig' %}
 
-{% block title %}{{ "admin_role#Créer un rôle" | trans }}{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 
 {% block body %}
 <div id="admin-create-update-role">
-    <h1>{{ "admin_role#Créer un rôle" | trans }}</h1>
+    <h1>{{ title }}</h1>
 
     {{ breadcrumb | breadcrumb | raw }}
 
@@ -38,7 +38,7 @@
                     {{ form_row(form.canUpdate) }}
 
                     <input type="hidden" name="role[routes]" id="hidden-route-id" />
-                    <div class="float-end mt-2 text-muted"><i>{{ "admin_role#Les champs marqués d'une * sont obligatoire" | trans }}</i></div>
+                    <div class="float-end mt-2 text-muted"><i>{{ "admin_role#Les champs marqués d'une * sont obligatoires" | trans }}</i></div>
 
                     {{ form_row(form.valider, {'id' : 'role-submit'}) }}
 

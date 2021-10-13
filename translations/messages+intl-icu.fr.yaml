@@ -175,3 +175,14 @@
 'admin_role#Rendu': Rendu
 'admin_system#Point d''entrée du module {module}': 'Point d''entrée du module {module}'
 'admin_route#Label': Label
+'admin_role#Rôle créé avec succès': 'Rôle créé avec succès'
+'admin_role#Edition du rôle ': 'Edition du rôle '
+'admin_role#Rôle édité avec succès': 'Rôle édité avec succès'
+'admin_role#Autoriser la mise à jour des droits lors de la mise à jour de l''application': 'Autoriser la mise à jour des droits lors de la mise à jour de l''application'
+'admin_role#Module': Module
+'admin_role#Editer': Editer
+'admin_role#Supprimer': Supprimer
+'admin_role#Les champs marqués d''une * sont obligatoire': 'Les champs marqués d''une * sont obligatoire'
+'admin_role#Permet de mettre à jour de façon automatique les nouvelles routes ajoutés pour chaque module': 'Permet de mettre à jour de façon automatique les nouvelles routes ajoutés pour chaque module'
+'admin_role#Attention, ne fonctionne que lorsque l''ensemble des routes sont cochées pour un module': 'Attention, ne fonctionne que lorsque l''ensemble des routes sont cochées pour un module'
+'admin_role#Les champs marqués d''une * sont obligatoires': 'Les champs marqués d''une * sont obligatoires'

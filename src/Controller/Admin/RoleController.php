@@ -87,11 +87,13 @@ class RoleController extends AppController
         if($role == null)
         {
             $role = new Role();
-            $breadcrumb[$this->translator->trans('admin_role#Créer un rôle')] = '';
+            $title = $this->translator->trans('admin_role#Créer un rôle');
+            $breadcrumb[$title] = '';
             $flashMsg = $this->translator->trans('admin_role#Rôle créé avec succès');
         }
         else {
-            $breadcrumb[$this->translator->trans('admin_role#Editer le rôle ') . '#' . $role->getId()] = '';
+            $title = $this->translator->trans('admin_role#Edition du rôle ') . '#' . $role->getId();
+            $breadcrumb[$title] = '';
             $flashMsg = $this->translator->trans('admin_role#Rôle édité avec succès');
         }
         $form = $this->createForm(RoleType::class, $role);
@@ -124,7 +126,8 @@ class RoleController extends AppController
         return $this->render('admin/role/create-update.html.twig', [
             'breadcrumb' => $breadcrumb,
             'form' => $form->createView(),
-            'listeRoutes' => $listeRoutes
+            'listeRoutes' => $listeRoutes,
+            'title' => $title
         ]);
     }
 }
