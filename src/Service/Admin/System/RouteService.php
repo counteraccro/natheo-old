@@ -85,6 +85,7 @@ class RouteService extends AppService
             },
             "add" => "admin_system#Ajoute une donnée de type {data}",
             "edit" => "admin_system#Met à jour une donnée de type {data}",
+            "delete" => "admin_system#Supprime une donnée de type {data}",
             default => "admin_system#Route sans description",
         };
     }

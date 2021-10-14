@@ -71,6 +71,11 @@ class RoleController extends AppController
         ]);
     }
 
+    /**
+     * Permet d'éditer  créer un nouveau role
+     * @param Role|null $role
+     * @return Response
+     */
     #[Route('/add/', name: 'add')]
     #[Route('/edit/{id}', name: 'edit')]
     public function createUpdate(Role $role = null): Response
@@ -139,5 +144,15 @@ class RoleController extends AppController
             'title' => $title,
             'role' => $role
         ]);
+    }
+
+    #[Route('/delete/{id}', name: 'delete')]
+    public function delete(Role $role)
+    {
+        $flashMsg = $this->translator->trans('admin_role#Rôle supprimé avec succès');
+        $this->getDoctrine()->getManager()->remove($role);
+        $this->getDoctrine()->getManager()->flush();
+        $this->addFlash('success', $flashMsg);
+        return $this->redirectToRoute('admin_role_index');
     }
 }

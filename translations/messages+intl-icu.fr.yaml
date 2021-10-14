@@ -188,3 +188,8 @@
 'admin_role#Attention, ne fonctionne que lorsque l''ensemble des routes sont cochées pour un module': 'Attention, ne fonctionne que lorsque l''ensemble des routes sont cochées pour un module'
 'admin_role#Les champs marqués d''une * sont obligatoires': 'Les champs marqués d''une * sont obligatoires'
 'admin_role#Permet de mettre à jour de façon automatique les nouvelles routes ajoutés pour chaque module.': 'Permet de mettre à jour de façon automatique les nouvelles routes ajoutés pour chaque module.'
+'admin_system#Supprime une donnée de type {data}': 'Supprime une donnée de type {data}'
+'admin_role#Rôle supprimé avec succès': 'Rôle supprimé avec succès'
+'admin_role#Attention, cela mettra à jour l''ensemble des routes d''un module même si à la base toutes les routes ne sont pas sélectionnées': 'Attention, cela mettra à jour l''ensemble des routes d''un module même si à la base toutes les routes ne sont pas sélectionnées'
+'admin_role#Ce rôle n''a aucun droit': 'Ce rôle n''a aucun droit'
+'admin_role#Attention cette action est définitive ! Êtes vous sur ?': 'Attention cette action est définitive ! Êtes vous sur ?'

@@ -10,11 +10,19 @@
 
     {% for label, messages in app.flashes %}
         {% for message in messages %}
-            <div class="alert alert-{{ label }} alert-dismissible fade show">
+            <div class="alert alert-{{ label }} alert-dismissible fade show msg-role-success">
                 <i class="fa fa-check"></i> {{ message }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         {% endfor %}
+        <script>
+            $( document ).ready(function() {
+                function hide_msg(){
+                    $(".msg-role-success").hide(400);
+                };
+                window.setTimeout( hide_msg, 3000 ); // 5 seconds
+            })
+        </script>
     {% endfor %}
 
     <div class="float-end">
