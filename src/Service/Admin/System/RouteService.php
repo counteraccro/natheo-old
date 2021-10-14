@@ -21,25 +21,6 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RouteService extends AppService
 {
-    /**
-     * @var TranslationService
-     */
-    protected TranslationService $translationService;
-
-    /**
-     * @param Doctrine $doctrine
-     * @param RouterInterface $router
-     * @param RequestStack $request
-     * @param ParameterBagInterface $parameterBag
-     * @param KernelInterface $kernel
-     * @param TranslationService $translationService
-     */
-    public function __construct(Doctrine $doctrine, RouterInterface $router, RequestStack $request, ParameterBagInterface $parameterBag, KernelInterface $kernel
-        , TranslationService             $translationService, TranslatorInterface $translator)
-    {
-        parent::__construct($doctrine, $router, $request, $parameterBag, $kernel, $translator);
-        $this->translationService = $translationService;
-    }
 
     /**
      * Création / Mise à jour des routes de l'application

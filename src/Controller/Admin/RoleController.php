@@ -13,6 +13,7 @@ use App\Entity\Admin\RouteRight;
 use App\Form\Admin\RoleType;
 use App\Repository\Admin\RoleRepository;
 use App\Repository\Admin\RouteRepository;
+use App\Service\Admin\RoleService;
 use App\Service\Admin\System\OptionService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -74,7 +75,6 @@ class RoleController extends AppController
     #[Route('/edit/{id}', name: 'edit')]
     public function createUpdate(Role $role = null): Response
     {
-
         $breadcrumb = [
             $this->translator->trans('admin_dashboard#Dashboard') => 'admin_dashboard_index',
             $this->translator->trans('admin_role#Gestion des rôles') => 'admin_role_index',
@@ -92,6 +92,13 @@ class RoleController extends AppController
             $flashMsg = $this->translator->trans('admin_role#Rôle créé avec succès');
         }
         else {
+
+            // Si on tente d'éditer le role route, on rejette la demande
+            if($role->getName() == RoleService::ROOT_NAME)
+            {
+                return $this->redirectToRoute('admin_role_index');
+            }
+
             $title = $this->translator->trans('admin_role#Edition du rôle ') . '#' . $role->getId();
             $breadcrumb[$title] = '';
             $flashMsg = $this->translator->trans('admin_role#Rôle édité avec succès');

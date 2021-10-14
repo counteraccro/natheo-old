@@ -41,7 +41,7 @@ class RoleType extends AppType
                 'label' => $this->translator->trans('admin_role#Autoriser la mise à jour des droits lors de la mise à jour de l\'application'),
                 'required' => false,
                 'help' => $this->translator->trans('admin_role#Permet de mettre à jour de façon automatique les nouvelles routes ajoutés pour chaque module.') . ' ' .
-                    $this->translator->trans('admin_role#Attention, ne fonctionne que lorsque l\'ensemble des routes sont cochées pour un module'),
+                    $this->translator->trans('admin_role#Attention, cela mettra à jour l\'ensemble des routes d\'un module même si à la base toutes les routes ne sont pas sélectionnées'),
             ])
             ->add("valider", SubmitType::class, [
                 'label' => $this->translator->trans('admin_role#Valider')

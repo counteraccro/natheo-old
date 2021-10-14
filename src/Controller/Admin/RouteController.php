@@ -10,6 +10,7 @@ namespace App\Controller\Admin;
 
 use App\Controller\AppController;
 use App\Repository\Admin\RouteRepository;
+use App\Service\Admin\RoleService;
 use App\Service\Admin\System\OptionService;
 use App\Service\Admin\System\RouteService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -52,9 +53,11 @@ class RouteController extends AppController
      * @return JsonResponse
      */
     #[Route('/ajax/update', name: 'ajax_update')]
-    public function updateRoute(RouteService $routeService): JsonResponse
+    public function updateRoute(RouteService $routeService, RoleService $roleService): JsonResponse
     {
         $routeService->updateRoutes();
+        $roleService->RoleRouteRightUpdate();
+
         return $this->json(['success' => true]);
     }
 

@@ -11,6 +11,7 @@ use App\Entity\Admin\Role;
 use App\Entity\Admin\Route;
 use App\Entity\Admin\RouteRight;
 use App\Repository\Admin\RouteRepository;
+use App\Service\Admin\RoleService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -21,17 +22,41 @@ class RoleFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager)
     {
         $role = new Role();
-        $role->setName('Root');
-        $role->setShortLabel('ROOT');
-        $role->setColor('#8F0505');
+        $role->setName(RoleService::ROOT_NAME);
+        $role->setShortLabel(RoleService::ROOT_SHORT_LABEL);
+        $role->setColor(RoleService::ROOT_COLOR);
         $role->setLabel('Role système');
         $role->setCanUpdate(true);
+        $role = $this->addRouteRight($manager, $role, []);
 
+        $manager->persist($role);
+
+        $role = new Role();
+        $role->setName('Administrateur');
+        $role->setShortLabel('ADM');
+        $role->setColor('#866EC7');
+        $role->setLabel('Administrateur');
+        $role->setCanUpdate(true);
+        $role = $this->addRouteRight($manager, $role, ['admin_system#System', 'admin_route#Gestion des routes', '']);
+
+        $manager->persist($role);
+        $manager->flush();
+    }
+
+    private function addRouteRight(ObjectManager $manager, Role $role, array $tabModule)
+    {
         /** @var RouteRepository $routeRepo */
         $routeRepo = $manager->getRepository(Route::class);
         $listeRoutes = $routeRepo->getListeOrderBy();
+
+        /** @var Route $route */
         foreach($listeRoutes as $route)
         {
+            if(!empty($tabModule) && in_array($route->getModule(), $tabModule))
+            {
+                continue;
+            }
+
             $routeRight = new RouteRight();
             $routeRight->setRole($role);
             $routeRight->setRoute($route);
@@ -40,8 +65,7 @@ class RoleFixtures extends Fixture implements DependentFixtureInterface
             $role->addRouteRight($routeRight);
         }
 
-        $manager->persist($role);
-        $manager->flush();
+        return $role;
     }
 
     public function getDependencies(): array

@@ -20,8 +20,10 @@
 
                 </td>
                 <td>
-                    <a href="{{ path('admin_role_edit', {'id' : role.id}) }}" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ "admin_role#Editer" | trans }}"><i class="fa fa-pencil-alt"></i></a>
-                    <a href="{{ path('admin_role_edit', {'id' : role.id}) }}" class="btn btn-sm btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ "admin_role#Supprimer" | trans }}"><i class="fa fa-trash"></i></a>
+                    {% if(role.name != constant('App\\Service\\Admin\\RoleService::ROOT_NAME')) %}
+                        <a href="{{ path('admin_role_edit', {'id' : role.id}) }}" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ "admin_role#Editer" | trans }}"><i class="fa fa-pencil-alt"></i></a>
+                        <a href="{{ path('admin_role_edit', {'id' : role.id}) }}" class="btn btn-sm btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ "admin_role#Supprimer" | trans }}"><i class="fa fa-trash"></i></a>
+                    {% endif %}
                 </td>
             </tr>
         {% endfor %}

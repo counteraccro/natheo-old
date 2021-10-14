@@ -191,3 +191,5 @@
 'admin_role#Ce rôle n''a aucun droit': '__admin_role#Ce rôle n''a aucun droit'
 Root: __Root
 'Role système': '__Role système'
+'admin_role#Attention, cela mettra à jour l''ensemble des routes d''un module même si à la base toutes les routes ne sont pas sélectionné': '__admin_role#Attention, cela mettra à jour l''ensemble des routes d''un module même si à la base toutes les routes ne sont pas sélectionné'
+'admin_role#Attention, cela mettra à jour l''ensemble des routes d''un module même si à la base toutes les routes ne sont pas sélectionnées': '__admin_role#Attention, cela mettra à jour l''ensemble des routes d''un module même si à la base toutes les routes ne sont pas sélectionnées'
