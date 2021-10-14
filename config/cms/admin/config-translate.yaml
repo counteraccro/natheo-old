@@ -56,3 +56,4 @@
 'admin_system#Ajoute une donnée de type {data}' : '__admin_system#Ajoute une donnée de type {data}'
 'admin_system#Met à jour une donnée de type {data}' : '__admin_system#Met à jour une donnée de type {data}'
 'admin_system#Route sans description' : '__admin_system#Route sans description'
+'admin_fixture#Jeu de données' : '__admin_fixture#Jeu de données'

@@ -25,7 +25,7 @@ class OptionFixtures extends AppFixtures
             {
                 $optionEntity = new Option();
                 $optionEntity->setName($key);
-                $optionEntity->setValue($option[\App\Twig\Admin\Option::KEY_DEFAULT]);
+                $optionEntity->setValue($option[\App\Twig\Admin\OptionTwig::KEY_DEFAULT]);
                 $manager->persist($optionEntity);
             }
         }

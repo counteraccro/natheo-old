@@ -56,6 +56,7 @@
 'admin_system#Ajoute une donnée de type {data}': 'Ajoute une donnée de type {data}'
 'admin_system#Met à jour une donnée de type {data}': 'Met à jour une donnée de type {data}'
 'admin_system#Route sans description': 'Route sans description'
+'admin_fixture#Jeu de données': 'Jeu de données'
 'admin_global_option#Si vous fermé le front, l''administration restera toujours accessible.': 'Si vous fermé le front, l''administration restera toujours accessible.'
 'admin_global_option#Changer le theme de l''administraton': 'Changer le theme de l''administraton'
 'admin_global_option#purple': purple

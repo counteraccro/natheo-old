@@ -14,3 +14,4 @@ routes_modules:
   auth: 'admin_auth#Authentification'
   permission : 'admin_permission#Permission'
   topmenu : 'admin_topmenu#Menu Top'
+  fixture : 'admin_fixture#Jeu de données'

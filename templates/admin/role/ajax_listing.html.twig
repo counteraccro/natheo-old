@@ -13,7 +13,7 @@
         {% for role in listeRoles %}
             <tr>
                 <th scope="row">{{ role.id }}</th>
-                <td>{{ role.name }} <span class="badge float-end" style="background-color: {{ role.color }}">{{ role.shortLabel }}</span></td>
+                <td>{{ role.name }} <span class="badge float-end mt-1" style="background-color: {{ role.color }}">{{ role.shortLabel }}</span></td>
                 <td>{{ role.label }}</td>
                 <td>
                    {{ role.routeRights.toArray | listeModules | raw }}

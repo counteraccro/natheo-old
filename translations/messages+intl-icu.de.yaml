@@ -56,6 +56,7 @@
 'admin_system#Ajoute une donnée de type {data}': '__Ajoute une donnée de type {data}'
 'admin_system#Met à jour une donnée de type {data}': '__Met à jour une donnée de type {data}'
 'admin_system#Route sans description': '__Route sans description'
+'admin_fixture#Jeu de données': '__Jeu de données'
 'admin_global_option#Si vous fermé le front, l''administration restera toujours accessible.': '__Si vous fermé le front, l''administration restera toujours accessible.'
 'admin_global_option#Changer le theme de l''administraton': '__Changer le theme de l''administraton'
 'admin_global_option#purple': __purple
@@ -187,3 +188,6 @@
 'admin_role#Attention, ne fonctionne que lorsque l''ensemble des routes sont cochées pour un module': '__Attention, ne fonctionne que lorsque l''ensemble des routes sont cochées pour un module'
 'admin_role#Les champs marqués d''une * sont obligatoires': '__Les champs marqués d''une * sont obligatoires'
 'admin_role#Permet de mettre à jour de façon automatique les nouvelles routes ajoutés pour chaque module.': '__Permet de mettre à jour de façon automatique les nouvelles routes ajoutés pour chaque module.'
+'admin_role#Ce rôle n''a aucun droit': '__admin_role#Ce rôle n''a aucun droit'
+Root: __Root
+'Role système': '__Role système'
