@@ -3,7 +3,7 @@
  * Gestion de la pagination
  * @author Gourdon Aymeric
  * @version 1.0
- * @package App\Twig\Admin\GlobalFunction
+ * @package App\Twig\Admin\GlobalFunctionTwig
  */
 
 namespace App\Twig\Admin\System;
@@ -12,7 +12,7 @@ use App\Twig\AppExtension;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Twig\Extension\RuntimeExtensionInterface;
 
-class Paginate extends AppExtension implements RuntimeExtensionInterface
+class PaginateTwig extends AppExtension implements RuntimeExtensionInterface
 {
     /**
      * Point d'entrée pour la pagination
@@ -87,7 +87,7 @@ class Paginate extends AppExtension implements RuntimeExtensionInterface
     {
         return '<script>
             $( document ).ready(function() {
-                System.Paginate();
+                System.PaginateTwig();
             });
         </script>';
     }

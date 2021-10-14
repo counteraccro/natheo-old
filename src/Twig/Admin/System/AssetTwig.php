@@ -3,7 +3,7 @@
  * Ajout des assets de l'application de façon automatique
  * @author Gourdon Aymeric
  * @version 1.0
- * @package App\Twig\Admin\GlobalFunction
+ * @package App\Twig\Admin\GlobalFunctionTwig
  */
 
 namespace App\Twig\Admin\System;
@@ -15,7 +15,7 @@ use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Twig\Extension\RuntimeExtensionInterface;
 
-class Asset extends AppExtension implements RuntimeExtensionInterface
+class AssetTwig extends AppExtension implements RuntimeExtensionInterface
 {
 
     /**

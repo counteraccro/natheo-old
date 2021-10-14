@@ -19,7 +19,7 @@ use Twig\Extension\RuntimeExtensionInterface;
 /**
  * Permet de générer le menu de gauche de l'administration
  */
-class MenuAdmin extends AppExtension implements RuntimeExtensionInterface
+class MenuAdminTwig extends AppExtension implements RuntimeExtensionInterface
 {
 
     /**

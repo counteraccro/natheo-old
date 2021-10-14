@@ -12,7 +12,7 @@ use App\Twig\AppExtension;
 use Symfony\Component\Yaml\Yaml;
 use Twig\Extension\RuntimeExtensionInterface;
 
-class Option extends AppExtension implements RuntimeExtensionInterface
+class OptionTwig extends AppExtension implements RuntimeExtensionInterface
 {
 
     const GLOBAL_OPTIONS = 'global_options';

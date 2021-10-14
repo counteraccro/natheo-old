@@ -5,7 +5,7 @@ namespace App\Twig\Admin\System;
 use App\Twig\AppExtension;
 use Twig\Extension\RuntimeExtensionInterface;
 
-class GlobalFunction extends AppExtension implements RuntimeExtensionInterface
+class GlobalFunctionTwig extends AppExtension implements RuntimeExtensionInterface
 {
     /**
      * Permet de générer un champ caché pour l'édition directement depuis un tableau

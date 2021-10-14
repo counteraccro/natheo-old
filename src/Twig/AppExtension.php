@@ -5,14 +5,14 @@ namespace App\Twig;
 use App\Service\Admin\System\DateService;
 use App\Service\Admin\System\OptionService;
 use App\Service\Admin\System\TranslationService;
-use App\Twig\Admin\MenuAdmin;
-use App\Twig\Admin\Option;
-use App\Twig\Admin\Role;
-use App\Twig\Admin\System\Asset;
-use App\Twig\Admin\System\Breadcrumb;
-use App\Twig\Admin\System\Paginate;
-use App\Twig\Admin\System\GlobalFunction;
-use App\Twig\Admin\Translation;
+use App\Twig\Admin\MenuAdminTwig;
+use App\Twig\Admin\OptionTwig;
+use App\Twig\Admin\RoleTwig;
+use App\Twig\Admin\System\AssetTwig;
+use App\Twig\Admin\System\BreadcrumbTwig;
+use App\Twig\Admin\System\PaginateTwig;
+use App\Twig\Admin\System\GlobalFunctionTwig;
+use App\Twig\Admin\TranslationTwig;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -108,17 +108,17 @@ class AppExtension extends AbstractExtension
     {
         return [
             // the logic of this filter is now implemented in a different class
-            new TwigFilter('leftMenuAdmin', [MenuAdmin::class, 'leftMenuAdmin']),
-            new TwigFilter('topMenuAdmin', [MenuAdmin::class, 'topMenuAdmin']),
-            new TwigFilter('breadcrumb', [Breadcrumb::class, 'htmlRender']),
-            new TwigFilter('assetRender', [Asset::class, 'assetAdmin']),
-            new TwigFilter('paginate', [Paginate::class, 'htmlRender']),
-            new TwigFilter('optionRender', [Option::class, 'htmlRender']),
-            new TwigFilter('formSearchTranslation', [Translation::class, 'formSearchTranslation']),
-            new TwigFilter('inputHidden', [GlobalFunction::class, 'generateHiddenInput']),
-            new TwigFilter('inputSearch', [GlobalFunction::class, 'generateSearchInput']),
-            new TwigFilter('listeRouteRight', [Role::class, 'generateRouteRight']),
-            new TwigFilter('listeModules', [Role::class, 'getListeModules'])
+            new TwigFilter('leftMenuAdmin', [MenuAdminTwig::class, 'leftMenuAdmin']),
+            new TwigFilter('topMenuAdmin', [MenuAdminTwig::class, 'topMenuAdmin']),
+            new TwigFilter('breadcrumb', [BreadcrumbTwig::class, 'htmlRender']),
+            new TwigFilter('assetRender', [AssetTwig::class, 'assetAdmin']),
+            new TwigFilter('paginate', [PaginateTwig::class, 'htmlRender']),
+            new TwigFilter('optionRender', [OptionTwig::class, 'htmlRender']),
+            new TwigFilter('formSearchTranslation', [TranslationTwig::class, 'formSearchTranslation']),
+            new TwigFilter('inputHidden', [GlobalFunctionTwig::class, 'generateHiddenInput']),
+            new TwigFilter('inputSearch', [GlobalFunctionTwig::class, 'generateSearchInput']),
+            new TwigFilter('listeRouteRight', [RoleTwig::class, 'generateRouteRight']),
+            new TwigFilter('listeModules', [RoleTwig::class, 'getListeModules'])
         ];
     }
 }

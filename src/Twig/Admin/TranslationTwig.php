@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Extension\RuntimeExtensionInterface;
 
-class Translation extends AppExtension implements RuntimeExtensionInterface
+class TranslationTwig extends AppExtension implements RuntimeExtensionInterface
 {
 
     /**

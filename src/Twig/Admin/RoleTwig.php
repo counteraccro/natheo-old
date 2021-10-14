@@ -14,7 +14,7 @@ use App\Twig\AppExtension;
 use Symfony\Component\Yaml\Yaml;
 use Twig\Extension\RuntimeExtensionInterface;
 
-class Role extends AppExtension implements RuntimeExtensionInterface
+class RoleTwig extends AppExtension implements RuntimeExtensionInterface
 {
     private array $requiredRoute = [
         'front_security_app_login',

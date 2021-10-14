@@ -3,7 +3,7 @@
  * Gestion du fil d'arianne
  * @author Gourdon Aymeric
  * @version 1.0
- * @package App\Twig\Admin\GlobalFunction
+ * @package App\Twig\Admin\GlobalFunctionTwig
  */
 namespace App\Twig\Admin\System;
 
@@ -13,7 +13,7 @@ use Twig\Extension\RuntimeExtensionInterface;
 /**
  * Génération du fil d'ariane pour l'administration
  */
-class Breadcrumb extends AppExtension implements RuntimeExtensionInterface
+class BreadcrumbTwig extends AppExtension implements RuntimeExtensionInterface
 {
     /**
      * Point d'entrée pour la génération du fil d'arianne
