@@ -27,6 +27,7 @@ Role.Launch = function() {
         $(Role.createUpdateId + ' #render-exemple-short-role').css({"background-color" : $(Role.createUpdateId + ' #role-color').val()});
         $(Role.createUpdateId + ' #render-exemple-short-role').html( $(Role.createUpdateId + ' #role-short-label').val());
         Role.updateHidenInputRoute();
+        Role.ShowModuleCheck();
 
         /**
          * Au changement du short label, on met à jour l'exemple
@@ -67,10 +68,47 @@ Role.Launch = function() {
             Role.updateHidenInputRoute();
         });
 
+        /**
+         * Event sur une check box
+         */
+        $(Role.createUpdateId + ' .role-checkbox').change(function() {
+            Role.updateHidenInputRoute();
+            Role.ShowModuleCheck();
+        });
     }
 
     /**
-     * Permet de remplir le champs maqué d'id pour l'attributions des routes pour le role
+     * Met à jour la check box de chaque module si toute les check box de celui ci sont coché
+     * @constructor
+     */
+    Role.ShowModuleCheck = function()
+    {
+        $(Role.createUpdateId + ' .role-checkbox-all').each(function() {
+
+            let element = $(this);
+            let nb_elements = $(Role.createUpdateId + ' .' + element.data('class')).length;
+            let nb_check = 0;
+
+            $(Role.createUpdateId + ' .' + $(this).data('class')).each(function() {
+
+                if($(this).is(':checked'))
+                {
+                   nb_check++;
+                }
+            });
+
+            element.prop('checked', false);
+            if(nb_check === nb_elements)
+            {
+                element.prop('checked', true);
+            }
+        });
+    }
+
+
+
+    /**
+     * Permet de remplir le champs masqué d'id pour l'attributions des routes pour le role
      */
     Role.updateHidenInputRoute = function()
     {

@@ -186,3 +186,4 @@
 'admin_role#Permet de mettre à jour de façon automatique les nouvelles routes ajoutés pour chaque module': 'Permet de mettre à jour de façon automatique les nouvelles routes ajoutés pour chaque module'
 'admin_role#Attention, ne fonctionne que lorsque l''ensemble des routes sont cochées pour un module': 'Attention, ne fonctionne que lorsque l''ensemble des routes sont cochées pour un module'
 'admin_role#Les champs marqués d''une * sont obligatoires': 'Les champs marqués d''une * sont obligatoires'
+'admin_role#Permet de mettre à jour de façon automatique les nouvelles routes ajoutés pour chaque module.': 'Permet de mettre à jour de façon automatique les nouvelles routes ajoutés pour chaque module.'

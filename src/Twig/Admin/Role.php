@@ -25,7 +25,7 @@ class Role extends AppExtension implements RuntimeExtensionInterface
      * Permet de générer la liste de route par module pour l'attribution des droits
      * @param array $listeRoute
      */
-    public function generateRouteRight(array $listeRoute): string
+    public function generateRouteRight(array $listeRoute, \App\Entity\Admin\Role $role): string
     {
         $html = '<div class="accordion" id="listeRouteRight">';
         $translateModule = Yaml::parseFile($this->parameterBag->get('app_path_translate_modules'))['routes_modules'];
@@ -60,6 +60,16 @@ class Role extends AppExtension implements RuntimeExtensionInterface
             if(in_array($route->getRoute(), $this->requiredRoute))
             {
                 $checked = 'checked';
+            }
+
+            /** @var RouteRight $routeRight */
+            foreach($role->getRouteRights() as $routeRight)
+            {
+                if($routeRight->getRoute()->getId() == $route->getId())
+                {
+                    $checked = 'checked';
+                    break;
+                }
             }
 
             $html .= '<div class="row">
@@ -113,6 +123,12 @@ class Role extends AppExtension implements RuntimeExtensionInterface
                 $i++;
             }
         }
+
+        if($html == '')
+        {
+            $html = '<span class="text-danger"><i>' . $this->translator->trans('admin_role#Ce rôle n\'a aucun droit') . '</i></span>';
+        }
+
         return $html;
     }
 }

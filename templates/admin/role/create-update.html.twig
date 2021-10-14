@@ -37,7 +37,7 @@
 
                     {{ form_row(form.canUpdate) }}
 
-                    <input type="hidden" name="role[routes]" id="hidden-route-id" />
+                    <input type="text" name="role[routes]" id="hidden-route-id" />
                     <div class="float-end mt-2 text-muted"><i>{{ "admin_role#Les champs marqués d'une * sont obligatoires" | trans }}</i></div>
 
                     {{ form_row(form.valider, {'id' : 'role-submit'}) }}
@@ -52,7 +52,7 @@
                     {{ "admin_role#Attribution des droits" | trans }}
                 </div>
                 <div class="card-body">
-                    {{ listeRoutes | listeRouteRight | raw }}
+                    {{ listeRoutes | listeRouteRight(role) | raw }}
                 </div>
             </div>
         </div>

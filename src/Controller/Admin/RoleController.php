@@ -103,6 +103,8 @@ class RoleController extends AppController
             /** @var Role $role */
             $role = $form->getData();
 
+            $role->getRouteRights()->clear();
+
             $listeIdRoutes = explode('-', $this->request->getCurrentRequest()->request->all()['role']['routes']);
             if(!empty($listeIdRoutes))
             {
@@ -127,7 +129,8 @@ class RoleController extends AppController
             'breadcrumb' => $breadcrumb,
             'form' => $form->createView(),
             'listeRoutes' => $listeRoutes,
-            'title' => $title
+            'title' => $title,
+            'role' => $role
         ]);
     }
 }
