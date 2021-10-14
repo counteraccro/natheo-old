@@ -87,7 +87,7 @@ class PaginateTwig extends AppExtension implements RuntimeExtensionInterface
     {
         return '<script>
             $( document ).ready(function() {
-                System.PaginateTwig();
+                System.Paginate();
             });
         </script>';
     }
