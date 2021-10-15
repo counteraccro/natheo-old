@@ -55,6 +55,7 @@
 'admin_system#Appel Ajax sans description': 'Appel Ajax sans description'
 'admin_system#Ajoute une donnée de type {data}': 'Ajoute une donnée de type {data}'
 'admin_system#Met à jour une donnée de type {data}': 'Met à jour une donnée de type {data}'
+'admin_system#Supprime une donnée de type {data}': 'Supprime une donnée de type {data}'
 'admin_system#Route sans description': 'Route sans description'
 'admin_fixture#Jeu de données': 'Jeu de données'
 'admin_global_option#Si vous fermé le front, l''administration restera toujours accessible.': 'Si vous fermé le front, l''administration restera toujours accessible.'
@@ -188,7 +189,6 @@
 'admin_role#Attention, ne fonctionne que lorsque l''ensemble des routes sont cochées pour un module': 'Attention, ne fonctionne que lorsque l''ensemble des routes sont cochées pour un module'
 'admin_role#Les champs marqués d''une * sont obligatoires': 'Les champs marqués d''une * sont obligatoires'
 'admin_role#Permet de mettre à jour de façon automatique les nouvelles routes ajoutés pour chaque module.': 'Permet de mettre à jour de façon automatique les nouvelles routes ajoutés pour chaque module.'
-'admin_system#Supprime une donnée de type {data}': 'Supprime une donnée de type {data}'
 'admin_role#Rôle supprimé avec succès': 'Rôle supprimé avec succès'
 'admin_role#Attention, cela mettra à jour l''ensemble des routes d''un module même si à la base toutes les routes ne sont pas sélectionnées': 'Attention, cela mettra à jour l''ensemble des routes d''un module même si à la base toutes les routes ne sont pas sélectionnées'
 'admin_role#Ce rôle n''a aucun droit': 'Ce rôle n''a aucun droit'
@@ -196,3 +196,11 @@
 'admin_user#Gestion des utilisateurs': 'Gestion des utilisateurs'
 'admin_user#Email': Email
 'admin_user#Ajouter un utilisateur': 'Ajouter un utilisateur'
+'admin_user#Nom Prenom': 'Nom Prenom'
+'admin_user#Nom de publication': 'Nom de publication'
+'admin_user#Date dernière connexion': 'Date dernière connexion'
+'admin_user#Action': Action
+'admin_user#Editer': Editer
+'admin_user#Attention cette action est définitive ! Êtes vous sur ?': 'Attention cette action est définitive ! Êtes vous sur ?'
+'admin_user#Supprimer': Supprimer
+'admin_user#Chargement des données...': 'Chargement des données...'

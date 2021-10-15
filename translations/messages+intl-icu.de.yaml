@@ -55,6 +55,7 @@
 'admin_system#Appel Ajax sans description': '__Appel Ajax sans description'
 'admin_system#Ajoute une donnée de type {data}': '__Ajoute une donnée de type {data}'
 'admin_system#Met à jour une donnée de type {data}': '__Met à jour une donnée de type {data}'
+'admin_system#Supprime une donnée de type {data}': '__Supprime une donnée de type {data}'
 'admin_system#Route sans description': '__Route sans description'
 'admin_fixture#Jeu de données': '__Jeu de données'
 'admin_global_option#Si vous fermé le front, l''administration restera toujours accessible.': '__Si vous fermé le front, l''administration restera toujours accessible.'
@@ -188,7 +189,6 @@
 'admin_role#Attention, ne fonctionne que lorsque l''ensemble des routes sont cochées pour un module': '__Attention, ne fonctionne que lorsque l''ensemble des routes sont cochées pour un module'
 'admin_role#Les champs marqués d''une * sont obligatoires': '__Les champs marqués d''une * sont obligatoires'
 'admin_role#Permet de mettre à jour de façon automatique les nouvelles routes ajoutés pour chaque module.': '__Permet de mettre à jour de façon automatique les nouvelles routes ajoutés pour chaque module.'
-'admin_system#Supprime une donnée de type {data}': '__Supprime une donnée de type {data}'
 'admin_role#Rôle supprimé avec succès': '__Rôle supprimé avec succès'
 'admin_role#Attention, cela mettra à jour l''ensemble des routes d''un module même si à la base toutes les routes ne sont pas sélectionnées': '__Attention, cela mettra à jour l''ensemble des routes d''un module même si à la base toutes les routes ne sont pas sélectionnées'
 'admin_role#Ce rôle n''a aucun droit': '__Ce rôle n''a aucun droit'
@@ -196,3 +196,11 @@
 'admin_user#Gestion des utilisateurs': '__Gestion des utilisateurs'
 'admin_user#Email': __Email
 'admin_user#Ajouter un utilisateur': '__Ajouter un utilisateur'
+'admin_user#Nom Prenom': '__Nom Prenom'
+'admin_user#Nom de publication': '__Nom de publication'
+'admin_user#Date dernière connexion': '__Date dernière connexion'
+'admin_user#Action': __Action
+'admin_user#Editer': __Editer
+'admin_user#Attention cette action est définitive ! Êtes vous sur ?': '__Attention cette action est définitive ! Êtes vous sur ?'
+'admin_user#Supprimer': __Supprimer
+'admin_user#Chargement des données...': '__Chargement des données...'
