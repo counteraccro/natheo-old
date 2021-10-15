@@ -193,3 +193,6 @@
 'admin_role#Attention, cela mettra à jour l''ensemble des routes d''un module même si à la base toutes les routes ne sont pas sélectionnées': '__Attention, cela mettra à jour l''ensemble des routes d''un module même si à la base toutes les routes ne sont pas sélectionnées'
 'admin_role#Ce rôle n''a aucun droit': '__Ce rôle n''a aucun droit'
 'admin_role#Attention cette action est définitive ! Êtes vous sur ?': '__Attention cette action est définitive ! Êtes vous sur ?'
+'admin_user#Gestion des utilisateurs': '__Gestion des utilisateurs'
+'admin_user#Email': __Email
+'admin_user#Ajouter un utilisateur': '__Ajouter un utilisateur'

@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -34,6 +35,46 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $user->setPassword($newHashedPassword);
         $this->_em->persist($user);
         $this->_em->flush();
+    }
+
+    /**
+     * Retourne une liste de user paginée
+     * @param int $current_page
+     * @param int $limit
+     * @param array|null $filter
+     * @return Paginator
+     */
+    public function listeUserPaginate(int $current_page, int $limit, array $filter = null): Paginator
+    {
+        $dql = $this->createQueryBuilder('u')
+            ->orderBy('u.id');
+
+        if($filter != null || !empty($filter))
+        {
+            if($filter['field'] == 'all')
+            {
+                $dql->where('u.email LIKE :email' )
+                    ->setParameter('email', '%' . $filter['value'] . '%')
+                    /*->orWhere('r.shortLabel LIKE :sl' )
+                    ->setParameter('sl', '%' . $filter['value'] . '%')
+                    ->orWhere('r.label LIKE :label' )
+                    ->setParameter('label', '%' . $filter['value'] . '%');*/;
+            }
+            else {
+                $dql->where('u.' . $filter['field'] . ' LIKE :value' )
+                    ->setParameter('value', '%' . $filter['value'] . '%');
+            }
+
+        }
+
+        $dql->getQuery();
+
+        $paginator = new Paginator($dql);
+
+        $paginator->getQuery()
+            ->setFirstResult($limit * ($current_page - 1))
+            ->setMaxResults($limit);
+        return $paginator;
     }
 
     // /**

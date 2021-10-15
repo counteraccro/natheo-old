@@ -8,6 +8,9 @@ menu-left-admin:
   admin_permission#Permission:
     icon: 'fa-dice-d6'
     sub-menu:
+      admin_user#Gestion des utilisateurs:
+        icon: 'fa-users'
+        target: 'admin_user_index'
       admin_role#Gestion des rôles:
         icon: 'fa-user-tag'
         target: 'admin_role_index'

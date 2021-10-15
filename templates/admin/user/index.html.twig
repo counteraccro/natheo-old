@@ -1,0 +1,59 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block title %}{{ "admin_user#Gestion des utilisateurs" | trans }}{% endblock %}
+
+{% block body %}
+    <div id="admin-user-globale">
+        <h1>{{ "admin_user#Gestion des utilisateurs" | trans }}</h1>
+
+        {{ breadcrumb | breadcrumb | raw }}
+
+        {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }} alert-dismissible fade show msg-role-success">
+                <i class="fa fa-check"></i> {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+            <script>
+                $( document ).ready(function() {
+                    function hide_msg(){
+                        $(".msg-role-success").hide(400);
+                    };
+                    window.setTimeout( hide_msg, 3000 ); // 5 seconds
+                })
+            </script>
+        {% endfor %}
+
+        <div class="float-end">
+            <a href="#" id="btn-new-role" class="btn btn-primary mb-2">
+                <i class="fas fa-user-plus"></i> {{ "admin_user#Ajouter un utilisateur" | trans }}
+            </a>
+        </div>
+        <div class="clearfix"></div>
+        <div class="card">
+            <div class="card-header">
+                <div class="mt-2 float-start" id="info-route">
+
+                </div>
+                <div class="float-end">
+                    {{ fieldSearch | inputSearch('#admin-user-globale .card-body', constant('App\\Controller\\Admin\\UserController::SESSION_KEY_FILTER')) | raw }}
+                </div>
+            </div>
+            <div class="card-body" data-url="{{ path('admin_user_ajax_listing') }}" data-loading="{{ "admin_user#Chargement des données..." | trans }}">
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+
+    <script>
+        $( document ).ready(function() {
+            User.Launch();
+            User.LoadListing();
+        });
+    </script>
+
+{% endblock %}

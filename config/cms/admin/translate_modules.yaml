@@ -15,3 +15,4 @@ routes_modules:
   permission : 'admin_permission#Permission'
   topmenu : 'admin_topmenu#Menu Top'
   fixture : 'admin_fixture#Jeu de données'
+  user : 'admin_user#Gestion des utilisateurs'

@@ -1,0 +1,36 @@
+<div id="listing-user">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">{{ "admin_user#Email" | trans }}</th>
+            <th scope="col">{{ "admin_user#Action" | trans }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in listeUsers %}
+            <tr>
+                <th scope="row">{{ user.id }}</th>
+                <td>{{ user.email }} </td>
+                <td>
+                    {% if(user.email != constant('App\\Service\\Admin\\RoleService::ROOT_NAME')) %}
+                        <a href="" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ "admin_user#Editer" | trans }}"><i class="fa fa-user-edit"></i></a>
+                        <a href="" onclick="return confirm('{{ "admin_user#Attention cette action est définitive ! Êtes vous sur ?" | trans }}')" class="btn btn-sm btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ "admin_user#Supprimer" | trans }}"><i class="fa fa-user-times"></i></a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {{ listeUsers | paginate(page, limit, route, '#admin-user-globale .card-body') | raw }}
+
+    <script>
+        $(document).ready(function () {
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl)
+            })
+        });
+    </script>
+</div>

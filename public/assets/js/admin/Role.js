@@ -1,3 +1,8 @@
+/**
+ *  JS gestion des roles
+ *  @author Gourdon Aymeric
+ *  @version 1.0
+ **/
 let Role = {}
 
 Role.Launch = function() {
