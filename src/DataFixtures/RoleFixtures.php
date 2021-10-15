@@ -18,6 +18,7 @@ use Doctrine\Persistence\ObjectManager;
 
 class RoleFixtures extends Fixture implements DependentFixtureInterface
 {
+    public const FIXTURE_ROLE_ROOT_REF = 'role-root';
 
     public function load(ObjectManager $manager)
     {
@@ -30,6 +31,7 @@ class RoleFixtures extends Fixture implements DependentFixtureInterface
         $role = $this->addRouteRight($manager, $role, []);
 
         $manager->persist($role);
+        $this->addReference(self::FIXTURE_ROLE_ROOT_REF, $role);
 
         $role = new Role();
         $role->setName('Administrateur');

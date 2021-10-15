@@ -2,7 +2,10 @@
 
 namespace App\Entity;
 
+use App\Entity\Admin\Role;
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -18,23 +21,74 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      */
-    private $email;
+    private string $email;
 
     /**
      * @ORM\Column(type="json")
      */
-    private $roles = [];
+    private array $roles = [];
 
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
      */
-    private $password;
+    private string $password;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private string $name;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private string $surname;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private string $publicationName;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private string $avatar;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $lastLogin;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $lastPasswordUpdae;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private string $password_strenght;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Role::class, inversedBy="users")
+     * @ORM\JoinTable(name="cms_user_role")
+     */
+    private $rolesCms;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isDisabled;
+
+    public function __construct()
+    {
+        $this->rolesCms = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -123,5 +177,125 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getSurname(): ?string
+    {
+        return $this->surname;
+    }
+
+    public function setSurname(string $surname): self
+    {
+        $this->surname = $surname;
+
+        return $this;
+    }
+
+    public function getPublicationName(): ?string
+    {
+        return $this->publicationName;
+    }
+
+    public function setPublicationName(string $publicationName): self
+    {
+        $this->publicationName = $publicationName;
+
+        return $this;
+    }
+
+    public function getAvatar(): ?string
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar(?string $avatar): self
+    {
+        $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    public function getLastLogin(): ?\DateTimeInterface
+    {
+        return $this->lastLogin;
+    }
+
+    public function setLastLogin(\DateTimeInterface $lastLogin): self
+    {
+        $this->lastLogin = $lastLogin;
+
+        return $this;
+    }
+
+    public function getLastPasswordUpdae(): ?\DateTimeInterface
+    {
+        return $this->lastPasswordUpdae;
+    }
+
+    public function setLastPasswordUpdae(?\DateTimeInterface $lastPasswordUpdae): self
+    {
+        $this->lastPasswordUpdae = $lastPasswordUpdae;
+
+        return $this;
+    }
+
+    public function getPasswordStrenght(): ?string
+    {
+        return $this->password_strenght;
+    }
+
+    public function setPasswordStrenght(string $password_strenght): self
+    {
+        $this->password_strenght = $password_strenght;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Role[]
+     */
+    public function getRolesCms(): Collection
+    {
+        return $this->rolesCms;
+    }
+
+    public function addRolesCms(Role $rolesCm): self
+    {
+        if (!$this->rolesCms->contains($rolesCm)) {
+            $this->rolesCms[] = $rolesCm;
+        }
+
+        return $this;
+    }
+
+    public function removeRolesCms(Role $rolesCm): self
+    {
+        $this->rolesCms->removeElement($rolesCm);
+
+        return $this;
+    }
+
+    public function getIsDisabled(): ?bool
+    {
+        return $this->isDisabled;
+    }
+
+    public function setIsDisabled(bool $isDisabled): self
+    {
+        $this->isDisabled = $isDisabled;
+
+        return $this;
     }
 }

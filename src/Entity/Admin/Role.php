@@ -2,6 +2,7 @@
 
 namespace App\Entity\Admin;
 
+use App\Entity\User;
 use App\Repository\Admin\RoleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -57,9 +58,15 @@ class Role
      */
     private $can_update;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="rolesCms")
+     */
+    private $users;
+
     public function __construct()
     {
         $this->routeRights = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -153,6 +160,33 @@ class Role
     public function setCanUpdate(bool $can_update): self
     {
         $this->can_update = $can_update;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->addRolesCms($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            $user->removeRolesCms($this);
+        }
 
         return $this;
     }
