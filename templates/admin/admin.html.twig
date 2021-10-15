@@ -21,6 +21,10 @@
             <div class="col py-3 pt-1" id="content-admin">
                 {% include 'admin/include/top-menu.html.twig' %}
                 {% block body %}{% endblock %}
+                <div class="text-center p-3">
+                    Natheo CMS - 2020 - {{ 'now' | date("Y") }} - Version Alpha 0.1
+                    <a class="text-dark" href="#">TODO</a>
+                </div>
             </div>
         </div>
     </div>
