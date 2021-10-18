@@ -145,7 +145,7 @@ class OptionTwig extends AppExtension implements RuntimeExtensionInterface
                 $select = 'selected';
             }
 
-            $html .= '<option value="' . $format . '" ' . $select . '>' . $this->dateService->getDateFormatTranslate($format, $date) . '</option>';
+            $html .= '<option value="' . $format . '" ' . $select . '>' . $this->dateService->getDateFormatTranslate($date, $format) . '</option>';
         }
 
         return $html;
@@ -175,7 +175,7 @@ class OptionTwig extends AppExtension implements RuntimeExtensionInterface
                 $select = 'selected';
             }
 
-            $html .= '<option value="' . $format . '" ' . $select . '>' . $this->dateService->getDateFormatTranslate($format, $date) . '</option>';
+            $html .= '<option value="' . $format . '" ' . $select . '>' . $this->dateService->getDateFormatTranslate($date, $format) . '</option>';
         }
 
         return $html;
