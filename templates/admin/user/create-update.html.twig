@@ -8,7 +8,7 @@
 
     {{ breadcrumb | breadcrumb | raw }}
 
-    {% if(user != null) %}
+    {% if(action == 'edit') %}
     <div class="card mb-4">
         <div class="card-header">
             {{ "admin_user#Résumé" | trans }}

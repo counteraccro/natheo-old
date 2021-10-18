@@ -89,6 +89,7 @@ class UserController extends AppController
 
         if($user == null)
         {
+            $action = 'add';
             $user = new User();
             $title = $this->translator->trans('admin_user#Créer un utilisateur');
             $breadcrumb[$title] = '';
@@ -102,6 +103,7 @@ class UserController extends AppController
                 return $this->redirectToRoute('admin_user_index');
             }
 
+            $action = 'edit';
             $title = $this->translator->trans('admin_user#Edition de l\'utilisateur ') . '#' . $user->getId();
             $breadcrumb[$title] = '';
             $flashMsg = $this->translator->trans('admin_user#Utilisateur édité avec succès');
@@ -121,6 +123,7 @@ class UserController extends AppController
             'user' => $user,
             'dateFormat' => $dateFormat,
             'timeFormat' => $timeFormat,
+            'action' => $action
         ]);
     }
 }
