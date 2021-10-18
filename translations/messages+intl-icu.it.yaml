@@ -204,3 +204,13 @@
 'admin_user#Attention cette action est définitive ! Êtes vous sur ?': '__Attention cette action est définitive ! Êtes vous sur ?'
 'admin_user#Supprimer': __Supprimer
 'admin_user#Chargement des données...': '__Chargement des données...'
+'admin_user#Créer un utilisateur': '__Créer un utilisateur'
+'admin_user#Utilisateur créé avec succès': '__Utilisateur créé avec succès'
+'admin_user#Edition de l''utilisateur ': '__Edition de l''utilisateur '
+'admin_user#Utilisateur édité avec succès': '__Utilisateur édité avec succès'
+'admin_user#Information sur l''utilsateur': '__Information sur l''utilsateur'
+'admin_user#Attribution des rôles': '__Attribution des rôles'
+'admin_user#Résumé': __Résumé
+'admin_user#Nom': __Nom
+'admin_user#Dernière connexion': '__Dernière connexion'
+'admin_user#Dernier changemen de mot de passe': '__Dernier changemen de mot de passe'

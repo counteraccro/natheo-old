@@ -204,3 +204,13 @@
 'admin_user#Attention cette action est définitive ! Êtes vous sur ?': 'Attention cette action est définitive ! Êtes vous sur ?'
 'admin_user#Supprimer': Supprimer
 'admin_user#Chargement des données...': 'Chargement des données...'
+'admin_user#Créer un utilisateur': 'Créer un utilisateur'
+'admin_user#Utilisateur créé avec succès': 'Utilisateur créé avec succès'
+'admin_user#Edition de l''utilisateur ': 'Edition de l''utilisateur '
+'admin_user#Utilisateur édité avec succès': 'Utilisateur édité avec succès'
+'admin_user#Information sur l''utilsateur': 'Information sur l''utilsateur'
+'admin_user#Attribution des rôles': 'Attribution des rôles'
+'admin_user#Résumé': Résumé
+'admin_user#Nom': Nom
+'admin_user#Dernière connexion': 'Dernière connexion'
+'admin_user#Dernier changemen de mot de passe': 'Dernier changemen de mot de passe'

@@ -8,8 +8,46 @@
 
     {{ breadcrumb | breadcrumb | raw }}
 
-    <div class="row">
+    {% if(user != null) %}
+    <div class="card mb-4">
+        <div class="card-header">
+            {{ "admin_user#Résumé" | trans }}
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-4">
+                    Avatar
+                </div>
+                <div class="col-8">
+                    <table class="table table-hover table-striped">
+                        <tr>
+                            <td> {{ "admin_user#Nom" | trans }}</td>
+                            <td> {{ user.name }} {{ user.surname }}</td>
+                        </tr>
+                        <tr>
+                            <td> {{ "admin_user#Nom de publication" | trans }}</td>
+                            <td> {{ user.publicationName }}</td>
+                        </tr>
+                        <tr>
+                            <td> {{ "admin_user#Email" | trans }}</td>
+                            <td> {{ user.email }}</td>
+                        </tr>
+                        <tr>
+                            <td> {{ "admin_user#Dernière connexion" | trans }}</td>
+                            <td> {{ user.lastLogin | dateFormat(dateFormat, timeFormat) }}</td>
+                        </tr>
+                        <tr>
+                            <td> {{ "admin_user#Dernier changemen de mot de passe" | trans }}</td>
+                            <td> {{ user.lastPasswordUpdae | dateFormat(dateFormat, timeFormat) }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
 
+    <div class="row">
         <div class="col-6">
             <div class="card">
                 <div class="card-header">
@@ -38,7 +76,7 @@
 
     <script>
         $( document ).ready(function() {
-            
+
         });
     </script>
 

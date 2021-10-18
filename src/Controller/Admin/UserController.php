@@ -84,6 +84,9 @@ class UserController extends AppController
             $this->translator->trans('admin_user#Gestion des utilisateurs') => 'admin_user_index',
         ];
 
+        $dateFormat =$this->getOptionFormatDate();
+        $timeFormat = $this->getOptionTimeFormat();
+
         if($user == null)
         {
             $user = new User();
@@ -115,7 +118,9 @@ class UserController extends AppController
             'breadcrumb' => $breadcrumb,
             'form' => $form->createView(),
             'title' => $title,
-            'user' => $user
+            'user' => $user,
+            'dateFormat' => $dateFormat,
+            'timeFormat' => $timeFormat,
         ]);
     }
 }
