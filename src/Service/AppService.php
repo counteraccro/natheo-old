@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class AppService
@@ -49,13 +50,22 @@ class AppService
     protected TranslatorInterface $translator;
 
     /**
+     * @var SluggerInterface
+     */
+    protected SluggerInterface $slugger;
+
+    /**
      * @param Doctrine $doctrine
      * @param RouterInterface $router
      * @param RequestStack $request
      * @param ParameterBagInterface $parameterBag
+     * @param KernelInterface $kernel
+     * @param TranslatorInterface $translator
+     * @param SluggerInterface $slugger
      */
     public function __construct(Doctrine $doctrine, RouterInterface $router, RequestStack $request,
-            ParameterBagInterface $parameterBag, KernelInterface $kernel, TranslatorInterface $translator)
+            ParameterBagInterface $parameterBag, KernelInterface $kernel, TranslatorInterface $translator,
+                                SluggerInterface $slugger)
     {
         $this->doctrine = $doctrine;
         $this->router = $router;
@@ -63,5 +73,6 @@ class AppService
         $this->parameterBag = $parameterBag;
         $this->kernel = $kernel;
         $this->translator = $translator;
+        $this->slugger = $slugger;
     }
 }

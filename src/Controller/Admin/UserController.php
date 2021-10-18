@@ -11,7 +11,9 @@ use App\Controller\AppController;
 use App\Entity\User;
 use App\Form\Admin\UserType;
 use App\Repository\UserRepository;
+use App\Service\Admin\System\FileUploaderService;
 use App\Service\Admin\UserService;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -77,7 +79,7 @@ class UserController extends AppController
      */
     #[Route('/add/', name: 'add')]
     #[Route('/edit/{id}', name: 'edit')]
-    public function createUpdate(User $user = null)
+    public function createUpdate(FileUploaderService $fileUploader, User $user = null): RedirectResponse|Response
     {
         $breadcrumb = [
             $this->translator->trans('admin_dashboard#Dashboard') => 'admin_dashboard_index',
@@ -114,6 +116,13 @@ class UserController extends AppController
         $form->handleRequest($this->request->getCurrentRequest());
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $avatar = $form->get('avatar')->getData();
+            if ($avatar) {
+                $avatarName = $fileUploader->upload($avatar, $fileUploader->getAvatarDirectory());
+                $user->setAvatar($avatarName);
+            }
+            $this->getDoctrine()->getManager()->persist($user);
+            $this->getDoctrine()->getManager()->flush();
         }
 
         return $this->render('admin/user/create-update.html.twig', [

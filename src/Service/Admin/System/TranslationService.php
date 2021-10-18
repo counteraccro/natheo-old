@@ -22,6 +22,7 @@ use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -33,9 +34,9 @@ class TranslationService extends AppService
     private DataSystemService $dataSystemService;
 
     public function __construct(Doctrine          $doctrine, RouterInterface $router, RequestStack $request, ParameterBagInterface $parameterBag, KernelInterface $kernel,
-                                DataSystemService $dataSystemService, TranslatorInterface $translator)
+                                DataSystemService $dataSystemService, TranslatorInterface $translator, SluggerInterface $slugger)
     {
-        parent::__construct($doctrine, $router, $request, $parameterBag, $kernel, $translator);
+        parent::__construct($doctrine, $router, $request, $parameterBag, $kernel, $translator, $slugger);
         $this->dataSystemService = $dataSystemService;
     }
 

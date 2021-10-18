@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Fonctions globales pour les vues
+ * @author Gourdon Aymeric
+ * @version 1.0
+ * @package App\Twig\Admin\System
+ */
 namespace App\Twig\Admin\System;
 
 use App\Twig\AppExtension;
@@ -82,4 +87,6 @@ class GlobalFunctionTwig extends AppExtension implements RuntimeExtensionInterfa
 
         return $html;
     }
+
+
 }

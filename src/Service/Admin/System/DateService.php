@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Gère les formats de date de l'application
+ * @author Gourdon Aymeric
+ * @version 1.0
+ * @package App\Service\Admin\System
+ */
 namespace App\Service\Admin\System;
 
 use App\Service\AppService;

@@ -3,6 +3,7 @@
 namespace App\Twig;
 
 use App\Service\Admin\System\DateService;
+use App\Service\Admin\System\FileUploaderService;
 use App\Service\Admin\System\OptionService;
 use App\Service\Admin\System\TranslationService;
 use App\Twig\Admin\MenuAdminTwig;
@@ -11,6 +12,7 @@ use App\Twig\Admin\RoleTwig;
 use App\Twig\Admin\System\AssetTwig;
 use App\Twig\Admin\System\BreadcrumbTwig;
 use App\Twig\Admin\System\DateTwig;
+use App\Twig\Admin\System\FileTwig;
 use App\Twig\Admin\System\PaginateTwig;
 use App\Twig\Admin\System\GlobalFunctionTwig;
 use App\Twig\Admin\TranslationTwig;
@@ -77,6 +79,11 @@ class AppExtension extends AbstractExtension
     protected KernelInterface $kernel;
 
     /**
+     * @var FileUploaderService
+     */
+    protected FileUploaderService $fileUploaderService;
+
+    /**
      * @param ParameterBagInterface $parameterBag
      * @param UrlGeneratorInterface $urlGenerator
      * @param TranslatorInterface $translator
@@ -86,9 +93,10 @@ class AppExtension extends AbstractExtension
      * @param OptionService $optionService
      */
     public function __construct(ParameterBagInterface $parameterBag, UrlGeneratorInterface $urlGenerator,
-                                TranslatorInterface $translator, Security $security,
-                                RequestStack $requestStack, TranslationService $translationService
-                                , OptionService $optionService, DateService $dateService, KernelInterface $kernel)
+                                TranslatorInterface   $translator, Security $security,
+                                RequestStack          $requestStack, TranslationService $translationService,
+                                OptionService       $optionService, DateService $dateService, KernelInterface $kernel,
+                                FileUploaderService $fileUploaderService)
     {
         $this->parameterBag = $parameterBag;
         $this->urlGenerator = $urlGenerator;
@@ -100,6 +108,7 @@ class AppExtension extends AbstractExtension
         $this->optionService = $optionService;
         $this->dateService = $dateService;
         $this->kernel = $kernel;
+        $this->fileUploaderService = $fileUploaderService;
     }
 
     /**
@@ -120,6 +129,7 @@ class AppExtension extends AbstractExtension
             new TwigFilter('inputSearch', [GlobalFunctionTwig::class, 'generateSearchInput']),
             new TwigFilter('listeRouteRight', [RoleTwig::class, 'generateRouteRight']),
             new TwigFilter('listeModules', [RoleTwig::class, 'getListeModules']),
+            new TwigFilter('pathAvatar', [FileTwig::class, 'getPathAvatar']),
             new TwigFilter('dateFormat', [DateTwig::class, 'dateFormat'])
 
         ];

@@ -214,3 +214,7 @@
 'admin_user#Nom': __Nom
 'admin_user#Dernière connexion': '__Dernière connexion'
 'admin_user#Dernier changemen de mot de passe': '__Dernier changemen de mot de passe'
+'admin_user#Votre avatar': '__Votre avatar'
+'admin_user#Extension autorisées : GIF, PNG, JPEG - taille maximal 1024 ko': '__Extension autorisées : GIF, PNG, JPEG - taille maximal 1024 ko'
+'admin_user#Extension autorisées : GIF, PNG, JPEG': '__Extension autorisées : GIF, PNG, JPEG'
+'admin_user#Valider': __Valider
