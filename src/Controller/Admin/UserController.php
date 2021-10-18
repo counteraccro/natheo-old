@@ -9,7 +9,9 @@ namespace App\Controller\Admin;
 
 use App\Controller\AppController;
 use App\Entity\User;
+use App\Form\Admin\UserType;
 use App\Repository\UserRepository;
+use App\Service\Admin\UserService;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -50,17 +52,70 @@ class UserController extends AppController
     {
 
         $limit = $this->getOptionElementParPage();
+        $dateFormat =$this->getOptionShortFormatDate();
+        $timeFormat = $this->getOptionTimeFormat();
+
         $filter = $this->getCriteriaGeneriqueSearch(self::SESSION_KEY_FILTER);
 
         /** @var UserRepository $routeRepo */
         $userRepo = $this->getDoctrine()->getRepository(User::class);
         $listeUsers = $userRepo->listeUserPaginate($page, $limit, $filter);
 
-        return $this->render('admin/user/ajax_listing.html.twig', [
+        return $this->render('admin/user/ajax-listing.html.twig', [
             'listeUsers' => $listeUsers,
             'page' => $page,
             'limit' => $limit,
+            'dateFormat' => $dateFormat,
+            'timeFormat' => $timeFormat,
             'route' => 'admin_user_ajax_listing',
+        ]);
+    }
+
+    /**
+     * Permet de créer / éditer un user
+     * @param User|null $user
+     */
+    #[Route('/add/', name: 'add')]
+    #[Route('/edit/{id}', name: 'edit')]
+    public function createUpdate(User $user = null)
+    {
+        $breadcrumb = [
+            $this->translator->trans('admin_dashboard#Dashboard') => 'admin_dashboard_index',
+            $this->translator->trans('admin_user#Gestion des utilisateurs') => 'admin_user_index',
+        ];
+
+        if($user == null)
+        {
+            $user = new User();
+            $title = $this->translator->trans('admin_user#Créer un utilisateur');
+            $breadcrumb[$title] = '';
+            $flashMsg = $this->translator->trans('admin_user#Utilisateur créé avec succès');
+        }
+        else {
+
+            // Si on tente d'éditer un user spécificque, on rejette la demande
+            if($user->getName() == UserService::ROOT_NAME || $user->getName() == UserService::GHOST_NAME)
+            {
+                return $this->redirectToRoute('admin_user_index');
+            }
+
+            $title = $this->translator->trans('admin_user#Edition de l\'utilisateur ') . '#' . $user->getId();
+            $breadcrumb[$title] = '';
+            $flashMsg = $this->translator->trans('admin_user#Utilisateur édité avec succès');
+        }
+
+        $form = $this->createForm(UserType::class, $user);
+
+        $form->handleRequest($this->request->getCurrentRequest());
+        if ($form->isSubmitted() && $form->isValid()) {
+
+        }
+
+        return $this->render('admin/user/create-update.html.twig', [
+            'breadcrumb' => $breadcrumb,
+            'form' => $form->createView(),
+            'title' => $title,
+            'user' => $user
         ]);
     }
 }

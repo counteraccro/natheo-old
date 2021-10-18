@@ -3,7 +3,9 @@
 namespace App\Security;
 
 use App\Service\Admin\System\OptionService;
+use App\Service\Admin\UserService;
 use App\Twig\Admin\Option;
+use Doctrine\Persistence\ManagerRegistry as Doctrine;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,10 +31,13 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 
     private OptionService $optionService;
 
-    public function __construct(UrlGeneratorInterface $urlGenerator, OptionService $optionService)
+    private UserService $userService;
+
+    public function __construct(UrlGeneratorInterface $urlGenerator, OptionService $optionService, UserService $userService)
     {
         $this->urlGenerator = $urlGenerator;
         $this->optionService = $optionService;
+        $this->userService = $userService;
     }
 
     public function authenticate(Request $request): PassportInterface
@@ -57,6 +62,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 
         $default_local = $this->optionService->getOptionByKey(OptionService::GO_ADM_GLOBAL_LANGUE, OptionService::GO_ADM_GLOBAL_LANGUE_DEFAULT_VALUE, true);
 
+        $this->userService->updateLastLogin($token->getUser());
 
         /*if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);

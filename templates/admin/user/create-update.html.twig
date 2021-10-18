@@ -1,0 +1,46 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+<div id="admin-create-update-user">
+    <h1>{{ title }}</h1>
+
+    {{ breadcrumb | breadcrumb | raw }}
+
+    <div class="row">
+
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                    {{ "admin_user#Information sur l'utilsateur" | trans }}
+                </div>
+                <div class="card-body">
+                    {{ form(form) }}
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                    {{ "admin_user#Attribution des rôles" | trans }}
+                </div>
+                <div class="card-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+
+    <script>
+        $( document ).ready(function() {
+            
+        });
+    </script>
+
+{% endblock %}
+

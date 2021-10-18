@@ -79,6 +79,36 @@ class AppController extends AbstractController
     }
 
     /**
+     * Permet de récupérer l'option GO_DATE_FORMAT_DATE_FORMAT
+     * @param bool $onlyValue
+     * @return Option|string
+     */
+    protected function getOptionFormatDate(bool $onlyValue = true): string|Option
+    {
+        return $this->optionService->getOptionByKey(OptionService::GO_ADM_DATE_FORMAT, OptionService::GO_ADM_DATE_FORMAT_DEFAULT_VALUE, true);
+    }
+
+    /**
+     * Permet de récupérer l'option GO_DATE_FORMAT_SHORT_DATE_FORMAT
+     * @param bool $onlyValue
+     * @return Option|string
+     */
+    protected function getOptionShortFormatDate(bool $onlyValue = true): string|Option
+    {
+        return $this->optionService->getOptionByKey(OptionService::GO_ADM_SHORT_DATE_FORMAT, OptionService::GO_ADM_SHORT_DATE_FORMAT_DEFAULT_VALUE, true);
+    }
+
+    /**
+     * Permet de récupérer l'option GO_ADM_DATE_FORMAT_TIME_FORMAT
+     * @param bool $onlyValue
+     * @return Option|string
+     */
+    protected function getOptionTimeFormat(bool $onlyValue = true): string|Option
+    {
+        return $this->optionService->getOptionByKey(OptionService::GO_ADM_TIME_FORMAT, OptionService::GO_ADM_TIME_FORMAT_DEFAULT_VALUE, true);
+    }
+
+    /**
      * Permet de récupérer les données à filtrée depuis la recherche générique
      * @param string $sessionKey
      * @return mixed

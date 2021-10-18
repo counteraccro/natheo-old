@@ -19,6 +19,13 @@ class OptionService extends AppService
     const GO_ADM_THEME_ADMIN_DEFAULT_VALUE = 'purple';
     const GO_ADM_GLOBAL_LANGUE = 'GO_ADM_GLOBAL_LANGUE';
     const GO_ADM_GLOBAL_LANGUE_DEFAULT_VALUE = 'fr';
+    const GO_ADM_SHORT_DATE_FORMAT = 'GO_DATE_FORMAT_SHORT_DATE_FORMAT';
+    const GO_ADM_SHORT_DATE_FORMAT_DEFAULT_VALUE = '%d/%m/%G';
+    const GO_ADM_TIME_FORMAT = 'GO_DATE_FORMAT_TIME_FORMAT';
+    const GO_ADM_TIME_FORMAT_DEFAULT_VALUE = 'H:i:s';
+    const GO_ADM_DATE_FORMAT = 'GO_DATE_FORMAT_DATE_FORMAT';
+    const GO_ADM_DATE_FORMAT_DEFAULT_VALUE = '%A %e %B %Y';
+
 
     const KEY_SESSION_THEME_ADMIN = 'cms.global.theme_admin';
 

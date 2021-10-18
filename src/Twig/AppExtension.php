@@ -10,6 +10,7 @@ use App\Twig\Admin\OptionTwig;
 use App\Twig\Admin\RoleTwig;
 use App\Twig\Admin\System\AssetTwig;
 use App\Twig\Admin\System\BreadcrumbTwig;
+use App\Twig\Admin\System\DateTwig;
 use App\Twig\Admin\System\PaginateTwig;
 use App\Twig\Admin\System\GlobalFunctionTwig;
 use App\Twig\Admin\TranslationTwig;
@@ -118,7 +119,9 @@ class AppExtension extends AbstractExtension
             new TwigFilter('inputHidden', [GlobalFunctionTwig::class, 'generateHiddenInput']),
             new TwigFilter('inputSearch', [GlobalFunctionTwig::class, 'generateSearchInput']),
             new TwigFilter('listeRouteRight', [RoleTwig::class, 'generateRouteRight']),
-            new TwigFilter('listeModules', [RoleTwig::class, 'getListeModules'])
+            new TwigFilter('listeModules', [RoleTwig::class, 'getListeModules']),
+            new TwigFilter('dateFormat', [DateTwig::class, 'dateFormat'])
+
         ];
     }
 }

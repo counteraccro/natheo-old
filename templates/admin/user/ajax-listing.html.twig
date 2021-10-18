@@ -17,7 +17,11 @@
                 <td>{{ user.name }} {{ user.surname}} </td>
                 <td>{{ user.publicationName }} </td>
                 <td>{{ user.email }} </td>
-                <td>{{ user.lastLogin }} </td>
+                <td>
+                    {% if(user.lastLogin != null) %}
+                        {{ user.lastLogin | dateFormat(dateFormat, timeFormat) }}
+                    {% endif %}
+                </td>
                 <td>
                     {% if(user.name == constant('App\\Service\\Admin\\UserService::ROOT_NAME') and user.surname == constant('App\\Service\\Admin\\UserService::ROOT_SURNAME')) %}
 
