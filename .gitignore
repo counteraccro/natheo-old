@@ -18,3 +18,4 @@
 /phpunit.xml
 .phpunit.result.cache
 ###< phpunit/phpunit ###
+/public/medias/
