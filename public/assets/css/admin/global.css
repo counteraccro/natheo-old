@@ -68,3 +68,7 @@ a:focus {
     background-color: var(--bg-primary) !important;
     color: var(--text-primary-contrast);
 }
+
+.border-primary {
+    border-color: var(--bg-primary) !important;
+}

@@ -38,7 +38,9 @@
                         </tr>
                         <tr>
                             <td> {{ "admin_user#Dernier changemen de mot de passe" | trans }}</td>
-                            <td> {{ user.lastPasswordUpdae | dateFormat(dateFormat, timeFormat) }}</td>
+                            <td> {{ user.lastPasswordUpdae | dateFormat(dateFormat, timeFormat) }} <br />
+                                {{ "admin_user#Force du mot de passe : " }} {{ user.passwordStrenght | raw }}
+                            </td>
                         </tr>
                     </table>
                 </div>
@@ -54,7 +56,31 @@
                     {{ "admin_user#Information sur l'utilsateur" | trans }}
                 </div>
                 <div class="card-body">
-                    {{ form(form) }}
+                    {{ form_start(form) }}
+
+                    {{ form_row(form.email) }}
+
+                    <div class="card border-primary mb-2">
+                        <div class="card-body">
+                            <h5 class="card-title"> {{ "admin_user#Mot de passe" | trans }}</h5>
+
+                            {{ form_row(form.password_1, {"id" : "password_1"}) }}
+                            <div class="progress mb-4">
+                                <div class="progress-bar bg-success" id="strength-password-info"
+                                     data-weak="{{ "admin_user#Mot de passe faible" | trans }}"
+                                     data-normal="{{ "admin_user#Mot de passe normal" | trans }}"
+                                     data-strong="{{ "admin_user#Mot de passe fort" | trans }}"
+                                     role="progressbar" style="width: 0%;">
+                                </div>
+                            </div>
+
+                            {{ form_row(form.password_2, {"id" : "password_1"}) }}
+
+                            <span class="text-muted">{{ "admin_user#Laisser vide si vous ne souhaitez pas changer votre mot de passe" | trans }}</span>
+                        </div>
+                    </div>
+
+                    {{ form_end(form) }}
                 </div>
             </div>
         </div>
@@ -76,7 +102,8 @@
 
     <script>
         $( document ).ready(function() {
-
+            User.Launch();
+            User.CreateUpdate();
         });
     </script>
 
