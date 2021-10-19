@@ -12,6 +12,7 @@ use App\Service\Admin\UserService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserFixtures extends Fixture implements DependentFixtureInterface
@@ -34,6 +35,9 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
+        $default_avatar = 'default\img_avatar.png';
+
+        // Compte root
         $user = new User();
         $user->setEmail('admin@admin.com');
         $user->setPassword($this->passwordHarsher->hashPassword(
@@ -46,9 +50,11 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $user->setPasswordStrenght('ss');
         $user->addRolesCms($this->getReference(RoleFixtures::FIXTURE_ROLE_ROOT_REF));
         $user->setIsDisabled(false);
+        $user->setAvatar($default_avatar);
         $manager->persist($user);
         $manager->flush();
 
+        // Compte user delete
         $user = new User();
         $user->setEmail('john@doe.com');
         $user->setPassword($this->passwordHarsher->hashPassword(
@@ -59,8 +65,25 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $user->setPublicationName('John Doe');
         $user->setSurname('Doe');
         $user->setPasswordStrenght('<span class="badge bg-success">?</span>');
-        //$user->addRolesCms($this->getReference(RoleFixtures::FIXTURE_ROLE_ROOT_REF));
         $user->setIsDisabled(true);
+        $user->setAvatar($default_avatar);
+        $manager->persist($user);
+        $manager->flush();
+
+        // Compte admin
+        $user = new User();
+        $user->setEmail('counteraccro@gmail.com');
+        $user->setPassword($this->passwordHarsher->hashPassword(
+            $user,
+            'counteraccro@gmail.com'
+        ));
+        $user->setName('Counter');
+        $user->setPublicationName('Counteraccro');
+        $user->setSurname('Accro');
+        $user->setPasswordStrenght('<span class="badge bg-success">?</span>');
+        $user->addRolesCms($this->getReference(RoleFixtures::FIXTURE_ROLE_ADM_REF));
+        $user->setIsDisabled(false);
+        $user->setAvatar($default_avatar);
         $manager->persist($user);
         $manager->flush();
     }

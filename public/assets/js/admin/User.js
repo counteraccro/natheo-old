@@ -21,26 +21,25 @@ User.Launch = function () {
         System.Ajax(url, id, true, str_loading);
     };
 
-    User.CreateUpdate = function() {
+    User.CreateUpdate = function () {
         User.createUpdateId = '#admin-create-update-user';
 
         /**
          * Event sur le champs password 1
          */
-        $(User.createUpdateId + " #password_1").keyup(function() {
+        $(User.createUpdateId + " #password_1").keyup(function () {
             User.checkStrengthPassword($(this).val());
         });
 
         /**
          * Génération d'un mot de passe aléatoire
          */
-        $(User.createUpdateId + " #generate-password").click(function() {
+        $(User.createUpdateId + " #generate-password").click(function () {
 
             pass = System.GeneratePassword();
             $(User.createUpdateId + " #password_1").val(pass);
             User.checkStrengthPassword(pass)
             $(User.createUpdateId + " #password_2").val(pass);
-
             return false;
 
         });
@@ -48,13 +47,11 @@ User.Launch = function () {
         /**
          * Affiche ou masque le mot de passe
          */
-        $(User.createUpdateId + " #show-password").click(function() {
-            if($(User.createUpdateId + " #password_1").attr('type') === "password")
-            {
+        $(User.createUpdateId + " #show-password").click(function () {
+            if ($(User.createUpdateId + " #password_1").attr('type') === "password") {
                 $(User.createUpdateId + " #password_1").attr('type', 'text');
                 $(this).children().removeClass('fa-eye').addClass('fa-eye-slash');
-            }
-            else {
+            } else {
                 $(User.createUpdateId + " #password_1").attr('type', 'password');
                 $(this).children().removeClass('fa-eye-slash').addClass('fa-eye');
             }
