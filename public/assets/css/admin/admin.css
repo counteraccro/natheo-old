@@ -50,3 +50,11 @@
     font-weight:bold;
     color: var(--text-primary);
 }
+
+/**
+CSS createUpdate user
+ */
+
+#admin-create-update-user #show-password {
+    cursor: pointer;
+}

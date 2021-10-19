@@ -34,12 +34,19 @@
                         </tr>
                         <tr>
                             <td> {{ "admin_user#Dernière connexion" | trans }}</td>
-                            <td> {{ user.lastLogin | dateFormat(dateFormat, timeFormat) }}</td>
+                            <td>
+                                {% if(user.lastLogin != null) %}
+                                    {{ user.lastLogin | dateFormat(dateFormat, timeFormat) }}
+                                {% endif %}
+                            </td>
                         </tr>
                         <tr>
-                            <td> {{ "admin_user#Dernier changemen de mot de passe" | trans }}</td>
-                            <td> {{ user.lastPasswordUpdae | dateFormat(dateFormat, timeFormat) }} <br />
-                                {{ "admin_user#Force du mot de passe : " }} {{ user.passwordStrenght | raw }}
+                            <td> {{ "admin_user#Dernier changement de mot de passe" | trans }}</td>
+                            <td>
+                                {% if(user.lastPasswordUpdae != null) %}
+                                    {{ user.lastPasswordUpdae | dateFormat(dateFormat, timeFormat) }} <br />
+                                    {{ "admin_user#Force du mot de passe" | trans }} {{ user.passwordStrenght | raw }}
+                                {% endif %}
                             </td>
                         </tr>
                     </table>
@@ -62,9 +69,18 @@
 
                     <div class="card border-primary mb-2">
                         <div class="card-body">
+                            <a href="#" id="generate-password" class="mb-2 float-end">{{ "admin_user#Mot de passe aléatoire" | trans }}</a>
                             <h5 class="card-title"> {{ "admin_user#Mot de passe" | trans }}</h5>
 
-                            {{ form_row(form.password_1, {"id" : "password_1"}) }}
+
+                            <div class="mb-3">
+                                {{ form_label(form.password_1) }}
+                                <div class="input-group">
+                                    {{ form_widget(form.password_1, {"id" : "password_1"}) }}
+                                    <span class="input-group-text" id="show-password"><i class="fa fa-eye"></i></span>
+                                </div>
+                            </div>
+
                             <div class="progress mb-4">
                                 <div class="progress-bar bg-success" id="strength-password-info"
                                      data-weak="{{ "admin_user#Mot de passe faible" | trans }}"
@@ -74,7 +90,7 @@
                                 </div>
                             </div>
 
-                            {{ form_row(form.password_2, {"id" : "password_1"}) }}
+                            {{ form_row(form.password_2, {"id" : "password_2"}) }}
 
                             <span class="text-muted">{{ "admin_user#Laisser vide si vous ne souhaitez pas changer votre mot de passe" | trans }}</span>
                         </div>

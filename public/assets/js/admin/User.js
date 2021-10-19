@@ -23,8 +23,49 @@ User.Launch = function () {
 
     User.CreateUpdate = function() {
         User.createUpdateId = '#admin-create-update-user';
+
+        /**
+         * Event sur le champs password 1
+         */
         $(User.createUpdateId + " #password_1").keyup(function() {
             User.checkStrengthPassword($(this).val());
+        });
+
+        /**
+         * Génération d'un mot de passe aléatoire
+         */
+        $(User.createUpdateId + " #generate-password").click(function() {
+
+            const alpha = 'abcdefghijklmnopqrstuvwxyz';
+            const calpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const num = '1234567890';
+            const specials = ',.!@#$%^&*';
+            const options = [alpha, alpha, alpha, specials, calpha, calpha, num, num, specials, alpha, calpha, num];
+            let opt, choose;
+            let pass = "";
+            for ( let i = 0; i < 12; i++ ) {
+                opt = Math.floor(Math.random() * options.length);
+                choose = Math.floor(Math.random() * (options[opt].length));
+                pass = pass + options[opt][choose];
+                options.splice(opt, 1);
+            }
+            $(User.createUpdateId + " #password_1").val(pass);
+            User.checkStrengthPassword(pass)
+            $(User.createUpdateId + " #password_2").val(pass);
+            return false;
+
+        });
+
+        $(User.createUpdateId + " #show-password").click(function() {
+            if($(User.createUpdateId + " #password_1").attr('type') === "password")
+            {
+                $(User.createUpdateId + " #password_1").attr('type', 'text');
+                $(this).children().removeClass('fa-eye').addClass('fa-eye-slash');
+            }
+            else {
+                $(User.createUpdateId + " #password_1").attr('type', 'password');
+                $(this).children().removeClass('fa-eye-slash').addClass('fa-eye');
+            }
         })
     }
 

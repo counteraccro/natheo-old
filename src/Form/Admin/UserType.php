@@ -29,10 +29,12 @@ class UserType extends AppType
             ->add('password_1', PasswordType::class, [
                 'label' => $this->translator->trans('admin_user#Mot de passe'),
                 'mapped' => false,
+                'required' => false
             ])
             ->add('password_2', PasswordType::class, [
                 'label' => $this->translator->trans('admin_user#Confirmation du mot de passe'),
                 'mapped' => false,
+                'required' => false
             ])
             ->add('name', TextType::class, [
                 'label' => $this->translator->trans('admin_user#Votre nom'),

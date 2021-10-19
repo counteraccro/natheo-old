@@ -58,28 +58,152 @@
 'admin_system#Supprime une donnée de type {data}': '__Supprime une donnée de type {data}'
 'admin_system#Route sans description': '__Route sans description'
 'admin_fixture#Jeu de données': '__Jeu de données'
-'admin_global_option#Si vous fermé le front, l''administration restera toujours accessible.': '__Si vous fermé le front, l''administration restera toujours accessible.'
-'admin_global_option#Changer le theme de l''administraton': '__Changer le theme de l''administraton'
-'admin_global_option#purple': __purple
-'admin_global_option#red': __red
-'admin_global_option#pink': __pink
 'admin_dashboard#Dashboard': __Dashboard
 'admin_global_option#Options globales': '__Options globales'
+'admin_global_option#Option mise à jour avec succès': '__Option mise à jour avec succès'
+'admin_global_option#Une erreur interne est survenue': '__Une erreur interne est survenue'
+'admin_role#Nom': __Nom
+'admin_role#Label': __Label
+'admin_role#Label court': '__Label court'
+'admin_role#Créer un rôle': '__Créer un rôle'
+'admin_role#Rôle créé avec succès': '__Rôle créé avec succès'
+'admin_role#Edition du rôle ': '__Edition du rôle '
+'admin_role#Rôle édité avec succès': '__Rôle édité avec succès'
+'admin_role#Rôle supprimé avec succès': '__Rôle supprimé avec succès'
 'admin_route#Gestion des routes': '__Gestion des routes'
-'admin_translation#Gestion des traductions': '__Gestion des traductions'
-'admin_pagination#Bock pagination': '__Bock pagination'
-'admin_pagination#Chargement des données...': '__Chargement des données...'
-'admin_pagination#Précédent': __Précédent
-'admin_pagination#Suivant': __Suivant
 'admin_route#Route': __Route
 'admin_route#Module': __Module
+'admin_system#Debug System': '__Debug System'
+'admin_translation#Gestion des traductions': '__Gestion des traductions'
+'admin_translation#Les traductions sont à jour': '__Les traductions sont à jour'
+'admin_translation#Les traductions ne sont plus à jour vis à vis de la base de données, Vous devez régénérer les traductions depuis la base de données': '__Les traductions ne sont plus à jour vis à vis de la base de données, Vous devez régénérer les traductions depuis la base de données'
+'admin_user#Gestion des utilisateurs': '__Gestion des utilisateurs'
+'admin_user#Email': __Email
+'admin_user#Créer un utilisateur': '__Créer un utilisateur'
+'admin_user#Utilisateur créé avec succès': '__Utilisateur créé avec succès'
+'admin_user#Edition de l''utilisateur ': '__Edition de l''utilisateur '
+'admin_user#Utilisateur édité avec succès': '__Utilisateur édité avec succès'
+'admin_role#Nom du rôle': '__Nom du rôle'
+'admin_role#Le nom du rôle doit être unique': '__Le nom du rôle doit être unique'
+'admin_role#Nom court du rôle': '__Nom court du rôle'
+'admin_role#Permet de facilité l''identification du rôle': '__Permet de facilité l''identification du rôle'
+'admin_role#Description du rôle': '__Description du rôle'
+'admin_role#Information sur le rôle': '__Information sur le rôle'
+'admin_role#Couleur du rôle': '__Couleur du rôle'
+'admin_role#Autoriser la mise à jour des droits lors de la mise à jour de l''application': '__Autoriser la mise à jour des droits lors de la mise à jour de l''application'
+'admin_role#Permet de mettre à jour de façon automatique les nouvelles routes ajoutés pour chaque module.': '__Permet de mettre à jour de façon automatique les nouvelles routes ajoutés pour chaque module.'
+'admin_role#Attention, cela mettra à jour l''ensemble des routes d''un module même si à la base toutes les routes ne sont pas sélectionnées': '__Attention, cela mettra à jour l''ensemble des routes d''un module même si à la base toutes les routes ne sont pas sélectionnées'
+'admin_role#Valider': __Valider
+'admin_user#L''Email doit être unique': '__L''Email doit être unique'
+'admin_user#Mot de passe': '__Mot de passe'
+'admin_user#Confirmation du mot de passe': '__Confirmation du mot de passe'
+'admin_user#Votre nom': '__Votre nom'
+'admin_user#Votre prénom': '__Votre prénom'
+'admin_user#Votre nom de publication': '__Votre nom de publication'
+'admin_user#Votre avatar': '__Votre avatar'
+'admin_user#Extension autorisées : GIF, PNG, JPEG - taille maximal 1024 ko': '__Extension autorisées : GIF, PNG, JPEG - taille maximal 1024 ko'
+'admin_user#Extension autorisées : GIF, PNG, JPEG': '__Extension autorisées : GIF, PNG, JPEG'
+'admin_user#Désactiver cet utilisateur': '__Désactiver cet utilisateur'
+'admin_user#Valider': __Valider
+'admin_system#APP_ENV=DEV détecté': '__APP_ENV=DEV détecté'
+'admin_translation#': __
+'admin_topmenu#Mon compte': '__Mon compte'
+'admin_topmenu#Mes notifications': '__Mes notifications'
+'front_auth#Déconnexion': __Déconnexion
+'admin_role#Ce rôle n''a aucun droit': '__Ce rôle n''a aucun droit'
+'admin_system#Mise à jour réussi': '__Mise à jour réussi'
+'admin_system#Valider': __Valider
+'admin_system#Annuler': __Annuler
+'admin_system#Rechercher': __Rechercher
+'admin_system#Rechercher sur le champ ': '__Rechercher sur le champ '
+'admin_system#Recherche...': __Recherche...
+'admin_system#Rechercher sur tout': '__Rechercher sur tout'
+'admin_pagination#Bock pagination': '__Bock pagination'
+'admin_pagination#Chargement des données...': '__Chargement des données...'
+'admin_pagination#Elements': __Elements
+'admin_pagination#Par page': '__Par page'
+'admin_pagination#Précédent': __Précédent
+'admin_pagination#Suivant': __Suivant
+'admin_translation#Vous devez cocher au moins une langue pour effectuer une recherche': '__Vous devez cocher au moins une langue pour effectuer une recherche'
+'admin_translation#Application': __Application
+'admin_translation#Module': __Module
+'admin_translation#Langue': __Langue
+'admin_translation#Rechercher par clé': '__Rechercher par clé'
+'admin_translation#Rechercher un traduction par sa clée': '__Rechercher un traduction par sa clée'
+'admin_translation#Rechercher par label': '__Rechercher par label'
+'admin_translation#Rechercher un traduction par son label': '__Rechercher un traduction par son label'
+'admin_translation#Tout': __Tout
+'admin_global_option#Sauvegarde en cours...': '__Sauvegarde en cours...'
+'admin_role#Module': __Module
+'admin_role#Action': __Action
+'admin_role#Editer': __Editer
+'admin_role#Attention cette action est définitive ! Êtes vous sur ?': '__Attention cette action est définitive ! Êtes vous sur ?'
+'admin_role#Supprimer': __Supprimer
+'admin_role#Rendu': __Rendu
+'admin_role#Les champs marqués d''une * sont obligatoires': '__Les champs marqués d''une * sont obligatoires'
+'admin_role#Attribution des droits': '__Attribution des droits'
+'admin_role#Ajouter un role': '__Ajouter un role'
+'admin_role#Chargement des données...': '__Chargement des données...'
+'admin_route#Label': __Label
 'admin_route#Action': __Action
+'admin_route#Cette route est dépréciée, vous pouvez la supprimer': '__Cette route est dépréciée, vous pouvez la supprimer'
+'admin_route#Supression de la route...': '__Supression de la route...'
+'admin_route#La route à été supprimée avec succès': '__La route à été supprimée avec succès'
 'admin_route#Routes': __Routes
 'admin_route#route(s) détectée(s) comme obsolète(s)': '__route(s) détectée(s) comme obsolète(s)'
+'admin_route#Purge des routes dépréciées en cours...': '__Purge des routes dépréciées en cours...'
+'admin_route#La purge à été effectuée avec succès': '__La purge à été effectuée avec succès'
 'admin_route#Purger': __Purger
+'admin_route#Mise à jour des routes...': '__Mise à jour des routes...'
 'admin_route#Mise à jour des routes': '__Mise à jour des routes'
-'admin_route#Rechercher': __Rechercher
 'admin_route#Chargement des données...': '__Chargement des données...'
+'admin_system#Warning Zone': '__Warning Zone'
+'admin_system#Attention, les manipulations faites ici peuvent endomager votre site': '__Attention, les manipulations faites ici peuvent endomager votre site'
+'admin_system#Si vous avez des traductions qui ne change pas malgré la régénération des données, des données qui semble statiques alors que cela ne devrais pas être le cas, videz le cache': '__Si vous avez des traductions qui ne change pas malgré la régénération des données, des données qui semble statiques alors que cela ne devrais pas être le cas, videz le cache'
+'admin_system#Vider le cache applicatif': '__Vider le cache applicatif'
+'admin_system#Vider le cache SQL': '__Vider le cache SQL'
+'admin_system#Dans le cas ou une ou plusieurs valeurs d''options posent problème vous pouvez réinitialiser l''ensemble des options à leurs valeurs par défaut': '__Dans le cas ou une ou plusieurs valeurs d''options posent problème vous pouvez réinitialiser l''ensemble des options à leurs valeurs par défaut'
+'admin_system#Réinitialiser l''ensemble des options du site': '__Réinitialiser l''ensemble des options du site'
+'admin_system#Détruire toutes les sessions actives du site, vous devrez vous reconnecter après cette action': '__Détruire toutes les sessions actives du site, vous devrez vous reconnecter après cette action'
+'admin_system#Détruire toutes les sessions actives': '__Détruire toutes les sessions actives'
+'admin_system#Danger Zone': '__Danger Zone'
+'admin_system#Attention, les manipulations faites ici peuvent détruire votre site': '__Attention, les manipulations faites ici peuvent détruire votre site'
+'admin_system#Réinitialisation complète du site, toutes les données seront perdu (users, articles, tags, config, traductions) et le site sera remis en configuration avec des données génériques': '__Réinitialisation complète du site, toutes les données seront perdu (users, articles, tags, config, traductions) et le site sera remis en configuration avec des données génériques'
+'admin_system#Vous serez déconnecté et devrez vous reconnecter avec le user par défaut': '__Vous serez déconnecté et devrez vous reconnecter avec le user par défaut'
+'admin_system#Réinitialiser le site': '__Réinitialiser le site'
+'admin_system#Pour avoir accès aux options de la Danger zone vous devez modifier dans le fichier .env la ligne suivante': '__Pour avoir accès aux options de la Danger zone vous devez modifier dans le fichier .env la ligne suivante'
+'admin_system#Remplacer prod par dev pour passer en mode développement, ce qui donne': '__Remplacer prod par dev pour passer en mode développement, ce qui donne'
+'admin_system#Attention, le mode developpement ne doit pas être laissé en production et ne doit être utilisé que pour du développement ou de la correction de bugs de façon temporaire': '__Attention, le mode developpement ne doit pas être laissé en production et ne doit être utilisé que pour du développement ou de la correction de bugs de façon temporaire'
+'admin_translation#Clée': __Clée
+'admin_translation#Réinitialisation des traductions depuis le code source du site, cela peut prendre du temps...': '__Réinitialisation des traductions depuis le code source du site, cela peut prendre du temps...'
+'admin_translation#Rechargement de la page...': '__Rechargement de la page...'
+'admin_translation#Réinitialiser les traductions': '__Réinitialiser les traductions'
+'admin_translation#Reconstruction des traductions depuis la base de données, cela peut prendre du temps...': '__Reconstruction des traductions depuis la base de données, cela peut prendre du temps...'
+'admin_translation#Régénérer les traductions': '__Régénérer les traductions'
+'admin_translation#Filter les données': '__Filter les données'
+'admin_translation#Chargement des informations de traduction...': '__Chargement des informations de traduction...'
+'admin_translation#Chargement des traductions...': '__Chargement des traductions...'
+'admin_user#Nom Prenom': '__Nom Prenom'
+'admin_user#Nom de publication': '__Nom de publication'
+'admin_user#Date dernière connexion': '__Date dernière connexion'
+'admin_user#Action': __Action
+'admin_user#Editer': __Editer
+'admin_user#Attention cette action est définitive ! Êtes vous sur ?': '__Attention cette action est définitive ! Êtes vous sur ?'
+'admin_user#Supprimer': __Supprimer
+'admin_user#Résumé': __Résumé
+'admin_user#Nom': __Nom
+'admin_user#Dernière connexion': '__Dernière connexion'
+'admin_user#Dernier changement de mot de passe': '__Dernier changement de mot de passe'
+'admin_user#Force du mot de passe': '__Force du mot de passe'
+'admin_user#Information sur l''utilsateur': '__Information sur l''utilsateur'
+'admin_user#Mot de passe aléatoire': '__Mot de passe aléatoire'
+'admin_user#Mot de passe faible': '__Mot de passe faible'
+'admin_user#Mot de passe normal': '__Mot de passe normal'
+'admin_user#Mot de passe fort': '__Mot de passe fort'
+'admin_user#Laisser vide si vous ne souhaitez pas changer votre mot de passe': '__Laisser vide si vous ne souhaitez pas changer votre mot de passe'
+'admin_user#Attribution des rôles': '__Attribution des rôles'
+'admin_user#Ajouter un utilisateur': '__Ajouter un utilisateur'
+'admin_user#Chargement des données...': '__Chargement des données...'
 'front_auth#Authentification demandée': '__Authentification demandée'
 'front_auth#Vous êtes connecté en tant que': '__Vous êtes connecté en tant que'
 'front_auth#Déconnection': __Déconnection
@@ -88,148 +212,3 @@
 'front_auth#Mot de passe': '__Mot de passe'
 'front_auth#Ce souvenir de moi': '__Ce souvenir de moi'
 'front_auth#Me connecter': '__Me connecter'
-'admin_translation#Application': __Application
-'admin_translation#Module': __Module
-'admin_translation#Langue': __Langue
-'admin_translation#Rechercher par clé': '__Rechercher par clé'
-'admin_translation#Rechercher un traduction par sa clée': '__Rechercher un traduction par sa clée'
-'admin_translation#Rechercher par label': '__Rechercher par label'
-'admin_translation#Rechercher un traduction par son label': '__Rechercher un traduction par son label'
-'admin_translation#': __
-'admin_translation#Clée': __Clée
-'admin_translation#Régénération des traductions, cela peut prendre du temps...': '__Régénération des traductions, cela peut prendre du temps...'
-'admin_translation#Réinitialiser les traductions': '__Réinitialiser les traductions'
-'admin_translation#Régénérer les traductions': '__Régénérer les traductions'
-'admin_translation#Filter les données': '__Filter les données'
-'admin_translation#Chargement des traductions...': '__Chargement des traductions...'
-'admin_translation#Rechargement de la page...': '__Rechargement de la page...'
-'admin_translation#Traductions': __Traductions
-'admin_translation#Reconstruction des traductions depuis la base de données, cela peut prendre du temps...': '__Reconstruction des traductions depuis la base de données, cela peut prendre du temps...'
-'admin_translation#Vous devez cocher au moins une langue pour effectuer une recherche': '__Vous devez cocher au moins une langue pour effectuer une recherche'
-'admin_translation#Tout': __Tout
-'admin_pagination#Elements': __Elements
-'admin_system#Valider': __Valider
-'admin_system#Annuler': __Annuler
-'admin_system#Mise à jour réussi': '__Mise à jour réussi'
-'admin_pagination#Par page': '__Par page'
-'admin_translation#Les traductions sont à jour': '__Les traductions sont à jour'
-'admin_translation#traduction(s) doivent être mise à jour pour être prise en compte, régénérer les traductions': '__traduction(s) doivent être mise à jour pour être prise en compte, régénérer les traductions'
-'admin_translation#Chargement des informations de traduction...': '__Chargement des informations de traduction...'
-'admin_topmenu#Mon compte': '__Mon compte'
-'admin_topmenu#Mes notifications': '__Mes notifications'
-'front_auth#Déconnexion': __Déconnexion
-'admin_translation#Les traductions ne sont plus à jour vis à vis de la base de données, Vous devez régénérer les traductions depuis la base de données': '__Les traductions ne sont plus à jour vis à vis de la base de données, Vous devez régénérer les traductions depuis la base de données'
-'admin_translation#Réinitialisation des traductions depuis le code source du site, cela peut prendre du temps...': '__Réinitialisation des traductions depuis le code source du site, cela peut prendre du temps...'
-'admin_global_option#Option mise à jour avec succès': '__Option mise à jour avec succès'
-'admin_global_option#Une erreur interne est survenue': '__Une erreur interne est survenue'
-'admin_global_option#Sauvegarde en cours...': '__Sauvegarde en cours...'
-'admin_system#Configuration System': '__Configuration System'
-'admin_system#Warning Zone': '__Warning Zone'
-'admin_system#Attention, les manipulations faites ici peuvent endomager votre site': '__Attention, les manipulations faites ici peuvent endomager votre site'
-'admin_system#Si vous avez des traductions qui ne change pas malgré la régénération des données, des données qui semble statiques alors que cela ne devrais pas être le cas, videz le cache': '__Si vous avez des traductions qui ne change pas malgré la régénération des données, des données qui semble statiques alors que cela ne devrais pas être le cas, videz le cache'
-'admin_system#Danger Zone': '__Danger Zone'
-'admin_system#Attention, les manipulations faites ici peuvent détruire votre site': '__Attention, les manipulations faites ici peuvent détruire votre site'
-'admin_system#Vider le cache applicatif': '__Vider le cache applicatif'
-'admin_system#Vider le cache SQL': '__Vider le cache SQL'
-'admin_system#Dans le cas ou une ou plusieurs valeurs d''options posent problème vous pouvez réinitialiser l''ensemble des options à leurs valeurs par défaut': '__Dans le cas ou une ou plusieurs valeurs d''options posent problème vous pouvez réinitialiser l''ensemble des options à leurs valeurs par défaut'
-'admin_system#Réinitialiser l''ensemble des options du site': '__Réinitialiser l''ensemble des options du site'
-'admin_system#APP_ENV=DEV détecté': '__APP_ENV=DEV détecté'
-'admin_system#Pour avoir accès aux options de la Danger zone vous devez modifier dans le fichier .env la ligne suivante': '__Pour avoir accès aux options de la Danger zone vous devez modifier dans le fichier .env la ligne suivante'
-'admin_system#Remplacer prod par dev pour passer en mode développement, ce qui donne': '__Remplacer prod par dev pour passer en mode développement, ce qui donne'
-'admin_system#Attention, le mode developpement ne doit pas être laissé en production et ne doit être utilisé que pour du développement ou de la correction de bugs de façon temporaire': '__Attention, le mode developpement ne doit pas être laissé en production et ne doit être utilisé que pour du développement ou de la correction de bugs de façon temporaire'
-'admin_system#Détruire toutes les sessions actives du site, vous devrez vous reconnecter après cette action': '__Détruire toutes les sessions actives du site, vous devrez vous reconnecter après cette action'
-'admin_system#Détruire toutes les sessions actives': '__Détruire toutes les sessions actives'
-'admin_system#Réinitialisation complète du site, toutes les données seront perdu (users, articles, tags, config, traductions) et le site sera remis en configuration avec des données génériques': '__Réinitialisation complète du site, toutes les données seront perdu (users, articles, tags, config, traductions) et le site sera remis en configuration avec des données génériques'
-'admin_system#Vous serez déconnecté et devrez vous reconnecter avec le user par défaut': '__Vous serez déconnecté et devrez vous reconnecter avec le user par défaut'
-'admin_system#Réinitialiser le site': '__Réinitialiser le site'
-'admin_system#Debug System': '__Debug System'
-'admin_system#Recherche...': __Recherche...
-'admin_system#Rechercher': __Rechercher
-'admin_system#Annuler la recherche': '__Annuler la recherche'
-'admin_system#Rechercher sur le champ ': '__Rechercher sur le champ '
-'admin_system#Rechercher sur tout': '__Rechercher sur tout'
-'admin_route#Cette route est dépréciée, vous pouvez la supprimer': '__Cette route est dépréciée, vous pouvez la supprimer'
-'admin_route#Supression de la route...': '__Supression de la route...'
-'admin_route#La route à été supprimée avec succès': '__La route à été supprimée avec succès'
-'admin_route#Purge des routes dépréciées en cours...': '__Purge des routes dépréciées en cours...'
-'admin_route#La purge à été effectuée avec succès': '__La purge à été effectuée avec succès'
-'admin_route#Mise à jour des routes...': '__Mise à jour des routes...'
-'admin_role#Nom': __Nom
-'admin_role#Label': __Label
-'admin_role#Label court': '__Label court'
-'admin_role#Action': __Action
-'admin_role#Ajouter un role': '__Ajouter un role'
-'admin_role#Chargement des données...': '__Chargement des données...'
-'admin_role#Créer un rôle': '__Créer un rôle'
-'admin_role#Editer le rôle ': '__Editer le rôle '
-'admin_role#Nom du rôle': '__Nom du rôle'
-'admin_role#Information sur le role': '__Information sur le role'
-'admin_role#Attribution des droits': '__Attribution des droits'
-'admin_role#Le nom du rôle doit être unique': '__Le nom du rôle doit être unique'
-'admin_role#Nom court du rôle': '__Nom court du rôle'
-'admin_role#Permet de facilité l''identification du role': '__Permet de facilité l''identification du role'
-'admin_role#Description du rôle': '__Description du rôle'
-'admin_role#Couleur du role': '__Couleur du role'
-'admin_role#Permet de facilité l''identification du rôle': '__Permet de facilité l''identification du rôle'
-'admin_role#Information sur le rôle': '__Information sur le rôle'
-'admin_role#Couleur du rôle': '__Couleur du rôle'
-'admin_role#Valider': __Valider
-'admin_role#Rendu': __Rendu
-'admin_system#Point d''entrée du module {module}': '__Point d''entrée du module {module}'
-'admin_route#Label': __Label
-'admin_role#Rôle créé avec succès': '__Rôle créé avec succès'
-'admin_role#Edition du rôle ': '__Edition du rôle '
-'admin_role#Rôle édité avec succès': '__Rôle édité avec succès'
-'admin_role#Autoriser la mise à jour des droits lors de la mise à jour de l''application': '__Autoriser la mise à jour des droits lors de la mise à jour de l''application'
-'admin_role#Module': __Module
-'admin_role#Editer': __Editer
-'admin_role#Supprimer': __Supprimer
-'admin_role#Les champs marqués d''une * sont obligatoire': '__Les champs marqués d''une * sont obligatoire'
-'admin_role#Permet de mettre à jour de façon automatique les nouvelles routes ajoutés pour chaque module': '__Permet de mettre à jour de façon automatique les nouvelles routes ajoutés pour chaque module'
-'admin_role#Attention, ne fonctionne que lorsque l''ensemble des routes sont cochées pour un module': '__Attention, ne fonctionne que lorsque l''ensemble des routes sont cochées pour un module'
-'admin_role#Les champs marqués d''une * sont obligatoires': '__Les champs marqués d''une * sont obligatoires'
-'admin_role#Permet de mettre à jour de façon automatique les nouvelles routes ajoutés pour chaque module.': '__Permet de mettre à jour de façon automatique les nouvelles routes ajoutés pour chaque module.'
-'admin_role#Rôle supprimé avec succès': '__Rôle supprimé avec succès'
-'admin_role#Attention, cela mettra à jour l''ensemble des routes d''un module même si à la base toutes les routes ne sont pas sélectionnées': '__Attention, cela mettra à jour l''ensemble des routes d''un module même si à la base toutes les routes ne sont pas sélectionnées'
-'admin_role#Ce rôle n''a aucun droit': '__Ce rôle n''a aucun droit'
-'admin_role#Attention cette action est définitive ! Êtes vous sur ?': '__Attention cette action est définitive ! Êtes vous sur ?'
-'admin_user#Gestion des utilisateurs': '__Gestion des utilisateurs'
-'admin_user#Email': __Email
-'admin_user#Ajouter un utilisateur': '__Ajouter un utilisateur'
-'admin_user#Nom Prenom': '__Nom Prenom'
-'admin_user#Nom de publication': '__Nom de publication'
-'admin_user#Date dernière connexion': '__Date dernière connexion'
-'admin_user#Action': __Action
-'admin_user#Editer': __Editer
-'admin_user#Attention cette action est définitive ! Êtes vous sur ?': '__Attention cette action est définitive ! Êtes vous sur ?'
-'admin_user#Supprimer': __Supprimer
-'admin_user#Chargement des données...': '__Chargement des données...'
-'admin_user#Créer un utilisateur': '__Créer un utilisateur'
-'admin_user#Utilisateur créé avec succès': '__Utilisateur créé avec succès'
-'admin_user#Edition de l''utilisateur ': '__Edition de l''utilisateur '
-'admin_user#Utilisateur édité avec succès': '__Utilisateur édité avec succès'
-'admin_user#Information sur l''utilsateur': '__Information sur l''utilsateur'
-'admin_user#Attribution des rôles': '__Attribution des rôles'
-'admin_user#Résumé': __Résumé
-'admin_user#Nom': __Nom
-'admin_user#Dernière connexion': '__Dernière connexion'
-'admin_user#Dernier changemen de mot de passe': '__Dernier changemen de mot de passe'
-'admin_user#Votre avatar': '__Votre avatar'
-'admin_user#Extension autorisées : GIF, PNG, JPEG - taille maximal 1024 ko': '__Extension autorisées : GIF, PNG, JPEG - taille maximal 1024 ko'
-'admin_user#Extension autorisées : GIF, PNG, JPEG': '__Extension autorisées : GIF, PNG, JPEG'
-'admin_user#Valider': __Valider
-'admin_user#L''Email doit être unique': '__L''Email doit être unique'
-'admin_user#Mot de passe': '__Mot de passe'
-'admin_user#Confirmation du mot de passe': '__Confirmation du mot de passe'
-'admin_user#Votre nom': '__Votre nom'
-'admin_user#Votre prénom': '__Votre prénom'
-'admin_user#Votre nom de publication': '__Votre nom de publication'
-'admin_user#Désactiver cet utilisateur': '__Désactiver cet utilisateur'
-'admin_user#Force du mot de passe': '__Force du mot de passe'
-'admin_user#Votre mot de passe est considéré comme faible': '__Votre mot de passe est considéré comme faible'
-'admin_user#Votre mot de passe est considéré comme normal': '__Votre mot de passe est considéré comme normal'
-'admin_user#Votre mot de passe est considéré comme fort': '__Votre mot de passe est considéré comme fort'
-'admin_user#Laisser vide si vous ne souhaitez pas changer votre mot de passe': '__Laisser vide si vous ne souhaitez pas changer votre mot de passe'
-'admin_user#Mot de passe faible': '__Mot de passe faible'
-'admin_user#Mot de passe normal': '__Mot de passe normal'
-'admin_user#Mot de passe fort': '__Mot de passe fort'

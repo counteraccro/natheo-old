@@ -58,28 +58,152 @@
 'admin_system#Supprime une donnée de type {data}': 'Supprime une donnée de type {data}'
 'admin_system#Route sans description': 'Route sans description'
 'admin_fixture#Jeu de données': 'Jeu de données'
-'admin_global_option#Si vous fermé le front, l''administration restera toujours accessible.': 'Si vous fermé le front, l''administration restera toujours accessible.'
-'admin_global_option#Changer le theme de l''administraton': 'Changer le theme de l''administraton'
-'admin_global_option#purple': purple
-'admin_global_option#red': red
-'admin_global_option#pink': pink
 'admin_dashboard#Dashboard': Dashboard
 'admin_global_option#Options globales': 'Options globales'
+'admin_global_option#Option mise à jour avec succès': 'Option mise à jour avec succès'
+'admin_global_option#Une erreur interne est survenue': 'Une erreur interne est survenue'
+'admin_role#Nom': Nom
+'admin_role#Label': Label
+'admin_role#Label court': 'Label court'
+'admin_role#Créer un rôle': 'Créer un rôle'
+'admin_role#Rôle créé avec succès': 'Rôle créé avec succès'
+'admin_role#Edition du rôle ': 'Edition du rôle '
+'admin_role#Rôle édité avec succès': 'Rôle édité avec succès'
+'admin_role#Rôle supprimé avec succès': 'Rôle supprimé avec succès'
 'admin_route#Gestion des routes': 'Gestion des routes'
-'admin_translation#Gestion des traductions': 'Gestion des traductions'
-'admin_pagination#Bock pagination': 'Bock pagination'
-'admin_pagination#Chargement des données...': 'Chargement des données...'
-'admin_pagination#Précédent': Précédent
-'admin_pagination#Suivant': Suivant
 'admin_route#Route': Route
 'admin_route#Module': Module
+'admin_system#Debug System': 'Debug System'
+'admin_translation#Gestion des traductions': 'Gestion des traductions'
+'admin_translation#Les traductions sont à jour': 'Les traductions sont à jour'
+'admin_translation#Les traductions ne sont plus à jour vis à vis de la base de données, Vous devez régénérer les traductions depuis la base de données': 'Les traductions ne sont plus à jour vis à vis de la base de données, Vous devez régénérer les traductions depuis la base de données'
+'admin_user#Gestion des utilisateurs': 'Gestion des utilisateurs'
+'admin_user#Email': Email
+'admin_user#Créer un utilisateur': 'Créer un utilisateur'
+'admin_user#Utilisateur créé avec succès': 'Utilisateur créé avec succès'
+'admin_user#Edition de l''utilisateur ': 'Edition de l''utilisateur '
+'admin_user#Utilisateur édité avec succès': 'Utilisateur édité avec succès'
+'admin_role#Nom du rôle': 'Nom du rôle'
+'admin_role#Le nom du rôle doit être unique': 'Le nom du rôle doit être unique'
+'admin_role#Nom court du rôle': 'Nom court du rôle'
+'admin_role#Permet de facilité l''identification du rôle': 'Permet de facilité l''identification du rôle'
+'admin_role#Description du rôle': 'Description du rôle'
+'admin_role#Information sur le rôle': 'Information sur le rôle'
+'admin_role#Couleur du rôle': 'Couleur du rôle'
+'admin_role#Autoriser la mise à jour des droits lors de la mise à jour de l''application': 'Autoriser la mise à jour des droits lors de la mise à jour de l''application'
+'admin_role#Permet de mettre à jour de façon automatique les nouvelles routes ajoutés pour chaque module.': 'Permet de mettre à jour de façon automatique les nouvelles routes ajoutés pour chaque module.'
+'admin_role#Attention, cela mettra à jour l''ensemble des routes d''un module même si à la base toutes les routes ne sont pas sélectionnées': 'Attention, cela mettra à jour l''ensemble des routes d''un module même si à la base toutes les routes ne sont pas sélectionnées'
+'admin_role#Valider': Valider
+'admin_user#L''Email doit être unique': 'L''Email doit être unique'
+'admin_user#Mot de passe': 'Mot de passe'
+'admin_user#Confirmation du mot de passe': 'Confirmation du mot de passe'
+'admin_user#Votre nom': 'Votre nom'
+'admin_user#Votre prénom': 'Votre prénom'
+'admin_user#Votre nom de publication': 'Votre nom de publication'
+'admin_user#Votre avatar': 'Votre avatar'
+'admin_user#Extension autorisées : GIF, PNG, JPEG - taille maximal 1024 ko': 'Extension autorisées : GIF, PNG, JPEG - taille maximal 1024 ko'
+'admin_user#Extension autorisées : GIF, PNG, JPEG': 'Extension autorisées : GIF, PNG, JPEG'
+'admin_user#Désactiver cet utilisateur': 'Désactiver cet utilisateur'
+'admin_user#Valider': Valider
+'admin_system#APP_ENV=DEV détecté': 'APP_ENV=DEV détecté'
+'admin_translation#': ''
+'admin_topmenu#Mon compte': 'Mon compte'
+'admin_topmenu#Mes notifications': 'Mes notifications'
+'front_auth#Déconnexion': Déconnexion
+'admin_role#Ce rôle n''a aucun droit': 'Ce rôle n''a aucun droit'
+'admin_system#Mise à jour réussi': 'Mise à jour réussi'
+'admin_system#Valider': Valider
+'admin_system#Annuler': Annuler
+'admin_system#Rechercher': Rechercher
+'admin_system#Rechercher sur le champ ': 'Rechercher sur le champ '
+'admin_system#Recherche...': Recherche...
+'admin_system#Rechercher sur tout': 'Rechercher sur tout'
+'admin_pagination#Bock pagination': 'Bock pagination'
+'admin_pagination#Chargement des données...': 'Chargement des données...'
+'admin_pagination#Elements': Elements
+'admin_pagination#Par page': 'Par page'
+'admin_pagination#Précédent': Précédent
+'admin_pagination#Suivant': Suivant
+'admin_translation#Vous devez cocher au moins une langue pour effectuer une recherche': 'Vous devez cocher au moins une langue pour effectuer une recherche'
+'admin_translation#Application': Application
+'admin_translation#Module': Module
+'admin_translation#Langue': Langue
+'admin_translation#Rechercher par clé': 'Rechercher par clé'
+'admin_translation#Rechercher un traduction par sa clée': 'Rechercher un traduction par sa clée'
+'admin_translation#Rechercher par label': 'Rechercher par label'
+'admin_translation#Rechercher un traduction par son label': 'Rechercher un traduction par son label'
+'admin_translation#Tout': Tout
+'admin_global_option#Sauvegarde en cours...': 'Sauvegarde en cours...'
+'admin_role#Module': Module
+'admin_role#Action': Action
+'admin_role#Editer': Editer
+'admin_role#Attention cette action est définitive ! Êtes vous sur ?': 'Attention cette action est définitive ! Êtes vous sur ?'
+'admin_role#Supprimer': Supprimer
+'admin_role#Rendu': Rendu
+'admin_role#Les champs marqués d''une * sont obligatoires': 'Les champs marqués d''une * sont obligatoires'
+'admin_role#Attribution des droits': 'Attribution des droits'
+'admin_role#Ajouter un role': 'Ajouter un role'
+'admin_role#Chargement des données...': 'Chargement des données...'
+'admin_route#Label': Label
 'admin_route#Action': Action
+'admin_route#Cette route est dépréciée, vous pouvez la supprimer': 'Cette route est dépréciée, vous pouvez la supprimer'
+'admin_route#Supression de la route...': 'Supression de la route...'
+'admin_route#La route à été supprimée avec succès': 'La route à été supprimée avec succès'
 'admin_route#Routes': Routes
 'admin_route#route(s) détectée(s) comme obsolète(s)': 'route(s) détectée(s) comme obsolète(s)'
+'admin_route#Purge des routes dépréciées en cours...': 'Purge des routes dépréciées en cours...'
+'admin_route#La purge à été effectuée avec succès': 'La purge à été effectuée avec succès'
 'admin_route#Purger': Purger
+'admin_route#Mise à jour des routes...': 'Mise à jour des routes...'
 'admin_route#Mise à jour des routes': 'Mise à jour des routes'
-'admin_route#Rechercher': Rechercher
 'admin_route#Chargement des données...': 'Chargement des données...'
+'admin_system#Warning Zone': 'Warning Zone'
+'admin_system#Attention, les manipulations faites ici peuvent endomager votre site': 'Attention, les manipulations faites ici peuvent endomager votre site'
+'admin_system#Si vous avez des traductions qui ne change pas malgré la régénération des données, des données qui semble statiques alors que cela ne devrais pas être le cas, videz le cache': 'Si vous avez des traductions qui ne change pas malgré la régénération des données, des données qui semble statiques alors que cela ne devrais pas être le cas, videz le cache'
+'admin_system#Vider le cache applicatif': 'Vider le cache applicatif'
+'admin_system#Vider le cache SQL': 'Vider le cache SQL'
+'admin_system#Dans le cas ou une ou plusieurs valeurs d''options posent problème vous pouvez réinitialiser l''ensemble des options à leurs valeurs par défaut': 'Dans le cas ou une ou plusieurs valeurs d''options posent problème vous pouvez réinitialiser l''ensemble des options à leurs valeurs par défaut'
+'admin_system#Réinitialiser l''ensemble des options du site': 'Réinitialiser l''ensemble des options du site'
+'admin_system#Détruire toutes les sessions actives du site, vous devrez vous reconnecter après cette action': 'Détruire toutes les sessions actives du site, vous devrez vous reconnecter après cette action'
+'admin_system#Détruire toutes les sessions actives': 'Détruire toutes les sessions actives'
+'admin_system#Danger Zone': 'Danger Zone'
+'admin_system#Attention, les manipulations faites ici peuvent détruire votre site': 'Attention, les manipulations faites ici peuvent détruire votre site'
+'admin_system#Réinitialisation complète du site, toutes les données seront perdu (users, articles, tags, config, traductions) et le site sera remis en configuration avec des données génériques': 'Réinitialisation complète du site, toutes les données seront perdu (users, articles, tags, config, traductions) et le site sera remis en configuration avec des données génériques'
+'admin_system#Vous serez déconnecté et devrez vous reconnecter avec le user par défaut': 'Vous serez déconnecté et devrez vous reconnecter avec le user par défaut'
+'admin_system#Réinitialiser le site': 'Réinitialiser le site'
+'admin_system#Pour avoir accès aux options de la Danger zone vous devez modifier dans le fichier .env la ligne suivante': 'Pour avoir accès aux options de la Danger zone vous devez modifier dans le fichier .env la ligne suivante'
+'admin_system#Remplacer prod par dev pour passer en mode développement, ce qui donne': 'Remplacer prod par dev pour passer en mode développement, ce qui donne'
+'admin_system#Attention, le mode developpement ne doit pas être laissé en production et ne doit être utilisé que pour du développement ou de la correction de bugs de façon temporaire': 'Attention, le mode developpement ne doit pas être laissé en production et ne doit être utilisé que pour du développement ou de la correction de bugs de façon temporaire'
+'admin_translation#Clée': Clée
+'admin_translation#Réinitialisation des traductions depuis le code source du site, cela peut prendre du temps...': 'Réinitialisation des traductions depuis le code source du site, cela peut prendre du temps...'
+'admin_translation#Rechargement de la page...': 'Rechargement de la page...'
+'admin_translation#Réinitialiser les traductions': 'Réinitialiser les traductions'
+'admin_translation#Reconstruction des traductions depuis la base de données, cela peut prendre du temps...': 'Reconstruction des traductions depuis la base de données, cela peut prendre du temps...'
+'admin_translation#Régénérer les traductions': 'Régénérer les traductions'
+'admin_translation#Filter les données': 'Filter les données'
+'admin_translation#Chargement des informations de traduction...': 'Chargement des informations de traduction...'
+'admin_translation#Chargement des traductions...': 'Chargement des traductions...'
+'admin_user#Nom Prenom': 'Nom Prenom'
+'admin_user#Nom de publication': 'Nom de publication'
+'admin_user#Date dernière connexion': 'Date dernière connexion'
+'admin_user#Action': Action
+'admin_user#Editer': Editer
+'admin_user#Attention cette action est définitive ! Êtes vous sur ?': 'Attention cette action est définitive ! Êtes vous sur ?'
+'admin_user#Supprimer': Supprimer
+'admin_user#Résumé': Résumé
+'admin_user#Nom': Nom
+'admin_user#Dernière connexion': 'Dernière connexion'
+'admin_user#Dernier changement de mot de passe': 'Dernier changement de mot de passe'
+'admin_user#Force du mot de passe': 'Force du mot de passe'
+'admin_user#Information sur l''utilsateur': 'Information sur l''utilsateur'
+'admin_user#Mot de passe aléatoire': 'Mot de passe aléatoire'
+'admin_user#Mot de passe faible': 'Mot de passe faible'
+'admin_user#Mot de passe normal': 'Mot de passe normal'
+'admin_user#Mot de passe fort': 'Mot de passe fort'
+'admin_user#Laisser vide si vous ne souhaitez pas changer votre mot de passe': 'Laisser vide si vous ne souhaitez pas changer votre mot de passe'
+'admin_user#Attribution des rôles': 'Attribution des rôles'
+'admin_user#Ajouter un utilisateur': 'Ajouter un utilisateur'
+'admin_user#Chargement des données...': 'Chargement des données...'
 'front_auth#Authentification demandée': 'Authentification demandée'
 'front_auth#Vous êtes connecté en tant que': 'Vous êtes connecté en tant que'
 'front_auth#Déconnection': Déconnection
@@ -88,148 +212,3 @@
 'front_auth#Mot de passe': 'Mot de passe'
 'front_auth#Ce souvenir de moi': 'Ce souvenir de moi'
 'front_auth#Me connecter': 'Me connecter'
-'admin_translation#Application': Application
-'admin_translation#Module': Module
-'admin_translation#Langue': Langue
-'admin_translation#Rechercher par clé': 'Rechercher par clé'
-'admin_translation#Rechercher un traduction par sa clée': 'Rechercher un traduction par sa clée'
-'admin_translation#Rechercher par label': 'Rechercher par label'
-'admin_translation#Rechercher un traduction par son label': 'Rechercher un traduction par son label'
-'admin_translation#': ''
-'admin_translation#Clée': Clée
-'admin_translation#Régénération des traductions, cela peut prendre du temps...': 'Régénération des traductions, cela peut prendre du temps...'
-'admin_translation#Réinitialiser les traductions': 'Réinitialiser les traductions'
-'admin_translation#Régénérer les traductions': 'Régénérer les traductions'
-'admin_translation#Filter les données': 'Filter les données'
-'admin_translation#Chargement des traductions...': 'Chargement des traductions...'
-'admin_translation#Rechargement de la page...': 'Rechargement de la page...'
-'admin_translation#Traductions': Traductions
-'admin_translation#Reconstruction des traductions depuis la base de données, cela peut prendre du temps...': 'Reconstruction des traductions depuis la base de données, cela peut prendre du temps...'
-'admin_translation#Vous devez cocher au moins une langue pour effectuer une recherche': 'Vous devez cocher au moins une langue pour effectuer une recherche'
-'admin_translation#Tout': Tout
-'admin_pagination#Elements': Elements
-'admin_system#Valider': Valider
-'admin_system#Annuler': Annuler
-'admin_system#Mise à jour réussi': 'Mise à jour réussi'
-'admin_pagination#Par page': 'Par page'
-'admin_translation#Les traductions sont à jour': 'Les traductions sont à jour'
-'admin_translation#traduction(s) doivent être mise à jour pour être prise en compte, régénérer les traductions': 'traduction(s) doivent être mise à jour pour être prise en compte, régénérer les traductions'
-'admin_translation#Chargement des informations de traduction...': 'Chargement des informations de traduction...'
-'admin_topmenu#Mon compte': 'Mon compte'
-'admin_topmenu#Mes notifications': 'Mes notifications'
-'front_auth#Déconnexion': Déconnexion
-'admin_translation#Les traductions ne sont plus à jour vis à vis de la base de données, Vous devez régénérer les traductions depuis la base de données': 'Les traductions ne sont plus à jour vis à vis de la base de données, Vous devez régénérer les traductions depuis la base de données'
-'admin_translation#Réinitialisation des traductions depuis le code source du site, cela peut prendre du temps...': 'Réinitialisation des traductions depuis le code source du site, cela peut prendre du temps...'
-'admin_global_option#Option mise à jour avec succès': 'Option mise à jour avec succès'
-'admin_global_option#Une erreur interne est survenue': 'Une erreur interne est survenue'
-'admin_global_option#Sauvegarde en cours...': 'Sauvegarde en cours...'
-'admin_system#Configuration System': 'Configuration System'
-'admin_system#Warning Zone': 'Warning Zone'
-'admin_system#Attention, les manipulations faites ici peuvent endomager votre site': 'Attention, les manipulations faites ici peuvent endomager votre site'
-'admin_system#Si vous avez des traductions qui ne change pas malgré la régénération des données, des données qui semble statiques alors que cela ne devrais pas être le cas, videz le cache': 'Si vous avez des traductions qui ne change pas malgré la régénération des données, des données qui semble statiques alors que cela ne devrais pas être le cas, videz le cache'
-'admin_system#Danger Zone': 'Danger Zone'
-'admin_system#Attention, les manipulations faites ici peuvent détruire votre site': 'Attention, les manipulations faites ici peuvent détruire votre site'
-'admin_system#Vider le cache applicatif': 'Vider le cache applicatif'
-'admin_system#Vider le cache SQL': 'Vider le cache SQL'
-'admin_system#Dans le cas ou une ou plusieurs valeurs d''options posent problème vous pouvez réinitialiser l''ensemble des options à leurs valeurs par défaut': 'Dans le cas ou une ou plusieurs valeurs d''options posent problème vous pouvez réinitialiser l''ensemble des options à leurs valeurs par défaut'
-'admin_system#Réinitialiser l''ensemble des options du site': 'Réinitialiser l''ensemble des options du site'
-'admin_system#APP_ENV=DEV détecté': 'APP_ENV=DEV détecté'
-'admin_system#Pour avoir accès aux options de la Danger zone vous devez modifier dans le fichier .env la ligne suivante': 'Pour avoir accès aux options de la Danger zone vous devez modifier dans le fichier .env la ligne suivante'
-'admin_system#Remplacer prod par dev pour passer en mode développement, ce qui donne': 'Remplacer prod par dev pour passer en mode développement, ce qui donne'
-'admin_system#Attention, le mode developpement ne doit pas être laissé en production et ne doit être utilisé que pour du développement ou de la correction de bugs de façon temporaire': 'Attention, le mode developpement ne doit pas être laissé en production et ne doit être utilisé que pour du développement ou de la correction de bugs de façon temporaire'
-'admin_system#Détruire toutes les sessions actives du site, vous devrez vous reconnecter après cette action': 'Détruire toutes les sessions actives du site, vous devrez vous reconnecter après cette action'
-'admin_system#Détruire toutes les sessions actives': 'Détruire toutes les sessions actives'
-'admin_system#Réinitialisation complète du site, toutes les données seront perdu (users, articles, tags, config, traductions) et le site sera remis en configuration avec des données génériques': 'Réinitialisation complète du site, toutes les données seront perdu (users, articles, tags, config, traductions) et le site sera remis en configuration avec des données génériques'
-'admin_system#Vous serez déconnecté et devrez vous reconnecter avec le user par défaut': 'Vous serez déconnecté et devrez vous reconnecter avec le user par défaut'
-'admin_system#Réinitialiser le site': 'Réinitialiser le site'
-'admin_system#Debug System': 'Debug System'
-'admin_system#Recherche...': Recherche...
-'admin_system#Rechercher': Rechercher
-'admin_system#Annuler la recherche': 'Annuler la recherche'
-'admin_system#Rechercher sur le champ ': 'Rechercher sur le champ '
-'admin_system#Rechercher sur tout': 'Rechercher sur tout'
-'admin_route#Cette route est dépréciée, vous pouvez la supprimer': 'Cette route est dépréciée, vous pouvez la supprimer'
-'admin_route#Supression de la route...': 'Supression de la route...'
-'admin_route#La route à été supprimée avec succès': 'La route à été supprimée avec succès'
-'admin_route#Purge des routes dépréciées en cours...': 'Purge des routes dépréciées en cours...'
-'admin_route#La purge à été effectuée avec succès': 'La purge à été effectuée avec succès'
-'admin_route#Mise à jour des routes...': 'Mise à jour des routes...'
-'admin_role#Nom': Nom
-'admin_role#Label': Label
-'admin_role#Label court': 'Label court'
-'admin_role#Action': Action
-'admin_role#Ajouter un role': 'Ajouter un role'
-'admin_role#Chargement des données...': 'Chargement des données...'
-'admin_role#Créer un rôle': 'Créer un rôle'
-'admin_role#Editer le rôle ': 'Editer le rôle '
-'admin_role#Nom du rôle': 'Nom du rôle'
-'admin_role#Information sur le role': 'Information sur le role'
-'admin_role#Attribution des droits': 'Attribution des droits'
-'admin_role#Le nom du rôle doit être unique': 'Le nom du rôle doit être unique'
-'admin_role#Nom court du rôle': 'Nom court du rôle'
-'admin_role#Permet de facilité l''identification du role': 'Permet de facilité l''identification du role'
-'admin_role#Description du rôle': 'Description du rôle'
-'admin_role#Couleur du role': 'Couleur du role'
-'admin_role#Permet de facilité l''identification du rôle': 'Permet de facilité l''identification du rôle'
-'admin_role#Information sur le rôle': 'Information sur le rôle'
-'admin_role#Couleur du rôle': 'Couleur du rôle'
-'admin_role#Valider': Valider
-'admin_role#Rendu': Rendu
-'admin_system#Point d''entrée du module {module}': 'Point d''entrée du module {module}'
-'admin_route#Label': Label
-'admin_role#Rôle créé avec succès': 'Rôle créé avec succès'
-'admin_role#Edition du rôle ': 'Edition du rôle '
-'admin_role#Rôle édité avec succès': 'Rôle édité avec succès'
-'admin_role#Autoriser la mise à jour des droits lors de la mise à jour de l''application': 'Autoriser la mise à jour des droits lors de la mise à jour de l''application'
-'admin_role#Module': Module
-'admin_role#Editer': Editer
-'admin_role#Supprimer': Supprimer
-'admin_role#Les champs marqués d''une * sont obligatoire': 'Les champs marqués d''une * sont obligatoire'
-'admin_role#Permet de mettre à jour de façon automatique les nouvelles routes ajoutés pour chaque module': 'Permet de mettre à jour de façon automatique les nouvelles routes ajoutés pour chaque module'
-'admin_role#Attention, ne fonctionne que lorsque l''ensemble des routes sont cochées pour un module': 'Attention, ne fonctionne que lorsque l''ensemble des routes sont cochées pour un module'
-'admin_role#Les champs marqués d''une * sont obligatoires': 'Les champs marqués d''une * sont obligatoires'
-'admin_role#Permet de mettre à jour de façon automatique les nouvelles routes ajoutés pour chaque module.': 'Permet de mettre à jour de façon automatique les nouvelles routes ajoutés pour chaque module.'
-'admin_role#Rôle supprimé avec succès': 'Rôle supprimé avec succès'
-'admin_role#Attention, cela mettra à jour l''ensemble des routes d''un module même si à la base toutes les routes ne sont pas sélectionnées': 'Attention, cela mettra à jour l''ensemble des routes d''un module même si à la base toutes les routes ne sont pas sélectionnées'
-'admin_role#Ce rôle n''a aucun droit': 'Ce rôle n''a aucun droit'
-'admin_role#Attention cette action est définitive ! Êtes vous sur ?': 'Attention cette action est définitive ! Êtes vous sur ?'
-'admin_user#Gestion des utilisateurs': 'Gestion des utilisateurs'
-'admin_user#Email': Email
-'admin_user#Ajouter un utilisateur': 'Ajouter un utilisateur'
-'admin_user#Nom Prenom': 'Nom Prenom'
-'admin_user#Nom de publication': 'Nom de publication'
-'admin_user#Date dernière connexion': 'Date dernière connexion'
-'admin_user#Action': Action
-'admin_user#Editer': Editer
-'admin_user#Attention cette action est définitive ! Êtes vous sur ?': 'Attention cette action est définitive ! Êtes vous sur ?'
-'admin_user#Supprimer': Supprimer
-'admin_user#Chargement des données...': 'Chargement des données...'
-'admin_user#Créer un utilisateur': 'Créer un utilisateur'
-'admin_user#Utilisateur créé avec succès': 'Utilisateur créé avec succès'
-'admin_user#Edition de l''utilisateur ': 'Edition de l''utilisateur '
-'admin_user#Utilisateur édité avec succès': 'Utilisateur édité avec succès'
-'admin_user#Information sur l''utilsateur': 'Information sur l''utilsateur'
-'admin_user#Attribution des rôles': 'Attribution des rôles'
-'admin_user#Résumé': Résumé
-'admin_user#Nom': Nom
-'admin_user#Dernière connexion': 'Dernière connexion'
-'admin_user#Dernier changemen de mot de passe': 'Dernier changemen de mot de passe'
-'admin_user#Votre avatar': 'Votre avatar'
-'admin_user#Extension autorisées : GIF, PNG, JPEG - taille maximal 1024 ko': 'Extension autorisées : GIF, PNG, JPEG - taille maximal 1024 ko'
-'admin_user#Extension autorisées : GIF, PNG, JPEG': 'Extension autorisées : GIF, PNG, JPEG'
-'admin_user#Valider': Valider
-'admin_user#L''Email doit être unique': 'L''Email doit être unique'
-'admin_user#Mot de passe': 'Mot de passe'
-'admin_user#Confirmation du mot de passe': 'Confirmation du mot de passe'
-'admin_user#Votre nom': 'Votre nom'
-'admin_user#Votre prénom': 'Votre prénom'
-'admin_user#Votre nom de publication': 'Votre nom de publication'
-'admin_user#Désactiver cet utilisateur': 'Désactiver cet utilisateur'
-'admin_user#Force du mot de passe': 'Force du mot de passe'
-'admin_user#Votre mot de passe est considéré comme faible': 'Votre mot de passe est considéré comme faible'
-'admin_user#Votre mot de passe est considéré comme normal': 'Votre mot de passe est considéré comme normal'
-'admin_user#Votre mot de passe est considéré comme fort': 'Votre mot de passe est considéré comme fort'
-'admin_user#Laisser vide si vous ne souhaitez pas changer votre mot de passe': 'Laisser vide si vous ne souhaitez pas changer votre mot de passe'
-'admin_user#Mot de passe faible': 'Mot de passe faible'
-'admin_user#Mot de passe normal': 'Mot de passe normal'
-'admin_user#Mot de passe fort': 'Mot de passe fort'
