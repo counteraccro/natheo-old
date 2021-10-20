@@ -54,6 +54,12 @@ global_options:
       label: 'admin_global_option#Nombre d''éléments par page sur l''administration'
       list_value: '5:5|10:10|20:20|50:50|100:100'
       default: '20'
+    GO_ADM_DELETE_USER:
+      type: 'list'
+      label: 'admin_global_option#Remplacer l''utilisateur supprimé par l''utilisateur fantome John Doe'
+      list_value: '1:admin_global_option#Oui|0:admin_global_option#Non'
+      help: 'admin_global_option#Dans le cas contraire, l''ensemble des données de l''utilisateur seront supprimées.'
+      default: '20'
     GO_ADM_GLOBAL_LANGUE:
       type: 'list'
       label: 'admin_global_option#Langue par défaut de l''administration'
