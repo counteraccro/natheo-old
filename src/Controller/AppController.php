@@ -130,4 +130,24 @@ class AppController extends AbstractController
         return $filter;
     }
 
+    /**
+     * Met en session la page courant en fonction d'une clé
+     * @param string $key
+     * @param int $page
+     */
+    protected function setPageInSession(string $key, int $page)
+    {
+        $this->session->set($key, $page);
+    }
+
+    /**
+     * Retourne la page courant en session en fonction d'une clé
+     * @param string $key
+     * @return mixed
+     */
+    protected function getPageInSession(string $key): mixed
+    {
+        return $this->session->get($key, 1);
+    }
+
 }

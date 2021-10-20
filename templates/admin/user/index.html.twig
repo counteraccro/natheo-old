@@ -40,7 +40,7 @@
                     {{ fieldSearch | inputSearch('#admin-user-globale .card-body', constant('App\\Controller\\Admin\\UserController::SESSION_KEY_FILTER')) | raw }}
                 </div>
             </div>
-            <div class="card-body" data-url="{{ path('admin_user_ajax_listing') }}" data-loading="{{ "admin_user#Chargement des données..." | trans }}">
+            <div class="card-body" data-url="{{ path('admin_user_ajax_listing', {'page' : page}) }}" data-loading="{{ "admin_user#Chargement des données..." | trans }}">
 
             </div>
         </div>

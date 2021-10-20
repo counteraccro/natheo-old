@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/admin/system', name: 'admin_system_')]
 class SystemController extends AppController
 {
-    #[Route('/', name: 'index')]
+    #[Route('/index', name: 'index')]
     public function index(): Response
     {
         $breadcrumb = [

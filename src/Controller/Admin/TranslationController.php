@@ -25,7 +25,7 @@ class TranslationController extends AppController
 {
     const SESSION_KEY_FILTER = 'session_translation_filter';
 
-    #[Route('/', name: 'index')]
+    #[Route('/index', name: 'index')]
     public function index(): Response
     {
 

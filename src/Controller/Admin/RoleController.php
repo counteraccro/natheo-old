@@ -23,13 +23,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class RoleController extends AppController
 {
     const SESSION_KEY_FILTER = 'session_role_filter';
+    const SESSION_KEY_PAGE = 'session_role_page';
 
     /**
      * Point d'entrée pour les roles
      * @return Response
      */
-    #[Route('/', name: 'index')]
-    public function index(): Response
+    #[Route('/index/{page}', name: 'index')]
+    public function index($page = 1): Response
     {
         $breadcrumb = [
             $this->translator->trans('admin_dashboard#Dashboard') => 'admin_dashboard_index',
@@ -44,7 +45,8 @@ class RoleController extends AppController
 
         return $this->render('admin/role/index.html.twig', [
             'breadcrumb' => $breadcrumb,
-            'fieldSearch' => $fieldSearch
+            'fieldSearch' => $fieldSearch,
+            'page' => $page
         ]);
     }
 
@@ -55,7 +57,7 @@ class RoleController extends AppController
     #[Route('/ajax/listing/{page}', name: 'ajax_listing')]
     public function listing(int $page = 1): Response
     {
-
+        $this->setPageInSession(self::SESSION_KEY_PAGE, $page);
         $limit = $this->getOptionElementParPage();
         $filter = $this->getCriteriaGeneriqueSearch(self::SESSION_KEY_FILTER);
 
@@ -133,7 +135,7 @@ class RoleController extends AppController
             $this->getDoctrine()->getManager()->persist($role);
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash('success', $flashMsg);
-            return $this->redirectToRoute('admin_role_index');
+            return $this->redirectToRoute('admin_role_index', ['page' => $this->getPageInSession(self::SESSION_KEY_PAGE)]);
         }
 
 

@@ -22,7 +22,7 @@ class OptionController extends AppController
      * Index pour les options
      * @return Response
      */
-    #[Route('/', name: 'index')]
+    #[Route('/index', name: 'index')]
     public function index(): Response
     {
         $breadcrumb = [

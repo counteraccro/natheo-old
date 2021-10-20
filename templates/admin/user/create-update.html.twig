@@ -9,9 +9,12 @@
     {{ breadcrumb | breadcrumb | raw }}
 
     {% if(action == 'edit') %}
-    <div class="card mb-4">
-        <div class="card-header">
+    <div class="card mb-4  {% if user.isDisabled == 1 %} border-danger {% endif %}">
+        <div class="card-header {% if user.isDisabled == 1 %} bg-danger {% endif %}">
             {{ "admin_user#Résumé" | trans }}
+            {% if user.isDisabled == 1 %}
+                <span class="float-end" style="color: #FFFFFF">{{ "admin_user#Ce compte est désactivé" | trans }}</span>
+            {% endif %}
         </div>
         <div class="card-body">
             <div class="row">
@@ -74,9 +77,9 @@
 
 
                             <div class="mb-3">
-                                {{ form_label(form.password_1) }}
+                                {{ form_label(form.password.first) }}
                                 <div class="input-group">
-                                    {{ form_widget(form.password_1, {"id" : "password_1"}) }}
+                                    {{ form_widget(form.password.first, {"id" : "password_1"}) }}
                                     <span class="input-group-text" id="show-password"><i class="fa fa-eye"></i></span>
                                 </div>
                             </div>
@@ -90,13 +93,22 @@
                                 </div>
                             </div>
 
-                            {{ form_row(form.password_2, {"id" : "password_2"}) }}
+                            {{ form_row(form.password.second, {"id" : "password_2"}) }}
 
-                            <span class="text-muted">{{ "admin_user#Laisser vide si vous ne souhaitez pas changer votre mot de passe" | trans }}</span>
+                            <div class="form-error">
+                                {{ form_errors(form.password.first) }}
+                            </div>
+                            {% if(action == 'edit') %}
+                                <span class="text-muted">{{ "admin_user#Laisser vide si vous ne souhaitez pas changer votre mot de passe" | trans }}</span>
+                            {% endif %}
                         </div>
                     </div>
 
+                     {{ form_row(form.password_strenght, {'id' : 'password_strenght'}) }}
+
                     {{ form_end(form) }}
+
+                    <div class="float-end mt-2 text-muted"><i>{{ "admin_user#Les champs marqués d'une * sont obligatoires" | trans }}</i></div>
                 </div>
             </div>
         </div>

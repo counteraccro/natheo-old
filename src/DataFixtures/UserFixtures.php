@@ -35,7 +35,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        $default_avatar = 'default\img_avatar.png';
+        $default_avatar = UserService::DEFAULT_AVATAR;
 
         // Compte root
         $user = new User();

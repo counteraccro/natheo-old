@@ -15,6 +15,7 @@ use App\Service\Admin\System\FileUploaderService;
 use App\Service\Admin\UserService;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/admin/user', name: 'admin_user_')]
@@ -22,13 +23,14 @@ class UserController extends AppController
 {
 
     const SESSION_KEY_FILTER = 'session_user_filter';
+    const SESSION_KEY_PAGE = 'session_user_page';
 
     /**
      * Point d'entrée de la gestion des users
      * @return Response
      */
-    #[Route('/', name: 'index')]
-    public function index(): Response
+    #[Route('/index/{page}', name: 'index')]
+    public function index($page = 1): Response
     {
         $breadcrumb = [
             $this->translator->trans('admin_dashboard#Dashboard') => 'admin_dashboard_index',
@@ -41,7 +43,8 @@ class UserController extends AppController
 
         return $this->render('admin/user/index.html.twig', [
             'breadcrumb' => $breadcrumb,
-            'fieldSearch' => $fieldSearch
+            'fieldSearch' => $fieldSearch,
+            'page' => $page
         ]);
     }
 
@@ -53,6 +56,7 @@ class UserController extends AppController
     public function listing(int $page = 1): Response
     {
 
+        $this->setPageInSession(self::SESSION_KEY_PAGE, $page);
         $limit = $this->getOptionElementParPage();
         $dateFormat =$this->getOptionShortFormatDate();
         $timeFormat = $this->getOptionTimeFormat();
@@ -79,11 +83,12 @@ class UserController extends AppController
      */
     #[Route('/add/', name: 'add')]
     #[Route('/edit/{id}', name: 'edit')]
-    public function createUpdate(FileUploaderService $fileUploader, User $user = null): RedirectResponse|Response
+    public function createUpdate(FileUploaderService $fileUploader, UserPasswordHasherInterface $passwordHarsher, User $user = null): RedirectResponse|Response
     {
+
         $breadcrumb = [
             $this->translator->trans('admin_dashboard#Dashboard') => 'admin_dashboard_index',
-            $this->translator->trans('admin_user#Gestion des utilisateurs') => 'admin_user_index',
+            $this->translator->trans('admin_user#Gestion des utilisateurs') => ['admin_user_index', ['page' => $this->getPageInSession(self::SESSION_KEY_PAGE)]]
         ];
 
         $dateFormat =$this->getOptionFormatDate();
@@ -111,7 +116,7 @@ class UserController extends AppController
             $flashMsg = $this->translator->trans('admin_user#Utilisateur édité avec succès');
         }
 
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(UserType::class, $user, ['custom_action' => $action]);
 
         $form->handleRequest($this->request->getCurrentRequest());
         if ($form->isSubmitted() && $form->isValid()) {
@@ -121,8 +126,34 @@ class UserController extends AppController
                 $avatarName = $fileUploader->upload($avatar, $fileUploader->getAvatarDirectory());
                 $user->setAvatar($avatarName);
             }
+            else if($action == 'add')
+            {
+                $user->setAvatar(UserService::DEFAULT_AVATAR);
+            }
+
+            $password = $form->get('password')->getData();
+            if($password != "")
+            {
+                $user->setPassword($passwordHarsher->hashPassword(
+                    $user,
+                    $password
+                ));
+
+                $user->setLastPasswordUpdae(new \DateTime());
+            }
+
+
             $this->getDoctrine()->getManager()->persist($user);
             $this->getDoctrine()->getManager()->flush();
+
+            $this->addFlash('success', $flashMsg);
+
+            $param = [];
+            if($action == 'edit')
+            {
+                $param = ['page' => $this->getPageInSession(self::SESSION_KEY_PAGE)];
+            }
+            return $this->redirectToRoute('admin_user_index', $param);
         }
 
         return $this->render('admin/user/create-update.html.twig', [

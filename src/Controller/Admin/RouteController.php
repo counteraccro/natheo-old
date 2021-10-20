@@ -28,7 +28,7 @@ class RouteController extends AppController
      * Point d'entrée gestion des routes
      * @return Response
      */
-    #[Route('/', name: 'index')]
+    #[Route('/index', name: 'index')]
     public function index(): Response
     {
         $breadcrumb = [

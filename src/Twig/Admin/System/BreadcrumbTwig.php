@@ -34,7 +34,15 @@ class BreadcrumbTwig extends AppExtension implements RuntimeExtensionInterface
                $html .= '<li class="breadcrumb-item active" aria-current="page">'. $label . '</li>';
            }
            else {
-               $html .=  '<li class="breadcrumb-item"><a href="' . $this->urlGenerator->generate($route) . '">' . $label . '</a></li>';
+
+               if(is_array($route))
+               {
+                   $html .=  '<li class="breadcrumb-item"><a href="' . $this->urlGenerator->generate($route[0], $route[1]) . '">' . $label . '</a></li>';
+               }
+                else {
+                    $html .=  '<li class="breadcrumb-item"><a href="' . $this->urlGenerator->generate($route) . '">' . $label . '</a></li>';
+                }
+
            }
        }
         $html .= '</ol>

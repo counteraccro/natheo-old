@@ -2,6 +2,7 @@
 
 namespace App\Security;
 
+use App\Entity\User;
 use App\Service\Admin\System\OptionService;
 use App\Service\Admin\UserService;
 use App\Twig\Admin\Option;
@@ -62,7 +63,15 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 
         $default_local = $this->optionService->getOptionByKey(OptionService::GO_ADM_GLOBAL_LANGUE, OptionService::GO_ADM_GLOBAL_LANGUE_DEFAULT_VALUE, true);
 
-        $this->userService->updateLastLogin($token->getUser());
+        /** @var User $user */
+        $user = $token->getUser();
+        $this->userService->updateLastLogin($user);
+
+        /** Cas si le user est désactivé, on le déconnecte de force */
+        if($user->getIsDisabled())
+        {
+            return new RedirectResponse($this->urlGenerator->generate('front_security_app_logout', ['_locale' => $default_local]));
+        }
 
         /*if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);

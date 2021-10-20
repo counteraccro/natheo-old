@@ -28,7 +28,8 @@ User.Launch = function () {
          * Event sur le champs password 1
          */
         $(User.createUpdateId + " #password_1").keyup(function () {
-            User.checkStrengthPassword($(this).val());
+            let info = User.checkStrengthPassword($(this).val());
+            $(User.createUpdateId + " #password_strenght").val(info);
         });
 
         /**
@@ -36,10 +37,12 @@ User.Launch = function () {
          */
         $(User.createUpdateId + " #generate-password").click(function () {
 
-            pass = System.GeneratePassword();
+            let pass = System.GeneratePassword();
             $(User.createUpdateId + " #password_1").val(pass);
-            User.checkStrengthPassword(pass)
+            let info = User.checkStrengthPassword(pass)
             $(User.createUpdateId + " #password_2").val(pass);
+
+            $(User.createUpdateId + " #password_strenght").val(info);
             return false;
 
         });
@@ -70,12 +73,12 @@ User.Launch = function () {
 
         if (password.length === 0) {
             element.removeClass('bg-success bg-warning bg-danger').css({"width": "0%"});
-            return false;
+            return '<span class="badge bg-danger">' + element.data('weak') + '</span>';
         }
 
         if (password.length < 6) {
             element.removeClass('bg-success bg-warning bg-danger').addClass('bg-danger').css({"width": "25%"}).html(element.data('weak'));
-            return false;
+            return '<span class="badge bg-danger">' + element.data('weak') + '</span>';
         }
 
         if (password.length > 7) strength += 1
@@ -85,13 +88,13 @@ User.Launch = function () {
         if (password.match(/(.*[!,%,&,@,#,$,^,*,?,_,~].*[!,%,&,@,#,$,^,*,?,_,~])/)) strength += 1
         if (strength < 2) {
             element.removeClass('bg-success bg-warning bg-danger').addClass('bg-danger').css({"width": "25%"}).html(element.data('weak'));
-            return false;
+            return '<span class="badge bg-danger">' + element.data('weak') + '</span>';
         } else if (strength === 2) {
             element.removeClass('bg-success bg-warning bg-danger').addClass('bg-warning').css({"width": "50%"}).html(element.data('normal'));
-            return false;
+            return '<span class="badge bg-warning">' + element.data('normal') + '</span>';
         } else {
             element.removeClass('bg-success bg-warning bg-danger').addClass('bg-success').css({"width": "100%"}).html(element.data('strong'));
-            return false;
+            return '<span class="badge bg-success">' + element.data('strong') + '</span>';
         }
     }
 }

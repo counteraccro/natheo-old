@@ -11,6 +11,8 @@ class UserService extends \App\Service\AppService
     const GHOST_NAME = 'John';
     const GHOST_SURNAME = 'Doe';
 
+    const DEFAULT_AVATAR = 'default\img_avatar.png';
+
 
     /**
      * Met à jour la date de dernière connexion
