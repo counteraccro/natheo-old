@@ -85,56 +85,6 @@ class AppController extends AbstractController
     }
 
     /**
-     * Permet de récupérer l'option GO_ADM_GLOBAL_ELEMENT_PAR_PAGE
-     * @param bool $onlyValue True uniquement valeur sinon objet option
-     * @return Option|string
-     */
-    protected function getOptionElementParPage(bool $onlyValue = true): string|Option
-    {
-        return $this->optionService->getOptionByKey(OptionService::GO_ADM_GLOBAL_ELEMENT_PAR_PAGE, OptionService::GO_ADM_GLOBAL_ELEMENT_PAR_PAGE_DEFAULT_VALUE, $onlyValue);
-    }
-
-    /**
-     * Permet de récupérer l'option GO_DATE_FORMAT_DATE_FORMAT
-     * @param bool $onlyValue
-     * @return Option|string
-     */
-    protected function getOptionFormatDate(bool $onlyValue = true): string|Option
-    {
-        return $this->optionService->getOptionByKey(OptionService::GO_ADM_DATE_FORMAT, OptionService::GO_ADM_DATE_FORMAT_DEFAULT_VALUE, $onlyValue);
-    }
-
-    /**
-     * Permet de récupérer l'option GO_DATE_FORMAT_SHORT_DATE_FORMAT
-     * @param bool $onlyValue
-     * @return Option|string
-     */
-    protected function getOptionShortFormatDate(bool $onlyValue = true): string|Option
-    {
-        return $this->optionService->getOptionByKey(OptionService::GO_ADM_SHORT_DATE_FORMAT, OptionService::GO_ADM_SHORT_DATE_FORMAT_DEFAULT_VALUE, $onlyValue);
-    }
-
-    /**
-     * Permet de récupérer l'option GO_ADM_DATE_FORMAT_TIME_FORMAT
-     * @param bool $onlyValue
-     * @return Option|string
-     */
-    protected function getOptionTimeFormat(bool $onlyValue = true): string|Option
-    {
-        return $this->optionService->getOptionByKey(OptionService::GO_ADM_TIME_FORMAT, OptionService::GO_ADM_TIME_FORMAT_DEFAULT_VALUE, $onlyValue);
-    }
-
-    /**
-     * Permet de récupérer l'option GO_ADM_REPLACE_USER
-     * @param bool $onlyValue
-     * @return Option|string
-     */
-    protected function getOptionReplaceUser(bool $onlyValue = true): string|Option
-    {
-        return $this->optionService->getOptionByKey(OptionService::GO_ADM_REPLACE_USER, OptionService::GO_ADM_REPLACE_USER_DEFAULT_VALUE, $onlyValue);
-    }
-
-    /**
      * Permet de récupérer les données à filtrée depuis la recherche générique
      * @param string $sessionKey
      * @return mixed

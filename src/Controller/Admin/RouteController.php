@@ -69,7 +69,7 @@ class RouteController extends AppController
     #[Route('/ajax/listing/{page}', name: 'ajax_listing')]
     public function listing(RouteService $routeService, int $page = 1): Response
     {
-        $limit = $this->getOptionElementParPage();
+        $limit = $this->optionService->getOptionElementParPage();
         $filter = $this->getCriteriaGeneriqueSearch(self::SESSION_KEY_FILTER);
 
         /** @var RouteRepository $routeRepo */

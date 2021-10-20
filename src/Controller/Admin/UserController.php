@@ -59,9 +59,9 @@ class UserController extends AppController
     {
 
         $this->setPageInSession(self::SESSION_KEY_PAGE, $page);
-        $limit = $this->getOptionElementParPage();
-        $dateFormat =$this->getOptionShortFormatDate();
-        $timeFormat = $this->getOptionTimeFormat();
+        $limit = $this->optionService->getOptionElementParPage();
+        $dateFormat =$this->optionService->getOptionShortFormatDate();
+        $timeFormat = $this->optionService->getOptionTimeFormat();
 
         $filter = $this->getCriteriaGeneriqueSearch(self::SESSION_KEY_FILTER);
 
@@ -93,8 +93,8 @@ class UserController extends AppController
             $this->translator->trans('admin_user#Gestion des utilisateurs') => ['admin_user_index', ['page' => $this->getPageInSession(self::SESSION_KEY_PAGE)]]
         ];
 
-        $dateFormat =$this->getOptionFormatDate();
-        $timeFormat = $this->getOptionTimeFormat();
+        $dateFormat =$this->optionService->getOptionFormatDate();
+        $timeFormat = $this->optionService->getOptionTimeFormat();
 
         if($user == null)
         {
@@ -176,7 +176,7 @@ class UserController extends AppController
         $this->fileService->delete($user->getAvatar(), $fileUploaderService->getAvatarDirectory());
         $flashMsg = $this->translator->trans('admin_user#Utilisateur supprimé avec succès');
 
-        if($this->getOptionReplaceUser() == OptionService::GO_ADM_REPLACE_USER_YES_VALUE)
+        if($this->optionService->getOptionReplaceUser() == OptionService::GO_ADM_REPLACE_USER_YES_VALUE)
         {
             $id_user = $user->getId();
             // TODO Code pour remplacer les données du user par john doe

@@ -9,6 +9,7 @@ namespace App\Service\Admin\System;
 
 use App\Entity\Admin\Option;
 use App\Service\AppService;
+use phpDocumentor\Reflection\Types\Self_;
 
 class OptionService extends AppService
 {
@@ -92,5 +93,55 @@ class OptionService extends AppService
     {
         $optionRepo = $this->doctrine->getRepository(Option::class);
         return $optionRepo->findOneBy(['name' => $key]);
+    }
+
+    /**
+     * Permet de récupérer l'option GO_ADM_GLOBAL_ELEMENT_PAR_PAGE
+     * @param bool $onlyValue True uniquement valeur sinon objet option
+     * @return Option|string
+     */
+    public function getOptionElementParPage(bool $onlyValue = true): string|Option
+    {
+        return $this->getOptionByKey(self::GO_ADM_GLOBAL_ELEMENT_PAR_PAGE, self::GO_ADM_GLOBAL_ELEMENT_PAR_PAGE_DEFAULT_VALUE, $onlyValue);
+    }
+
+    /**
+     * Permet de récupérer l'option GO_DATE_FORMAT_DATE_FORMAT
+     * @param bool $onlyValue
+     * @return Option|string
+     */
+    public function getOptionFormatDate(bool $onlyValue = true): string|Option
+    {
+        return $this->getOptionByKey(self::GO_ADM_DATE_FORMAT, self::GO_ADM_DATE_FORMAT_DEFAULT_VALUE, $onlyValue);
+    }
+
+    /**
+     * Permet de récupérer l'option GO_DATE_FORMAT_SHORT_DATE_FORMAT
+     * @param bool $onlyValue
+     * @return Option|string
+     */
+    public function getOptionShortFormatDate(bool $onlyValue = true): string|Option
+    {
+        return $this->getOptionByKey(self::GO_ADM_SHORT_DATE_FORMAT, self::GO_ADM_SHORT_DATE_FORMAT_DEFAULT_VALUE, $onlyValue);
+    }
+
+    /**
+     * Permet de récupérer l'option GO_ADM_DATE_FORMAT_TIME_FORMAT
+     * @param bool $onlyValue
+     * @return Option|string
+     */
+    public function getOptionTimeFormat(bool $onlyValue = true): string|Option
+    {
+        return $this->getOptionByKey(self::GO_ADM_TIME_FORMAT, self::GO_ADM_TIME_FORMAT_DEFAULT_VALUE, $onlyValue);
+    }
+
+    /**
+     * Permet de récupérer l'option GO_ADM_REPLACE_USER
+     * @param bool $onlyValue
+     * @return Option|string
+     */
+    public function getOptionReplaceUser(bool $onlyValue = true): string|Option
+    {
+        return $this->getOptionByKey(self::GO_ADM_REPLACE_USER, self::GO_ADM_REPLACE_USER_DEFAULT_VALUE, $onlyValue);
     }
 }

@@ -229,3 +229,4 @@
 'admin_user#Utilisateur supprimé avec succès': 'Utilisateur supprimé avec succès'
 'admin_user#Root, aucune action possible': 'Root, aucune action possible'
 'admin_user#Utilisateur spécial, aucune action possible': 'Utilisateur spécial, aucune action possible'
+'admin_global_option#Dans le cas contraire, l''ensemble des données de l''utilisateur seront supprimées.': 'Dans le cas contraire, l''ensemble des données de l''utilisateur seront supprimées.'

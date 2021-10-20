@@ -58,7 +58,7 @@ class RoleController extends AppController
     public function listing(int $page = 1): Response
     {
         $this->setPageInSession(self::SESSION_KEY_PAGE, $page);
-        $limit = $this->getOptionElementParPage();
+        $limit = $this->optionService->getOptionElementParPage();
         $filter = $this->getCriteriaGeneriqueSearch(self::SESSION_KEY_FILTER);
 
         /** @var RoleRepository $routeRepo */
