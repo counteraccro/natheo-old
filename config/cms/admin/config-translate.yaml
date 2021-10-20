@@ -58,3 +58,7 @@
 'admin_system#Supprime une donnée de type {data}' : '__admin_system#Supprime une donnée de type {data}'
 'admin_system#Route sans description' : '__admin_system#Route sans description'
 'admin_fixture#Jeu de données' : '__admin_fixture#Jeu de données'
+'admin_global_option#Remplacer l''utilisateur supprimé par l''utilisateur fantome John Doe' : '__admin_global_option#Remplacer l''utilisateur supprimé par l''utilisateur fantome John Doe'
+'admin_global_option#Oui' : '__admin_global_option#Oui'
+'admin_global_option#Non' : '__admin_global_option#Non'
+'admin_global_option#Dans le cas contraire, l''ensemble des données de l''utilisateur seront supprimées.' : '__admin_global_option#Dans le cas contraire, l''ensemble des données de l''utilisateur seront supprimées.'

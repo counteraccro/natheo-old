@@ -223,3 +223,9 @@
 'admin_user#Si l''utilisateur est désactivé, celui ci ne pourra plus ce connecter sur l''administration': '__Si l''utilisateur est désactivé, celui ci ne pourra plus ce connecter sur l''administration'
 'admin_user#Ce compte est désactivé': '__Ce compte est désactivé'
 'admin_user#Les champs marqués d''une * sont obligatoires': '__Les champs marqués d''une * sont obligatoires'
+'admin_global_option#Remplacer l''utilisateur supprimé par l''utilisateur fantome John Doe': '__Remplacer l''utilisateur supprimé par l''utilisateur fantome John Doe'
+'admin_global_option#Oui': __Oui
+'admin_global_option#Non': __Non
+'admin_user#Utilisateur supprimé avec succès': '__Utilisateur supprimé avec succès'
+'admin_user#Root, aucune action possible': '__Root, aucune action possible'
+'admin_user#Utilisateur spécial, aucune action possible': '__Utilisateur spécial, aucune action possible'

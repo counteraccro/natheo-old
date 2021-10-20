@@ -11,7 +11,9 @@ use App\Controller\AppController;
 use App\Entity\User;
 use App\Form\Admin\UserType;
 use App\Repository\UserRepository;
+use App\Service\Admin\System\FileService;
 use App\Service\Admin\System\FileUploaderService;
+use App\Service\Admin\System\OptionService;
 use App\Service\Admin\UserService;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -124,6 +126,7 @@ class UserController extends AppController
             $avatar = $form->get('avatar')->getData();
             if ($avatar) {
                 $avatarName = $fileUploader->upload($avatar, $fileUploader->getAvatarDirectory());
+                $this->fileService->delete($user->getAvatar(), $fileUploader->getAvatarDirectory());
                 $user->setAvatar($avatarName);
             }
             else if($action == 'add')
@@ -165,5 +168,23 @@ class UserController extends AppController
             'timeFormat' => $timeFormat,
             'action' => $action
         ]);
+    }
+
+    #[Route('/delete/{id}', name: 'delete')]
+    public function delete(User $user, FileUploaderService $fileUploaderService): RedirectResponse
+    {
+        $this->fileService->delete($user->getAvatar(), $fileUploaderService->getAvatarDirectory());
+        $flashMsg = $this->translator->trans('admin_user#Utilisateur supprimé avec succès');
+
+        if($this->getOptionReplaceUser() == OptionService::GO_ADM_REPLACE_USER_YES_VALUE)
+        {
+            $id_user = $user->getId();
+            // TODO Code pour remplacer les données du user par john doe
+        }
+
+        $this->getDoctrine()->getManager()->remove($user);
+        $this->getDoctrine()->getManager()->flush();
+        $this->addFlash('success', $flashMsg);
+        return $this->redirectToRoute('admin_user_index');
     }
 }

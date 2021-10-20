@@ -8,6 +8,7 @@
 namespace App\Service\Admin\System;
 
 use App\Service\AppService;
+use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 

@@ -9,6 +9,7 @@ namespace App\Controller;
 
 use App\Entity\Admin\Option;
 use App\Service\Admin\System\DataSystemService;
+use App\Service\Admin\System\FileService;
 use App\Service\Admin\System\OptionService;
 use App\Service\Admin\System\TranslationService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -56,8 +57,22 @@ class AppController extends AbstractController
      */
     protected KernelInterface $kernel;
 
+    /**
+     * @var FileService
+     */
+    protected FileService $fileService;
+
+    /**
+     * @param TranslatorInterface $translator
+     * @param RequestStack $request
+     * @param OptionService $optionService
+     * @param TranslationService $translationService
+     * @param DataSystemService $dataSystemService
+     * @param KernelInterface $kernel
+     * @param FileService $fileService
+     */
     public function __construct(TranslatorInterface $translator, RequestStack $request, OptionService $optionService,
-        TranslationService $translationService, DataSystemService $dataSystemService, KernelInterface $kernel)
+        TranslationService $translationService, DataSystemService $dataSystemService, KernelInterface $kernel, FileService $fileService)
     {
         $this->translator = $translator;
         $this->request = $request;
@@ -66,6 +81,7 @@ class AppController extends AbstractController
         $this->translationService = $translationService;
         $this->dataSystemService = $dataSystemService;
         $this->kernel = $kernel;
+        $this->fileService = $fileService;
     }
 
     /**
@@ -75,7 +91,7 @@ class AppController extends AbstractController
      */
     protected function getOptionElementParPage(bool $onlyValue = true): string|Option
     {
-        return $this->optionService->getOptionByKey(OptionService::GO_ADM_GLOBAL_ELEMENT_PAR_PAGE, OptionService::GO_ADM_GLOBAL_ELEMENT_PAR_PAGE_DEFAULT_VALUE, true);
+        return $this->optionService->getOptionByKey(OptionService::GO_ADM_GLOBAL_ELEMENT_PAR_PAGE, OptionService::GO_ADM_GLOBAL_ELEMENT_PAR_PAGE_DEFAULT_VALUE, $onlyValue);
     }
 
     /**
@@ -85,7 +101,7 @@ class AppController extends AbstractController
      */
     protected function getOptionFormatDate(bool $onlyValue = true): string|Option
     {
-        return $this->optionService->getOptionByKey(OptionService::GO_ADM_DATE_FORMAT, OptionService::GO_ADM_DATE_FORMAT_DEFAULT_VALUE, true);
+        return $this->optionService->getOptionByKey(OptionService::GO_ADM_DATE_FORMAT, OptionService::GO_ADM_DATE_FORMAT_DEFAULT_VALUE, $onlyValue);
     }
 
     /**
@@ -95,7 +111,7 @@ class AppController extends AbstractController
      */
     protected function getOptionShortFormatDate(bool $onlyValue = true): string|Option
     {
-        return $this->optionService->getOptionByKey(OptionService::GO_ADM_SHORT_DATE_FORMAT, OptionService::GO_ADM_SHORT_DATE_FORMAT_DEFAULT_VALUE, true);
+        return $this->optionService->getOptionByKey(OptionService::GO_ADM_SHORT_DATE_FORMAT, OptionService::GO_ADM_SHORT_DATE_FORMAT_DEFAULT_VALUE, $onlyValue);
     }
 
     /**
@@ -105,7 +121,17 @@ class AppController extends AbstractController
      */
     protected function getOptionTimeFormat(bool $onlyValue = true): string|Option
     {
-        return $this->optionService->getOptionByKey(OptionService::GO_ADM_TIME_FORMAT, OptionService::GO_ADM_TIME_FORMAT_DEFAULT_VALUE, true);
+        return $this->optionService->getOptionByKey(OptionService::GO_ADM_TIME_FORMAT, OptionService::GO_ADM_TIME_FORMAT_DEFAULT_VALUE, $onlyValue);
+    }
+
+    /**
+     * Permet de récupérer l'option GO_ADM_REPLACE_USER
+     * @param bool $onlyValue
+     * @return Option|string
+     */
+    protected function getOptionReplaceUser(bool $onlyValue = true): string|Option
+    {
+        return $this->optionService->getOptionByKey(OptionService::GO_ADM_REPLACE_USER, OptionService::GO_ADM_REPLACE_USER_DEFAULT_VALUE, $onlyValue);
     }
 
     /**
