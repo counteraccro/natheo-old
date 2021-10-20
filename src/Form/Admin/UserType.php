@@ -41,8 +41,8 @@ class UserType extends AppType
                 'invalid_message' => $this->translator->trans('admin_user#Votre mot de passe n\'est pas identique'),
                 'options' => ['attr' => ['class' => 'password-field']],
                 'required' => $required,
-                'empty_data' => 'aaa',
-                'first_options' => ['label' => $this->translator->trans('admin_user#Mot de passe'), 'attr' => ['placeholder' => $this->translator->trans('admin_role#Mot de passe')],],
+                'empty_data' => '',
+                'first_options' => ['label' => $this->translator->trans('admin_user#Mot de passe'), 'attr' => ['placeholder' => $this->translator->trans('admin_role#Utilisez les chiffres, caractères spéciaux pour renforcer votre mot de passe')],],
                 'second_options' => ['label' => $this->translator->trans('admin_user#Confirmation du mot de passe'), 'attr' => ['placeholder' => $this->translator->trans('admin_role#Confirmer votre mot de passe')],],
             ])
             ->add('password_strenght', HiddenType::class)
@@ -77,7 +77,7 @@ class UserType extends AppType
             ->add('isDisabled', CheckboxType::class, [
                 'label' => $this->translator->trans('admin_user#Désactiver cet utilisateur'),
                 'required' => false,
-                'help' => $this->translator->trans('admin_user#Si l\'utilisateur est désactivé, celui ci ne pourra plus ce connecter sur l\'administration'),
+                'help' => $this->translator->trans('admin_user#Si l\'utilisateur est désactivé, celui ci ne pourra plus se connecter sur l\'administration'),
             ])
             ->add("valider", SubmitType::class, [
                 'label' => $this->translator->trans('admin_user#Valider')

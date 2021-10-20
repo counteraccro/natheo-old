@@ -58,6 +58,10 @@
 'admin_system#Supprime une donnée de type {data}': 'Supprime une donnée de type {data}'
 'admin_system#Route sans description': 'Route sans description'
 'admin_fixture#Jeu de données': 'Jeu de données'
+'admin_global_option#Remplacer l''utilisateur supprimé par l''utilisateur fantome John Doe': 'Remplacer l''utilisateur supprimé par l''utilisateur fantome John Doe'
+'admin_global_option#Oui': Oui
+'admin_global_option#Non': Non
+'admin_global_option#Dans le cas contraire, l''ensemble des données de l''utilisateur seront supprimées.': 'Dans le cas contraire, l''ensemble des données de l''utilisateur seront supprimées.'
 'admin_dashboard#Dashboard': Dashboard
 'admin_global_option#Options globales': 'Options globales'
 'admin_global_option#Option mise à jour avec succès': 'Option mise à jour avec succès'
@@ -223,10 +227,9 @@
 'admin_user#Si l''utilisateur est désactivé, celui ci ne pourra plus ce connecter sur l''administration': 'Si l''utilisateur est désactivé, celui ci ne pourra plus ce connecter sur l''administration'
 'admin_user#Ce compte est désactivé': 'Ce compte est désactivé'
 'admin_user#Les champs marqués d''une * sont obligatoires': 'Les champs marqués d''une * sont obligatoires'
-'admin_global_option#Remplacer l''utilisateur supprimé par l''utilisateur fantome John Doe': 'Remplacer l''utilisateur supprimé par l''utilisateur fantome John Doe'
-'admin_global_option#Oui': Oui
-'admin_global_option#Non': Non
 'admin_user#Utilisateur supprimé avec succès': 'Utilisateur supprimé avec succès'
 'admin_user#Root, aucune action possible': 'Root, aucune action possible'
 'admin_user#Utilisateur spécial, aucune action possible': 'Utilisateur spécial, aucune action possible'
-'admin_global_option#Dans le cas contraire, l''ensemble des données de l''utilisateur seront supprimées.': 'Dans le cas contraire, l''ensemble des données de l''utilisateur seront supprimées.'
+'admin_role#Utilisez les chiffres, caractères spéciaux pour renforcer votre mot de passe': 'Utilisez les chiffres, caractères spéciaux pour renforcer votre mot de passe'
+'admin_user#Si l''utilisateur est désactivé, celui ci ne pourra plus se connecter sur l''administration': 'Si l''utilisateur est désactivé, celui ci ne pourra plus se connecter sur l''administration'
+'admin_user#Sécurité de votre compte': 'Sécurité de votre compte'
