@@ -13,22 +13,29 @@ use App\Service\AppService;
 
 class AccessService extends AppService
 {
-    public function isGranted(string $route = null)
+    /**
+     * Permet de vérifier si l'utilisateur à les droits pour la route courante
+     * Si oui retourne true sinon false;
+     * @param string|null $route
+     * @return bool
+     */
+    public function isGranted(string $route = null): bool
     {
         /** @var User $user */
         $user = $this->security->getUser();
 
-        if($user == null)
-        {
+        if ($user == null || str_contains($route, 'front_') === true) {
             return true;
         }
 
         foreach ($user->getRolesCms() as $rolesCm) {
 
-            //echo $rolesCm->getName() . '<br />';
             foreach ($rolesCm->getRouteRights() as $routeRight) {
-                    //echo '-----' . $routeRight->getRoute()->getRoute() . '<br/>';
+                if ($route === $routeRight->getRoute()->getRoute()) {
+                    return true;
+                }
             }
         }
+        return false;
     }
 }

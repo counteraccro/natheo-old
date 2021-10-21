@@ -240,3 +240,6 @@
 'admin_user#Utilisateur désactivé avec succès': '__Utilisateur désactivé avec succès'
 'admin_user#Utilisateur activé avec succès': '__Utilisateur activé avec succès'
 'admin_user#Compte désactivé': '__Compte désactivé'
+'admin_user#Rôles': __Rôles
+'admin_system#Vous n''avez pas les droits sur cette page': '__Vous n''avez pas les droits sur cette page'
+'admin_system#Retour à la page précédente': '__Retour à la page précédente'
