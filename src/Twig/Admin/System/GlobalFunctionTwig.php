@@ -7,6 +7,7 @@
  */
 namespace App\Twig\Admin\System;
 
+use App\Service\Admin\System\OptionService;
 use App\Twig\AppExtension;
 use Twig\Extension\RuntimeExtensionInterface;
 
@@ -88,5 +89,18 @@ class GlobalFunctionTwig extends AppExtension implements RuntimeExtensionInterfa
         return $html;
     }
 
+    /**
+     * En fonction de l'option GO_ADM_CONFIRM_LEAVE affiche ou non le script JS de confirmation avant de quitter
+     * une page avec un formulaire
+     */
+    public function checkBeforLeaveJS(): string
+    {
+        if($this->optionService->getOptionConfirmLeave() === OptionService::GO_ADM_CONFIRM_LEAVE_YES_VALUE)
+        {
+            return "System.CheckBeforeLeave();";
+        }
+
+        return "";
+    }
 
 }

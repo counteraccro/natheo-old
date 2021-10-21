@@ -29,6 +29,9 @@ class OptionService extends AppService
     const GO_ADM_REPLACE_USER = 'GO_ADM_REPLACE_USER';
     const GO_ADM_REPLACE_USER_DEFAULT_VALUE = '1';
     const GO_ADM_REPLACE_USER_YES_VALUE = '1';
+    const GO_ADM_CONFIRM_LEAVE = 'GO_ADM_CONFIRM_LEAVE';
+    const GO_ADM_CONFIRM_LEAVE_DEFAULT_VALUE = '1';
+    const GO_ADM_CONFIRM_LEAVE_YES_VALUE = '1';
 
 
     const KEY_SESSION_THEME_ADMIN = 'cms.global.theme_admin';
@@ -143,5 +146,15 @@ class OptionService extends AppService
     public function getOptionReplaceUser(bool $onlyValue = true): string|Option
     {
         return $this->getOptionByKey(self::GO_ADM_REPLACE_USER, self::GO_ADM_REPLACE_USER_DEFAULT_VALUE, $onlyValue);
+    }
+
+    /**
+     * Permet de récupérer l'option GO_ADM_CONFIRM_LEAVE
+     * @param bool $onlyValue
+     * @return Option|string
+     */
+    public function getOptionConfirmLeave(bool $onlyValue = true): string|Option
+    {
+        return $this->getOptionByKey(self::GO_ADM_CONFIRM_LEAVE, self::GO_ADM_CONFIRM_LEAVE_DEFAULT_VALUE, $onlyValue);
     }
 }

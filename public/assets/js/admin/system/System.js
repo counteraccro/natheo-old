@@ -188,3 +188,31 @@ System.GeneratePassword = function() {
     }
     return pass;
 }
+
+/**
+ * Permet de vérifier si dans un formulaire une donnée à été modifié sans sauvgarde
+ * @constructor
+ */
+System.CheckBeforeLeave = function() {
+    let change = false;
+
+    let msg = $('#content-admin').data('msg-leave');
+
+    $("input").change(function() {
+        change = true;
+    })
+
+    $("a").not("form a").not("a.dropdown-toggle").click(function(e) {
+
+        e.stopPropagation();
+
+        if(change)
+        {
+            let r = window.confirm(msg);
+            if(r === false)
+            {
+                return false;
+            }
+        }
+    })
+}
