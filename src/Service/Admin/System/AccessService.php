@@ -13,10 +13,15 @@ use App\Service\AppService;
 
 class AccessService extends AppService
 {
-    public function isGranted(string $route)
+    public function isGranted(string $route = null)
     {
         /** @var User $user */
         $user = $this->security->getUser();
+
+        if($user == null)
+        {
+            return true;
+        }
 
         foreach ($user->getRolesCms() as $rolesCm) {
 

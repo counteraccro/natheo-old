@@ -62,6 +62,7 @@
 'admin_global_option#Oui': Oui
 'admin_global_option#Non': Non
 'admin_global_option#Dans le cas contraire, l''ensemble des données de l''utilisateur seront supprimées.': 'Dans le cas contraire, l''ensemble des données de l''utilisateur seront supprimées.'
+'admin_global_option#Demander une confirmation avant de quitter une page contenant un formulaire': 'Demander une confirmation avant de quitter une page contenant un formulaire'
 'admin_dashboard#Dashboard': Dashboard
 'admin_global_option#Options globales': 'Options globales'
 'admin_global_option#Option mise à jour avec succès': 'Option mise à jour avec succès'
@@ -233,7 +234,9 @@
 'admin_role#Utilisez les chiffres, caractères spéciaux pour renforcer votre mot de passe': 'Utilisez les chiffres, caractères spéciaux pour renforcer votre mot de passe'
 'admin_user#Si l''utilisateur est désactivé, celui ci ne pourra plus se connecter sur l''administration': 'Si l''utilisateur est désactivé, celui ci ne pourra plus se connecter sur l''administration'
 'admin_user#Sécurité de votre compte': 'Sécurité de votre compte'
-'admin_global_option#Demander une confirmation avant de quitter une page contenant un formulaire': 'Demander une confirmation avant de quitter une page contenant un formulaire'
 'admin_user#Rôle disponible': 'Rôle disponible'
 'admin_user#Si aucun rôle n''est selectioné, l''utilisateur sera automatiquement déconnecté': 'Si aucun rôle n''est selectioné, l''utilisateur sera automatiquement déconnecté'
 'admin_system#Attention, si vous quittez cette page, les modifications non enregistrées seront perdues': 'Attention, si vous quittez cette page, les modifications non enregistrées seront perdues'
+'admin_user#Utilisateur désactivé avec succès': 'Utilisateur désactivé avec succès'
+'admin_user#Utilisateur activé avec succès': 'Utilisateur activé avec succès'
+'admin_user#Compte désactivé': 'Compte désactivé'
