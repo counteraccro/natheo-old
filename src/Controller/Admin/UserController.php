@@ -88,6 +88,8 @@ class UserController extends AppController
     public function createUpdate(FileUploaderService $fileUploader, UserPasswordHasherInterface $passwordHarsher, User $user = null): RedirectResponse|Response
     {
 
+        $this->denyAccessUnlessGranted();
+
         $breadcrumb = [
             $this->translator->trans('admin_dashboard#Dashboard') => 'admin_dashboard_index',
             $this->translator->trans('admin_user#Gestion des utilisateurs') => ['admin_user_index', ['page' => $this->getPageInSession(self::SESSION_KEY_PAGE)]]
