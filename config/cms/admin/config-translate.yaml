@@ -62,3 +62,4 @@
 'admin_global_option#Oui' : '__admin_global_option#Oui'
 'admin_global_option#Non' : '__admin_global_option#Non'
 'admin_global_option#Dans le cas contraire, l''ensemble des données de l''utilisateur seront supprimées.' : '__admin_global_option#Dans le cas contraire, l''ensemble des données de l''utilisateur seront supprimées.'
+'admin_global_option#Demander une confirmation avant de quitter une page contenant un formulaire' : '__admin_global_option#Demander une confirmation avant de quitter une page contenant un formulaire'

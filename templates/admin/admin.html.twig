@@ -12,14 +12,19 @@
 <body>
     <div class="container-fluid">
         <div class="row flex-nowrap">
+
             {% include 'admin/include/left-menu.html.twig' %}
-            <div class="col py-3 pt-1" id="content-admin">
+
+            <div class="col py-3 pt-1" id="content-admin" data-msg-leave="{{ "admin_system#Attention, si vous quittez cette page, les modifications non enregistrées seront perdues" | trans }}">
+
                 {% include 'admin/include/top-menu.html.twig' %}
                 {% block body %}{% endblock %}
+
                 <div class="text-center p-3">
                     Natheo CMS - 2020 - {{ 'now' | date("Y") }} - Version Alpha 0.1
                     <a class="text-dark" href="#">TODO</a>
                 </div>
+
             </div>
         </div>
     </div>

@@ -59,6 +59,8 @@
     </div>
     {% endif %}
 
+    {{ form_start(form) }}
+
     <div class="row">
         <div class="col-6">
             <div class="card">
@@ -66,7 +68,7 @@
                     {{ "admin_user#Information sur l'utilsateur" | trans }}
                 </div>
                 <div class="card-body">
-                    {{ form_start(form) }}
+
 
                     {{ form_row(form.email) }}
 
@@ -106,7 +108,18 @@
 
                      {{ form_row(form.password_strenght, {'id' : 'password_strenght'}) }}
 
-                    {{ form_end(form) }}
+                    {{ form_row(form.name) }}
+
+                    {{ form_row(form.surname) }}
+
+                    {{ form_row(form.publicationName) }}
+
+                    {{ form_row(form.avatar) }}
+
+                    {{ form_row(form.isDisabled) }}
+
+                    {{ form_row(form.valider) }}
+
 
                     <div class="float-end mt-2 text-muted"><i>{{ "admin_user#Les champs marqués d'une * sont obligatoires" | trans }}</i></div>
                 </div>
@@ -116,13 +129,15 @@
             <div class="card">
                 <div class="card-header">
                     {{ "admin_user#Attribution des rôles" | trans }}
+
                 </div>
                 <div class="card-body">
-
+                    {{ form_row(form.rolesCms) }}
                 </div>
             </div>
         </div>
     </div>
+    {{ form_end(form) }}
 </div>
 {% endblock %}
 
@@ -132,6 +147,7 @@
         $( document ).ready(function() {
             User.Launch();
             User.CreateUpdate();
+            {{ "" | scriptBeforLeave | raw }}
         });
     </script>
 

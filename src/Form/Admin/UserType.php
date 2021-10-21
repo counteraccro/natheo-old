@@ -2,10 +2,12 @@
 
 namespace App\Form\Admin;
 
+use App\Entity\Admin\Role;
 use App\Entity\User;
 use App\Form\AppType;
 use App\Twig\Admin\System\DateTwig;
 use PharIo\Manifest\Email;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -79,6 +81,20 @@ class UserType extends AppType
                 'required' => false,
                 'help' => $this->translator->trans('admin_user#Si l\'utilisateur est désactivé, celui ci ne pourra plus se connecter sur l\'administration'),
             ])
+
+            ->add('rolesCms', EntityType::class, [
+                'label' => $this->translator->trans('admin_user#Rôle disponible'),
+                'help' => $this->translator->trans('admin_user#Si aucun rôle n\'est selectioné, l\'utilisateur sera automatiquement déconnecté'),
+                'label_html' => true,
+                'class' => Role::class,
+                'multiple' => true,
+                'expanded' => true,
+                'choice_label' => function ($role) {
+                    /** @var Role $role */
+                    return '<span class="badge" style="background-color: ' . $role->getColor() . '">' . $role->getShortLabel() . '</span> - ' . $role->getName();
+                },
+            ])
+
             ->add("valider", SubmitType::class, [
                 'label' => $this->translator->trans('admin_user#Valider')
             ])//->add('rolesCms')

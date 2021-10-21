@@ -233,3 +233,7 @@
 'admin_role#Utilisez les chiffres, caractères spéciaux pour renforcer votre mot de passe': '__Utilisez les chiffres, caractères spéciaux pour renforcer votre mot de passe'
 'admin_user#Si l''utilisateur est désactivé, celui ci ne pourra plus se connecter sur l''administration': '__Si l''utilisateur est désactivé, celui ci ne pourra plus se connecter sur l''administration'
 'admin_user#Sécurité de votre compte': '__Sécurité de votre compte'
+'admin_global_option#Demander une confirmation avant de quitter une page contenant un formulaire': '__Demander une confirmation avant de quitter une page contenant un formulaire'
+'admin_user#Rôle disponible': '__Rôle disponible'
+'admin_user#Si aucun rôle n''est selectioné, l''utilisateur sera automatiquement déconnecté': '__Si aucun rôle n''est selectioné, l''utilisateur sera automatiquement déconnecté'
+'admin_system#Attention, si vous quittez cette page, les modifications non enregistrées seront perdues': '__Attention, si vous quittez cette page, les modifications non enregistrées seront perdues'

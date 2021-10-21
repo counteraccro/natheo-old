@@ -126,7 +126,10 @@ class UserController extends AppController
             $avatar = $form->get('avatar')->getData();
             if ($avatar) {
                 $avatarName = $fileUploader->upload($avatar, $fileUploader->getAvatarDirectory());
-                $this->fileService->delete($user->getAvatar(), $fileUploader->getAvatarDirectory());
+                if($user->getId() != null)
+                {
+                    $this->fileService->delete($user->getAvatar(), $fileUploader->getAvatarDirectory());
+                }
                 $user->setAvatar($avatarName);
             }
             else if($action == 'add')
