@@ -40,7 +40,11 @@
                    {% for langue in languages%}
                         {% if(langue == translationLabel.language) %}
                             <td>
-                                {{ translationLabel.label | inputHidden(path('admin_translation_ajax_update', {'id' : translationLabel.id})) | raw }}
+                                {% if 'admin_translation_ajax_update' | isGranted %}
+                                    {{ translationLabel.label | inputHidden(path('admin_translation_ajax_update', {'id' : translationLabel.id})) | raw }}
+                                {% else %}
+                                    {{ translationLabel.label }}
+                                {% endif %}
                             </td>
                        {% endif %}
                    {% endfor %}
