@@ -244,3 +244,5 @@
 'admin_system#Vous n''avez pas les droits sur cette page': '__Vous n''avez pas les droits sur cette page'
 'admin_system#Retour à la page précédente': '__Retour à la page précédente'
 'admin_system#Vous n''avez pas les droits pour visualiser ce contenu': '__Vous n''avez pas les droits pour visualiser ce contenu'
+'admin_system#Oups': __Oups
+'admin_system#Il semblerait que vous n''avez pas les droits pour visualiser ce contenu': '__Il semblerait que vous n''avez pas les droits pour visualiser ce contenu'

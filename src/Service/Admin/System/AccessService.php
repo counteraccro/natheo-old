@@ -24,7 +24,7 @@ class AccessService extends AppService
         /** @var User $user */
         $user = $this->security->getUser();
 
-        if ($user == null || str_contains($route, 'front_') === true) {
+        if ($user == null || str_contains($route, 'front_') === true || $route == null) {
             return true;
         }
 

@@ -26,6 +26,7 @@ use Symfony\Component\Security\Core\Security;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
+use Twig\TwigFunction;
 
 class AppExtension extends AbstractExtension
 {
@@ -132,10 +133,11 @@ class AppExtension extends AbstractExtension
             new TwigFilter('inputHidden', [GlobalFunctionTwig::class, 'generateHiddenInput']),
             new TwigFilter('inputSearch', [GlobalFunctionTwig::class, 'generateSearchInput']),
             new TwigFilter('scriptBeforLeave', [GlobalFunctionTwig::class, 'checkBeforLeaveJS']),
+            new TwigFilter('isGranted', [GlobalFunctionTwig::class, 'isGranted']),
             new TwigFilter('listeRouteRight', [RoleTwig::class, 'generateRouteRight']),
             new TwigFilter('listeModules', [RoleTwig::class, 'getListeModules']),
             new TwigFilter('pathAvatar', [FileTwig::class, 'getPathAvatar']),
-            new TwigFilter('dateFormat', [DateTwig::class, 'dateFormat'])
+            new TwigFilter('dateFormat', [DateTwig::class, 'dateFormat']),
 
         ];
     }

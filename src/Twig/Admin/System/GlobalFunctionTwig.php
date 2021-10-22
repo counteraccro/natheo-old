@@ -5,6 +5,7 @@
  * @version 1.0
  * @package App\Twig\Admin\System
  */
+
 namespace App\Twig\Admin\System;
 
 use App\Service\Admin\System\OptionService;
@@ -48,13 +49,11 @@ class GlobalFunctionTwig extends AppExtension implements RuntimeExtensionInterfa
         $field = 'all';
         $strBtnSearch = $this->translator->trans('admin_system#Rechercher');
         $showBtnReset = "display: none";
-        if($filter != null)
-        {
+        if ($filter != null) {
             $showBtnReset = '';
             $value = $filter['value'];
             $field = $filter['field'];
-            if($field != 'all')
-            {
+            if ($field != 'all') {
                 $strBtnSearch = $this->translator->trans('admin_system#Rechercher sur le champ ') . $field;
             }
         }
@@ -63,7 +62,7 @@ class GlobalFunctionTwig extends AppExtension implements RuntimeExtensionInterfa
 
         $html = '<div class="input-group" id="' . $id . '">
                   <input type="text" class="form-control" id="input-search" value="' . $value . '" placeholder="' . $this->translator->trans('admin_system#Recherche...') . '">
-                  <button type="button" class="btn btn-primary btn-search" data-id="' . $divId . '" data-value="' . $field . '" data-reset="' . $this->translator->trans('admin_system#Rechercher') . '" data-text="' . $this->translator->trans('admin_system#Rechercher sur le champ ') . '">' . $strBtnSearch  . '</button>
+                  <button type="button" class="btn btn-primary btn-search" data-id="' . $divId . '" data-value="' . $field . '" data-reset="' . $this->translator->trans('admin_system#Rechercher') . '" data-text="' . $this->translator->trans('admin_system#Rechercher sur le champ ') . '">' . $strBtnSearch . '</button>
                   <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
                     <span class="visually-hidden">Toggle Dropdown</span>
                   </button>
@@ -95,12 +94,21 @@ class GlobalFunctionTwig extends AppExtension implements RuntimeExtensionInterfa
      */
     public function checkBeforLeaveJS(): string
     {
-        if($this->optionService->getOptionConfirmLeave() === OptionService::GO_ADM_CONFIRM_LEAVE_YES_VALUE)
-        {
+        if ($this->optionService->getOptionConfirmLeave() === OptionService::GO_ADM_CONFIRM_LEAVE_YES_VALUE) {
             return "System.CheckBeforeLeave();";
         }
 
         return "";
+    }
+
+    /**
+     * Vérifie si l'accès est autorisé pour la route envoyée en paramètre
+     * @param string $route
+     * @return bool
+     */
+    public function isGranted(string $route): bool
+    {
+        return $this->accessService->isGranted($route);
     }
 
 }
