@@ -39,8 +39,12 @@
                     {% elseif (user.name == constant('App\\Service\\Admin\\UserService::GHOST_NAME') and user.surname == constant('App\\Service\\Admin\\UserService::GHOST_SURNAME')) %}
                         <i class="fa fa-user-lock" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ "admin_user#Utilisateur spécial, aucune action possible" | trans }}"></i>
                     {% else %}
-                        <a href="{{ path('admin_user_edit', {'id' : user.id}) }}" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ "admin_user#Editer" | trans }}"><i class="fa fa-user-edit"></i></a>
-                        <a href="{{ path('admin_user_delete', {'id' : user.id}) }}" onclick="return confirm('{{ "admin_user#Attention cette action est définitive ! Êtes vous sur ?" | trans }}')" class="btn btn-sm btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ "admin_user#Supprimer" | trans }}"><i class="fa fa-user-times"></i></a>
+                        {% if 'admin_user_edit' | isGranted %}
+                            <a href="{{ path('admin_user_edit', {'id' : user.id}) }}" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ "admin_user#Editer" | trans }}"><i class="fa fa-user-edit"></i></a>
+                        {% endif %}
+                        {% if 'admin_user_delete' | isGranted %}
+                            <a href="{{ path('admin_user_delete', {'id' : user.id}) }}" onclick="return confirm('{{ "admin_user#Attention cette action est définitive ! Êtes vous sur ?" | trans }}')" class="btn btn-sm btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ "admin_user#Supprimer" | trans }}"><i class="fa fa-user-times"></i></a>
+                        {% endif %}
 
                         {% if(user.isDisabled) %}
                             {% set msgDisabled = "admin_user#Activer l'utilisateur" %}
@@ -50,7 +54,9 @@
                             {% set iconeDisabled = 'user-lock' %}
                         {% endif %}
 
-                        <a href="{{ path('admin_user_disabled',  {'id' : user.id}) }}" class="btn btn-sm btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ msgDisabled | trans }}"><i class="fa fa-{{ iconeDisabled }}"></i></a>
+                        {% if 'admin_user_disabled' | isGranted %}
+                            <a href="{{ path('admin_user_disabled',  {'id' : user.id}) }}" class="btn btn-sm btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ msgDisabled | trans }}"><i class="fa fa-{{ iconeDisabled }}"></i></a>
+                        {% endif %}
                     {% endif %}
                 </td>
             </tr>

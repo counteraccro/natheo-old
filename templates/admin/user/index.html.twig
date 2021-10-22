@@ -27,9 +27,11 @@
 
         <div class="float-end">
 
+            {% if 'admin_user_add' | isGranted %}
             <a href="{{ path('admin_user_add') }}" id="btn-new-role" class="btn btn-primary mb-2">
                 <i class="fas fa-user-plus"></i> {{ "admin_user#Ajouter un utilisateur" | trans }}
             </a>
+            {% endif %}
 
         </div>
         <div class="clearfix"></div>
