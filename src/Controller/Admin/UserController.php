@@ -85,8 +85,15 @@ class UserController extends AppController
      */
     #[Route('/add/', name: 'add')]
     #[Route('/edit/{id}', name: 'edit')]
+    #[Route('/me/{id}', name: 'me')]
     public function createUpdate(FileUploaderService $fileUploader, UserPasswordHasherInterface $passwordHarsher, User $user = null): RedirectResponse|Response
     {
+        $action_me = explode('_', $this->request->getCurrentRequest()->attributes->get('_route'))[2];
+        if($user != null && $this->getUser()->getId() != $user->getId() && $action_me == "me")
+        {
+            return $this->redirectToRoute('admin_user_edit', ['id' => $user->getId()]);
+        }
+
         $breadcrumb = [
             $this->translator->trans('admin_dashboard#Dashboard') => 'admin_dashboard_index',
             $this->translator->trans('admin_user#Gestion des utilisateurs') => ['admin_user_index', ['page' => $this->getPageInSession(self::SESSION_KEY_PAGE)]]
@@ -110,14 +117,23 @@ class UserController extends AppController
             {
                 return $this->redirectToRoute('admin_user_index');
             }
-
             $action = 'edit';
             $title = $this->translator->trans('admin_user#Edition de l\'utilisateur ') . '#' . $user->getId();
             $breadcrumb[$title] = '';
             $flashMsg = $this->translator->trans('admin_user#Utilisateur édité avec succès');
+
+            // Cas edition de son compte
+            if($action_me == 'me')
+            {
+                unset($breadcrumb[$this->translator->trans('admin_user#Gestion des utilisateurs')]);
+                unset($breadcrumb[$title]);
+                $title = $this->translator->trans('admin_user#Mon compte');
+                $breadcrumb[$title] = '';
+                $flashMsg = $this->translator->trans('admin_user#Votre compte à été modifié avec succès');
+            }
         }
 
-        $form = $this->createForm(UserType::class, $user, ['custom_action' => $action]);
+        $form = $this->createForm(UserType::class, $user, ['custom_action' => $action, 'self_action' => $action_me]);
 
         $form->handleRequest($this->request->getCurrentRequest());
         if ($form->isSubmitted() && $form->isValid()) {
@@ -147,13 +163,16 @@ class UserController extends AppController
                 $user->setLastPasswordUpdae(new \DateTime());
             }
 
-
             $this->getDoctrine()->getManager()->persist($user);
             $this->getDoctrine()->getManager()->flush();
 
-            $this->addFlash('success', $flashMsg);
-
             $param = [];
+            $this->addFlash('success', $flashMsg);
+            if($action_me == "me")
+            {
+                return $this->redirectToRoute('admin_dashboard_index');
+            }
+
             if($action == 'edit')
             {
                 $param = ['page' => $this->getPageInSession(self::SESSION_KEY_PAGE)];
@@ -168,7 +187,8 @@ class UserController extends AppController
             'user' => $user,
             'dateFormat' => $dateFormat,
             'timeFormat' => $timeFormat,
-            'action' => $action
+            'action' => $action,
+            'self_action' => $action_me
         ]);
     }
 

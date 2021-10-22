@@ -40,6 +40,7 @@ class AccessControlSubscriber implements EventSubscriberInterface
      */
     public function onKernelController(ControllerEvent $event)
     {
+
         // SI la personne n'a pas les droits on la redirige vers une page d'erreur
         if(!$this->accessService->isGranted($event->getRequest()->attributes->get('_route')))
         {
@@ -50,7 +51,6 @@ class AccessControlSubscriber implements EventSubscriberInterface
             else {
                 echo $this->twig->render('admin/errors/no-access.html.twig');
             }
-
             die();
         }
     }

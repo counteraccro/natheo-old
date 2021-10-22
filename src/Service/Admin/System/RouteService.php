@@ -35,7 +35,9 @@ class RouteService extends AppService
         $tabRouteModule = $this->getTranslateModules();
 
         foreach ($this->router->getRouteCollection()->all() as $key => $_route) {
+
             $explode = explode('_', $key);
+
             if ($explode[0] == '') {
                 continue;
             }
@@ -46,7 +48,8 @@ class RouteService extends AppService
 
             /** @var Route $route */
             $route = $routeRepo->findOneBy(['route' => $key]);
-            if ($route == null) {
+            if ($route === null) {
+
                 $route = new Route();
                 $route->setRoute($key);
             }
@@ -86,6 +89,7 @@ class RouteService extends AppService
             "add" => "admin_system#Ajoute une donnée de type {data}",
             "edit" => "admin_system#Met à jour une donnée de type {data}",
             "delete" => "admin_system#Supprime une donnée de type {data}",
+            "me" => "admin_system#Edition de mes données de type {data}",
             default => "admin_system#Route sans description",
         };
     }

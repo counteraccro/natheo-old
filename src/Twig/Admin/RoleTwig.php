@@ -18,7 +18,9 @@ class RoleTwig extends AppExtension implements RuntimeExtensionInterface
 {
     private array $requiredRoute = [
         'front_security_app_login',
-        'front_security_app_logout'
+        'front_security_app_logout',
+        'admin_user_me',
+        'admin_dashboard_index'
     ];
 
     /**

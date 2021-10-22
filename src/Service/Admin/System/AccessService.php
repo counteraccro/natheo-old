@@ -21,9 +21,19 @@ class AccessService extends AppService
      */
     public function isGranted(string $route = null): bool
     {
+
+        /*
+         * TODO comprendre pourquoi cette route pose problème quand on passe dedans avec
+         * ensuite [$user = $this->security->getUser()] qui semble poser problème avec l'update
+         */
+
+        if($route == 'admin_route_ajax_update')
+        {
+            return true;
+        }
+
         /** @var User $user */
         $user = $this->security->getUser();
-
         if ($user == null || str_contains($route, 'front_') === true || $route == null) {
             return true;
         }

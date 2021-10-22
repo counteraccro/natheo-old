@@ -62,7 +62,7 @@
     {{ form_start(form) }}
 
     <div class="row">
-        <div class="col-6">
+        <div class="col">
             <div class="card">
                 <div class="card-header">
                     {{ "admin_user#Information sur l'utilsateur" | trans }}
@@ -125,17 +125,20 @@
                 </div>
             </div>
         </div>
-        <div class="col-6">
-            <div class="card">
-                <div class="card-header">
-                    {{ "admin_user#Attribution des rôles" | trans }}
+        {% if self_action != "me" %}
+            <div class="col-6">
 
+                <div class="card">
+                    <div class="card-header">
+                        {{ "admin_user#Attribution des rôles" | trans }}
+                    </div>
+                    <div class="card-body">
+                        {{ form_row(form.rolesCms) }}
+                    </div>
                 </div>
-                <div class="card-body">
-                    {{ form_row(form.rolesCms) }}
-                </div>
+
             </div>
-        </div>
+        {% endif %}
     </div>
     {{ form_end(form) }}
 </div>

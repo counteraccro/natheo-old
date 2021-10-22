@@ -53,6 +53,7 @@ class RoleController extends AppController
     /**
      * Permet de lister les roles
      * @param int $page
+     * @return Response
      */
     #[Route('/ajax/listing/{page}', name: 'ajax_listing')]
     public function listing(int $page = 1): Response

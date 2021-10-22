@@ -183,7 +183,7 @@ class MenuAdminTwig extends AppExtension implements RuntimeExtensionInterface
                         <i class="fa fa-user-circle"></i> ' . $user->getEmail() . '
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#"><i class="fa fa-user"></i> ' . $this->translator->trans('admin_topmenu#Mon compte') . '</a></li>
+                        <li><a class="dropdown-item" href="' . $this->urlGenerator->generate('admin_user_me', ['id' => $user->getId()]) . '"><i class="fa fa-user"></i> ' . $this->translator->trans('admin_topmenu#Mon compte') . '</a></li>
                         <li><a class="dropdown-item" href="#"><i class="fa fa-bell"></i> ' . $this->translator->trans('admin_topmenu#Mes notifications') . '</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="' . $this->urlGenerator->generate('front_security_app_logout') . '"><i class="fa fa-sign-out-alt"></i> ' . $this->translator->trans('front_auth#Déconnexion') . '</a></li>

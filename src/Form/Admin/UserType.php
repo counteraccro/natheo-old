@@ -27,6 +27,7 @@ class UserType extends AppType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $action = $options['custom_action'];
+        $self_action = $options['self_action'];
         $required = true;
         if ($action == 'edit') {
             $required = false;
@@ -80,9 +81,10 @@ class UserType extends AppType
                 'label' => $this->translator->trans('admin_user#Désactiver cet utilisateur'),
                 'required' => false,
                 'help' => $this->translator->trans('admin_user#Si l\'utilisateur est désactivé, celui ci ne pourra plus se connecter sur l\'administration'),
-            ])
+            ]);
 
-            ->add('rolesCms', EntityType::class, [
+        if ($self_action != "me") {
+            $builder->add('rolesCms', EntityType::class, [
                 'label' => $this->translator->trans('admin_user#Rôle disponible'),
                 'help' => $this->translator->trans('admin_user#Si aucun rôle n\'est selectioné, l\'utilisateur sera automatiquement déconnecté'),
                 'label_html' => true,
@@ -93,11 +95,12 @@ class UserType extends AppType
                     /** @var Role $role */
                     return '<span class="badge" style="background-color: ' . $role->getColor() . '">' . $role->getShortLabel() . '</span> - ' . $role->getName();
                 },
-            ])
+            ]);
+        }
 
-            ->add("valider", SubmitType::class, [
-                'label' => $this->translator->trans('admin_user#Valider')
-            ])//->add('rolesCms')
+        $builder->add("valider", SubmitType::class, [
+            'label' => $this->translator->trans('admin_user#Valider')
+        ])//->add('rolesCms')
         ;
     }
 
@@ -105,7 +108,8 @@ class UserType extends AppType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
-            'custom_action' => ''
+            'custom_action' => '',
+            'self_action' => ''
         ]);
     }
 }
