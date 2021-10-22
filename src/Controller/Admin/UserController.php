@@ -5,6 +5,7 @@
  * @version 1.0
  * @package App\Controller\Admin;
  */
+
 namespace App\Controller\Admin;
 
 use App\Controller\AppController;
@@ -60,7 +61,7 @@ class UserController extends AppController
 
         $this->setPageInSession(self::SESSION_KEY_PAGE, $page);
         $limit = $this->optionService->getOptionElementParPage();
-        $dateFormat =$this->optionService->getOptionShortFormatDate();
+        $dateFormat = $this->optionService->getOptionShortFormatDate();
         $timeFormat = $this->optionService->getOptionTimeFormat();
 
         $filter = $this->getCriteriaGeneriqueSearch(self::SESSION_KEY_FILTER);
@@ -88,10 +89,12 @@ class UserController extends AppController
     #[Route('/me/{id}', name: 'me')]
     public function createUpdate(FileUploaderService $fileUploader, UserPasswordHasherInterface $passwordHarsher, User $user = null): RedirectResponse|Response
     {
+        // Vérification si l'action est bonne et conforme au données
         $action_me = explode('_', $this->request->getCurrentRequest()->attributes->get('_route'))[2];
-        if($user != null && $this->getUser()->getId() != $user->getId() && $action_me == "me")
-        {
+        if ($user != null && $this->getUser()->getId() != $user->getId() && $action_me == "me") {
             return $this->redirectToRoute('admin_user_edit', ['id' => $user->getId()]);
+        } else if ($user == null && ($action_me == "edit" || $action_me == "me")) {
+            return $this->redirectToRoute('admin_user_index', ['page' => $this->getPageInSession(self::SESSION_KEY_PAGE)]);
         }
 
         $breadcrumb = [
@@ -99,22 +102,19 @@ class UserController extends AppController
             $this->translator->trans('admin_user#Gestion des utilisateurs') => ['admin_user_index', ['page' => $this->getPageInSession(self::SESSION_KEY_PAGE)]]
         ];
 
-        $dateFormat =$this->optionService->getOptionFormatDate();
+        $dateFormat = $this->optionService->getOptionFormatDate();
         $timeFormat = $this->optionService->getOptionTimeFormat();
 
-        if($user == null)
-        {
+        if ($user == null) {
             $action = 'add';
             $user = new User();
             $title = $this->translator->trans('admin_user#Créer un utilisateur');
             $breadcrumb[$title] = '';
             $flashMsg = $this->translator->trans('admin_user#Utilisateur créé avec succès');
-        }
-        else {
+        } else {
 
             // Si on tente d'éditer un user spécificque, on rejette la demande
-            if($user->getName() == UserService::ROOT_NAME || $user->getName() == UserService::GHOST_NAME)
-            {
+            if ($user->getName() == UserService::ROOT_NAME || $user->getName() == UserService::GHOST_NAME) {
                 return $this->redirectToRoute('admin_user_index');
             }
             $action = 'edit';
@@ -123,8 +123,7 @@ class UserController extends AppController
             $flashMsg = $this->translator->trans('admin_user#Utilisateur édité avec succès');
 
             // Cas edition de son compte
-            if($action_me == 'me')
-            {
+            if ($action_me == 'me') {
                 unset($breadcrumb[$this->translator->trans('admin_user#Gestion des utilisateurs')]);
                 unset($breadcrumb[$title]);
                 $title = $this->translator->trans('admin_user#Mon compte');
@@ -141,20 +140,16 @@ class UserController extends AppController
             $avatar = $form->get('avatar')->getData();
             if ($avatar) {
                 $avatarName = $fileUploader->upload($avatar, $fileUploader->getAvatarDirectory());
-                if($user->getId() != null)
-                {
+                if ($user->getId() != null) {
                     $this->fileService->delete($user->getAvatar(), $fileUploader->getAvatarDirectory());
                 }
                 $user->setAvatar($avatarName);
-            }
-            else if($action == 'add')
-            {
+            } else if ($action == 'add') {
                 $user->setAvatar(UserService::DEFAULT_AVATAR);
             }
 
             $password = $form->get('password')->getData();
-            if($password != "")
-            {
+            if ($password != "") {
                 $user->setPassword($passwordHarsher->hashPassword(
                     $user,
                     $password
@@ -168,13 +163,11 @@ class UserController extends AppController
 
             $param = [];
             $this->addFlash('success', $flashMsg);
-            if($action_me == "me")
-            {
+            if ($action_me == "me") {
                 return $this->redirectToRoute('admin_dashboard_index');
             }
 
-            if($action == 'edit')
-            {
+            if ($action == 'edit') {
                 $param = ['page' => $this->getPageInSession(self::SESSION_KEY_PAGE)];
             }
             return $this->redirectToRoute('admin_user_index', $param);
@@ -204,8 +197,7 @@ class UserController extends AppController
         $this->fileService->delete($user->getAvatar(), $fileUploaderService->getAvatarDirectory());
         $flashMsg = $this->translator->trans('admin_user#Utilisateur supprimé avec succès');
 
-        if($this->optionService->getOptionReplaceUser() == OptionService::GO_ADM_REPLACE_USER_YES_VALUE)
-        {
+        if ($this->optionService->getOptionReplaceUser() == OptionService::GO_ADM_REPLACE_USER_YES_VALUE) {
             $id_user = $user->getId();
             // TODO Code pour remplacer les données du user par john doe
         }
@@ -225,12 +217,10 @@ class UserController extends AppController
     #[Route('/update/disabled/{id}', name: 'disabled')]
     public function updateIsDisabled(User $user): RedirectResponse
     {
-        if($user->getIsDisabled() === false)
-        {
+        if ($user->getIsDisabled() === false) {
             $flashMsg = $this->translator->trans('admin_user#Utilisateur désactivé avec succès');
             $user->setIsDisabled(true);
-        }
-        else {
+        } else {
             $flashMsg = $this->translator->trans('admin_user#Utilisateur activé avec succès');
             $user->setIsDisabled(false);
         }

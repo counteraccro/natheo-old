@@ -25,6 +25,7 @@ class AccessService extends AppService
         /*
          * TODO comprendre pourquoi cette route pose problème quand on passe dedans avec
          * ensuite [$user = $this->security->getUser()] qui semble poser problème avec l'update
+         * Solution, stocker les roles en session pour éviter de faire appel à geUser();
          */
 
         if($route == 'admin_route_ajax_update')
