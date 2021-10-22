@@ -9,9 +9,11 @@
     {{ breadcrumb | breadcrumb | raw }}
 
     <div class="float-end">
+        {% if 'admin_route_ajax_update' | isGranted %}
         <div id="btn-update-route" data-loading="{{ "admin_route#Mise à jour des routes..." | trans }}" data-url="{{ path('admin_route_ajax_update') }}" class="btn btn-primary mb-2">
             <i class="fas fa-sync-alt"></i> {{ "admin_route#Mise à jour des routes" | trans }}
         </div>
+        {% endif %}
     </div>
     <div class="clearfix"></div>
     <div class="card">
