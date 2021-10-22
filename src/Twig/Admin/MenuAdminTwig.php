@@ -96,6 +96,12 @@ class MenuAdminTwig extends AppExtension implements RuntimeExtensionInterface
         $show = '';
         foreach($element[self::KEY_SUB_MENU] as $subLabel => $subElement)
         {
+
+            if(!$this->accessService->isGranted($subElement[self::KEY_TARGET]))
+            {
+                continue;
+            }
+
             $active = '';
             if($subElement[self::KEY_TARGET] == $currentPath)
             {
@@ -112,6 +118,11 @@ class MenuAdminTwig extends AppExtension implements RuntimeExtensionInterface
         }
 
         $html_id = "menu-" . mt_rand();
+
+        if($html == "")
+        {
+            return "";
+        }
 
         return '<li>
                     <a href="#' . $html_id . '" data-bs-toggle="collapse" class="nav-link link-light dropdown-toggle">

@@ -2,6 +2,7 @@
 
 namespace App\Twig;
 
+use App\Service\Admin\System\AccessService;
 use App\Service\Admin\System\DateService;
 use App\Service\Admin\System\FileUploaderService;
 use App\Service\Admin\System\OptionService;
@@ -83,6 +84,8 @@ class AppExtension extends AbstractExtension
      */
     protected FileUploaderService $fileUploaderService;
 
+    protected AccessService $accessService;
+
     /**
      * @param ParameterBagInterface $parameterBag
      * @param UrlGeneratorInterface $urlGenerator
@@ -96,7 +99,7 @@ class AppExtension extends AbstractExtension
                                 TranslatorInterface   $translator, Security $security,
                                 RequestStack          $requestStack, TranslationService $translationService,
                                 OptionService       $optionService, DateService $dateService, KernelInterface $kernel,
-                                FileUploaderService $fileUploaderService)
+                                FileUploaderService $fileUploaderService, AccessService $accessService)
     {
         $this->parameterBag = $parameterBag;
         $this->urlGenerator = $urlGenerator;
@@ -109,6 +112,7 @@ class AppExtension extends AbstractExtension
         $this->dateService = $dateService;
         $this->kernel = $kernel;
         $this->fileUploaderService = $fileUploaderService;
+        $this->accessService = $accessService;
     }
 
     /**

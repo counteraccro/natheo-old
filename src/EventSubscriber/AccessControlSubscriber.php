@@ -30,16 +30,26 @@ class AccessControlSubscriber implements EventSubscriberInterface
 
     }
 
+    /**
+     * @throws \Twig\Error\SyntaxError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\LoaderError
+     */
     public function onKernelController(ControllerEvent $event)
     {
-        // TODO control des accès à faire ici via un service
+        // SI la personne n'a pas les droits on la redirige vers une page d'erreur
         if(!$this->accessService->isGranted($event->getRequest()->attributes->get('_route')))
         {
-            echo $this->twig->render('admin/errors/no-access.html.twig');
-            die();
+            if(str_contains($event->getRequest()->attributes->get('_route'), '_ajax_') === true)
+            {
+                echo $this->twig->render('admin/errors/no-access-ajax.html.twig');
+            }
+            else {
+                echo $this->twig->render('admin/errors/no-access.html.twig');
+            }
 
+            die();
         }
-        // throw new AccessDeniedHttpException('This action needs a valid token!');
     }
 
     public static function getSubscribedEvents()
