@@ -10,6 +10,7 @@ namespace App\Twig\Admin\System;
 
 use App\Service\Admin\System\OptionService;
 use App\Twig\AppExtension;
+use Symfony\Component\Validator\Constraints\Date;
 use Twig\Extension\RuntimeExtensionInterface;
 
 class GlobalFunctionTwig extends AppExtension implements RuntimeExtensionInterface
@@ -109,6 +110,21 @@ class GlobalFunctionTwig extends AppExtension implements RuntimeExtensionInterfa
     public function isGranted(string $route): bool
     {
         return $this->accessService->isGranted($route);
+    }
+
+    /**
+     * Affiche correctement les dates du footer pour la création du projet
+     */
+    public function dateFooter(): string
+    {
+        $format = '%B %Y';
+        $dateBegin = new \DateTime('10/01/2021');
+        $dateEnd = new \DateTime();
+
+        $return = ucfirst($this->dateService->getDateFormatTranslate($dateBegin, $format));
+        $return .= ' - ' .  ucfirst($this->dateService->getDateFormatTranslate($dateEnd, $format));
+
+        return $return;
     }
 
 }

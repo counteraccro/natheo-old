@@ -134,6 +134,7 @@ class AppExtension extends AbstractExtension
             new TwigFilter('inputSearch', [GlobalFunctionTwig::class, 'generateSearchInput']),
             new TwigFilter('scriptBeforLeave', [GlobalFunctionTwig::class, 'checkBeforLeaveJS']),
             new TwigFilter('isGranted', [GlobalFunctionTwig::class, 'isGranted']),
+            new TwigFilter('dateFooter', [GlobalFunctionTwig::class, 'dateFooter']),
             new TwigFilter('listeRouteRight', [RoleTwig::class, 'generateRouteRight']),
             new TwigFilter('listeModules', [RoleTwig::class, 'getListeModules']),
             new TwigFilter('pathAvatar', [FileTwig::class, 'getPathAvatar']),
