@@ -21,4 +21,15 @@ class DashboardController extends AppController
             'controller_name' => 'DashboardController',
         ]);
     }
+
+    /**
+     * A supprimer à terme
+     * @return Response
+     */
+    #[Route('/todo', name: 'todo')]
+    public function todo() {
+
+        return $this->render('admin/dashboard/todo.html.twig', [
+        ]);
+    }
 }
