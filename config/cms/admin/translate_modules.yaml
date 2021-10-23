@@ -16,3 +16,4 @@ routes_modules:
   topmenu : 'admin_topmenu#Menu Top'
   fixture : 'admin_fixture#Jeu de données'
   user : 'admin_user#Gestion des utilisateurs'
+  media : 'admin_media#Médiathèque'

@@ -1,0 +1,23 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block title %}{{ "admin_media#Médiathèque" | trans }}{% endblock %}
+
+{% block body %}
+
+    <div id="admin-media-globale">
+        <h1>{{ "admin_media#Médiathèque" | trans }}</h1>
+
+        {{ breadcrumb | breadcrumb | raw }}
+
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+
+    <script>
+        $( document ).ready(function() {
+
+        });
+    </script>
+
+{% endblock %}

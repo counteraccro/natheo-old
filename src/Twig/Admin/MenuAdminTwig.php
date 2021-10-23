@@ -67,6 +67,11 @@ class MenuAdminTwig extends AppExtension implements RuntimeExtensionInterface
      */
     private function generateElementMenu(String $label, array $element, string $currentPath): string
     {
+        if(!$this->accessService->isGranted($element[self::KEY_TARGET]))
+        {
+            return "";
+        }
+
         $active = '';
         if($element[self::KEY_TARGET] == $currentPath)
         {
@@ -96,7 +101,6 @@ class MenuAdminTwig extends AppExtension implements RuntimeExtensionInterface
         $show = '';
         foreach($element[self::KEY_SUB_MENU] as $subLabel => $subElement)
         {
-
             if(!$this->accessService->isGranted($subElement[self::KEY_TARGET]))
             {
                 continue;

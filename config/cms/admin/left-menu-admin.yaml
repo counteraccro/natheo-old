@@ -5,6 +5,9 @@ menu-left-admin:
   admin_dashboard#Dashboard:
     icon: 'fa-tachometer-alt'
     target: 'admin_dashboard_index'
+  admin_media#Médiathèque:
+    icon: 'fa-photo-video'
+    target: 'admin_media_index'
   admin_permission#Permission:
     icon: 'fa-dice-d6'
     sub-menu:
