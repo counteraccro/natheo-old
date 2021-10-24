@@ -15,7 +15,7 @@
     background-color: var(--bg-primary) !important;
 }
 
-#left-menu-admin h2 a{
+#left-menu-admin h2 a {
     color: var(--text-primary-contrast) !important;
 }
 
@@ -45,9 +45,9 @@
 /**
  CSS pour ajouter une * pour les champs obligatoire
  */
-.required:after{
-    content:" *";
-    font-weight:bold;
+.required:after {
+    content: " *";
+    font-weight: bold;
     color: var(--text-primary);
 }
 
@@ -57,4 +57,79 @@ CSS createUpdate user
 
 #admin-create-update-user #show-password {
     cursor: pointer;
+}
+
+/** Tree view Media **/
+
+#admin-media-globale #tree-view-folder{
+    margin-left: -30px;
+}
+
+#admin-media-globale #tree-view-folder .caret {
+    cursor: pointer;
+    user-select: none;
+}
+
+#admin-media-globale #tree-view-folder .caret::before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f07b";
+    display: inline-block;
+    padding-right: 3px;
+    vertical-align: middle;
+    font-weight: 900;
+    color: black;
+    margin-right: 6px;
+}
+
+#admin-media-globale #tree-view-folder .caret-down::before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f07c";
+    display: inline-block;
+    padding-right: 3px;
+    vertical-align: middle;
+    font-weight: 900;
+}
+
+#admin-media-globale #tree-view-folder .nested {
+    display: none;
+}
+
+#admin-media-globale #tree-view-folder .active {
+    display: block;
+}
+
+#admin-media-globale #tree-view-folder li {
+    list-style-type: none;
+    margin: 0;
+    position: relative
+}
+
+#admin-media-globale #tree-view-folder li::before, #admin-media-globale #tree-view-folder li::after {
+    content: '';
+    left: -24px;
+    position: absolute;
+    right: auto
+}
+
+#admin-media-globale #tree-view-folder li::before {
+    border-left: 1px solid #999;
+    bottom: 50px;
+    height: 100%;
+    top: 0;
+    width: 1px
+}
+
+#admin-media-globale #tree-view-folder li::after {
+    border-top: 1px solid #999;
+    height: 18px;
+    top: 14px;
+    width: 25px
+}
+
+#admin-media-globale #tree-view-folder > ul > li::before, #admin-media-globale #tree-view-folder > ul > li::after {
+    border: 0
+}
+
+#admin-media-globale #tree-view-folder li:last-child::before {
+    height: 15px
 }
