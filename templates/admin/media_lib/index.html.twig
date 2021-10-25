@@ -11,39 +11,14 @@
 
         <div class="row">
             <div class="col-3">
-                <div id="tree-view-folder">
-                    <ul>
-                        <li><span class="caret">Beverages</span>
-                            <ul class="nested">
-                                <li class="ee">Water</li>
-                                <li>Coffee</li>
-                                <li><span class="caret">Tea</span>
-                                    <ul class="nested">
-                                        <li>Black Tea</li>
-                                        <li>White Tea</li>
-                                        <li><span class="caret">Green Tea</span>
-                                            <ul class="nested">
-                                                <li>Sencha</li>
-                                                <li>Gyokuro</li>
-                                                <li>Matcha</li>
-                                                <li>Pi Lo Chun</li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+                <div class="card h-100">
+                    <div class="card-body" id="block-tree-view" data-url="{{ path("admin_media_ajax_tree_folder") }}" data-loading="{{ "admin_media#Chargement des dossiers..." | trans }}">
+                    </div>
                 </div>
             </div>
             <div class="col-9">
-                <div class="card">
-                    <div class="card-header">
-                        - {{ "admin_media#Média" | trans }}
-                    </div>
-                    <div class="card-body" data-url="" data-loading="{{ "admin_media#Chargement des médias..." | trans }}">
+                <div id="block-content-folder" data-url="{{ path('admin_media_ajax_see_folder', {'id' : -1}) }}" data-loading="{{ "admin_media#Chargement des médias..." | trans }}">
 
-                    </div>
                 </div>
             </div>
         </div>
@@ -54,15 +29,9 @@
 
     <script>
         $(document).ready(function () {
-            var toggler = document.getElementsByClassName("caret");
-            var i;
-
-            for (i = 0; i < toggler.length; i++) {
-                toggler[i].addEventListener("click", function () {
-                    this.parentElement.querySelector(".nested").classList.toggle("active");
-                    this.classList.toggle("caret-down");
-                });
-            }
+            MediaLib.Launch();
+            MediaLib.loadTreeFolder();
+            MediaLib.loadContentFolder();
         });
     </script>
 

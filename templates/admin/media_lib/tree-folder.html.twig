@@ -1,0 +1,14 @@
+<h6 class="card-title">{{ "admin_media#Dossiers" | trans }}</h6>
+<div id="tree-view-folder">
+    {{ folders | treeFolder | raw }}
+</div>
+
+{% block javascripts %}
+
+    <script>
+        $(document).ready(function () {
+            MediaLib.EventTreeFolder();
+        });
+    </script>
+
+{% endblock %}

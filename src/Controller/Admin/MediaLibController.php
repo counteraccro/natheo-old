@@ -15,6 +15,9 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/admin/media', name: 'admin_media_')]
 class MediaLibController extends AppController
 {
+    /**
+     * @return Response
+     */
     #[Route('/index', name: 'index')]
     public function index(): Response
     {
@@ -24,28 +27,36 @@ class MediaLibController extends AppController
             $this->translator->trans('admin_media#Médiathèque') => '',
         ];
 
-        $folders = $this->getDoctrine()->getRepository(Folder::class)->findAll();
-
-        /** @var Folder $folder */
-        foreach($folders as $folder)
-        {
-            if($folder->getParent() != null)
-            {
-                continue;
-            }
-
-            echo $folder->getName() . '<br />';
-            if($folder->getChildren()->count() > 0)
-            {
-                foreach($folder->getChildren() as $child)
-                {
-                    echo '---- ' . $child->getName() . '<br />';
-                }
-            }
-        }
-
         return $this->render('admin/media_lib/index.html.twig', [
             'breadcrumb' => $breadcrumb,
+        ]);
+    }
+
+    /**
+     * Affichage des dossiers des médias
+     * @return Response
+     */
+    #[Route('/tree-view-folder', name: 'ajax_tree_folder')]
+    public function treeViewFolder(): Response
+    {
+
+        $folders = $this->getDoctrine()->getRepository(Folder::class)->findBy(['parent' => null]);
+
+        return $this->render('admin/media_lib/tree-folder.html.twig', [
+            'folders' => $folders
+        ]);
+    }
+
+    /**
+     * Permet de voir le contenu d'un dossier
+     * @param Folder|null $folder
+     * @return Response
+     */
+    #[Route('/folder/', name: 'ajax_see_root')]
+    #[Route('/folder/{id}', name: 'ajax_see_folder')]
+    public function contentFolder(Folder $folder = null): Response
+    {
+        return $this->render('admin/media_lib/see-content-folder.html.twig', [
         ]);
     }
 }

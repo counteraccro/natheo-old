@@ -56,6 +56,7 @@
 'admin_system#Ajoute une donnée de type {data}': 'Ajoute une donnée de type {data}'
 'admin_system#Met à jour une donnée de type {data}': 'Met à jour une donnée de type {data}'
 'admin_system#Supprime une donnée de type {data}': 'Supprime une donnée de type {data}'
+'admin_system#Edition de mes données de type {data}': 'Edition de mes données de type {data}'
 'admin_system#Route sans description': 'Route sans description'
 'admin_fixture#Jeu de données': 'Jeu de données'
 'admin_global_option#Remplacer l''utilisateur supprimé par l''utilisateur fantome John Doe': 'Remplacer l''utilisateur supprimé par l''utilisateur fantome John Doe'
@@ -246,8 +247,11 @@
 'admin_system#Vous n''avez pas les droits pour visualiser ce contenu': 'Vous n''avez pas les droits pour visualiser ce contenu'
 'admin_system#Oups': Oups
 'admin_system#Il semblerait que vous n''avez pas les droits pour visualiser ce contenu': 'Il semblerait que vous n''avez pas les droits pour visualiser ce contenu'
-'admin_system#Edition de mes données de type {data}': 'Edition de mes données de type {data}'
 'admin_user#Mon compte': 'Mon compte'
 'admin_user#Votre compte à été modifié avec succès': 'Votre compte à été modifié avec succès'
 'admin_route#Supprimer': Supprimer
 'admin_media#Médiathèque': Médiathèque
+'admin_media#Chargement des dossiers...': 'Chargement des dossiers...'
+'admin_media#Média': Média
+'admin_media#Chargement des médias...': 'Chargement des médias...'
+'admin_media#Dossiers': Dossiers
