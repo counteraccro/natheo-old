@@ -24,8 +24,8 @@ class TreeFolderTwig extends AppExtension implements RuntimeExtensionInterface
     {
         $fragment = '';
 
-        $html = '<ul><li><span class="caret" data-id="-1">Root</span>
-            <ul class="nested">';
+        $html = '<ul><li><span class="caret caret-down activeNode" data-id="-1">Root</span>
+            <ul class="nested active">';
 
         foreach ($folders as $folder) {
             $html .= $this->readFolder($folder, $fragment);
