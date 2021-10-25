@@ -255,3 +255,7 @@
 'admin_media#Média': __Média
 'admin_media#Chargement des médias...': '__Chargement des médias...'
 'admin_media#Dossiers': __Dossiers
+'admin_media#Images': __Images
+'admin_media#Fichiers': __Fichiers
+'admin_media#Vidéos': __Vidéos
+'admin_media#Audio': __Audio

@@ -52,11 +52,18 @@ class MediaLibController extends AppController
      * @param Folder|null $folder
      * @return Response
      */
-    #[Route('/folder/', name: 'ajax_see_root')]
     #[Route('/folder/{id}', name: 'ajax_see_folder')]
     public function contentFolder(Folder $folder = null): Response
     {
+        $folders = null;
+        if($folder == null)
+        {
+            $folders = $this->getDoctrine()->getRepository(Folder::class)->findBy(['parent' => null]);
+        }
+
         return $this->render('admin/media_lib/see-content-folder.html.twig', [
+            'folders' => $folders,
+            'folder' => $folder
         ]);
     }
 }

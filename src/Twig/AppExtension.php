@@ -141,6 +141,7 @@ class AppExtension extends AbstractExtension
             new TwigFilter('pathAvatar', [FileTwig::class, 'getPathAvatar']),
             new TwigFilter('dateFormat', [DateTwig::class, 'dateFormat']),
             new TwigFilter('treeFolder', [TreeFolderTwig::class, 'treeFolder']),
+            new TwigFilter('pathFolder', [TreeFolderTwig::class, 'getPathFolder']),
 
         ];
     }

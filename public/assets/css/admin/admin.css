@@ -98,6 +98,11 @@ CSS createUpdate user
     display: block;
 }
 
+#admin-media-globale #tree-view-folder .activeNode {
+    color: var(--hover-primary);
+    font-weight: bold;
+}
+
 #admin-media-globale #tree-view-folder li {
     list-style-type: none;
     margin: 0;
