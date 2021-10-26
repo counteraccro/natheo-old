@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div class="col-9">
-                <div id="block-content-folder" data-url="{{ path('admin_media_ajax_see_folder', {'id' : -1}) }}" data-loading="{{ "admin_media#Chargement des médias..." | trans }}">
+                <div id="right-block-folder" data-url="{{ path('admin_media_ajax_see_folder', {'id' : -1}) }}" data-loading="{{ "admin_media#Chargement des médias..." | trans }}">
 
                 </div>
             </div>
@@ -31,7 +31,7 @@
         $(document).ready(function () {
             MediaLib.Launch();
             MediaLib.loadTreeFolder();
-            MediaLib.loadContentFolder();
+            MediaLib.loadBlockFolder();
         });
     </script>
 

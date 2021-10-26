@@ -48,11 +48,31 @@ class MediaLibController extends AppController
     }
 
     /**
-     * Permet de voir le contenu d'un dossier
+     * Affiche le bloc de droite avec les informations sur le dossier courant
      * @param Folder|null $folder
      * @return Response
      */
     #[Route('/folder/{id}', name: 'ajax_see_folder')]
+    public function rightBlockFolder(Folder $folder = null): Response
+    {
+        $folders = null;
+        if($folder == null)
+        {
+            $folders = $this->getDoctrine()->getRepository(Folder::class)->findBy(['parent' => null]);
+        }
+
+        return $this->render('admin/media_lib/see-block-folder.html.twig', [
+            'folders' => $folders,
+            'folder' => $folder
+        ]);
+    }
+
+    /**
+     * Affiche les medias / dossier contenu dans le dossier courant
+     * @param Folder|null $folder
+     * @return Response
+     */
+    #[Route('/content-folder/{id}', name: 'ajax_see_content_folder')]
     public function contentFolder(Folder $folder = null): Response
     {
         $folders = null;

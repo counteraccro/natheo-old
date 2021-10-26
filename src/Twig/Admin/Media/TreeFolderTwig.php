@@ -101,7 +101,7 @@ class TreeFolderTwig extends AppExtension implements RuntimeExtensionInterface
         $tab = array_reverse($tab);
 
         $html = '<nav style="--bs-breadcrumb-divider: \'>\';" aria-label="breadcrumb" id="breadcrumb-folder-media">
-              <ol class="breadcrumb">';
+              <ol class="breadcrumb mb-0 mt-2">';
         if(empty($tab))
         {
             $html .= ' <li class="breadcrumb-item active" aria-current="page">Root</a></li>';

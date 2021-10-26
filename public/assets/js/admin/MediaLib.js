@@ -48,7 +48,7 @@ MediaLib.Launch = function () {
                 return false;
             }
 
-            let id = MediaLib.globalId + ' #block-content-folder';
+            let id = MediaLib.globalId + ' #right-block-folder';
             let url = current.data('url');
             if(url === undefined)
             {
@@ -62,17 +62,17 @@ MediaLib.Launch = function () {
     }
 
     /**
-     * Event sur les médias
+     * Event sur le block médias
      * @constructor
      */
-    MediaLib.EventMedia = function() {
+    MediaLib.EventBlockMedia = function() {
 
         /**
          * Permet de naviger dans les dossier depuis le fil d'arianne
          */
         $(MediaLib.globalId + ' #breadcrumb-folder-media .breadcrumb-item a').click(function() {
 
-            let id = MediaLib.globalId + ' #block-content-folder';
+            let id = MediaLib.globalId + ' #right-block-folder';
             let url = $(this).attr('href');
             let str_loading = $(id).data('loading');
             System.Ajax(url, id, true, str_loading);
@@ -93,13 +93,85 @@ MediaLib.Launch = function () {
             })
 
             return false;
-        })
+        });
+
+        /**
+         * Event sur le choix du filtre de media
+         */
+        $(MediaLib.globalId + ' #btn-render-media input').click(function() {
+            MediaLib.loadContentFolder();
+        });
+
+        /**
+         * Event sur le choix d'affichage
+         */
+        $(MediaLib.globalId + ' #btn-render-render input').click(function() {
+            MediaLib.loadContentFolder();
+        });
+
+        /**
+         * Event sur le bouton de recherche
+         */
+        $(MediaLib.globalId + ' #btn-search-media').click(function () {
+            MediaLib.loadContentFolder();
+        });
     }
 
+    /**
+     * Permet de charger le block contenant les info du dossier courant
+     */
+    MediaLib.loadBlockFolder = function() {
+        let id = MediaLib.globalId + ' #right-block-folder';
+        let url = $(id).data('url');
+        let str_loading = $(id).data('loading');
+        System.Ajax(url, id, true, str_loading);
+    }
+
+    /**
+     * Permet de charger les medias d'un dossier
+     */
     MediaLib.loadContentFolder = function() {
         let id = MediaLib.globalId + ' #block-content-folder';
         let url = $(id).data('url');
         let str_loading = $(id).data('loading');
-        System.Ajax(url, id, true, str_loading);
+
+        let data = MediaLib.getDataFilterFolder();
+        console.log(data);
+
+        $(id).loader(str_loading);
+
+        $.ajax({
+            method: 'POST',
+            data : {'media-filter' : data },
+            url: url,
+        })
+            .done(function (html) {
+                $(id).html(html);
+            });
+    }
+
+    /**
+     * Récupère les données de filtre pour l'affichage des médias d'un dossier
+     */
+    MediaLib.getDataFilterFolder = function() {
+
+        let tab = {};
+        $(MediaLib.globalId + ' #btn-render-media input').each(function () {
+            if($(this).prop('checked'))
+            {
+                tab['media'] = $(this).attr('id').split('-')[2]
+            }
+        });
+
+        let render = "";
+        $(MediaLib.globalId + ' #btn-render-render input').each(function () {
+            if($(this).prop('checked'))
+            {
+                tab['render'] = $(this).attr('id').split('-')[2]
+            }
+        });
+
+        tab['search'] = $(MediaLib.globalId + ' #search-media').val();
+        return tab;
     }
 }

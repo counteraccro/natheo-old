@@ -259,3 +259,9 @@
 'admin_media#Fichiers': __Fichiers
 'admin_media#Vidéos': __Vidéos
 'admin_media#Audio': __Audio
+'admin_media#Supprimer': __Supprimer
+'admin_media#Nouveau': __Nouveau
+'admin_media#Recherche': __Recherche
+'admin_media#Rechercher': __Rechercher
+'admin_media#Tout': __Tout
+'admin_media#Ajouter un média': '__Ajouter un média'

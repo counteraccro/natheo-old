@@ -43,6 +43,22 @@ a:focus {
     border-color: var(--hover-primary);
 }
 
+.btn-check:active+.btn-outline-primary, .btn-check:checked+.btn-outline-primary, .btn-outline-primary.active, .btn-outline-primary.dropdown-toggle.show, .btn-outline-primary:active {
+    color: #fff;
+    background-color: var(--hover-primary);
+    border-color: var(--hover-primary);
+}
+
+.btn-outline-primary {
+    color: var(--bg-primary);
+    border-color: var(--bg-primary);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--hover-primary) !important;
+    border-color: var(--hover-primary);
+}
+
 .btn-check:focus + .btn-primary, .btn-primary:focus {
     color: #fff;
     background-color: var(--hover-primary);
