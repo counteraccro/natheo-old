@@ -32,7 +32,7 @@ MediaLib.Launch = function () {
         $(MediaLib.globalId + ' #tree-view-folder .caret').click(function () {
 
             let current = $(this);
-            $(MediaLib.globalId + ' #tree-view-folder .caret').each(function() {
+            $(MediaLib.globalId + ' #tree-view-folder .caret, ' + MediaLib.globalId + ' #tree-view-folder .link-filter').each(function() {
                 $(this).removeClass('activeNode');
             })
 
@@ -52,13 +52,48 @@ MediaLib.Launch = function () {
             let url = current.data('url');
             if(url === undefined)
             {
-                MediaLib.loadContentFolder();
+                MediaLib.loadBlockFolder();
                 return false;
             }
 
             let str_loading = $(id).data('loading');
             System.Ajax(url, id, true, str_loading);
         });
+
+        /**
+         * Event sur le tree, pour filtrer en fonction d'une image / vidéo etc...
+         */
+        $(MediaLib.globalId + ' #tree-view-folder li.link-filter').click(function() {
+            let element = $(this).parent().prev();
+            let id = MediaLib.globalId + ' #right-block-folder';
+            let url = element.data('url');
+
+            let filter = $(this).data('id');
+
+            $(MediaLib.globalId + ' #tree-view-folder .link-filter').each(function() {
+                $(this).removeClass('activeNode');
+            })
+            $(this).addClass('activeNode');
+
+            if(url === undefined)
+            {
+                MediaLib.loadBlockFolder();
+                return false;
+            }
+
+            let str_loading = $(id).data('loading');
+
+            $(id).loader(str_loading);
+
+            $.ajax({
+                method: 'GET',
+                url: url,
+            })
+                .done(function (html) {
+                    $(id).html(html);
+                    $(MediaLib.globalId + ' #btn-render-media #' + filter).prop('checked', 'checked');
+                });
+        })
     }
 
     /**
@@ -138,6 +173,17 @@ MediaLib.Launch = function () {
         let data = MediaLib.getDataFilterFolder();
         console.log(data);
 
+        let tmp_ref = 'btn-render-' + data['media'];
+        $(MediaLib.globalId + ' #tree-view-folder li.link-filter').each(function() {
+            if($(this).data('id') === tmp_ref && $(this).data('folder') === data['folder-id'])
+            {
+                $(this).addClass('activeNode');
+            }
+            else {
+                $(this).removeClass('activeNode');
+            }
+        })
+
         $(id).loader(str_loading);
 
         $.ajax({
@@ -156,6 +202,7 @@ MediaLib.Launch = function () {
     MediaLib.getDataFilterFolder = function() {
 
         let tab = {};
+        tab['folder-id'] = $(MediaLib.globalId + ' #btn-render-media').data('folder');
         $(MediaLib.globalId + ' #btn-render-media input').each(function () {
             if($(this).prop('checked'))
             {

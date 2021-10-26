@@ -75,6 +75,10 @@ class MediaLibController extends AppController
     #[Route('/content-folder/{id}', name: 'ajax_see_content_folder')]
     public function contentFolder(Folder $folder = null): Response
     {
+
+        $data = $this->request->getCurrentRequest()->get('media-filter');
+        var_dump($data);
+
         $folders = null;
         if($folder == null)
         {

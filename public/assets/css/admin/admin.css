@@ -65,7 +65,7 @@ CSS createUpdate user
     margin-left: -30px;
 }
 
-#admin-media-globale #tree-view-folder .caret {
+#admin-media-globale #tree-view-folder .caret, #admin-media-globale #tree-view-folder .link-filter {
     cursor: pointer;
     user-select: none;
 }

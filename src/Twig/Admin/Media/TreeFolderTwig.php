@@ -66,22 +66,22 @@ class TreeFolderTwig extends AppExtension implements RuntimeExtensionInterface
      */
     private function showTypeContent(Folder $folder): string
     {
-        return '<li><i class="fa fa-file-image"></i> ' . $this->translator->trans('admin_media#Images') . '
+        return '<li class="link-filter" data-id="btn-render-img" data-folder="' . $folder->getId() . '"><i class="fa fa-file-image"></i> ' . $this->translator->trans('admin_media#Images') . '
                             <span class="badge rounded-pill bg-primary">
                                 99+
                              </span>
                         </li>
-                        <li><i class="fa fa-file-word"></i> ' . $this->translator->trans('admin_media#Fichiers') . '
+                        <li class="link-filter" data-id="btn-render-file" data-folder="' . $folder->getId() . '"><i class="fa fa-file-word"></i> ' . $this->translator->trans('admin_media#Fichiers') . '
                             <span class="badge rounded-pill bg-primary">
                                 99+
                              </span>
                         </li>
-                        <li><i class="fa fa-file-video"></i> ' . $this->translator->trans('admin_media#Vidéos') . '
+                        <li class="link-filter" data-id="btn-render-video" data-folder="' . $folder->getId() . '"><i class="fa fa-file-video"></i> ' . $this->translator->trans('admin_media#Vidéos') . '
                             <span class="badge rounded-pill bg-primary">
                                 99+
                              </span>
                         </li>
-                        <li><i class="fa fa-file-audio"></i> ' . $this->translator->trans('admin_media#Audio') . '
+                        <li class="link-filter" data-id="btn-render-audio" data-folder="' . $folder->getId() . '"><i class="fa fa-file-audio"></i> ' . $this->translator->trans('admin_media#Audio') . '
                             <span class="badge rounded-pill bg-primary">
                                 99+
                              </span>
