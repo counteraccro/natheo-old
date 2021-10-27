@@ -274,3 +274,8 @@
 'admin_system#Appel Ajax pour voir le contenu d''un dossier': 'Appel Ajax pour voir le contenu d''un dossier'
 'admin_system#Appel Ajax pour créer un dossier': 'Appel Ajax pour créer un dossier'
 'admin_system#Appel Ajax pour éditer un dossier': 'Appel Ajax pour éditer un dossier'
+'admin_system#Désactive une donnée de type {data}': 'Désactive une donnée de type {data}'
+'admin_media#Liste des dossiers disponible': 'Liste des dossiers disponible'
+'admin_media#Selectionner le dossier parent': 'Selectionner le dossier parent'
+'admin_media#Chargement de la modale pour éditer le dossier': 'Chargement de la modale pour éditer le dossier'
+'admin_media#Editer': Editer

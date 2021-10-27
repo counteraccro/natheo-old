@@ -52,7 +52,14 @@
                 </div>
             </div>
             <div class="col">
-                <div class="btn btn-primary float-end"><i class="fa fa-upload"></i> {{ "admin_media#Ajouter un média" | trans }}</div>
+                <div class="float-end">
+                    {% if(folder != null) %}
+                        {% if 'admin_media_ajax_edit_folder' | isGranted %}
+                            <div class="btn btn-primary" id="btn-new-folder" data-url="{{ path('admin_media_ajax_edit_folder', {'parent' : id, 'id' : folder.id}) }}" data-loading="{{ "admin_media#Chargement de la modale pour éditer le dossier" | trans }} {{ folder.name }}"><i class="fa fa-folder"></i> {{ "admin_media#Editer" | trans }}</div>
+                        {% endif %}
+                    {% endif %}
+                     <div class="btn btn-primary"><i class="fa fa-upload"></i> {{ "admin_media#Ajouter un média" | trans }}</div>
+                </div>
             </div>
         </div>
         {% set params = {'id' : -1} %}
