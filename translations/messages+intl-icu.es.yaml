@@ -279,3 +279,6 @@
 'admin_media#Selectionner le dossier parent': '__Selectionner le dossier parent'
 'admin_media#Chargement de la modale pour éditer le dossier': '__Chargement de la modale pour éditer le dossier'
 'admin_media#Editer': __Editer
+'admin_media#Création du dossier en cours....': '__admin_media#Création du dossier en cours....'
+'admin_media#Mise à jour du dossier en cours....': '__admin_media#Mise à jour du dossier en cours....'
+'admin_media#Valider': '__admin_media#Valider'

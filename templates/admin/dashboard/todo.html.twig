@@ -8,20 +8,36 @@
         <h1>TODO Liste</h1>
 
         <div class="alert alert-info">
-            Cette page à pour vocation à lister les évolutions/problèmes à régler avant la V1 disparaitre une fois la V1 sortie
+            Cette page à pour vocation à lister les évolutions/problèmes à régler avant la V1, doit disparaitre une fois
+            la V1 sortie
         </div>
 
         <h3>Octobre 2021</h3>
         <ul>
-            <li>Mise à jour des routes</li>
-            <ul>
-                <li><span class="badge bg-danger">BUG</span> Dans <kbd>App\Service\Admin\System\AccessService::isGranted</kbd> comprendre pourquoi la route <kbd>admin_route_ajax_update</kbd> pose problème quand on passe dedans avec
-                    ensuite [$user = $this->security->getUser()] qui semble poser problème avec l'update ( 10 routes sont considérées comme obsolètes à chaque fois)
-                    <br />Solution, stocker les roles en session pour éviter de faire appel à geUser();</li>
-            </ul>
+            <li>Mise à jour des routes
+                <ul>
+                    <li><span class="badge bg-danger">BUG</span> Dans <kbd>App\Service\Admin\System\AccessService::isGranted</kbd>
+                        comprendre pourquoi la route <kbd>admin_route_ajax_update</kbd> pose problème quand on passe
+                        dedans avec
+                        ensuite [$user = $this->security->getUser()] qui semble poser problème avec l'update ( 10 routes
+                        sont considérées comme obsolètes à chaque fois)
+                        <br/>Solution, stocker les roles en session pour éviter de faire appel à geUser();
+                    </li>
+                </ul>
+            </li>
             <li>Gestion des utilisateurs
                 <ul>
-                    <li><span class="badge bg-warning">Fitchure</span> Mise en place du système du remplacement d'un utilisateur par John Doe sur toute les données associées à un utilisateur que l'on veux supprimer</li>
+                    <li><span class="badge bg-warning">TODO</span> Mise en place du système du remplacement d'un
+                        utilisateur par John Doe sur toute les données associées à un utilisateur que l'on veux
+                        supprimer
+                    </li>
+                </ul>
+            </li>
+            <li>Médiathèque / Gestion des dossiers
+                <ul>
+                    <li><span class="badge bg-primary">Evolution</span> A l'ajout ou édition d'un dossier, refaire
+                        l'affichage du choix du dossier parent, idéalement l'afficher en forme d'arbre
+                    </li>
                 </ul>
             </li>
         </ul>

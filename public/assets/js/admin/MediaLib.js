@@ -234,4 +234,55 @@ MediaLib.Launch = function () {
         tab['search'] = $(MediaLib.globalId + ' #search-media').val();
         return tab;
     }
+
+    /**
+     * Event sur la popin d'ajout/Supression d'un dossier
+     */
+    MediaLib.createUpdateFolderEvent = function(modalFolder) {
+
+        $('#modal-create-update-folder #form-folder').submit(function(e) {
+            e.preventDefault();
+
+            $('#modal-create-update-folder').loader($(this).data('loading'));
+
+            $.ajax({
+                method: 'POST',
+                data: $(this).serialize(),
+                url: $(this).attr('action'),
+            })
+                .done(function (html) {
+                    modalFolder.toggle();
+                    $(System.adminBlockModalId).html(html);
+                });
+
+        });
+
+        /*$('#modal-create-update-folder #create-update-folder-valide').click(function() {
+
+            let data = $('#modal-create-update-folder #form-folder').serialize();
+            let url = $('#modal-create-update-folder #form-folder').attr('action');
+            let msg_loading = $('#modal-create-update-folder #form-folder').data('loading');
+
+            $('#modal-create-update-folder').loader(msg_loading);
+
+            $.ajax({
+                method: 'POST',
+                data: data,
+                url: url,
+            })
+                .done(function (html) {
+                    modalFolder.toggle();
+                    $(System.adminBlockModalId).html(html);
+                });
+            return false;
+        })*/
+    }
+
+    /**
+     * Action à faire une fois que l'update c'est bien passé
+     */
+    MediaLib.createUpdateFolderSuccess = function () {
+        MediaLib.loadTreeFolder();
+        MediaLib.loadContentFolder();
+    }
 }

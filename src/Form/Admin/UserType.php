@@ -100,7 +100,7 @@ class UserType extends AppType
 
         $builder->add("valider", SubmitType::class, [
             'label' => $this->translator->trans('admin_user#Valider')
-        ])//->add('rolesCms')
+        ])
         ;
     }
 

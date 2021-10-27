@@ -7,13 +7,21 @@
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            {{ form_start(form, { 'id' : 'form-folder', 'action': url }) }}
             <div class="modal-body">
-                {{ form(form) }}
+                {{ form_row(form.name) }}
+
+                {{ form_row(form.refId) }}
+
+                {{ form_row(form.parent) }}
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <div class="mb-3">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ "admin_media#Annuler" }}</button>
+                </div>
+                {{ form_row(form.valider, {'id' : 'create-update-folder-valide'}) }}
             </div>
+            {{ form_end(form) }}
         </div>
     </div>
 </div>
@@ -22,13 +30,23 @@
 
     <script>
         $(document).ready(function () {
-            let myModal = new bootstrap.Modal($('#modal-create-update-folder'), [])
-            myModal.toggle();
+            let modalFolder = new bootstrap.Modal($('#modal-create-update-folder'), [])
+            modalFolder.toggle();
 
             {% if(parent != null) %}
                 $('#folder_parent option[value="{{ parent.id }}"]').prop('selected', true);
             {% endif %}
 
+            $('#folder_refId').val(-1);
+            {% if(folder != null) %}
+                $('#folder_refId').val({{ folder.id }})
+            {% endif %}
+
+            MediaLib.createUpdateFolderEvent(modalFolder);
+
+            {% if save_ok is same as(true) %}
+                MediaLib.createUpdateFolderSuccess();
+            {% endif %}
 
         });
     </script>

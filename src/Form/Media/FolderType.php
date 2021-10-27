@@ -10,6 +10,8 @@ use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -23,8 +25,8 @@ class FolderType extends AppType
         $builder
             ->add('name')
             ->add('parent', EntityType::class, [
-                'label' => $this->translator->trans('admin_media#Liste des dossiers disponible'),
-                'help' => $this->translator->trans('admin_media#Selectionner le dossier parent'),
+                'label' => $this->translator->trans('admin_media#Dossier parent'),
+                'help' => $this->translator->trans('admin_media#Selectionner le dossier parent ou sera rangé le dossier'),
                 'query_builder' => function (EntityRepository $er) {
 
                     $sql = "WITH recursive cte (id, name, parent) AS (
@@ -41,9 +43,9 @@ class FolderType extends AppType
                             )
                             SELECT id, name, parent
                             FROM cte
-                            GROUP BY name";
+                            GROUP BY name
+                            ORDER BY parent";
 
-                    $rsm = new ResultSetMapping();
                     $connection = $er->createQueryBuilder('f')->getEntityManager()->getConnection();
                     $stmt = $connection->prepare($sql);
                     $this->tabRef = $results = $stmt->executeQuery()->fetchAllAssociative();
@@ -54,7 +56,8 @@ class FolderType extends AppType
 
                     return $er->createQueryBuilder('f')
                         ->where('f.id IN (:ids)')
-                        ->setParameter('ids', $ids);
+                        ->setParameter('ids', $ids)
+                        ->orderBy('f.parent', 'ASC');
                 },
                 'label_html' => true,
                 'class' => Folder::class,
@@ -64,11 +67,29 @@ class FolderType extends AppType
                 'placeholder' => 'Root',
                 'choice_label' => function (Folder $folder) {
 
-                  $nb = count($this->generatePath($folder, []));
-                  $before = str_repeat('-', $nb);
-                  return $before . ' ' . $folder->getName();
+                  $path = array_reverse($this->generatePath($folder, []));
+
+                  var_dump($path);
+
+                  $before = 'Root / ';
+
+                  unset($path[array_key_last($path)]);
+
+                  foreach($path as $element)
+                  {
+                      $before .= $element['name']. ' / ';
+                  }
+
+                  //$before = str_repeat('-', $nb);
+                  return  $before . $folder->getName();
                 },
             ])
+             ->add('refId', HiddenType::class, [
+                 'mapped' => false,
+             ])
+             ->add("valider", SubmitType::class, [
+                 'label' => $this->translator->trans('admin_media#Valider')
+             ])
         ;
     }
 
@@ -76,6 +97,7 @@ class FolderType extends AppType
     {
         $resolver->setDefaults([
             'data_class' => Folder::class,
+            'allow_extra_fields' => true,
         ]);
     }
 

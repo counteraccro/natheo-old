@@ -2,13 +2,18 @@
     <div class="card-header">
         <div class="float-end">
             {% set id = "-1" %}
+            {% set parent = "-1" %}
             {% if(folder != null) %}
                 {% set id = folder.id %}
+                {% set parent = folder.parent %}
+                {% if(parent != null) %}
+                    {% set parent = parent.id %}
+                {% endif %}
                 <div class="btn btn-danger"><i class="fa fa-folder-minus"></i> {{ "admin_media#Supprimer" | trans }}
                 </div>
             {% endif %}
             {% if 'admin_media_ajax_add_folder' | isGranted %}
-                <div class="btn btn-primary" id="btn-new-folder" data-url="{{ path('admin_media_ajax_add_folder', {'parent' : id, 'id' : "-1"}) }}" data-loading="{{ "admin_media#Chargement de la modale pour ajouter un dossier" | trans }}"><i class="fa fa-folder-plus"></i> {{ "admin_media#Nouveau" | trans }}</div>
+                <div class="btn btn-primary" id="btn-new-folder" data-url="{{ path('admin_media_ajax_add_folder', {'id' : "-1", 'parent' : parent}) }}" data-loading="{{ "admin_media#Chargement de la modale pour ajouter un dossier" | trans }}"><i class="fa fa-folder-plus"></i> {{ "admin_media#Nouveau" | trans }}</div>
             {% endif %}
         </div>
         {{ folder | pathFolder | raw }}
@@ -55,7 +60,7 @@
                 <div class="float-end">
                     {% if(folder != null) %}
                         {% if 'admin_media_ajax_edit_folder' | isGranted %}
-                            <div class="btn btn-primary" id="btn-new-folder" data-url="{{ path('admin_media_ajax_edit_folder', {'parent' : id, 'id' : folder.id}) }}" data-loading="{{ "admin_media#Chargement de la modale pour éditer le dossier" | trans }} {{ folder.name }}"><i class="fa fa-folder"></i> {{ "admin_media#Editer" | trans }}</div>
+                            <div class="btn btn-primary" id="btn-new-folder" data-url="{{ path('admin_media_ajax_edit_folder', {'parent' : parent, 'id' : folder.id}) }}" data-loading="{{ "admin_media#Chargement de la modale pour éditer le dossier" | trans }} {{ folder.name }}"><i class="fa fa-folder"></i> {{ "admin_media#Editer" | trans }}</div>
                         {% endif %}
                     {% endif %}
                      <div class="btn btn-primary"><i class="fa fa-upload"></i> {{ "admin_media#Ajouter un média" | trans }}</div>
