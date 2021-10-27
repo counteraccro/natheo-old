@@ -265,3 +265,12 @@
 'admin_media#Rechercher': Rechercher
 'admin_media#Tout': Tout
 'admin_media#Ajouter un média': 'Ajouter un média'
+'admin_media#Nouveau dossier': 'Nouveau dossier'
+'admin_media#Edition du dossier': 'Edition du dossier'
+'admin_media#Chargement de la modale pour ajouter un dossier': 'Chargement de la modale pour ajouter un dossier'
+'admin_media#Rechercher dans les médias': 'Rechercher dans les médias'
+'admin_media#Chargement du contenu du dossier ...': 'Chargement du contenu du dossier ...'
+'admin_system#Appel Ajax pour générer un arbre de donnée de type {data}': 'Appel Ajax pour générer un arbre de donnée de type {data}'
+'admin_system#Appel Ajax pour voir le contenu d''un dossier': 'Appel Ajax pour voir le contenu d''un dossier'
+'admin_system#Appel Ajax pour créer un dossier': 'Appel Ajax pour créer un dossier'
+'admin_system#Appel Ajax pour éditer un dossier': 'Appel Ajax pour éditer un dossier'

@@ -7,7 +7,9 @@
                 <div class="btn btn-danger"><i class="fa fa-folder-minus"></i> {{ "admin_media#Supprimer" | trans }}
                 </div>
             {% endif %}
-            <div class="btn btn-primary"><i class="fa fa-folder-plus"></i> {{ "admin_media#Nouveau" | trans }}</div>
+            {% if 'admin_media_ajax_add_folder' | isGranted %}
+                <div class="btn btn-primary" id="btn-new-folder" data-url="{{ path('admin_media_ajax_add_folder', {'parent' : id, 'id' : "-1"}) }}" data-loading="{{ "admin_media#Chargement de la modale pour ajouter un dossier" | trans }}"><i class="fa fa-folder-plus"></i> {{ "admin_media#Nouveau" | trans }}</div>
+            {% endif %}
         </div>
         {{ folder | pathFolder | raw }}
 

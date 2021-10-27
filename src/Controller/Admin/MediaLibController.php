@@ -9,6 +9,8 @@ namespace App\Controller\Admin;
 
 use App\Controller\AppController;
 use App\Entity\Media\Folder;
+use App\Form\Media\FolderType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -42,7 +44,7 @@ class MediaLibController extends AppController
 
         $folders = $this->getDoctrine()->getRepository(Folder::class)->findBy(['parent' => null]);
 
-        return $this->render('admin/media_lib/tree-folder.html.twig', [
+        return $this->render('admin/media_lib/ajax-tree-folder.html.twig', [
             'folders' => $folders
         ]);
     }
@@ -61,7 +63,7 @@ class MediaLibController extends AppController
             $folders = $this->getDoctrine()->getRepository(Folder::class)->findBy(['parent' => null]);
         }
 
-        return $this->render('admin/media_lib/see-block-folder.html.twig', [
+        return $this->render('admin/media_lib/ajax-see-block-folder.html.twig', [
             'folders' => $folders,
             'folder' => $folder
         ]);
@@ -85,9 +87,45 @@ class MediaLibController extends AppController
             $folders = $this->getDoctrine()->getRepository(Folder::class)->findBy(['parent' => null]);
         }
 
-        return $this->render('admin/media_lib/see-content-folder.html.twig', [
+        return $this->render('admin/media_lib/ajax-see-content-folder.html.twig', [
             'folders' => $folders,
             'folder' => $folder
+        ]);
+    }
+
+    /**
+     * Permet de créer un nouveau dossier
+     * @param Folder|null $folder
+     * @param Folder|null $parent
+     * @return Response
+     */
+    #[Route('/add-folder/{id}/{parent}', name: 'ajax_add_folder')]
+    #[Route('/edit-folder/{id}/{parent}', name: 'ajax_edit_folder')]
+    #[Entity('parent', options: ['id' => 'parent'])]
+    public function createUpdateFolder(Folder $folder = null, Folder $parent = null) : Response
+    {
+
+        if($folder == null)
+        {
+            $folder = new Folder();
+            $title = $this->translator->trans("admin_media#Nouveau dossier");
+        }
+        else {
+            $title = $this->translator->trans("admin_media#Edition du dossier") . " #" . $folder->getId();
+        }
+
+        $form = $this->createForm(FolderType::class, $folder);
+
+        $form->handleRequest($this->request->getCurrentRequest());
+        if ($form->isSubmitted() && $form->isValid()) {
+
+        }
+
+        return $this->render('admin/media_lib/ajax-modal-create-update-folder.html.twig', [
+            'folder' => $folder,
+            'parent' => $parent,
+            'title' => $title,
+            'form' => $form->createView()
         ]);
     }
 }

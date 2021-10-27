@@ -84,12 +84,23 @@ class RouteService extends AppService
                 "reset" => "admin_system#Appel Ajax pour réinitialiser les données de type {data}",
                 "reload" => "admin_system#Appel Ajax pour recharger les données de type {data}",
                 "check" => "admin_system#Appel Ajax pour checker les données de type {data}",
+                "tree" =>  "admin_system#Appel Ajax pour générer un arbre de donnée de type {data}",
+                "see" => match($tab[4]) {
+                    "folder", "content" => "admin_system#Appel Ajax pour voir le contenu d'un dossier",
+                },
+                "add" => match($tab[4]) {
+                    "folder" => "admin_system#Appel Ajax pour créer un dossier",
+                },
+                "edit" => match($tab[4]) {
+                    "folder" => "admin_system#Appel Ajax pour éditer un dossier",
+                },
                 default => "admin_system#Appel Ajax sans description",
             },
             "add" => "admin_system#Ajoute une donnée de type {data}",
             "edit" => "admin_system#Met à jour une donnée de type {data}",
             "delete" => "admin_system#Supprime une donnée de type {data}",
             "me" => "admin_system#Edition de mes données de type {data}",
+            "disabled" => "admin_system#Désactive une donnée de type {data}",
             default => "admin_system#Route sans description",
         };
     }

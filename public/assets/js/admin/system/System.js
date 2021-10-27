@@ -5,6 +5,12 @@
  **/
 let System = {};
 
+/**
+ * Identifiant du block des modales pour l'admin
+ * @type {string}
+ */
+System.adminBlockModalId = '#admin-block-modal';
+
 System.Ajax = function (url, id_done, loader = true, str_loader = "") {
     if (loader) {
         $(id_done).loader(str_loader);
