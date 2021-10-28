@@ -150,7 +150,7 @@ MediaLib.Launch = function () {
         /**
          * Event sur le bouton pour créer / éditer un dossier
          */
-        $(MediaLib.globalId + ' #btn-new-folder').click(function () {
+        $(MediaLib.globalId + ' #btn-new-folder, ' + MediaLib.globalId + ' #btn-edit-folder').click(function () {
             let url = $(this).data('url');
             let str_loading = $(this).data('loading');
             let id = System.adminBlockModalId;

@@ -116,7 +116,7 @@ class MediaLibController extends AppController
             $msg_loading = $this->translator->trans("admin_media#Création du dossier en cours....");
         } else {
             $title = $this->translator->trans("admin_media#Edition du dossier") . " #" . $folder->getId();
-            $url = $this->generateUrl('admin_media_ajax_edit_folder', ['id' => -1, 'parent' => $id_parent]);
+            $url = $this->generateUrl('admin_media_ajax_edit_folder', ['id' => $folder->getId(), 'parent' => $id_parent]);
             $msg_loading = $this->translator->trans("admin_media#Mise à jour du dossier en cours....");
         }
 
