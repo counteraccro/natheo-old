@@ -291,3 +291,7 @@
 'admin_media#Filter sur les fichiers audio': '__Filter sur les fichiers audio'
 'admin_media#Affichage en grille': '__Affichage en grille'
 'admin_media#Affichage en tableau': '__Affichage en tableau'
+'admin_media#Dossier crée avec succès': '__Dossier crée avec succès'
+'admin_media#Mise à jour de votre dossier réalisé avec succès': '__Mise à jour de votre dossier réalisé avec succès'
+'admin_media#Cette modale va se fermée toute seule dans 3 secondes....': '__Cette modale va se fermée toute seule dans 3 secondes....'
+'admin_media#Annuler': __Annuler

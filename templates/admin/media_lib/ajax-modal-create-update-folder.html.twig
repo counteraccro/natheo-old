@@ -7,21 +7,38 @@
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            {{ form_start(form, { 'id' : 'form-folder', 'action': url }) }}
-            <div class="modal-body">
-                {{ form_row(form.name) }}
 
-                {{ form_row(form.refId) }}
-
-                {{ form_row(form.parent) }}
-            </div>
-            <div class="modal-footer">
-                <div class="mb-3">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ "admin_media#Annuler" | trans }}</button>
+            {% if save_ok is same as(true) %}
+                <div class="modal-body">
+                    <div class="alert alert-success">
+                        <i class="fa fa-check"></i>
+                        {% if action == "add" %}
+                            {{ "admin_media#Dossier crée avec succès" | trans }}
+                        {% else  %}
+                            {{ "admin_media#Mise à jour de votre dossier réalisé avec succès" | trans }}
+                        {% endif %}
+                    </div>
                 </div>
-                {{ form_row(form.valider, {'id' : 'create-update-folder-valide'}) }}
-            </div>
-            {{ form_end(form) }}
+                <div class="modal-footer">
+                    <i>{{ "admin_media#Cette modale va se fermée toute seule dans 3 secondes...." | trans }}</i>
+                </div>
+            {% else  %}
+                {{ form_start(form, { 'id' : 'form-folder', 'action': url }) }}
+                <div class="modal-body">
+                    {{ form_row(form.name) }}
+
+                    {{ form_row(form.refId) }}
+
+                    {{ form_row(form.parent) }}
+                </div>
+                <div class="modal-footer">
+                    <div class="mb-3">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ "admin_media#Annuler" | trans }}</button>
+                    </div>
+                    {{ form_row(form.valider, {'id' : 'create-update-folder-valide'}) }}
+                </div>
+                {{ form_end(form) }}
+            {% endif %}
         </div>
     </div>
 </div>
@@ -45,7 +62,7 @@
             MediaLib.createUpdateFolderEvent(modalFolder);
 
             {% if save_ok is same as(true) %}
-                MediaLib.createUpdateFolderSuccess();
+                MediaLib.createUpdateFolderSuccess({{ folder.id }}, modalFolder);
             {% endif %}
 
         });

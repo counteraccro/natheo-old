@@ -12,12 +12,22 @@ MediaLib.Launch = function () {
     /**
      * Permet de charger la vue tree folder pour les média
      */
-    MediaLib.loadTreeFolder = function () {
+    MediaLib.loadTreeFolder = function (folder_id) {
 
         let id = MediaLib.globalId + ' #block-tree-view';
         let url = $(id).data('url');
         let str_loading = $(id).data('loading');
-        System.Ajax(url, id, true, str_loading);
+
+        $(id).loader(str_loading);
+
+        $.ajax({
+            method: 'GET',
+            url: url,
+        })
+            .done(function (html) {
+                $(id).html(html);
+                MediaLib.OpenTreeFolderById(folder_id);
+            });
     }
 
     /**
@@ -256,33 +266,71 @@ MediaLib.Launch = function () {
                 });
 
         });
-
-        /*$('#modal-create-update-folder #create-update-folder-valide').click(function() {
-
-            let data = $('#modal-create-update-folder #form-folder').serialize();
-            let url = $('#modal-create-update-folder #form-folder').attr('action');
-            let msg_loading = $('#modal-create-update-folder #form-folder').data('loading');
-
-            $('#modal-create-update-folder').loader(msg_loading);
-
-            $.ajax({
-                method: 'POST',
-                data: data,
-                url: url,
-            })
-                .done(function (html) {
-                    modalFolder.toggle();
-                    $(System.adminBlockModalId).html(html);
-                });
-            return false;
-        })*/
     }
 
     /**
      * Action à faire une fois que l'update c'est bien passé
      */
-    MediaLib.createUpdateFolderSuccess = function () {
-        MediaLib.loadTreeFolder();
-        MediaLib.loadContentFolder();
+    MediaLib.createUpdateFolderSuccess = function (folder_id, modalFolder) {
+
+        MediaLib.loadTreeFolder(folder_id);
+        setTimeout(function(){ modalFolder.toggle(); }, 3000);
+
+    }
+
+    /**
+     * Ouvre l'arbre de dossier en fonction d'un ID
+     * @constructor
+     */
+    MediaLib.OpenTreeFolderById = function(id) {
+
+        let id_block_folder = MediaLib.globalId + ' #right-block-folder';
+
+        $(MediaLib.globalId + ' #tree-view-folder .caret').each(function () {
+
+            if ($(this).data('id') === id)
+            {
+                $(this).addClass('activeNode');
+                $(this).addClass('caret-down');
+                let element = $(this).next(".nested");
+                element.addClass('active');
+
+                let url = $(this).data('url');
+                url = url.slice(0, url.lastIndexOf('/')) + '/' + id;
+                let str_loading = $(id_block_folder).data('loading');
+
+                $(id_block_folder).loader(str_loading);
+
+                $.ajax({
+                    method: 'GET',
+                    url: url,
+                })
+                    .done(function (html) {
+                        $(id_block_folder).html(html);
+                        $(MediaLib.globalId + ' #btn-render-media #btn-render-all').prop('checked', 'checked');
+                    });
+
+                let before = $(this).parent().parent().parent().children('span');
+                MediaLib.RecursiveOpenFolder(before);
+                return false;
+            }
+
+            /** Parcours de façon récursive l'ensemble des dossier **/
+            MediaLib.RecursiveOpenFolder = function(element)
+            {
+                //element.addClass('activeNode');
+                element.addClass('caret-down');
+                let next = element.next(".nested");
+                next.addClass('active');
+
+                let before = element.parent().parent().parent().children('span');
+                if(before !== undefined)
+                {
+                    //console.log(before);
+                    MediaLib.RecursiveOpenFolder(before);
+                }
+                return false;
+            }
+        })
     }
 }

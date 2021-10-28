@@ -114,10 +114,12 @@ class MediaLibController extends AppController
             $title = $this->translator->trans("admin_media#Nouveau dossier");
             $url = $this->generateUrl('admin_media_ajax_add_folder', ['id' => -1, 'parent' => $id_parent]);
             $msg_loading = $this->translator->trans("admin_media#Création du dossier en cours....");
+            $action = 'add';
         } else {
             $title = $this->translator->trans("admin_media#Edition du dossier") . " #" . $folder->getId();
             $url = $this->generateUrl('admin_media_ajax_edit_folder', ['id' => $folder->getId(), 'parent' => $id_parent]);
             $msg_loading = $this->translator->trans("admin_media#Mise à jour du dossier en cours....");
+            $action = 'edit';
         }
 
         $form = $this->createForm(FolderType::class, $folder, ['attr' => array(
@@ -141,7 +143,7 @@ class MediaLibController extends AppController
             }
 
             $parent = $form->get('parent')->getData();
-            // Cas eviter qu'il soit parent de lui même
+            // Cas éviter qu'il soit parent de lui-même
             if($parent == null || $parent->getId() != $folder->getId())
             {
                 $folder->setParent($parent);
@@ -158,7 +160,8 @@ class MediaLibController extends AppController
             'title' => $title,
             'form' => $form->createView(),
             'url' => $url,
-            'save_ok' => $save_ok
+            'save_ok' => $save_ok,
+            'action' => $action
         ]);
     }
 }
