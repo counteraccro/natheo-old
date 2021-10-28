@@ -38,6 +38,21 @@
                     <li><span class="badge bg-primary">Evolution</span> A l'ajout ou édition d'un dossier, refaire
                         l'affichage du choix du dossier parent, idéalement l'afficher en forme d'arbre
                     </li>
+                    <li><span class="badge bg-danger">BUG</span> Dans <kbd>public/assets/js/admin/MediaLib.js</kbd> la fonction <kbd>MediaLib.RecursiveOpenFolder()</kbd> provoque cette erreur
+                        <br /><code>
+                            Uncaught RangeError: Maximum call stack size exceeded <br />
+                            at String.replace (<anonymous>) <br />
+                                at se (jquery-3.6.0.min.js:2) <br />
+                                at Function.se.matches (jquery-3.6.0.min.js:2) <br />
+                                at Function.S.filter (jquery-3.6.0.min.js:2) <br />
+                                at S.fn.init.S.fn.<computed> [as next] (jquery-3.6.0.min.js:2) <br />
+                                    at Object.MediaLib.RecursiveOpenFolder (MediaLib.js?version=v1:323) <br />
+                                    at Object.MediaLib.RecursiveOpenFolder (MediaLib.js?version=v1:330) <br />
+                                    at Object.MediaLib.RecursiveOpenFolder (MediaLib.js?version=v1:330) <br />
+                                    at Object.MediaLib.RecursiveOpenFolder (MediaLib.js?version=v1:330) <br />
+                                    at Object.MediaLib.RecursiveOpenFolder (MediaLib.js?version=v1:330) <br />
+                        </code>
+                    </li>
                 </ul>
             </li>
         </ul>

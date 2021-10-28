@@ -69,8 +69,6 @@ class FolderType extends AppType
 
                   $path = array_reverse($this->generatePath($folder, []));
 
-                  var_dump($path);
-
                   $before = 'Root / ';
 
                   unset($path[array_key_last($path)]);
