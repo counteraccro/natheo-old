@@ -21,8 +21,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ "admin_media#Fermer" | trans }}</button>
             </div>
         </div>
     </div>
@@ -34,6 +33,11 @@
         $(document).ready(function () {
             let modalMedia = new bootstrap.Modal($('#modal-add-media'), [])
             modalMedia.toggle();
+
+            let modale = document.getElementById('modal-add-media')
+            modale.addEventListener('hidden.bs.modal', function (event) {
+               MediaLib.loadContentFolder()
+            })
 
             Upload.DragAndDrop();
         });
