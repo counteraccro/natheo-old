@@ -18,6 +18,8 @@ parameters:
     app_path_media: '%kernel.project_dir%/public/medias'
     app_path_media_avatars: '%app_path_media%/avatars'
     app_path_media_avatars_asset : '/medias/avatars'
+    app_path_media_mediatheque: '%app_path_media%/mediatheque'
+    app_path_media_mediatheque_asset: '/medias/mediatheque'
 
 services:
     # default configuration for services in *this* file

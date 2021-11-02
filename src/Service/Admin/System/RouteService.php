@@ -90,9 +90,17 @@ class RouteService extends AppService
                 },
                 "add" => match($tab[4]) {
                     "folder" => "admin_system#Appel Ajax pour créer un dossier",
+                    "media" => "admin_system#Appel Ajax pour ajouter un media",
+                    default => "admin_system#Appel Ajax pour créer une donnée"
+                },
+                "popin" => match($tab[4]) {
+                    "media" => "admin_system#Appel Ajax pour ouvrir la modale des medias",
+                    default => "admin_system#Appel Ajax pour ouvrir une modale"
                 },
                 "edit" => match($tab[4]) {
                     "folder" => "admin_system#Appel Ajax pour éditer un dossier",
+                    "media" => "admin_system#Appel Ajax pour éditer un media",
+                    default => "admin_system#Appel Ajax pour éditer une donnée"
                 },
                 default => "admin_system#Appel Ajax sans description",
             },

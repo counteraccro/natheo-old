@@ -1,0 +1,42 @@
+<div class="modal fade" id="modal-add-media" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"
+                    id="exampleModalLabel">{{ "admin_media#Nouveau(x) média(s) dans le dossier" | trans }} {{ folder.name }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="block-upload">
+                    <input type="file" class="form-control" name="file" id="file">
+                    <div class="upload-area border border-primary border-3 p-4" id="block-upload-file"
+                         data-dragover="{{ "admin_media#Placer votre image ici" | trans }}"
+                         data-drop="{{ "admin_media#Vous pouvez lacher l'image" | trans }}"
+                         data-upload="{{ "admin_media#Téléchargement en cours..." | trans }}"
+                         data-url="{{ path('admin_media_ajax_add_media', {'id' : folder.id}) }}">
+                        <div class="text-muted">
+                            <i>{{ "admin_media#Déposer une image ici ou cliquer pour selectionner un fichier" | trans }}</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block javascripts %}
+
+    <script>
+        $(document).ready(function () {
+            let modalMedia = new bootstrap.Modal($('#modal-add-media'), [])
+            modalMedia.toggle();
+
+            Upload.DragAndDrop();
+        });
+    </script>
+
+{% endblock %}

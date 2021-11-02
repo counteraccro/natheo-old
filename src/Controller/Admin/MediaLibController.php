@@ -10,8 +10,12 @@ namespace App\Controller\Admin;
 
 use App\Controller\AppController;
 use App\Entity\Media\Folder;
+use App\Entity\Media\Media;
 use App\Form\Media\FolderType;
+use App\Service\Admin\MediaService;
+use App\Service\Admin\System\FileUploaderService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -79,7 +83,6 @@ class MediaLibController extends AppController
     {
 
         $data = $this->request->getCurrentRequest()->get('media-filter');
-        var_dump($data);
 
         $folders = null;
         if ($folder == null) {
@@ -163,5 +166,52 @@ class MediaLibController extends AppController
             'save_ok' => $save_ok,
             'action' => $action
         ]);
+    }
+
+    /**
+     * Modale pour l'ajout de média dans un dossier
+     * @param Folder $folder
+     * @return Response
+     */
+    #[Route('/modal-media/{id}', name: 'ajax_modal_media')]
+    public function modalAddMedia(Folder $folder): Response
+    {
+        return $this->render('admin/media_lib/ajax-modal-add-media.html.twig', [
+            'folder' => $folder,
+        ]);
+    }
+
+    /**
+     * Permet d'ajouter un ou plusieurs médias dans un dossier
+     * @param Folder $folder
+     * @param FileUploaderService $fileUploaderService
+     * @param MediaService $mediaService
+     * @return Response
+     */
+    #[Route('/upload-media/{id}', name: 'ajax_add_media')]
+    public function uploadMedia(Folder $folder, FileUploaderService $fileUploaderService, MediaService $mediaService): Response
+    {
+
+        /** @var UploadedFile $file */
+        $file = $this->request->getCurrentRequest()->files->get('file');
+        $name = $fileUploaderService->upload($file, $fileUploaderService->getMediathequeDirectory());
+
+        $extension = $file->getClientOriginalExtension();
+
+        $nameNoExtension = str_replace('.' . $extension, '', $file->getClientOriginalName());
+
+        $media = new Media();
+        $media->setName($nameNoExtension);
+        $media->setPath($name);
+        $media->setCreateOn(new \DateTime());
+        $media->setExtension($extension);
+        $media->setFolder($folder);
+        $media->setDisabled(false);
+        $media->setType($mediaService->getTypeMediaByExtension($extension));
+
+        $this->getDoctrine()->getManager()->persist($media);
+        $this->getDoctrine()->getManager()->flush();
+
+        return $this->json(['name' => $name, 'src' => $fileUploaderService->getMediathequePath()]);
     }
 }

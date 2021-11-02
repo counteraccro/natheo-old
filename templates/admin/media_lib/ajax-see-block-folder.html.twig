@@ -3,15 +3,20 @@
         <div class="float-end">
             {% set id = "-1" %}
             {% set parent = "-1" %}
+            {% set fName = 'root' %}
             {% if(folder != null) %}
                 {% set id = folder.id %}
                 {% set parent = folder.parent %}
+                {% set fName = folder.name %}
                 {% if(parent != null) %}
                     {% set parent = parent.id %}
                 {% endif %}
             {% endif %}
             {% if 'admin_media_ajax_add_folder' | isGranted %}
-                <div class="btn btn-primary" id="btn-new-folder" data-url="{{ path('admin_media_ajax_add_folder', {'id' : "-1", 'parent' : parent}) }}" data-loading="{{ "admin_media#Chargement de la modale pour ajouter un dossier" | trans }}"><i class="fa fa-folder-plus"></i> {{ "admin_media#Nouveau" | trans }}</div>
+                <div class="btn btn-primary" id="btn-new-folder"
+                     data-url="{{ path('admin_media_ajax_add_folder', {'id' : "-1", 'parent' : parent}) }}"
+                     data-loading="{{ "admin_media#Chargement de la modale pour ajouter un dossier" | trans }}"><i
+                            class="fa fa-folder-plus"></i> {{ "admin_media#Nouveau" | trans }}</div>
             {% endif %}
         </div>
         {{ folder | pathFolder | raw }}
@@ -20,7 +25,8 @@
     <div class="card-body">
 
         <div class="input-group mb-3">
-            <input type="text" class="form-control" id="search-media" placeholder="{{ "admin_media#Rechercher dans les médias" | trans }}">
+            <input type="text" class="form-control" id="search-media"
+                   placeholder="{{ "admin_media#Rechercher les médias dans le dossier" | trans }} {{ fName }}">
             <button type="button" id="btn-search-media" class="btn btn-outline-primary">
                 <i class="fa fa-search"></i> {{ "admin_media#Rechercher" | trans }}
             </button>
@@ -30,50 +36,79 @@
             <div class="col">
                 <div class="btn-group" role="group" id="btn-render-media" data-folder="{{ id }}">
                     <input type="radio" class="btn-check" name="btn-render-media" id="btn-render-all" checked>
-                    <label class="btn btn-outline-primary" for="btn-render-all" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ "admin_media#Afficher tout" | trans }}">{{ "admin_media#Tout" | trans }} (0)</label>
+                    <label class="btn btn-outline-primary" for="btn-render-all" data-bs-toggle="tooltip"
+                           data-bs-placement="top"
+                           title="{{ "admin_media#Afficher tout" | trans }}">{{ "admin_media#Tout" | trans }}
+                        (0)</label>
 
                     <input type="radio" class="btn-check" name="btn-render-media" id="btn-render-img">
-                    <label class="btn btn-outline-primary" for="btn-render-img" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ "admin_media#Filter sur les images" | trans }}"><i class="fa fa-file-image"></i> (0)</label>
+                    <label class="btn btn-outline-primary" for="btn-render-img" data-bs-toggle="tooltip"
+                           data-bs-placement="top" title="{{ "admin_media#Filter sur les images" | trans }}"><i
+                                class="fa fa-file-image"></i> (0)</label>
 
                     <input type="radio" class="btn-check" name="btn-render-media" id="btn-render-file">
-                    <label class="btn btn-outline-primary" for="btn-render-file" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ "admin_media#Filter sur les fichiers" | trans }}"><i class="fa fa-file"></i> (0)</label>
+                    <label class="btn btn-outline-primary" for="btn-render-file" data-bs-toggle="tooltip"
+                           data-bs-placement="top" title="{{ "admin_media#Filter sur les fichiers" | trans }}"><i
+                                class="fa fa-file"></i> (0)</label>
 
                     <input type="radio" class="btn-check" name="btn-render-media" id="btn-render-video">
-                    <label class="btn btn-outline-primary" for="btn-render-video" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ "admin_media#Filter sur les vidéos" | trans }}"><i class="fa fa-file-video"></i> (0)</label>
+                    <label class="btn btn-outline-primary" for="btn-render-video" data-bs-toggle="tooltip"
+                           data-bs-placement="top" title="{{ "admin_media#Filter sur les vidéos" | trans }}"><i
+                                class="fa fa-file-video"></i> (0)</label>
 
                     <input type="radio" class="btn-check" name="btn-render-media" id="btn-render-audio">
-                    <label class="btn btn-outline-primary" for="btn-render-audio" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ "admin_media#Filter sur les fichiers audio" | trans }}"><i class="fa fa-file-audio"></i> (0)</label>
+                    <label class="btn btn-outline-primary" for="btn-render-audio" data-bs-toggle="tooltip"
+                           data-bs-placement="top" title="{{ "admin_media#Filter sur les fichiers audio" | trans }}"><i
+                                class="fa fa-file-audio"></i> (0)</label>
                 </div>
             </div>
             <div class="col-1">
                 <div class="btn-group" role="group" id="btn-render-render">
                     <input type="radio" class="btn-check" name="btn-render-aff" id="btn-render-grid" checked>
-                    <label class="btn btn-outline-primary" for="btn-render-grid" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ "admin_media#Affichage en grille" | trans }}"><i class="fa fa-grip-horizontal"></i></label>
+                    <label class="btn btn-outline-primary" for="btn-render-grid" data-bs-toggle="tooltip"
+                           data-bs-placement="top" title="{{ "admin_media#Affichage en grille" | trans }}"><i
+                                class="fa fa-grip-horizontal"></i></label>
 
                     <input type="radio" class="btn-check" name="btn-render-aff" id="btn-render-table">
-                    <label class="btn btn-outline-primary" for="btn-render-table" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ "admin_media#Affichage en tableau" | trans }}"><i class="fa fa-table"></i></label>
+                    <label class="btn btn-outline-primary" for="btn-render-table" data-bs-toggle="tooltip"
+                           data-bs-placement="top" title="{{ "admin_media#Affichage en tableau" | trans }}"><i
+                                class="fa fa-table"></i></label>
                 </div>
             </div>
             <div class="col">
                 <div class="float-end">
                     {% if(folder != null) %}
                         {% if 'admin_media_ajax_edit_folder' | isGranted %}
-                            <div class="btn btn-primary" id="btn-edit-folder" data-url="{{ path('admin_media_ajax_edit_folder', {'parent' : parent, 'id' : folder.id}) }}"
-                                 data-loading="{{ "admin_media#Chargement de la modale pour éditer le dossier" | trans }} {{ folder.name }}" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ "admin_media#Editer" | trans }}"><i class="fa fa-folder"></i></div>
+                            <div class="btn btn-primary" id="btn-edit-folder"
+                                 data-url="{{ path('admin_media_ajax_edit_folder', {'parent' : parent, 'id' : folder.id}) }}"
+                                 data-loading="{{ "admin_media#Chargement de la modale pour éditer le dossier" | trans }} {{ folder.name }}"
+                                 data-bs-toggle="tooltip" data-bs-placement="top"
+                                 title="{{ "admin_media#Editer" | trans }}"><i class="fa fa-folder"></i></div>
                         {% endif %}
-                        <div class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ "admin_media#Supprimer" | trans }}"><i class="fa fa-folder-minus"></i></div>
+                        <div class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top"
+                             title="{{ "admin_media#Supprimer" | trans }}"><i class="fa fa-folder-minus"></i></div>
+
+                        {% if 'admin_media_ajax_add_media' | isGranted %}
+                            <div class="btn btn-primary" id="btn-add-media"
+                                 data-url="{{ path('admin_media_ajax_modal_media', {'id' : folder.id}) }}"
+                                 data-loading="{{ "admin_media#Chargement de la modale pour ajouter un ou plusieurs médias dans le dossier" | trans }} {{ folder.name }}">
+                                <i class="fa fa-upload"></i> {{ "admin_media#Ajouter un média" | trans }}</div>
+                        {% endif %}
+                    {% else %}
+                        <div class="text-muted"><i>{{ "admin_media#Ajouter ou séléctionner un dossier pour ajouter un media" | trans }}</i></div>
                     {% endif %}
-                     <div class="btn btn-primary"><i class="fa fa-upload"></i> {{ "admin_media#Ajouter un média" | trans }}</div>
+
                 </div>
             </div>
         </div>
         {% set params = {'id' : -1} %}
         {% set folderName = "Root" %}
         {% if(folder != null) %}
-            {% set params = {'id' : folder.id}  %}
+            {% set params = {'id' : folder.id} %}
             {% set folderName = folder.name %}
         {% endif %}
-        <div id="block-content-folder" class="mt-3" data-url="{{ path('admin_media_ajax_see_content_folder', params) }}" data-loading="{{ "admin_media#Chargement du contenu du dossier ..." | trans }} {{ folderName}} ">
+        <div id="block-content-folder" class="mt-3" data-url="{{ path('admin_media_ajax_see_content_folder', params) }}"
+             data-loading="{{ "admin_media#Chargement du contenu du dossier ..." | trans }} {{ folderName }} ">
 
         </div>
 

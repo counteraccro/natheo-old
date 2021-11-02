@@ -176,6 +176,26 @@ MediaLib.Launch = function () {
                     $(System.adminBlockModalId).html(html);
                 });
         })
+
+        /**
+         * Event sur le bouton pour créer / éditer un dossier
+         */
+        $(MediaLib.globalId + ' #btn-add-media').click(function () {
+            let url = $(this).data('url');
+            let str_loading = $(this).data('loading');
+            let id = System.adminBlockModalId;
+
+            $('body').loader(str_loading);
+
+            $.ajax({
+                method: 'GET',
+                url: url,
+            })
+                .done(function (html) {
+                    $('body').removeLoader(str_loading);
+                    $(System.adminBlockModalId).html(html);
+                });
+        })
     }
 
     /**

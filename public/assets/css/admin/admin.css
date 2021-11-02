@@ -61,7 +61,7 @@ CSS createUpdate user
 
 /** Tree view Media **/
 
-#admin-media-globale #tree-view-folder{
+#admin-media-globale #tree-view-folder {
     margin-left: -30px;
 }
 
@@ -137,4 +137,30 @@ CSS createUpdate user
 
 #admin-media-globale #tree-view-folder li:last-child::before {
     height: 15px
+}
+
+/** POPIN Ajout d'un media **/
+#modal-add-media .upload-area {
+    width: 100%;
+    height: 120px;
+    text-align: center;
+}
+
+#modal-add-media .upload-area:hover {
+    cursor: pointer;
+}
+
+#modal-add-media #file {
+    display: none;
+}
+
+/* Thumbnail */
+#modal-add-media .thumbnail {
+    width: 80px;
+    height: 80px;
+    float: left;
+}
+
+#modal-add-media .size {
+    font-size: 12px;
 }

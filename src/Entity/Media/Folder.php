@@ -38,9 +38,15 @@ class Folder
      */
     private $children;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Media::class, mappedBy="folder", orphanRemoval=true)
+     */
+    private $media;
+
     public function __construct()
     {
         $this->children = new ArrayCollection();
+        $this->media = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -96,6 +102,36 @@ class Folder
             // set the owning side to null (unless already changed)
             if ($child->getParent() === $this) {
                 $child->setParent(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Media[]
+     */
+    public function getMedia(): Collection
+    {
+        return $this->media;
+    }
+
+    public function addMedia(Media $media): self
+    {
+        if (!$this->media->contains($media)) {
+            $this->media[] = $media;
+            $media->setFolder($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMedia(Media $media): self
+    {
+        if ($this->media->removeElement($media)) {
+            // set the owning side to null (unless already changed)
+            if ($media->getFolder() === $this) {
+                $media->setFolder(null);
             }
         }
 

@@ -63,4 +63,22 @@ class FileUploaderService extends AppService
     {
         return $this->parameterBag->get('app_path_media_avatars_asset');
     }
+
+    /**
+     * Retourne le path du dossier médiathèque
+     * @return string
+     */
+    public function getMediathequeDirectory() : string
+    {
+        return $this->parameterBag->get('app_path_media_mediatheque');
+    }
+
+    /**
+     * retourne l'url du dossier médiathèque pour l'affichage
+     * @return string
+     */
+    public function getMediathequePath() : string
+    {
+        return $this->parameterBag->get('app_path_media_mediatheque_asset');
+    }
 }

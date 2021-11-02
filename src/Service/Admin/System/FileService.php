@@ -13,7 +13,7 @@ use Symfony\Component\Finder\Finder;
 class FileService extends AppService
 {
     /**
-     * Supprime l'image envoyée en paramètre
+     * Supprime le fichier envoyée en paramètre
      * @param string $delete_file
      * @param string $path
      * @return bool
