@@ -1,22 +1,29 @@
 <div class="modal fade" id="modal-add-media" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title"
-                    id="exampleModalLabel">{{ "admin_media#Nouveau(x) média(s) dans le dossier" | trans }} {{ folder.name }}</h5>
+                <h5 class="modal-title">{{ "Ajouter un média" | trans }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div id="block-upload">
                     <input type="file" class="form-control" name="file" id="file">
-                    <div class="upload-area border border-primary border-3 p-4" id="block-upload-file"
+                    <div class="upload-area border border-primary border-1 p-4 mb-2" id="block-upload-file"
                          data-dragover="{{ "admin_media#Placer votre image ici" | trans }}"
                          data-drop="{{ "admin_media#Vous pouvez lacher l'image" | trans }}"
                          data-upload="{{ "admin_media#Téléchargement en cours..." | trans }}"
-                         data-url="{{ path('admin_media_ajax_add_media', {'id' : folder.id}) }}">
+                         data-url="{{ path('admin_media_ajax_add_media', {'id' : folder.id}) }}"
+                         data-msg="{{ "admin_media#Déposer un media ici ou cliquer pour selectionner un fichier" | trans }}">
                         <div class="text-muted">
                             <i>{{ "admin_media#Déposer un media ici ou cliquer pour selectionner un fichier" | trans }}</i>
                         </div>
+                    </div>
+
+                    <div id="block-show-img" data-info="{{ "admin_media# $nb média(s) ajouté(s) dans le dossier " | trans  }} {{ folder.name }}">
+                        <div id="msg-nb-img-add"></div>
+
+                        <div class="text-muted">
+                            <i>{{ "admin_media#Chaque média ajouté ici sera placé dans le dossier " | trans  }} {{ folder.name }}</i></div>
                     </div>
                 </div>
             </div>
@@ -38,7 +45,6 @@
             modale.addEventListener('hidden.bs.modal', function (event) {
                MediaLib.loadContentFolder()
             })
-
             Upload.DragAndDrop();
         });
     </script>

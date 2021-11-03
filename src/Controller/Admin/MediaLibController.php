@@ -136,19 +136,16 @@ class MediaLibController extends AppController
 
             /** @var Folder $folder */
             $id = $form->get('refId')->getData();
-            if($id != -1)
-            {
+            if ($id != -1) {
                 $folder = $this->getDoctrine()->getRepository(Folder::class)->findOneBy(['id' => $id]);
                 $folder->setName($form->get('name')->getData());
-            }
-            else {
+            } else {
                 $folder = $form->getData();
             }
 
             $parent = $form->get('parent')->getData();
             // Cas éviter qu'il soit parent de lui-même
-            if($parent == null || $parent->getId() != $folder->getId())
-            {
+            if ($parent == null || $parent->getId() != $folder->getId()) {
                 $folder->setParent($parent);
             }
 
@@ -194,6 +191,7 @@ class MediaLibController extends AppController
 
         /** @var UploadedFile $file */
         $file = $this->request->getCurrentRequest()->files->get('file');
+
         $name = $fileUploaderService->upload($file, $fileUploaderService->getMediathequeDirectory());
 
         $extension = $file->getClientOriginalExtension();
@@ -207,11 +205,25 @@ class MediaLibController extends AppController
         $media->setExtension($extension);
         $media->setFolder($folder);
         $media->setDisabled(false);
-        $media->setType($mediaService->getTypeMediaByExtension($extension));
+        $type = $mediaService->getTypeMediaByExtension($extension);
+        $media->setType($type);
+        $media->setSize(0);
 
         $this->getDoctrine()->getManager()->persist($media);
         $this->getDoctrine()->getManager()->flush();
 
-        return $this->json(['name' => $name, 'src' => $fileUploaderService->getMediathequePath()]);
+        $path = match ($type) {
+            MediaService::TYPE_FILE => $fileUploaderService->getMediathequeDefaultPath() . '/file-default.png',
+            MediaService::TYPE_AUDIO => $fileUploaderService->getMediathequeDefaultPath() . '/audio-default.png',
+            MediaService::TYPE_VIDEO => $fileUploaderService->getMediathequeDefaultPath() . '/video-default.png',
+            MediaService::TYPE_IMAGE =>  $fileUploaderService->getMediathequePath() . '/' .$name
+        };
+
+        return $this->json(
+            [
+                'path' => $path,
+                'name' => $nameNoExtension . '.' . $extension
+            ]
+        );
     }
 }

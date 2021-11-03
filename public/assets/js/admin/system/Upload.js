@@ -9,18 +9,21 @@ let Upload = {};
  * Upload sous la forme de drag and drop
  * @constructor
  */
-Upload.DragAndDrop = function() {
+Upload.DragAndDrop = function () {
 
     Upload.dragAndDropid = '#block-upload';
 
     // preventing page from redirecting
-    $("html").on("dragover", function(e) {
+    $("html").on("dragover", function (e) {
         e.preventDefault();
         e.stopPropagation();
         $(Upload.dragAndDropid + " .text-muted").text($(Upload.dragAndDropid + " #block-upload-file").data('dragover'));
     });
 
-    $("html").on("drop", function(e) { e.preventDefault(); e.stopPropagation(); });
+    $("html").on("drop", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+    });
 
     // Drag enter
     $(Upload.dragAndDropid + ' .upload-area').on('dragenter', function (e) {
@@ -52,24 +55,24 @@ Upload.DragAndDrop = function() {
     });
 
     // Open file selector on div click
-    $(Upload.dragAndDropid + " #block-upload-file").click(function(){
+    $(Upload.dragAndDropid + " #block-upload-file").click(function () {
         $("#file").click();
     });
 
     // file selected
-    $(Upload.dragAndDropid + " #file").change(function(){
+    $(Upload.dragAndDropid + " #file").change(function () {
         var fd = new FormData();
 
         var files = $('#file')[0].files[0];
 
-        fd.append('file',files);
+        fd.append('file', files);
 
         uploadData(fd);
     });
 }
 
 // Sending AJAX request and upload file
-function uploadData(formdata){
+function uploadData(formdata) {
 
     $.ajax({
         url: $(Upload.dragAndDropid + " #block-upload-file").data('url'),
@@ -78,26 +81,32 @@ function uploadData(formdata){
         contentType: false,
         processData: false,
         dataType: 'json',
-        success: function(response){
+        success: function (response) {
             addThumbnail(response);
+            $(Upload.dragAndDropid + " .text-muted").text($(Upload.dragAndDropid + " #block-upload-file").data('msg'));
         }
     });
 }
 
 // Added thumbnail
-function addThumbnail(data){
-    $(Upload.dragAndDropid + " #block-upload-file div.text-muted").remove();
-    var len = $(Upload.dragAndDropid + " #block-upload-file div.thumbnail").length;
+function addThumbnail(data) {
+    $(Upload.dragAndDropid + " #block-show-img div.text-muted").remove();
 
-    var num = Number(len);
+    let msg = $(Upload.dragAndDropid + " #block-show-img").data('info');
+    let len = $(Upload.dragAndDropid + " #block-show-img div.min-img").length;
+
+    let num = Number(len);
     num = num + 1;
 
-    var name = data.name;
-    var src = data.src + '/' + name;
+    msg = msg.replace('$nb', num);
+
+    $(Upload.dragAndDropid + " #block-show-img #msg-nb-img-add").html(msg);
+
+    let src = data.path;
 
     // Creating an thumbnail
-    $(Upload.dragAndDropid + " #block-upload-file").append('<div id="thumbnail_'+num+'" class="thumbnail img-fluid me-2"></div>');
-    $("#thumbnail_"+num).append('<img src="'+src+'" width="100%" height="78%">');
+    $(Upload.dragAndDropid + " #block-show-img").append('<div id="thumbnail_' + num + '" class="min-img thumbnail" data-bs-toggle="tooltip" data-bs-placement="right" title="' + data.name + '"></div>');
+    $("#thumbnail_" + num).append('<img src="' + src + '" class="img-fluid">');
 
 }
 

@@ -308,3 +308,6 @@
 'admin_system#Appel Ajax pour ouvrir une modale': 'Appel Ajax pour ouvrir une modale'
 'admin_media#Placer votre image ici': 'Placer votre image ici'
 'admin_media#Vous pouvez lacher l''image': 'Vous pouvez lacher l''image'
+'admin_media#Téléchargement en cours...': 'Téléchargement en cours...'
+'admin_media#Déposer un media ici ou cliquer pour selectionner un fichier': 'Déposer un media ici ou cliquer pour selectionner un fichier'
+'admin_media#Fermer': Fermer

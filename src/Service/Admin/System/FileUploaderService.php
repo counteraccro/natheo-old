@@ -81,4 +81,13 @@ class FileUploaderService extends AppService
     {
         return $this->parameterBag->get('app_path_media_mediatheque_asset');
     }
+
+    /**
+     * retourne l'url du dossier des images par default de la médiathèque pour l'affichage
+     * @return string
+     */
+    public function getMediathequeDefaultPath() : string
+    {
+        return $this->parameterBag->get('app_path_media_mediatheque_default_asset');
+    }
 }

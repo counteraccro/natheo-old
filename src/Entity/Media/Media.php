@@ -54,6 +54,11 @@ class Media
      */
     private $path;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $size;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -139,6 +144,18 @@ class Media
     public function setPath(string $path): self
     {
         $this->path = $path;
+
+        return $this;
+    }
+
+    public function getSize(): ?int
+    {
+        return $this->size;
+    }
+
+    public function setSize(int $size): self
+    {
+        $this->size = $size;
 
         return $this;
     }

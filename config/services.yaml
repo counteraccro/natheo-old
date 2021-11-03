@@ -20,6 +20,7 @@ parameters:
     app_path_media_avatars_asset : '/medias/avatars'
     app_path_media_mediatheque: '%app_path_media%/mediatheque'
     app_path_media_mediatheque_asset: '/medias/mediatheque'
+    app_path_media_mediatheque_default_asset: '/medias/mediatheque/default'
 
 services:
     # default configuration for services in *this* file
