@@ -353,4 +353,26 @@ MediaLib.Launch = function () {
             }
         })
     }
+
+    /**
+     * Event sur le contenu d'un dossier
+     * @constructor
+     */
+    MediaLib.EventContentFolder = function() {
+
+        MediaLib.globalIdContentFolder = '#see-block-content-folder';
+
+        /**
+         * Click sur un dossier
+         */
+        $(MediaLib.globalIdContentFolder + ' .div-folder').click(function() {
+            let id = MediaLib.globalId + ' #right-block-folder';
+            let url = $(this).data('url');
+            let str_loading = $(this).data('loading');
+            System.Ajax(url, id, true, str_loading);
+
+            MediaLib.OpenTreeFolderById($(this).data('id'));
+        })
+
+    }
 }

@@ -1,1 +1,13 @@
-contenu du dossier
+<div id="see-block-content-folder">
+    {{ data | renderContentMedia(render) | raw }}
+</div>
+
+{% block javascripts %}
+
+    <script>
+        $(document).ready(function () {
+            MediaLib.EventContentFolder();
+        });
+    </script>
+
+{% endblock %}

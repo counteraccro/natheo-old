@@ -75,23 +75,23 @@ class MediaLibController extends AppController
 
     /**
      * Affiche les medias / dossier contenu dans le dossier courant
-     * @param Folder|null $folder
+     * @param Folder|null $data
      * @return Response
      */
     #[Route('/content-folder/{id}', name: 'ajax_see_content_folder')]
-    public function contentFolder(Folder $folder = null): Response
+    public function contentFolder(Folder $data = null): Response
     {
+        $dataFilter = $this->request->getCurrentRequest()->get('media-filter');
 
-        $data = $this->request->getCurrentRequest()->get('media-filter');
+        var_dump($dataFilter);
 
-        $folders = null;
-        if ($folder == null) {
-            $folders = $this->getDoctrine()->getRepository(Folder::class)->findBy(['parent' => null]);
+        if ($data == null) {
+            $data = $this->getDoctrine()->getRepository(Folder::class)->findBy(['parent' => null]);
         }
 
         return $this->render('admin/media_lib/ajax-see-content-folder.html.twig', [
-            'folders' => $folders,
-            'folder' => $folder
+            'data' => $data,
+            'render' => $dataFilter['render'],
         ]);
     }
 

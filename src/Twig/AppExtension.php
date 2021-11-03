@@ -7,6 +7,7 @@ use App\Service\Admin\System\DateService;
 use App\Service\Admin\System\FileUploaderService;
 use App\Service\Admin\System\OptionService;
 use App\Service\Admin\System\TranslationService;
+use App\Twig\Admin\Media\MediaTwig;
 use App\Twig\Admin\Media\TreeFolderTwig;
 use App\Twig\Admin\MenuAdminTwig;
 use App\Twig\Admin\OptionTwig;
@@ -142,6 +143,8 @@ class AppExtension extends AbstractExtension
             new TwigFilter('dateFormat', [DateTwig::class, 'dateFormat']),
             new TwigFilter('treeFolder', [TreeFolderTwig::class, 'treeFolder']),
             new TwigFilter('pathFolder', [TreeFolderTwig::class, 'getPathFolder']),
+            new TwigFilter('pathFolder', [TreeFolderTwig::class, 'getPathFolder']),
+            new TwigFilter('renderContentMedia', [MediaTwig::class, 'renderModeMedia']),
 
         ];
     }

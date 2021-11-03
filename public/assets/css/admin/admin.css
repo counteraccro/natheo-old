@@ -139,7 +139,7 @@ CSS createUpdate user
     height: 15px
 }
 
-/** POPIN Ajout d'un media **/
+/** Modale Ajout d'un media **/
 #modal-add-media .upload-area {
     width: 100%;
     height: 120px;
@@ -163,4 +163,24 @@ CSS createUpdate user
 
 #modal-add-media .size {
     font-size: 12px;
+}
+
+/** Affichage du contenu d'un dossier dans la médiathèque
+templates/admin/media_lib/ajax-see-content-folder.html.twig
+*/
+#see-block-content-folder .div-folder {
+    cursor: pointer;
+    width: 60px;
+}
+
+#see-block-content-folder .div-folder:before {
+    font-family: "Font Awesome 5 Free";
+    content : "\f07b";
+    font-weight: 900;
+    font-size: 4em;
+}
+
+#see-block-content-folder .div-folder:hover::before {
+    font-family: "Font Awesome 5 Free";
+    content : "\f07c";
 }
