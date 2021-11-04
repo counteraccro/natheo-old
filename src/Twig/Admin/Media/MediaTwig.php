@@ -42,6 +42,7 @@ class MediaTwig extends AppExtension implements RuntimeExtensionInterface
         $html = '';
 
         if ($data instanceof Folder) {
+
             foreach ($data->getChildren() as $child) {
                 $html .= $this->renderFolderGrid($child);
             }
@@ -68,15 +69,25 @@ class MediaTwig extends AppExtension implements RuntimeExtensionInterface
                     </div>
                 </div>';
             }
+
+            if($html === "")
+            {
+                $html = $this->msgFolderEmpty();
+            }
+
         } else {
 
-            /** @var Folder $folder */
-            foreach ($data as $folder) {
-                $html .= $this->renderFolderGrid($folder);
+            if(empty($data))
+            {
+                $html .= $this->msgFolderEmpty();
+            }
+            else {
+                /** @var Folder $folder */
+                foreach ($data as $folder) {
+                    $html .= $this->renderFolderGrid($folder);
+                }
             }
         }
-
-        $html .= '';
 
         return $html;
     }
@@ -121,5 +132,13 @@ class MediaTwig extends AppExtension implements RuntimeExtensionInterface
                         </span>
                     </div>
                 </div>';
+    }
+
+    /**
+     * Génère un message quand un dossier est vide
+     */
+    private function msgFolderEmpty(): string
+    {
+        return '<div class="text-primary text-center"><i class="fa fa-info"></i> <i>' . $this->translator->trans('admin_media#Le dossier est actuellement vide pour le moment') . '</i></div>';
     }
 }

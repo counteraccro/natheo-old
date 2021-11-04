@@ -301,7 +301,7 @@ MediaLib.Launch = function () {
                 url: $(this).attr('action'),
             })
                 .done(function (html) {
-                    modalFolder.toggle();
+                    modalFolder.hide();
                     $(System.adminBlockModalId).html(html);
                 });
 
@@ -314,7 +314,7 @@ MediaLib.Launch = function () {
     MediaLib.createUpdateFolderSuccess = function (folder_id, modalFolder) {
 
         MediaLib.loadTreeFolder(folder_id);
-        setTimeout(function(){ modalFolder.toggle(); }, 3000);
+        setTimeout(function(){ modalFolder.hide(); }, 3000);
 
     }
 
