@@ -396,9 +396,17 @@ MediaLib.Launch = function () {
 
     }
 
-    MediaLib.EventDeleteFolder = function() {
+    /**
+     * Event sur la popin de supression d'un dossier
+     * @param modal
+     * @constructor
+     */
+    MediaLib.EventDeleteFolder = function(modal) {
         MediaLib.globalIdDeleteFolder = '#modale-delete-folder';
 
+        /**
+         * Event sur le click du bouton confirmer
+         */
         $(MediaLib.globalIdDeleteFolder + ' #btn-confirm-delete-folder').click(function() {
 
             let url = $(this).data('url');
@@ -417,9 +425,11 @@ MediaLib.Launch = function () {
                     let id = MediaLib.globalId + ' #right-block-folder';
                     System.Ajax(response.url, id, true, response.str_loading);
                     MediaLib.loadTreeFolder(response.id)
+
+                    setTimeout(function(){
+                        modal.toggle();
+                    }, 1500);
                 });
         })
-
-
     }
 }

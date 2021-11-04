@@ -26,10 +26,10 @@
 
     <script>
         $(document).ready(function () {
-            let modalMedia = new bootstrap.Modal($('#modale-delete-folder'), [])
-            modalMedia.toggle();
+            let modal = new bootstrap.Modal($('#modale-delete-folder'), [])
+            modal.toggle();
 
-            MediaLib.EventDeleteFolder();
+            MediaLib.EventDeleteFolder(modal);
         });
     </script>
 

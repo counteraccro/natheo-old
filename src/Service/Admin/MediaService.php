@@ -7,6 +7,7 @@
  */
 namespace App\Service\Admin;
 
+use App\Entity\Media\Folder;
 use App\Service\AppService;
 
 class MediaService extends AppService
@@ -33,5 +34,22 @@ class MediaService extends AppService
             "mid", "wav", => self::TYPE_AUDIO,
             default => 0,
         };
+    }
+
+    /**
+     * Permet de supprimer l'ensemble des enfants d'un dossier
+     * @param Folder $folder
+     */
+    public function deleteChildrenFolder(Folder $folder)
+    {
+        $this->doctrine->getManager();
+
+        /** @var Folder $child */
+        foreach ($folder->getChildren() as $child)
+        {
+            $this->deleteChildrenFolder($child);
+        }
+        $this->doctrine->getManager()->remove($folder);
+        $this->doctrine->getManager()->flush();
     }
 }

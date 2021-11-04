@@ -231,11 +231,11 @@ class MediaLibController extends AppController
     /**
      * Permet de supprimer un dossier ainsi que son contenu
      * @param Folder $folder
-     * @param bool $confirm
+     * @param int $confirm
      * @return JsonResponse|Response
      */
     #[Route('/delete-folder/{id}/{confirm}', name: 'ajax_delete_folder')]
-    public function deleteFolder(Folder $folder, int $confirm = 0)
+    public function deleteFolder(Folder $folder, MediaService $mediaService, int $confirm = 0): JsonResponse|Response
     {
         if($confirm == 1)
         {
@@ -244,6 +244,8 @@ class MediaLibController extends AppController
             {
                 $id_parent = $folder->getParent()->getId();
             }
+
+            $mediaService->deleteChildrenFolder($folder);
 
             return $this->json([
                 'msg' => $this->translator->trans('admin_media#dossier supprimé avec succès'),

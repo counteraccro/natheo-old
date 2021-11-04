@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">{{ "Ajouter un média" | trans }}</h5>
+                <h5 class="modal-title"><i class="fa fa-upload"></i> {{ "admin_media#Ajouter un média" | trans }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -19,11 +19,11 @@
                         </div>
                     </div>
 
-                    <div id="block-show-img" data-info="{{ "admin_media# $nb média(s) ajouté(s) dans le dossier " | trans  }} {{ folder.name }}">
+                    <div id="block-show-img" data-info="{{ "admin_media#$nb média(s) ajouté(s) dans le dossier" | trans  }} {{ folder.name }}">
                         <div id="msg-nb-img-add"></div>
 
                         <div class="text-muted">
-                            <i>{{ "admin_media#Chaque média ajouté ici sera placé dans le dossier " | trans  }} {{ folder.name }}</i></div>
+                            <i>{{ "admin_media#Chaque média ajouté ici sera placé dans le dossier" | trans  }} {{ folder.name }}</i></div>
                     </div>
                 </div>
             </div>
