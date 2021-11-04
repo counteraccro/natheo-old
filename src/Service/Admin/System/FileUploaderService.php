@@ -26,12 +26,12 @@ class FileUploaderService extends AppService
     {
         $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
         $safeFilename = $this->slugger->slug($originalFilename);
-        $fileName = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
+        $fileName = $safeFilename.'-'.uniqid().'.'.$file->getClientOriginalExtension();
 
         try {
             $file->move($directory, $fileName);
         } catch (FileException $e) {
-            // ... handle exception if something happens during file upload
+           echo $e->getMessage();
         }
 
         return $fileName;

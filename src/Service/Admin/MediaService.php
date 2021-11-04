@@ -30,7 +30,7 @@ class MediaService extends AppService
         return match ($extension) {
             "png", "gif", "tif", "tiff", "jpeg", "jpg", "bmp", "jp2" => self::TYPE_IMAGE,
             "pdf", "doc", "docx", "txt", "ppt", "xls" => self::TYPE_FILE,
-            "flv", "avi", "mp3", "mpg", "mpeg" => self::TYPE_VIDEO,
+            "flv", "avi", "mp3", "mpg", "mpeg", "mp4", "webm" => self::TYPE_VIDEO,
             "mid", "wav", => self::TYPE_AUDIO,
             default => 0,
         };

@@ -174,8 +174,11 @@ class MediaLibController extends AppController
     #[Route('/modal-media/{id}', name: 'ajax_modal_media')]
     public function modalAddMedia(Folder $folder): Response
     {
+        $max_upload = ini_get('upload_max_filesize');
+
         return $this->render('admin/media_lib/ajax-modal-add-media.html.twig', [
             'folder' => $folder,
+            'max_upload' => $max_upload
         ]);
     }
 
