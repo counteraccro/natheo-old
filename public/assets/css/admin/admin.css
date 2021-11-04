@@ -170,17 +170,49 @@ templates/admin/media_lib/ajax-see-content-folder.html.twig
 */
 #see-block-content-folder .div-folder {
     cursor: pointer;
-    width: 60px;
+    width: 100px;
+    margin-top: -20px;
 }
 
 #see-block-content-folder .div-folder:before {
     font-family: "Font Awesome 5 Free";
-    content : "\f07b";
+    content: "\f07b";
     font-weight: 900;
-    font-size: 4em;
+    font-size: 6em;
 }
 
 #see-block-content-folder .div-folder:hover::before {
     font-family: "Font Awesome 5 Free";
-    content : "\f07c";
+    content: "\f07c";
+}
+
+#see-block-content-folder .folder-name {
+    margin-top: -24px;
+}
+
+#see-block-content-folder .folder-name .dropdown-toggle::after, #see-block-content-folder .media-name .dropdown-toggle::after {
+    font-family: "Font Awesome 5 Free";
+    font-size: 0.7em;
+    color: var(--text-primary-contrast);
+    font-weight: 900;
+    display: inline-block;
+    vertical-align: 0;
+    content: "\f0c9";
+    border : 0;
+    margin: 0;
+    padding: 0;
+}
+
+#see-block-content-folder .folder-name .btn, #see-block-content-folder .media-name .btn {
+    line-height: 0;
+    display: inherit;
+}
+
+#see-block-content-folder .folder-name .btn-sm, #see-block-content-folder .media-name .btn-sm {
+    padding-right: 0px;
+}
+
+#see-block-content-folder .div-media {
+    width: 100px;
+    height: 100px;
 }
