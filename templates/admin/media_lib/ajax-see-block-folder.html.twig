@@ -85,9 +85,12 @@
                                  data-bs-toggle="tooltip" data-bs-placement="top"
                                  title="{{ "admin_media#Editer" | trans }}"><i class="fa fa-folder"></i></div>
                         {% endif %}
-                        <div class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top"
-                             title="{{ "admin_media#Supprimer" | trans }}"><i class="fa fa-folder-minus"></i></div>
-
+                    {% if 'admin_media_ajax_delete_folder' | isGranted %}
+                        <div class="btn btn-danger" id="btn-delete-folder" data-bs-toggle="tooltip" data-bs-placement="top"
+                             title="{{ "admin_media#Supprimer" | trans }}" data-url="{{ path('admin_media_ajax_delete_folder', {'id' : folder.id}) }}"
+                             data-loading="{{ "admin_media#Chargement de la modale pour supprimer le dossier" | trans }} {{ folder.name }}"><i class="fa fa-folder-minus"></i>
+                        </div>
+                    {% endif %}
                         {% if 'admin_media_ajax_add_media' | isGranted %}
                             <div class="btn btn-primary" id="btn-add-media"
                                  data-url="{{ path('admin_media_ajax_modal_media', {'id' : folder.id}) }}"

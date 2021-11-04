@@ -178,6 +178,26 @@ MediaLib.Launch = function () {
         })
 
         /**
+         * Event sur le bouton pour supprimer un dossier
+         */
+        $(MediaLib.globalId + ' #btn-delete-folder').click(function () {
+            let url = $(this).data('url');
+            let str_loading = $(this).data('loading');
+            let id = System.adminBlockModalId;
+
+            $('body').loader(str_loading);
+
+            $.ajax({
+                method: 'GET',
+                url: url,
+            })
+                .done(function (html) {
+                    $('body').removeLoader(str_loading);
+                    $(System.adminBlockModalId).html(html);
+                });
+        })
+
+        /**
          * Event sur le bouton pour créer / éditer un dossier
          */
         $(MediaLib.globalId + ' #btn-add-media').click(function () {
@@ -373,6 +393,33 @@ MediaLib.Launch = function () {
 
             MediaLib.OpenTreeFolderById($(this).data('id'));
         })
+
+    }
+
+    MediaLib.EventDeleteFolder = function() {
+        MediaLib.globalIdDeleteFolder = '#modale-delete-folder';
+
+        $(MediaLib.globalIdDeleteFolder + ' #btn-confirm-delete-folder').click(function() {
+
+            let url = $(this).data('url');
+            let str_loading = $(this).data('loading');
+
+            $(MediaLib.globalIdDeleteFolder + ' .modal-body').loader(str_loading);
+
+            $.ajax({
+                method: 'GET',
+                url: url,
+            })
+                .done(function (response) {
+                    $(MediaLib.globalIdDeleteFolder + ' .modal-body').removeLoader();
+                    $(MediaLib.globalIdDeleteFolder + ' .modal-body').html(response.msg);
+
+                    let id = MediaLib.globalId + ' #right-block-folder';
+                    System.Ajax(response.url, id, true, response.str_loading);
+                    MediaLib.loadTreeFolder(response.id)
+                });
+        })
+
 
     }
 }

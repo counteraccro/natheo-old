@@ -62,6 +62,12 @@
 'admin_system#Appel Ajax pour créer un dossier': '__Appel Ajax pour créer un dossier'
 'admin_system#Appel Ajax pour éditer un dossier': '__Appel Ajax pour éditer un dossier'
 'admin_system#Désactive une donnée de type {data}': '__Désactive une donnée de type {data}'
+'admin_system#Appel Ajax pour créer une donnée': '__Appel Ajax pour créer une donnée'
+'admin_system#Appel Ajax pour éditer une donnée': '__Appel Ajax pour éditer une donnée'
+'admin_system#Appel Ajax pour ajouter un media': '__Appel Ajax pour ajouter un media'
+'admin_system#Appel Ajax pour éditer un media': '__Appel Ajax pour éditer un media'
+'admin_system#Appel Ajax pour ouvrir la modale des medias': '__Appel Ajax pour ouvrir la modale des medias'
+'admin_system#Appel Ajax pour ouvrir une modale': '__Appel Ajax pour ouvrir une modale'
 'admin_system#Route sans description': '__Route sans description'
 'admin_fixture#Jeu de données': '__Jeu de données'
 'admin_global_option#Remplacer l''utilisateur supprimé par l''utilisateur fantome John Doe': '__Remplacer l''utilisateur supprimé par l''utilisateur fantome John Doe'
@@ -69,7 +75,14 @@
 'admin_global_option#Non': __Non
 'admin_global_option#Dans le cas contraire, l''ensemble des données de l''utilisateur seront supprimées.': '__Dans le cas contraire, l''ensemble des données de l''utilisateur seront supprimées.'
 'admin_global_option#Demander une confirmation avant de quitter une page contenant un formulaire': '__Demander une confirmation avant de quitter une page contenant un formulaire'
+'admin_media#Est vous sur de vouloir supprimer le dossier ''%folder%'' ainsi que tous les médias associés ?': '__Est vous sur de vouloir supprimer le dossier ''%folder%'' ainsi que tous les médias associés ?'
+'admin_media#Est vous sur de vouloir supprimer le dossier  "%folder%" ainsi que tous les médias associés ?': '__Est vous sur de vouloir supprimer le dossier  "%folder%" ainsi que tous les médias associés ?'
 'admin_dashboard#Dashboard': __Dashboard
+'admin_media#Médiathèque': __Médiathèque
+'admin_media#Nouveau dossier': '__Nouveau dossier'
+'admin_media#Création du dossier en cours....': '__Création du dossier en cours....'
+'admin_media#Edition du dossier': '__Edition du dossier'
+'admin_media#Mise à jour du dossier en cours....': '__Mise à jour du dossier en cours....'
 'admin_global_option#Options globales': '__Options globales'
 'admin_global_option#Option mise à jour avec succès': '__Option mise à jour avec succès'
 'admin_global_option#Une erreur interne est survenue': '__Une erreur interne est survenue'
@@ -94,6 +107,11 @@
 'admin_user#Utilisateur créé avec succès': '__Utilisateur créé avec succès'
 'admin_user#Edition de l''utilisateur ': '__Edition de l''utilisateur '
 'admin_user#Utilisateur édité avec succès': '__Utilisateur édité avec succès'
+'admin_user#Mon compte': '__Mon compte'
+'admin_user#Votre compte à été modifié avec succès': '__Votre compte à été modifié avec succès'
+'admin_user#Utilisateur supprimé avec succès': '__Utilisateur supprimé avec succès'
+'admin_user#Utilisateur désactivé avec succès': '__Utilisateur désactivé avec succès'
+'admin_user#Utilisateur activé avec succès': '__Utilisateur activé avec succès'
 'admin_role#Nom du rôle': '__Nom du rôle'
 'admin_role#Le nom du rôle doit être unique': '__Le nom du rôle doit être unique'
 'admin_role#Nom court du rôle': '__Nom court du rôle'
@@ -105,17 +123,36 @@
 'admin_role#Permet de mettre à jour de façon automatique les nouvelles routes ajoutés pour chaque module.': '__Permet de mettre à jour de façon automatique les nouvelles routes ajoutés pour chaque module.'
 'admin_role#Attention, cela mettra à jour l''ensemble des routes d''un module même si à la base toutes les routes ne sont pas sélectionnées': '__Attention, cela mettra à jour l''ensemble des routes d''un module même si à la base toutes les routes ne sont pas sélectionnées'
 'admin_role#Valider': __Valider
+'admin_role#Votre email': '__Votre email'
 'admin_user#L''Email doit être unique': '__L''Email doit être unique'
+'admin_user#Votre mot de passe n''est pas identique': '__Votre mot de passe n''est pas identique'
 'admin_user#Mot de passe': '__Mot de passe'
+'admin_role#Utilisez les chiffres, caractères spéciaux pour renforcer votre mot de passe': '__Utilisez les chiffres, caractères spéciaux pour renforcer votre mot de passe'
 'admin_user#Confirmation du mot de passe': '__Confirmation du mot de passe'
+'admin_role#Confirmer votre mot de passe': '__Confirmer votre mot de passe'
 'admin_user#Votre nom': '__Votre nom'
+'admin_role#Votre nom': '__Votre nom'
 'admin_user#Votre prénom': '__Votre prénom'
+'admin_role#Votre prénom': '__Votre prénom'
 'admin_user#Votre nom de publication': '__Votre nom de publication'
+'admin_user#Le nom qui apparaitra sous vos publications': '__Le nom qui apparaitra sous vos publications'
+'admin_role#Votre nom de publication': '__Votre nom de publication'
 'admin_user#Votre avatar': '__Votre avatar'
 'admin_user#Extension autorisées : GIF, PNG, JPEG - taille maximal 1024 ko': '__Extension autorisées : GIF, PNG, JPEG - taille maximal 1024 ko'
 'admin_user#Extension autorisées : GIF, PNG, JPEG': '__Extension autorisées : GIF, PNG, JPEG'
 'admin_user#Désactiver cet utilisateur': '__Désactiver cet utilisateur'
+'admin_user#Si l''utilisateur est désactivé, celui ci ne pourra plus se connecter sur l''administration': '__Si l''utilisateur est désactivé, celui ci ne pourra plus se connecter sur l''administration'
+'admin_user#Rôle disponible': '__Rôle disponible'
+'admin_user#Si aucun rôle n''est selectioné, l''utilisateur sera automatiquement déconnecté': '__Si aucun rôle n''est selectioné, l''utilisateur sera automatiquement déconnecté'
 'admin_user#Valider': __Valider
+'admin_media#Dossier parent': '__Dossier parent'
+'admin_media#Selectionner le dossier parent ou sera rangé le dossier': '__Selectionner le dossier parent ou sera rangé le dossier'
+'admin_media#Valider': __Valider
+'admin_media#Chargement du dossier': '__Chargement du dossier'
+'admin_media#Images': __Images
+'admin_media#Fichiers': __Fichiers
+'admin_media#Vidéos': __Vidéos
+'admin_media#Audio': __Audio
 'admin_system#APP_ENV=DEV détecté': '__APP_ENV=DEV détecté'
 'admin_translation#': __
 'admin_topmenu#Mon compte': '__Mon compte'
@@ -144,6 +181,50 @@
 'admin_translation#Rechercher par label': '__Rechercher par label'
 'admin_translation#Rechercher un traduction par son label': '__Rechercher un traduction par son label'
 'admin_translation#Tout': __Tout
+'admin_system#Attention, si vous quittez cette page, les modifications non enregistrées seront perdues': '__Attention, si vous quittez cette page, les modifications non enregistrées seront perdues'
+'admin_system#Oups': __Oups
+'admin_system#Il semblerait que vous n''avez pas les droits pour visualiser ce contenu': '__Il semblerait que vous n''avez pas les droits pour visualiser ce contenu'
+'admin_system#Vous n''avez pas les droits sur cette page': '__Vous n''avez pas les droits sur cette page'
+'admin_system#Retour à la page précédente': '__Retour à la page précédente'
+'Ajouter un média': __
+'admin_media#Placer votre image ici': '__Placer votre image ici'
+'admin_media#Vous pouvez lacher l''image': '__Vous pouvez lacher l''image'
+'admin_media#Téléchargement en cours...': '__Téléchargement en cours...'
+'admin_media#Déposer un media ici ou cliquer pour selectionner un fichier': '__Déposer un media ici ou cliquer pour selectionner un fichier'
+'admin_media# $nb média(s) ajouté(s) dans le dossier': '__ $nb média(s) ajouté(s) dans le dossier'
+'admin_media#Chaque média ajouté ici sera placé dans le dossier': '__Chaque média ajouté ici sera placé dans le dossier'
+'admin_media#Fermer': __Fermer
+'admin_media#Dossier crée avec succès': '__Dossier crée avec succès'
+'admin_media#Mise à jour de votre dossier réalisé avec succès': '__Mise à jour de votre dossier réalisé avec succès'
+'admin_media#Cette modale va se fermée toute seule dans 3 secondes....': '__Cette modale va se fermée toute seule dans 3 secondes....'
+'admin_media#Annuler': __Annuler
+'admin_media#Suppression du dossier': '__Suppression du dossier'
+'admin_media#Attention': __Attention
+'admin_media#Cette action est définitive et sans retour arrière': '__Cette action est définitive et sans retour arrière'
+'admin_media#Supprimer le dossier': '__Supprimer le dossier'
+'admin_media#Chargement de la modale pour ajouter un dossier': '__Chargement de la modale pour ajouter un dossier'
+'admin_media#Nouveau': __Nouveau
+'admin_media#Rechercher les médias dans le dossier': '__Rechercher les médias dans le dossier'
+'admin_media#Rechercher': __Rechercher
+'admin_media#Afficher tout': '__Afficher tout'
+'admin_media#Tout': __Tout
+'admin_media#Filter sur les images': '__Filter sur les images'
+'admin_media#Filter sur les fichiers': '__Filter sur les fichiers'
+'admin_media#Filter sur les vidéos': '__Filter sur les vidéos'
+'admin_media#Filter sur les fichiers audio': '__Filter sur les fichiers audio'
+'admin_media#Affichage en grille': '__Affichage en grille'
+'admin_media#Affichage en tableau': '__Affichage en tableau'
+'admin_media#Chargement de la modale pour éditer le dossier': '__Chargement de la modale pour éditer le dossier'
+'admin_media#Editer': __Editer
+'admin_media#Supprimer': __Supprimer
+'admin_media#Chargement de la modale pour supprimer le dossier': '__Chargement de la modale pour supprimer le dossier'
+'admin_media#Chargement de la modale pour ajouter un ou plusieurs médias dans le dossier': '__Chargement de la modale pour ajouter un ou plusieurs médias dans le dossier'
+'admin_media#Ajouter un média': '__Ajouter un média'
+'admin_media#Ajouter ou séléctionner un dossier pour ajouter un media': '__Ajouter ou séléctionner un dossier pour ajouter un media'
+'admin_media#Chargement du contenu du dossier ...': '__Chargement du contenu du dossier ...'
+'admin_media#Dossiers': __Dossiers
+'admin_media#Chargement des dossiers...': '__Chargement des dossiers...'
+'admin_media#Chargement des médias...': '__Chargement des médias...'
 'admin_global_option#Sauvegarde en cours...': '__Sauvegarde en cours...'
 'admin_role#Module': __Module
 'admin_role#Action': __Action
@@ -160,6 +241,7 @@
 'admin_route#Cette route est dépréciée, vous pouvez la supprimer': '__Cette route est dépréciée, vous pouvez la supprimer'
 'admin_route#Supression de la route...': '__Supression de la route...'
 'admin_route#La route à été supprimée avec succès': '__La route à été supprimée avec succès'
+'admin_route#Supprimer': __Supprimer
 'admin_route#Routes': __Routes
 'admin_route#route(s) détectée(s) comme obsolète(s)': '__route(s) détectée(s) comme obsolète(s)'
 'admin_route#Purge des routes dépréciées en cours...': '__Purge des routes dépréciées en cours...'
@@ -196,22 +278,29 @@
 'admin_translation#Chargement des traductions...': '__Chargement des traductions...'
 'admin_user#Nom Prenom': '__Nom Prenom'
 'admin_user#Nom de publication': '__Nom de publication'
+'admin_user#Rôles': __Rôles
 'admin_user#Date dernière connexion': '__Date dernière connexion'
 'admin_user#Action': __Action
+'admin_user#Compte désactivé': '__Compte désactivé'
+'admin_user#Root, aucune action possible': '__Root, aucune action possible'
+'admin_user#Utilisateur spécial, aucune action possible': '__Utilisateur spécial, aucune action possible'
 'admin_user#Editer': __Editer
 'admin_user#Attention cette action est définitive ! Êtes vous sur ?': '__Attention cette action est définitive ! Êtes vous sur ?'
 'admin_user#Supprimer': __Supprimer
 'admin_user#Résumé': __Résumé
+'admin_user#Ce compte est désactivé': '__Ce compte est désactivé'
 'admin_user#Nom': __Nom
 'admin_user#Dernière connexion': '__Dernière connexion'
 'admin_user#Dernier changement de mot de passe': '__Dernier changement de mot de passe'
 'admin_user#Force du mot de passe': '__Force du mot de passe'
 'admin_user#Information sur l''utilsateur': '__Information sur l''utilsateur'
 'admin_user#Mot de passe aléatoire': '__Mot de passe aléatoire'
+'admin_user#Sécurité de votre compte': '__Sécurité de votre compte'
 'admin_user#Mot de passe faible': '__Mot de passe faible'
 'admin_user#Mot de passe normal': '__Mot de passe normal'
 'admin_user#Mot de passe fort': '__Mot de passe fort'
 'admin_user#Laisser vide si vous ne souhaitez pas changer votre mot de passe': '__Laisser vide si vous ne souhaitez pas changer votre mot de passe'
+'admin_user#Les champs marqués d''une * sont obligatoires': '__Les champs marqués d''une * sont obligatoires'
 'admin_user#Attribution des rôles': '__Attribution des rôles'
 'admin_user#Ajouter un utilisateur': '__Ajouter un utilisateur'
 'admin_user#Chargement des données...': '__Chargement des données...'
@@ -223,91 +312,3 @@
 'front_auth#Mot de passe': '__Mot de passe'
 'front_auth#Ce souvenir de moi': '__Ce souvenir de moi'
 'front_auth#Me connecter': '__Me connecter'
-'admin_role#Votre email': '__Votre email'
-'admin_user#Votre mot de passe n''est pas identique': '__Votre mot de passe n''est pas identique'
-'admin_role#Mot de passe': '__Mot de passe'
-'admin_role#Confirmer votre mot de passe': '__Confirmer votre mot de passe'
-'admin_role#Votre nom': '__Votre nom'
-'admin_role#Votre prénom': '__Votre prénom'
-'admin_user#Le nom qui apparaitra sous vos publications': '__Le nom qui apparaitra sous vos publications'
-'admin_role#Votre nom de publication': '__Votre nom de publication'
-'admin_user#Si l''utilisateur est désactivé, celui ci ne pourra plus ce connecter sur l''administration': '__Si l''utilisateur est désactivé, celui ci ne pourra plus ce connecter sur l''administration'
-'admin_user#Ce compte est désactivé': '__Ce compte est désactivé'
-'admin_user#Les champs marqués d''une * sont obligatoires': '__Les champs marqués d''une * sont obligatoires'
-'admin_user#Utilisateur supprimé avec succès': '__Utilisateur supprimé avec succès'
-'admin_user#Root, aucune action possible': '__Root, aucune action possible'
-'admin_user#Utilisateur spécial, aucune action possible': '__Utilisateur spécial, aucune action possible'
-'admin_role#Utilisez les chiffres, caractères spéciaux pour renforcer votre mot de passe': '__Utilisez les chiffres, caractères spéciaux pour renforcer votre mot de passe'
-'admin_user#Si l''utilisateur est désactivé, celui ci ne pourra plus se connecter sur l''administration': '__Si l''utilisateur est désactivé, celui ci ne pourra plus se connecter sur l''administration'
-'admin_user#Sécurité de votre compte': '__Sécurité de votre compte'
-'admin_user#Rôle disponible': '__Rôle disponible'
-'admin_user#Si aucun rôle n''est selectioné, l''utilisateur sera automatiquement déconnecté': '__Si aucun rôle n''est selectioné, l''utilisateur sera automatiquement déconnecté'
-'admin_system#Attention, si vous quittez cette page, les modifications non enregistrées seront perdues': '__Attention, si vous quittez cette page, les modifications non enregistrées seront perdues'
-'admin_user#Utilisateur désactivé avec succès': '__Utilisateur désactivé avec succès'
-'admin_user#Utilisateur activé avec succès': '__Utilisateur activé avec succès'
-'admin_user#Compte désactivé': '__Compte désactivé'
-'admin_user#Rôles': __Rôles
-'admin_system#Vous n''avez pas les droits sur cette page': '__Vous n''avez pas les droits sur cette page'
-'admin_system#Retour à la page précédente': '__Retour à la page précédente'
-'admin_system#Vous n''avez pas les droits pour visualiser ce contenu': '__Vous n''avez pas les droits pour visualiser ce contenu'
-'admin_system#Oups': __Oups
-'admin_system#Il semblerait que vous n''avez pas les droits pour visualiser ce contenu': '__Il semblerait que vous n''avez pas les droits pour visualiser ce contenu'
-'admin_user#Mon compte': '__Mon compte'
-'admin_user#Votre compte à été modifié avec succès': '__Votre compte à été modifié avec succès'
-'admin_route#Supprimer': __Supprimer
-'admin_media#Médiathèque': __Médiathèque
-'admin_media#Chargement des dossiers...': '__Chargement des dossiers...'
-'admin_media#Média': __Média
-'admin_media#Chargement des médias...': '__Chargement des médias...'
-'admin_media#Dossiers': __Dossiers
-'admin_media#Images': __Images
-'admin_media#Fichiers': __Fichiers
-'admin_media#Vidéos': __Vidéos
-'admin_media#Audio': __Audio
-'admin_media#Supprimer': __Supprimer
-'admin_media#Nouveau': __Nouveau
-'admin_media#Recherche': __Recherche
-'admin_media#Rechercher': __Rechercher
-'admin_media#Tout': __Tout
-'admin_media#Ajouter un média': '__Ajouter un média'
-'admin_media#Nouveau dossier': '__Nouveau dossier'
-'admin_media#Edition du dossier': '__Edition du dossier'
-'admin_media#Chargement de la modale pour ajouter un dossier': '__Chargement de la modale pour ajouter un dossier'
-'admin_media#Rechercher dans les médias': '__Rechercher dans les médias'
-'admin_media#Chargement du contenu du dossier ...': '__Chargement du contenu du dossier ...'
-'admin_media#Liste des dossiers disponible': '__Liste des dossiers disponible'
-'admin_media#Selectionner le dossier parent': '__Selectionner le dossier parent'
-'admin_media#Chargement de la modale pour éditer le dossier': '__Chargement de la modale pour éditer le dossier'
-'admin_media#Editer': __Editer
-'admin_media#Création du dossier en cours....': '__Création du dossier en cours....'
-'admin_media#Mise à jour du dossier en cours....': '__Mise à jour du dossier en cours....'
-'admin_media#Dossier parent': '__Dossier parent'
-'admin_media#Selectionner le dossier parent ou sera rangé le dossier': '__Selectionner le dossier parent ou sera rangé le dossier'
-'admin_media#Valider': __Valider
-'admin_media#Afficher tout': '__Afficher tout'
-'admin_media#Filter sur les images': '__Filter sur les images'
-'admin_media#Filter sur les fichiers': '__Filter sur les fichiers'
-'admin_media#Filter sur les vidéos': '__Filter sur les vidéos'
-'admin_media#Filter sur les fichiers audio': '__Filter sur les fichiers audio'
-'admin_media#Affichage en grille': '__Affichage en grille'
-'admin_media#Affichage en tableau': '__Affichage en tableau'
-'admin_media#Dossier crée avec succès': '__Dossier crée avec succès'
-'admin_media#Mise à jour de votre dossier réalisé avec succès': '__Mise à jour de votre dossier réalisé avec succès'
-'admin_media#Cette modale va se fermée toute seule dans 3 secondes....': '__Cette modale va se fermée toute seule dans 3 secondes....'
-'admin_media#Annuler': __Annuler
-'admin_system#Appel Ajax pour créer une donnée': '__Appel Ajax pour créer une donnée'
-'admin_system#Appel Ajax pour éditer une donnée': '__Appel Ajax pour éditer une donnée'
-'admin_system#Appel Ajax pour ajouter un media': '__Appel Ajax pour ajouter un media'
-'admin_system#Appel Ajax pour éditer un media': '__Appel Ajax pour éditer un media'
-'admin_media#Rechercher les médias dans le dossier': '__Rechercher les médias dans le dossier'
-'admin_media#Chargement de la modale pour ajouter un ou plusieurs médias dans le dossier': '__Chargement de la modale pour ajouter un ou plusieurs médias dans le dossier'
-'admin_media#Ajouter ou séléctionner un dossier pour ajouter un media': '__Ajouter ou séléctionner un dossier pour ajouter un media'
-'admin_media#Nouveau(x) média(s) dans le dossier': '__Nouveau(x) média(s) dans le dossier'
-'admin_media#Déposer une image ici ou cliquer pour selectionner un fichier': '__Déposer une image ici ou cliquer pour selectionner un fichier'
-'admin_system#Appel Ajax pour ouvrir la modale des medias': '__Appel Ajax pour ouvrir la modale des medias'
-'admin_system#Appel Ajax pour ouvrir une modale': '__Appel Ajax pour ouvrir une modale'
-'admin_media#Placer votre image ici': '__Placer votre image ici'
-'admin_media#Vous pouvez lacher l''image': '__Vous pouvez lacher l''image'
-'admin_media#Téléchargement en cours...': '__Téléchargement en cours...'
-'admin_media#Déposer un media ici ou cliquer pour selectionner un fichier': '__Déposer un media ici ou cliquer pour selectionner un fichier'
-'admin_media#Fermer': __Fermer

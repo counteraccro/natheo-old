@@ -1,0 +1,36 @@
+<div class="modal" tabindex="-1" id="modale-delete-folder">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title"><i class="fa fa-folder-minus"></i> {{ "admin_media#Suppression du dossier" | trans }} "{{ folder.name }}"</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h5>{{ "admin_media#Attention" | trans }}</h5>
+                <div class="text-primary">
+                    {{ "admin_media#Est vous sur de vouloir supprimer le dossier %folder% ainsi que tous les médias associés ?"  | trans({'%folder%' : folder.name}) }} <br />
+                    <b>{{ "admin_media#Cette action est définitive et sans retour arrière" | trans }}</b>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ "admin_media#Annuler" | trans }}</button>
+                <button type="button" class="btn btn-primary" id="btn-confirm-delete-folder"
+                        data-loading="{{ "admin_media#Suppression du dossier en court...." | trans }}"
+                        data-url="{{ path('admin_media_ajax_delete_folder', {'id' : folder.id, 'confirm' : true}) }}">{{ "admin_media#Supprimer le dossier" | trans }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block javascripts %}
+
+    <script>
+        $(document).ready(function () {
+            let modalMedia = new bootstrap.Modal($('#modale-delete-folder'), [])
+            modalMedia.toggle();
+
+            MediaLib.EventDeleteFolder();
+        });
+    </script>
+
+{% endblock %}

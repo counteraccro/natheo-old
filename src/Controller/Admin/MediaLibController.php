@@ -16,6 +16,7 @@ use App\Service\Admin\MediaService;
 use App\Service\Admin\System\FileUploaderService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -225,5 +226,35 @@ class MediaLibController extends AppController
                 'name' => $nameNoExtension . '.' . $extension
             ]
         );
+    }
+
+    /**
+     * Permet de supprimer un dossier ainsi que son contenu
+     * @param Folder $folder
+     * @param bool $confirm
+     * @return JsonResponse|Response
+     */
+    #[Route('/delete-folder/{id}/{confirm}', name: 'ajax_delete_folder')]
+    public function deleteFolder(Folder $folder, int $confirm = 0)
+    {
+        if($confirm == 1)
+        {
+            $id_parent = -1;
+            if($folder->getParent() != null)
+            {
+                $id_parent = $folder->getParent()->getId();
+            }
+
+            return $this->json([
+                'msg' => $this->translator->trans('admin_media#dossier supprimé avec succès'),
+                'url' => $this->generateUrl('admin_media_ajax_see_folder', ['id' => $id_parent]),
+                'id' => $id_parent,
+                'str_loading' => $this->translator->trans('admin_media#Chargement du dossier parent')
+            ]);
+        }
+
+        return $this->render('admin/media_lib/ajax-modal-delete-folder.html.twig', [
+            'folder' => $folder,
+        ]);
     }
 }
