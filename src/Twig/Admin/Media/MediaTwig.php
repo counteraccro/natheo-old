@@ -9,6 +9,7 @@
 namespace App\Twig\Admin\Media;
 
 use App\Entity\Media\Folder;
+use App\Service\Admin\MediaService;
 use App\Twig\AppExtension;
 use Twig\Extension\RuntimeExtensionInterface;
 
@@ -48,8 +49,27 @@ class MediaTwig extends AppExtension implements RuntimeExtensionInterface
             }
 
             foreach ($data->getMedia() as $media) {
+
+                switch ($media->getType()) {
+                    case MediaService::TYPE_IMAGE :
+                        $src = $this->fileUploaderService->getMediathequePath() . '/' . $media->getPath();
+                        break;
+                    case MediaService::TYPE_FILE :
+                        $src = $this->fileUploaderService->getMediathequeDefaultPath() . '/file-default.png';
+                        break;
+                    case MediaService::TYPE_VIDEO :
+                        $src = $this->fileUploaderService->getMediathequeDefaultPath() . '/video-default.png';
+                        break;
+                    case MediaService::TYPE_AUDIO :
+                        $src = $this->fileUploaderService->getMediathequeDefaultPath() . '/audio-default.png';
+                        break;
+                    default :
+                        $src = '';
+                        break;
+                }
+
                 $html .= '<div class="float-start text-center m-3">
-                        <img class="img-fluid div-media" src="' . $this->fileUploaderService->getMediathequePath() . '/' . $media->getPath() . '">
+                        <img class="img-fluid div-media" src="' . $src . '">
                     <div class="media-name">
                         <span class="badge bg-primary"> ' . $media->getName() . '
                         
