@@ -9,6 +9,7 @@
 namespace App\Twig\Admin\Media;
 
 use App\Entity\Media\Folder;
+use App\Entity\Media\Media;
 use App\Service\Admin\MediaService;
 use App\Twig\AppExtension;
 use Twig\Extension\RuntimeExtensionInterface;
@@ -69,20 +70,14 @@ class MediaTwig extends AppExtension implements RuntimeExtensionInterface
                 }
 
                 $html .= '<div class="float-start text-center m-3">
-                        <img class="img-fluid div-media" src="' . $src . '">
+                        <img class="img-fluid img-thumbnail div-media" src="' . $src . '">
                     <div class="media-name">
                         <span class="badge bg-primary"> ' . $media->getName() . '
                         
                         <div class="dropdown float-end">
                                 <div class="btn btn-sm dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
                                 </div>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                                    <li><a class="dropdown-item active" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="#">Separated link</a></li>
-                                </ul>
+                                ' . $this->getActionMedia($media) . '
                             </div>
                         
                         </span>
@@ -141,13 +136,7 @@ class MediaTwig extends AppExtension implements RuntimeExtensionInterface
                             <div class="dropdown float-end">
                                 <div class="btn btn-sm dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
                                 </div>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                                    <li><a class="dropdown-item active" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="#">Separated link</a></li>
-                                </ul>
+                                ' . $this->getActionFolder($folder) . '
                             </div>
                         </span>
                     </div>
@@ -156,9 +145,138 @@ class MediaTwig extends AppExtension implements RuntimeExtensionInterface
 
     /**
      * Génère un message quand un dossier est vide
+     * @return string
      */
     private function msgFolderEmpty(): string
     {
         return '<div class="text-primary text-center"><i class="fa fa-info"></i> <i>' . $this->translator->trans('admin_media#Le dossier est actuellement vide pour le moment') . '</i></div>';
+    }
+
+    /**
+     * Permet de générer les actions sur un dossier
+     * @param Folder $folder
+     * @return string
+     */
+    private function getActionFolder(Folder $folder): string
+    {
+
+        $parent = -1;
+        if($folder->getParent() != null)
+        {
+            $parent = $folder->getParent()->getId();
+        }
+
+        $html = '<ul class="dropdown-menu">';
+
+        if($this->accessService->isGranted('admin_media_ajax_edit_folder'))
+        {
+            $html .= '<li>
+                        <a class="dropdown-item btn-edit-folder" 
+                            data-loading="' . $this->translator->trans('admin_media#Chargement de la modale pour éditer le dossier') . ' ' . $folder->getName() . '"
+                            data-url="' . $this->urlGenerator->generate('admin_media_ajax_edit_folder', ['parent' => $parent, 'id' => $folder->getId() ]) . '">
+                            <i class="fa fa-folder"></i> ' . $this->translator->trans('admin_media#Editer') . '
+                        </a>
+                    </li>';
+
+            $html .= '<li>
+                        <a class="dropdown-item btn-edit-folder" 
+                            data-loading="' . $this->translator->trans('admin_media#Chargement de la modale pour déplacer le dossier') . ' ' . $folder->getName() . '"
+                            data-url="' . $this->urlGenerator->generate('admin_media_ajax_edit_folder', ['parent' => $parent, 'id' => $folder->getId() ]) . '">
+                            <i class="fa fa-sync-alt"></i> ' . $this->translator->trans('admin_media#Déplacer') . '
+                        </a>
+                    </li>';
+        }
+
+        if($this->accessService->isGranted('admin_media_ajax_delete_folder')) {
+            $html .= '<li>
+                        <a class="dropdown-item btn-delete-folder" 
+                            data-loading="' . $this->translator->trans('admin_media#Chargement de la modale pour supprimer le dossier') . ' ' . $folder->getName() . '"
+                            data-url="' . $this->urlGenerator->generate('admin_media_ajax_delete_folder', ['id' => $folder->getId()]) . '">
+                            <i class="fa fa-folder-minus text-danger"></i> ' . $this->translator->trans('admin_media#Supprimer') . '
+                        </a>
+                    </li>';
+        }
+
+
+        $html .= '</ul>';
+        return $html;
+    }
+
+    /**
+     * Permet de générer les actions sur un media
+     * @param Media $media
+     * @return string
+     */
+    private function getActionMedia(Media $media): string
+    {
+
+        switch ($media->getType()) {
+            case MediaService::TYPE_IMAGE :
+                $see = $this->translator->trans('admin_media#Voir l\'image');
+                break;
+            case MediaService::TYPE_FILE :
+                $see = $this->translator->trans('admin_media#Télécharger le fichier');
+                break;
+            case MediaService::TYPE_VIDEO :
+                $see = $this->translator->trans('admin_media#Lire la vidéo');
+                break;
+            case MediaService::TYPE_AUDIO :
+                $see = $this->translator->trans('admin_media#Ecouter le son');
+                break;
+            default :
+                $see = '';
+                break;
+        }
+
+        $html = '<ul class="dropdown-menu">';
+        $html .= '<li>
+                        <a class="dropdown-item btn-see-media"
+                            target="_blank"
+                            href="' . $this->fileUploaderService->getMediathequePath() . '/' . $media->getPath()  . '">
+                            <i class="fa fa-eye"></i> ' . $see . '
+                        </a>
+                    </li>';
+
+        if($this->accessService->isGranted('admin_media_ajax_edit_media')) {
+            $html .= '<li>
+                        <a class="dropdown-item btn-edit-media" 
+                            data-loading="' . $this->translator->trans('admin_media#Chargement de la modale pour editer le media') . ' ' . $media->getName() . '"
+                            data-url="' . $this->urlGenerator->generate('admin_media_ajax_edit_media', ['id' => $media->getId()]) . '">
+                            <i class="fa fa-pen"></i> ' . $this->translator->trans('admin_media#Editer') . '
+                        </a>
+                    </li>';
+
+            $html .= '<li>
+                        <a class="dropdown-item btn-edit-media" 
+                            data-loading="' . $this->translator->trans('admin_media#Chargement de la modale pour déplacer le media') . ' ' . $media->getName() . '"
+                            data-url="' . $this->urlGenerator->generate('admin_media_ajax_edit_media', ['id' => $media->getId()]) . '">
+                            <i class="fa fa-sync-alt"></i> ' . $this->translator->trans('admin_media#Déplacer') . '
+                        </a>
+                    </li>';
+        }
+
+        if($this->accessService->isGranted('admin_media_ajax_delete_media')) {
+            $html .= '<li>
+                        <a class="dropdown-item btn-delete-media" 
+                            data-loading="' . $this->translator->trans('admin_media#Chargement de la modale pour supprimer le media') . ' ' . $media->getName() . '"
+                            data-url="' . $this->urlGenerator->generate('admin_media_ajax_delete_media', ['id' => $media->getId()]) . '">
+                            <i class="fa fa-folder-minus text-danger"></i> ' . $this->translator->trans('admin_media#Supprimer') . '
+                        </a>
+                    </li>';
+        }
+
+        /*
+         * <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                                    <li><a class="dropdown-item active" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#">Separated link</a></li>
+                                </ul>
+         */
+
+        $html .= '</ul>';
+
+        return $html;
     }
 }

@@ -1,7 +1,7 @@
 <div class="modal fade" id="modal-add-media" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-primary">
                 <h5 class="modal-title"><i class="fa fa-upload"></i> {{ "admin_media#Ajouter un média" | trans }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <i class="fa fa-info"></i> <span class="text-primary">{{ "admin_media#Taille maximum autorisé pour le téléchargement d'un média" }} {{ max_upload }} </span>
+                        <i class="fa fa-info"></i> <span class="text-primary">{{ "admin_media#Taille maximum autorisé pour le téléchargement d'un média" | trans }} {{ max_upload }} </span>
                     </div>
 
                     <div id="block-show-img" data-info="{{ "admin_media#$nb média(s) ajouté(s) dans le dossier" | trans  }} {{ folder.name }}">

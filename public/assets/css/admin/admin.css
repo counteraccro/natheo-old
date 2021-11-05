@@ -216,3 +216,7 @@ templates/admin/media_lib/ajax-see-content-folder.html.twig
     width: 100px;
     height: 100px;
 }
+
+#see-block-content-folder .dropdown-menu li a {
+    cursor: pointer;
+}

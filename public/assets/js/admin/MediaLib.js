@@ -161,61 +161,44 @@ MediaLib.Launch = function () {
          * Event sur le bouton pour créer / éditer un dossier
          */
         $(MediaLib.globalId + ' #btn-new-folder, ' + MediaLib.globalId + ' #btn-edit-folder').click(function () {
-            let url = $(this).data('url');
-            let str_loading = $(this).data('loading');
-            let id = System.adminBlockModalId;
-
-            $('body').loader(str_loading);
-
-            $.ajax({
-                method: 'GET',
-                url: url,
-            })
-                .done(function (html) {
-                    $('body').removeLoader(str_loading);
-                    $(System.adminBlockModalId).html(html);
-                });
+            MediaLib.loadModal($(this));
         })
 
         /**
          * Event sur le bouton pour supprimer un dossier
          */
         $(MediaLib.globalId + ' #btn-delete-folder').click(function () {
-            let url = $(this).data('url');
-            let str_loading = $(this).data('loading');
-            let id = System.adminBlockModalId;
-
-            $('body').loader(str_loading);
-
-            $.ajax({
-                method: 'GET',
-                url: url,
-            })
-                .done(function (html) {
-                    $('body').removeLoader(str_loading);
-                    $(System.adminBlockModalId).html(html);
-                });
+            MediaLib.loadModal($(this));
         })
 
         /**
          * Event sur le bouton pour créer / éditer un dossier
          */
         $(MediaLib.globalId + ' #btn-add-media').click(function () {
-            let url = $(this).data('url');
-            let str_loading = $(this).data('loading');
-            let id = System.adminBlockModalId;
-
-            $('body').loader(str_loading);
-
-            $.ajax({
-                method: 'GET',
-                url: url,
-            })
-                .done(function (html) {
-                    $('body').removeLoader(str_loading);
-                    $(System.adminBlockModalId).html(html);
-                });
+            MediaLib.loadModal($(this));
         })
+    }
+
+    /**
+     * Permet de charger le contenu d'une popin
+     * @param element
+     */
+    MediaLib.loadModal = function(element) {
+
+        let url = element.data('url');
+        let str_loading = element.data('loading');
+        let id = System.adminBlockModalId;
+
+        $('body').loader(str_loading);
+
+        $.ajax({
+            method: 'GET',
+            url: url,
+        })
+            .done(function (html) {
+                $('body').removeLoader(str_loading);
+                $(System.adminBlockModalId).html(html);
+            });
     }
 
     /**
@@ -386,13 +369,36 @@ MediaLib.Launch = function () {
          * Click sur un dossier
          */
         $(MediaLib.globalIdContentFolder + ' .div-folder').click(function() {
-            let id = MediaLib.globalId + ' #right-block-folder';
-            let url = $(this).data('url');
-            let str_loading = $(this).data('loading');
-            System.Ajax(url, id, true, str_loading);
-
             MediaLib.OpenTreeFolderById($(this).data('id'));
-        })
+        });
+
+        /**
+         * Event lien editer folder
+         */
+        $(MediaLib.globalIdContentFolder + ' .btn-edit-folder').click(function() {
+            MediaLib.loadModal($(this));
+        });
+
+        /**
+         * Event lien delete folder
+         */
+        $(MediaLib.globalIdContentFolder + ' .btn-delete-folder').click(function() {
+            MediaLib.loadModal($(this));
+        });
+
+        /**
+         * Event lien editer media
+         */
+        $(MediaLib.globalIdContentFolder + ' .btn-edit-media').click(function() {
+            MediaLib.loadModal($(this));
+        });
+
+        /**
+         * Event lien supprimer media
+         */
+        $(MediaLib.globalIdContentFolder + ' .btn-delete-media').click(function() {
+            MediaLib.loadModal($(this));
+        });
 
     }
 
@@ -428,6 +434,65 @@ MediaLib.Launch = function () {
 
                     setTimeout(function(){
                         modal.toggle();
+                    }, 1500);
+                });
+        })
+    }
+
+    /**
+     * Event sur la popin d'ajout/Supression d'un dossier
+     */
+    MediaLib.UpdateMediaEvent = function(modal) {
+
+        $('#modal-update-media #form-media-update').submit(function(e) {
+            e.preventDefault();
+
+            $('#modal-update-media').loader($(this).data('loading'));
+
+            $.ajax({
+                method: 'POST',
+                data: $(this).serialize(),
+                url: $(this).attr('action'),
+            })
+                .done(function (html) {
+                    modal.hide();
+                    $(System.adminBlockModalId).html(html);
+                });
+
+        });
+    }
+
+    /**
+     * Event sur la popin de supression d'un media
+     * @param modal
+     * @constructor
+     */
+    MediaLib.EventDeleteMedia = function(modal) {
+        MediaLib.globalIdDeleteMedia = '#modale-delete-media';
+
+        /**
+         * Event sur le click du bouton confirmer
+         */
+        $(MediaLib.globalIdDeleteMedia + ' #btn-confirm-delete-media').click(function() {
+
+            let url = $(this).data('url');
+            let str_loading = $(this).data('loading');
+
+            $(MediaLib.globalIdDeleteMedia + ' .modal-body').loader(str_loading);
+
+            $.ajax({
+                method: 'GET',
+                url: url,
+            })
+                .done(function (response) {
+                    $(MediaLib.globalIdDeleteMedia + ' .modal-body').removeLoader();
+                    $(MediaLib.globalIdDeleteMedia + ' .modal-body').html(response.msg);
+
+                    let id = MediaLib.globalId + ' #right-block-folder';
+                    System.Ajax(response.url, id, true, response.str_loading);
+
+                    setTimeout(function(){
+                        modal.hide();
                     }, 1500);
                 });
         })

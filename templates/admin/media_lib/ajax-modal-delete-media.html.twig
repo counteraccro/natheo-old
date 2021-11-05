@@ -1,22 +1,22 @@
-<div class="modal" tabindex="-1" id="modale-delete-folder">
+<div class="modal" tabindex="-1" id="modale-delete-media">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-danger text-white">
-                <h5 class="modal-title"><i class="fa fa-folder-minus"></i> {{ "admin_media#Suppression du dossier" | trans }} "{{ folder.name }}"</h5>
+                <h5 class="modal-title"><i class="fa fa-folder-minus"></i> {{ "admin_media#Suppression du media" | trans }} "{{ media.name }}"</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <h5>{{ "admin_media#Attention" | trans }}</h5>
                 <div class="text-danger">
-                    {{ "admin_media#Est vous sur de vouloir supprimer le dossier %folder% ainsi que tous les médias associés ?"  | trans({'%folder%' : folder.name}) }} <br />
+                    {{ "admin_media#Est vous sur de vouloir supprimer le media"  | trans }} "{{ media.name }}" <br />
                     <b>{{ "admin_media#Cette action est définitive et sans retour arrière" | trans }}</b>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ "admin_media#Annuler" | trans }}</button>
-                <button type="button" class="btn btn-danger" id="btn-confirm-delete-folder"
-                        data-loading="{{ "admin_media#Suppression du dossier en court...." | trans }}"
-                        data-url="{{ path('admin_media_ajax_delete_folder', {'id' : folder.id, 'confirm' : true}) }}">{{ "admin_media#Supprimer le dossier" | trans }}</button>
+                <button type="button" class="btn btn-danger" id="btn-confirm-delete-media"
+                        data-loading="{{ "admin_media#Suppression du media en court...." | trans }}"
+                        data-url="{{ path('admin_media_ajax_delete_media', {'id' : media.id, 'confirm' : true}) }}">{{ "admin_media#Supprimer le media" | trans }}</button>
             </div>
         </div>
     </div>
@@ -26,10 +26,10 @@
 
     <script>
         $(document).ready(function () {
-            let modal = new bootstrap.Modal($('#modale-delete-folder'), [])
+            let modal = new bootstrap.Modal($('#modale-delete-media'), [])
             modal.toggle();
 
-            MediaLib.EventDeleteFolder(modal);
+            MediaLib.EventDeleteMedia(modal);
         });
     </script>
 

@@ -12,6 +12,7 @@ use App\Controller\AppController;
 use App\Entity\Media\Folder;
 use App\Entity\Media\Media;
 use App\Form\Media\FolderType;
+use App\Form\Media\MediaType;
 use App\Service\Admin\MediaService;
 use App\Service\Admin\System\FileUploaderService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
@@ -105,7 +106,7 @@ class MediaLibController extends AppController
     #[Route('/add-folder/{id}/{parent}', name: 'ajax_add_folder')]
     #[Route('/edit-folder/{id}/{parent}', name: 'ajax_edit_folder')]
     #[Entity('parent', options: ['id' => 'parent'])]
-    public function createUpdateFolder(Folder $folder = null, Folder $parent = null): Response
+    public function modalCreateUpdateFolder(Folder $folder = null, Folder $parent = null): Response
     {
         if ($parent == null) {
             $id_parent = -1;
@@ -234,11 +235,12 @@ class MediaLibController extends AppController
     /**
      * Permet de supprimer un dossier ainsi que son contenu
      * @param Folder $folder
+     * @param MediaService $mediaService
      * @param int $confirm
      * @return JsonResponse|Response
      */
     #[Route('/delete-folder/{id}/{confirm}', name: 'ajax_delete_folder')]
-    public function deleteFolder(Folder $folder, MediaService $mediaService, int $confirm = 0): JsonResponse|Response
+    public function modalDeleteFolder(Folder $folder, MediaService $mediaService, int $confirm = 0): JsonResponse|Response
     {
         if($confirm == 1)
         {
@@ -260,6 +262,69 @@ class MediaLibController extends AppController
 
         return $this->render('admin/media_lib/ajax-modal-delete-folder.html.twig', [
             'folder' => $folder,
+        ]);
+    }
+
+    /**
+     * Permet d'éditer un média
+     * @param Media $media
+     * @return Response
+     */
+    #[Route('/update-media/{id}', name: 'ajax_edit_media')]
+    public function modalUpdateMedia(Media $media): Response
+    {
+        $form = $this->createForm(MediaType::class, $media, ['attr' => array(
+            'id' => 'form-media-update',
+            'data-loading' => $this->translator->trans("admin_media#Mise à jour du media en cours....")
+        )]);
+
+        $url = $this->generateUrl('admin_media_ajax_edit_media', ['id' => $media->getId()]);
+
+
+        $save_ok = false;
+        $form->handleRequest($this->request->getCurrentRequest());
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $media = $form->getData();
+            $this->getDoctrine()->getManager()->persist($media);
+            $this->getDoctrine()->getManager()->flush();
+            $save_ok = true;
+        }
+
+        return $this->render('admin/media_lib/ajax-modal-update-media.html.twig', [
+            'media' => $media,
+            'form' => $form->createView(),
+            'url' => $url,
+            'save_ok' => $save_ok
+        ]);
+    }
+
+    /**
+     * Permet de supprimer un media
+     * @param Media $media
+     * @param int $confirm
+     * @return JsonResponse|Response
+     */
+    #[Route('/delete-media/{id}/{confirm}', name: 'ajax_delete_media')]
+    public function modalDeleteMedia(Media $media, FileUploaderService $fileUploaderService, int $confirm = 0): JsonResponse|Response
+    {
+        if($confirm == 1)
+        {
+            $id = $media->getFolder()->getId();
+            $this->fileService->delete($media->getPath(), $fileUploaderService->getMediathequeDirectory());
+            $this->getDoctrine()->getManager()->remove($media);
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->json([
+                'msg' => $this->translator->trans('admin_media#Média supprimé avec succès'),
+                'url' => $this->generateUrl('admin_media_ajax_see_folder', ['id' => $id]),
+                'id' => $id,
+                'str_loading' => $this->translator->trans('admin_media#Chargement du dossier courant')
+            ]);
+        }
+
+        return $this->render('admin/media_lib/ajax-modal-delete-media.html.twig', [
+            'media' => $media,
         ]);
     }
 }

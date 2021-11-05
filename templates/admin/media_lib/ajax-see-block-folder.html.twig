@@ -79,7 +79,7 @@
                 <div class="float-end">
                     {% if(folder != null) %}
                         {% if 'admin_media_ajax_edit_folder' | isGranted %}
-                            <div class="btn btn-primary" id="btn-edit-folder"
+                            <div class="btn btn-primary btn-edit-folder" id="btn-edit-folder"
                                  data-url="{{ path('admin_media_ajax_edit_folder', {'parent' : parent, 'id' : folder.id}) }}"
                                  data-loading="{{ "admin_media#Chargement de la modale pour éditer le dossier" | trans }} {{ folder.name }}"
                                  data-bs-toggle="tooltip" data-bs-placement="top"

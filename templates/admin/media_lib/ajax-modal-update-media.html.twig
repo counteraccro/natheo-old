@@ -1,0 +1,58 @@
+<div class="modal" tabindex="-1" id="modal-update-media">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title"><i class="fa fa-pen"></i> {{ "admin_media#Edition du media" | trans }} #{{ media.id }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            {% if save_ok is same as(true) %}
+                <div class="modal-body">
+                    <div class="text-primary">
+                        <i class="fa fa-check"></i>
+                            {{ "admin_media#Mise à jour du média réalisé avec succès" | trans }}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <i>{{ "admin_media#Cette modale va se fermée toute seule dans 3 secondes...." | trans }}</i>
+                </div>
+            {% else  %}
+
+                {{ form_start(form, { 'id' : 'form-media-update', 'action': url }) }}
+                <div class="modal-body">
+
+                    {{ form_row(form.name) }}
+
+                    {{ form_row(form.folder) }}
+
+                    {{ form_row(form.disabled) }}
+                </div>
+                <div class="modal-footer">
+                    <div class="mb-3">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ "admin_media#Annuler" | trans }}</button>
+                    </div>
+                    {{ form_row(form.valider, {'id' : 'update-media-valide'}) }}
+                </div>
+                {{ form_end(form) }}
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% block javascripts %}
+
+    <script>
+        $(document).ready(function () {
+            let modal = new bootstrap.Modal($('#modal-update-media'), [])
+            modal.toggle();
+
+            MediaLib.UpdateMediaEvent(modal);
+
+            {% if save_ok is same as(true) %}
+                MediaLib.loadTreeFolder({{ media.folder.id }});
+                setTimeout(function(){ modal.hide(); }, 3000);
+            {% endif %}
+        });
+    </script>
+
+{% endblock %}

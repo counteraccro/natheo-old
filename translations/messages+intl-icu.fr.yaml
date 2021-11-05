@@ -75,14 +75,14 @@
 'admin_global_option#Non': Non
 'admin_global_option#Dans le cas contraire, l''ensemble des données de l''utilisateur seront supprimées.': 'Dans le cas contraire, l''ensemble des données de l''utilisateur seront supprimées.'
 'admin_global_option#Demander une confirmation avant de quitter une page contenant un formulaire': 'Demander une confirmation avant de quitter une page contenant un formulaire'
-'admin_media#Est vous sur de vouloir supprimer le dossier ''%folder%'' ainsi que tous les médias associés ?': 'Est vous sur de vouloir supprimer le dossier ''%folder%'' ainsi que tous les médias associés ?'
-'admin_media#Est vous sur de vouloir supprimer le dossier  "%folder%" ainsi que tous les médias associés ?': 'Est vous sur de vouloir supprimer le dossier  "%folder%" ainsi que tous les médias associés ?'
 'admin_dashboard#Dashboard': Dashboard
 'admin_media#Médiathèque': Médiathèque
 'admin_media#Nouveau dossier': 'Nouveau dossier'
 'admin_media#Création du dossier en cours....': 'Création du dossier en cours....'
 'admin_media#Edition du dossier': 'Edition du dossier'
 'admin_media#Mise à jour du dossier en cours....': 'Mise à jour du dossier en cours....'
+'admin_media#dossier supprimé avec succès': 'dossier supprimé avec succès'
+'admin_media#Chargement du dossier parent': 'Chargement du dossier parent'
 'admin_global_option#Options globales': 'Options globales'
 'admin_global_option#Option mise à jour avec succès': 'Option mise à jour avec succès'
 'admin_global_option#Une erreur interne est survenue': 'Une erreur interne est survenue'
@@ -149,6 +149,7 @@
 'admin_media#Selectionner le dossier parent ou sera rangé le dossier': 'Selectionner le dossier parent ou sera rangé le dossier'
 'admin_media#Valider': Valider
 'admin_media#Chargement du dossier': 'Chargement du dossier'
+'admin_media#Le dossier est actuellement vide pour le moment': 'Le dossier est actuellement vide pour le moment'
 'admin_media#Images': Images
 'admin_media#Fichiers': Fichiers
 'admin_media#Vidéos': Vidéos
@@ -186,12 +187,13 @@
 'admin_system#Il semblerait que vous n''avez pas les droits pour visualiser ce contenu': 'Il semblerait que vous n''avez pas les droits pour visualiser ce contenu'
 'admin_system#Vous n''avez pas les droits sur cette page': 'Vous n''avez pas les droits sur cette page'
 'admin_system#Retour à la page précédente': 'Retour à la page précédente'
-'Ajouter un média': ''
+'admin_media#Ajouter un média': 'Ajouter un média'
 'admin_media#Placer votre image ici': 'Placer votre image ici'
 'admin_media#Vous pouvez lacher l''image': 'Vous pouvez lacher l''image'
 'admin_media#Téléchargement en cours...': 'Téléchargement en cours...'
 'admin_media#Déposer un media ici ou cliquer pour selectionner un fichier': 'Déposer un media ici ou cliquer pour selectionner un fichier'
-'admin_media# $nb média(s) ajouté(s) dans le dossier': ' $nb média(s) ajouté(s) dans le dossier'
+'admin_media#Taille maximum autorisé pour le téléchargement d''un média': 'Taille maximum autorisé pour le téléchargement d''un média'
+'admin_media#$nb média(s) ajouté(s) dans le dossier': '$nb média(s) ajouté(s) dans le dossier'
 'admin_media#Chaque média ajouté ici sera placé dans le dossier': 'Chaque média ajouté ici sera placé dans le dossier'
 'admin_media#Fermer': Fermer
 'admin_media#Dossier crée avec succès': 'Dossier crée avec succès'
@@ -200,7 +202,9 @@
 'admin_media#Annuler': Annuler
 'admin_media#Suppression du dossier': 'Suppression du dossier'
 'admin_media#Attention': Attention
+'admin_media#Est vous sur de vouloir supprimer le dossier %folder% ainsi que tous les médias associés ?': 'Est vous sur de vouloir supprimer le dossier %folder% ainsi que tous les médias associés ?'
 'admin_media#Cette action est définitive et sans retour arrière': 'Cette action est définitive et sans retour arrière'
+'admin_media#Suppression du dossier en court....': 'Suppression du dossier en court....'
 'admin_media#Supprimer le dossier': 'Supprimer le dossier'
 'admin_media#Chargement de la modale pour ajouter un dossier': 'Chargement de la modale pour ajouter un dossier'
 'admin_media#Nouveau': Nouveau
@@ -219,7 +223,6 @@
 'admin_media#Supprimer': Supprimer
 'admin_media#Chargement de la modale pour supprimer le dossier': 'Chargement de la modale pour supprimer le dossier'
 'admin_media#Chargement de la modale pour ajouter un ou plusieurs médias dans le dossier': 'Chargement de la modale pour ajouter un ou plusieurs médias dans le dossier'
-'admin_media#Ajouter un média': 'Ajouter un média'
 'admin_media#Ajouter ou séléctionner un dossier pour ajouter un media': 'Ajouter ou séléctionner un dossier pour ajouter un media'
 'admin_media#Chargement du contenu du dossier ...': 'Chargement du contenu du dossier ...'
 'admin_media#Dossiers': Dossiers
@@ -312,9 +315,22 @@
 'front_auth#Mot de passe': 'Mot de passe'
 'front_auth#Ce souvenir de moi': 'Ce souvenir de moi'
 'front_auth#Me connecter': 'Me connecter'
-'admin_media#Est vous sur de vouloir supprimer le dossier %folder% ainsi que tous les médias associés ?': 'Est vous sur de vouloir supprimer le dossier %folder% ainsi que tous les médias associés ?'
-'admin_media#dossier supprimé avec succès': 'dossier supprimé avec succès'
-'admin_media#Chargement du dossier parent': 'Chargement du dossier parent'
-'admin_media#Le dossier est actuellement vide pour le moment': 'Le dossier est actuellement vide pour le moment'
-'admin_media#$nb média(s) ajouté(s) dans le dossier': '$nb média(s) ajouté(s) dans le dossier'
-'admin_media#Suppression du dossier en court....': 'Suppression du dossier en court....'
+'admin_media#Chargement de la modale pour déplacer le dossier': 'Chargement de la modale pour déplacer le dossier'
+'admin_media#Déplacer': Déplacer
+'admin_media#Voir l''image': 'Voir l''image'
+'admin_media#Télécharger le fichier': 'Télécharger le fichier'
+'admin_media#Lire la vidéo': 'Lire la vidéo'
+'admin_media#Ecouter le son': 'Ecouter le son'
+'admin_media#Chargement de la modale pour editer le media': 'Chargement de la modale pour editer le media'
+'admin_media#Edition du media': 'Edition du media'
+'admin_media#Mise à jour du media en cours....': 'Mise à jour du media en cours....'
+'admin_media#Média supprimé avec succès': 'Média supprimé avec succès'
+'admin_media#Chargement du dossier courant': 'Chargement du dossier courant'
+'admin_media#Selectionner le dossier parent ou sera rangé le media': 'Selectionner le dossier parent ou sera rangé le media'
+'admin_media#Chargement de la modale pour déplacer le media': 'Chargement de la modale pour déplacer le media'
+'admin_media#Chargement de la modale pour supprimer le media': 'Chargement de la modale pour supprimer le media'
+'admin_media#Suppression du media': 'Suppression du media'
+'admin_media#Est vous sur de vouloir supprimer le media': 'Est vous sur de vouloir supprimer le media'
+'admin_media#Suppression du media en court....': 'Suppression du media en court....'
+'admin_media#Supprimer le media': 'Supprimer le media'
+'admin_media#Mise à jour du média réalisé avec succès': 'Mise à jour du média réalisé avec succès'
