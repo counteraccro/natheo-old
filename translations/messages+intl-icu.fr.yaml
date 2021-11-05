@@ -334,3 +334,8 @@
 'admin_media#Suppression du media en court....': 'Suppression du media en court....'
 'admin_media#Supprimer le media': 'Supprimer le media'
 'admin_media#Mise à jour du média réalisé avec succès': 'Mise à jour du média réalisé avec succès'
+'admin_media#Nom du média': 'Nom du média'
+'admin_media#Dossier': Dossier
+'admin_media#Selectionner le dossier ou sera rangé le media': 'Selectionner le dossier ou sera rangé le media'
+'admin_media#Masquer ce média': 'Masquer ce média'
+'admin_media#Un média masqué n''apparaitra pas dans la selection de média pour un article ou une page': 'Un média masqué n''apparaitra pas dans la selection de média pour un article ou une page'

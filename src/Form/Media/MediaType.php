@@ -7,7 +7,9 @@ use App\Entity\Media\Media;
 use App\Form\AppType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,10 +18,12 @@ class MediaType extends AppType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
+            ->add('name', TextType::class, [
+                'label' => $this->translator->trans('admin_media#Nom du média')
+            ])
             ->add('folder', EntityType::class, [
-                'label' => $this->translator->trans('admin_media#Dossier parent'),
-                'help' => $this->translator->trans('admin_media#Selectionner le dossier parent ou sera rangé le media'),
+                'label' => $this->translator->trans('admin_media#Dossier'),
+                'help' => $this->translator->trans('admin_media#Selectionner le dossier ou sera rangé le media'),
                 'query_builder' => function (EntityRepository $er) {
 
                     $sql = "WITH recursive cte (id, name, parent) AS (
@@ -73,7 +77,11 @@ class MediaType extends AppType
                     return $before . $folder->getName();
                 },
             ])
-            ->add('disabled')
+            ->add('disabled', CheckboxType::class, [
+                'label' => $this->translator->trans('admin_media#Masquer ce média'),
+                'help' => $this->translator->trans('admin_media#Un média masqué n\'apparaitra pas dans la selection de média pour un article ou une page'),
+                'required' => false
+            ])
             ->add("valider", SubmitType::class, [
                 'label' => $this->translator->trans('admin_media#Valider')
             ]);
