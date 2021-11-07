@@ -12,9 +12,8 @@
             la V1 sortie
         </div>
 
-        <h3>Octobre 2021</h3>
         <ul>
-            <li>Mise à jour des routes
+            <li><b>Mise à jour des routes</b>
                 <ul>
                     <li><span class="badge bg-danger">BUG</span> Dans <kbd>App\Service\Admin\System\AccessService::isGranted</kbd>
                         comprendre pourquoi la route <kbd>admin_route_ajax_update</kbd> pose problème quand on passe
@@ -25,7 +24,7 @@
                     </li>
                 </ul>
             </li>
-            <li>Gestion des utilisateurs
+            <li><b>Gestion des utilisateurs</b>
                 <ul>
                     <li><span class="badge bg-warning">TODO</span> Mise en place du système du remplacement d'un
                         utilisateur par John Doe sur toute les données associées à un utilisateur que l'on veux
@@ -33,7 +32,7 @@
                     </li>
                 </ul>
             </li>
-            <li>Médiathèque / Gestion des dossiers
+            <li><b>Médiathèque / Gestion des dossiers</b>
                 <ul>
                     <li><span class="badge bg-primary">Evolution</span> A l'ajout ou édition d'un dossier, refaire
                         l'affichage du choix du dossier parent, idéalement l'afficher en forme d'arbre
@@ -53,6 +52,7 @@
                                     at Object.MediaLib.RecursiveOpenFolder (MediaLib.js?version=v1:330) <br />
                         </code>
                     </li>
+                    <li><span class="badge bg-danger">BUG</span> Il est possible de déplacer un dossier parent dans un de ses enfants => Crash. Ce cas ne doit pas être possible </li>
                 </ul>
             </li>
         </ul>
