@@ -18,13 +18,27 @@ class MediaTwig extends AppExtension implements RuntimeExtensionInterface
 {
 
     /**
+     * Taille maximum du nom de dossier/media
+     * @var int
+     */
+    private int $max_size_name = 11;
+
+    /**
+     * Filtre sur le type
+     * @var mixed|string
+     */
+    private mixed $filtreType = '';
+
+    /**
      * Permet d'afficher le contenu d'un dossier en fonction d'un mode d'affichage
      * @param mixed $data
      * @param string $render
      * @return string
      */
-    public function renderModeMedia(mixed $data, string $render): string
+    public function renderModeMedia(mixed $data, string $render, mixed $filtreType): string
     {
+
+        $this->filtreType = $filtreType;
 
         $html = match ($render) {
             "grid" => $this->gridMode($data),
@@ -51,6 +65,11 @@ class MediaTwig extends AppExtension implements RuntimeExtensionInterface
 
             foreach ($data->getMedia() as $media) {
 
+                if($this->filtreType != "all" && $this->filtreType != $media->getType())
+                {
+                    continue;
+                }
+
                 switch ($media->getType()) {
                     case MediaService::TYPE_IMAGE :
                         $src = $this->fileUploaderService->getMediathequePath() . '/' . $media->getPath();
@@ -69,10 +88,16 @@ class MediaTwig extends AppExtension implements RuntimeExtensionInterface
                         break;
                 }
 
-                $html .= '<div class="float-start text-center m-3">
+                $name = $media->getName();
+                if(strlen($media->getName()) > $this->max_size_name)
+                {
+                    $name = substr($media->getName(), 0, $this->max_size_name) . '...';
+                }
+
+                $html .= '<div class="float-start text-center m-3 div-media-g">
                         <img class="img-fluid img-thumbnail div-media" src="' . $src . '">
                     <div class="media-name">
-                        <span class="badge bg-primary"> ' . $media->getName() . '
+                        <span class="badge bg-primary"> ' . $name . '
                         
                         <div class="dropdown float-end">
                                 <div class="btn btn-sm dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
@@ -125,14 +150,22 @@ class MediaTwig extends AppExtension implements RuntimeExtensionInterface
      */
     private function renderFolderGrid(Folder $folder): string
     {
+        $name = $folder->getName();
+        if(strlen($folder->getName()) > $this->max_size_name)
+        {
+            $name = substr($folder->getName(), 0, $this->max_size_name) . '...';
+        }
+
         return '<div class="float-start text-center m-3">
                     <div class="div-folder" 
                     data-url="' . $this->urlGenerator->generate('admin_media_ajax_see_folder', ['id' => $folder->getId()]) . '"
                     data-id="' . $folder->getId() . '"
                     data-loading="' . $this->translator->trans('admin_media#Chargement du dossier') . ' ' . $folder->getName() . '">
+                    
                     </div>
                     <div class="folder-name">
-                        <span class="badge bg-primary">' . $folder->getName() . '
+                        <span class="badge bg-primary">
+                        ' . $name . '
                             <div class="dropdown float-end">
                                 <div class="btn btn-sm dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
                                 </div>

@@ -34,33 +34,39 @@
 
         <div class="row mt-3">
             <div class="col">
-                <div class="btn-group" role="group" id="btn-render-media" data-folder="{{ id }}">
-                    <input type="radio" class="btn-check" name="btn-render-media" id="btn-render-all" checked>
-                    <label class="btn btn-outline-primary" for="btn-render-all" data-bs-toggle="tooltip"
-                           data-bs-placement="top"
-                           title="{{ "admin_media#Afficher tout" | trans }}">{{ "admin_media#Tout" | trans }}
-                        (0)</label>
+                {% if(folder != null) %}
+                    <div class="btn-group" role="group" id="btn-render-media" data-folder="{{ id }}">
+                        <input type="radio" class="btn-check" name="btn-render-media" id="btn-render-all" data-type="all" checked>
+                        <label class="btn btn-outline-primary" for="btn-render-all" data-bs-toggle="tooltip"
+                               data-bs-placement="top"
+                               title="{{ "admin_media#Afficher tout" | trans }}">{{ "admin_media#Tout" | trans }}
+                            ({{ statsFolder.all }})</label>
 
-                    <input type="radio" class="btn-check" name="btn-render-media" id="btn-render-img">
-                    <label class="btn btn-outline-primary" for="btn-render-img" data-bs-toggle="tooltip"
-                           data-bs-placement="top" title="{{ "admin_media#Filter sur les images" | trans }}"><i
-                                class="fa fa-file-image"></i> (0)</label>
+                        <input type="radio" class="btn-check" name="btn-render-media" id="btn-render-img" data-type="{{ constant('App\\Service\\Admin\\MediaService::TYPE_IMAGE') }}">
+                        <label class="btn btn-outline-primary" for="btn-render-img" data-bs-toggle="tooltip"
+                               data-bs-placement="top" title="{{ "admin_media#Filter sur les images" | trans }}"><i
+                                    class="fa fa-file-image"></i>
+                            ({{ statsFolder[constant('App\\Service\\Admin\\MediaService::TYPE_IMAGE')] }})</label>
 
-                    <input type="radio" class="btn-check" name="btn-render-media" id="btn-render-file">
-                    <label class="btn btn-outline-primary" for="btn-render-file" data-bs-toggle="tooltip"
-                           data-bs-placement="top" title="{{ "admin_media#Filter sur les fichiers" | trans }}"><i
-                                class="fa fa-file"></i> (0)</label>
+                        <input type="radio" class="btn-check" name="btn-render-media" id="btn-render-file" data-type="{{ constant('App\\Service\\Admin\\MediaService::TYPE_FILE') }}">
+                        <label class="btn btn-outline-primary" for="btn-render-file" data-bs-toggle="tooltip"
+                               data-bs-placement="top" title="{{ "admin_media#Filter sur les fichiers" | trans }}"><i
+                                    class="fa fa-file"></i>
+                            ({{ statsFolder[constant('App\\Service\\Admin\\MediaService::TYPE_FILE')] }})</label>
 
-                    <input type="radio" class="btn-check" name="btn-render-media" id="btn-render-video">
-                    <label class="btn btn-outline-primary" for="btn-render-video" data-bs-toggle="tooltip"
-                           data-bs-placement="top" title="{{ "admin_media#Filter sur les vidéos" | trans }}"><i
-                                class="fa fa-file-video"></i> (0)</label>
+                        <input type="radio" class="btn-check" name="btn-render-media" id="btn-render-video" data-type="{{ constant('App\\Service\\Admin\\MediaService::TYPE_VIDEO') }}">
+                        <label class="btn btn-outline-primary" for="btn-render-video" data-bs-toggle="tooltip"
+                               data-bs-placement="top" title="{{ "admin_media#Filter sur les vidéos" | trans }}"><i
+                                    class="fa fa-file-video"></i>
+                            ({{ statsFolder[constant('App\\Service\\Admin\\MediaService::TYPE_VIDEO')] }})</label>
 
-                    <input type="radio" class="btn-check" name="btn-render-media" id="btn-render-audio">
-                    <label class="btn btn-outline-primary" for="btn-render-audio" data-bs-toggle="tooltip"
-                           data-bs-placement="top" title="{{ "admin_media#Filter sur les fichiers audio" | trans }}"><i
-                                class="fa fa-file-audio"></i> (0)</label>
-                </div>
+                        <input type="radio" class="btn-check" name="btn-render-media" id="btn-render-audio" data-type="{{ constant('App\\Service\\Admin\\MediaService::TYPE_AUDIO') }}">
+                        <label class="btn btn-outline-primary" for="btn-render-audio" data-bs-toggle="tooltip"
+                               data-bs-placement="top" title="{{ "admin_media#Filter sur les fichiers audio" | trans }}"><i
+                                    class="fa fa-file-audio"></i>
+                            ({{ statsFolder[constant('App\\Service\\Admin\\MediaService::TYPE_AUDIO')] }})</label>
+                    </div>
+                {% endif %}
             </div>
             <div class="col-1">
                 <div class="btn-group" role="group" id="btn-render-render">

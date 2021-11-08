@@ -249,11 +249,11 @@ MediaLib.Launch = function () {
      */
     MediaLib.getDataFilterFolder = function () {
 
-        let tab = {};
+        let tab = {'media' : 'all'};
         tab['folder-id'] = $(MediaLib.globalId + ' #btn-render-media').data('folder');
         $(MediaLib.globalId + ' #btn-render-media input').each(function () {
             if ($(this).prop('checked')) {
-                tab['media'] = $(this).attr('id').split('-')[2]
+                tab['media'] = $(this).data('type')
             }
         });
 

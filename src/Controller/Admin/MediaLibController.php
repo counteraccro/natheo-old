@@ -68,10 +68,11 @@ class MediaLibController extends AppController
         if ($folder == null) {
             $folders = $this->getDoctrine()->getRepository(Folder::class)->findBy(['parent' => null]);
         }
-
+        $statFolder = $this->mediaService->getStatByTypeInFolder($folder);
         return $this->render('admin/media_lib/ajax/ajax-see-block-folder.html.twig', [
             'folders' => $folders,
-            'folder' => $folder
+            'folder' => $folder,
+            'statsFolder' => $statFolder
         ]);
     }
 
@@ -94,6 +95,7 @@ class MediaLibController extends AppController
         return $this->render('admin/media_lib/ajax/ajax-see-content-folder.html.twig', [
             'data' => $data,
             'render' => $dataFilter['render'],
+            'filtreType' => $dataFilter['media']
         ]);
     }
 

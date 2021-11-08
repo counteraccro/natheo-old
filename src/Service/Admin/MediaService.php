@@ -53,8 +53,46 @@ class MediaService extends AppService
         $this->doctrine->getManager()->flush();
     }
 
-    public function getPathByType($type)
+    /**
+     * Retourne un tableau contenant les statistiques d'un dossier
+     * @param Folder|null $folder
+     * @return array
+     */
+    public function getStatByTypeInFolder(Folder $folder = null): array
     {
+        $tab = [
+            'all' => 0,
+            self::TYPE_IMAGE => 0,
+            self::TYPE_VIDEO => 0,
+            self::TYPE_FILE => 0,
+            self::TYPE_AUDIO => 0
+        ];
 
+        if($folder == null)
+        {
+            return $tab;
+        }
+
+        foreach($folder->getMedia() as $media)
+        {
+            $tab['all']++;
+
+            switch ($media->getType()) {
+                case self::TYPE_IMAGE:
+                    $tab[self::TYPE_IMAGE]++;
+                    break;
+                case self::TYPE_FILE:
+                    $tab[self::TYPE_FILE]++;
+                    break;
+                case self::TYPE_VIDEO:
+                    $tab[self::TYPE_VIDEO]++;
+                    break;
+                case self::TYPE_AUDIO:
+                    $tab[self::TYPE_AUDIO]++;
+                    break;
+            }
+        }
+
+        return $tab;
     }
 }

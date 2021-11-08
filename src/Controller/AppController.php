@@ -8,6 +8,7 @@
 namespace App\Controller;
 
 use App\Entity\Admin\Option;
+use App\Service\Admin\MediaService;
 use App\Service\Admin\System\DataSystemService;
 use App\Service\Admin\System\FileService;
 use App\Service\Admin\System\OptionService;
@@ -63,6 +64,11 @@ class AppController extends AbstractController
     protected FileService $fileService;
 
     /**
+     * @var MediaService
+     */
+    protected MediaService $mediaService;
+
+    /**
      * @param TranslatorInterface $translator
      * @param RequestStack $request
      * @param OptionService $optionService
@@ -72,7 +78,7 @@ class AppController extends AbstractController
      * @param FileService $fileService
      */
     public function __construct(TranslatorInterface $translator, RequestStack $request, OptionService $optionService,
-        TranslationService $translationService, DataSystemService $dataSystemService, KernelInterface $kernel, FileService $fileService)
+        TranslationService $translationService, DataSystemService $dataSystemService, KernelInterface $kernel, FileService $fileService, MediaService $mediaService)
     {
         $this->translator = $translator;
         $this->request = $request;
@@ -82,6 +88,7 @@ class AppController extends AbstractController
         $this->dataSystemService = $dataSystemService;
         $this->kernel = $kernel;
         $this->fileService = $fileService;
+        $this->mediaService = $mediaService;
     }
 
     /**
