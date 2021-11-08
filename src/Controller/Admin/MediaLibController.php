@@ -120,17 +120,21 @@ class MediaLibController extends AppController
             $url = $this->generateUrl('admin_media_ajax_add_folder', ['id' => -1, 'parent' => $id_parent]);
             $msg_loading = $this->translator->trans("admin_media#Création du dossier en cours....");
             $action = 'add';
+            $current_id = -1;
         } else {
             $title = $this->translator->trans("admin_media#Edition du dossier") . " #" . $folder->getId();
             $url = $this->generateUrl('admin_media_ajax_edit_folder', ['id' => $folder->getId(), 'parent' => $id_parent]);
             $msg_loading = $this->translator->trans("admin_media#Mise à jour du dossier en cours....");
             $action = 'edit';
+            $current_id = $folder->getId();
         }
 
-        $form = $this->createForm(FolderType::class, $folder, ['attr' => array(
-            'id' => 'form-folder',
-            'data-loading' => $msg_loading
-        )]);
+        $form = $this->createForm(FolderType::class, $folder, [
+            'attr' => array(
+                'id' => 'form-folder',
+                'data-loading' => $msg_loading,
+            ),
+            'current_folder' => $current_id]);
 
         $save_ok = false;
         $form->handleRequest($this->request->getCurrentRequest());

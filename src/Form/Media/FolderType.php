@@ -18,10 +18,16 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class FolderType extends AppType
 {
-    private $tabRef = [];
+    /**
+     * @var int
+     */
+    private int $current_folder = 0;
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+
+        $this->current_folder = $options['current_folder'];
+
         $builder
             ->add('name')
             ->add('parent', EntityType::class, [
@@ -48,7 +54,9 @@ class FolderType extends AppType
 
                     $connection = $er->createQueryBuilder('f')->getEntityManager()->getConnection();
                     $stmt = $connection->prepare($sql);
-                    $this->tabRef = $results = $stmt->executeQuery()->fetchAllAssociative();
+                    $results = $stmt->executeQuery()->fetchAllAssociative();
+
+                    $results = $this->cleanFolderListe($results);
 
                     $ids = array_map(function ($row) {
                         return $row['id'];
@@ -67,28 +75,25 @@ class FolderType extends AppType
                 'placeholder' => 'Root',
                 'choice_label' => function (Folder $folder) {
 
-                  $path = array_reverse($this->generatePath($folder, []));
+                    $path = array_reverse($this->generatePath($folder, []));
 
-                  $before = 'Root / ';
+                    $before = 'Root / ';
 
-                  unset($path[array_key_last($path)]);
+                    unset($path[array_key_last($path)]);
 
-                  foreach($path as $element)
-                  {
-                      $before .= $element['name']. ' / ';
-                  }
+                    foreach ($path as $element) {
+                        $before .= $element['name'] . ' / ';
+                    }
 
-                  //$before = str_repeat('-', $nb);
-                  return  $before . $folder->getName();
+                    return $before . $folder->getName();
                 },
             ])
-             ->add('refId', HiddenType::class, [
-                 'mapped' => false,
-             ])
-             ->add("valider", SubmitType::class, [
-                 'label' => $this->translator->trans('admin_media#Valider')
-             ])
-        ;
+            ->add('refId', HiddenType::class, [
+                'mapped' => false,
+            ])
+            ->add("valider", SubmitType::class, [
+                'label' => $this->translator->trans('admin_media#Valider')
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
@@ -96,9 +101,16 @@ class FolderType extends AppType
         $resolver->setDefaults([
             'data_class' => Folder::class,
             'allow_extra_fields' => true,
+            'current_folder' => 0
         ]);
     }
 
+    /**
+     * Génère le path du dossier
+     * @param Folder $folder
+     * @param array $tab
+     * @return array
+     */
     private function generatePath(Folder $folder, array $tab): array
     {
         $tab[] = ['name' => $folder->getName(), 'id' => $folder->getId()];
@@ -107,5 +119,23 @@ class FolderType extends AppType
         } else {
             return $tab;
         }
+    }
+
+    /**
+     * Supprime l'ensemble des dossiers enfants du dossier courant
+     * @param array $tab
+     * @return array
+     */
+    private function cleanFolderListe(array $tab): array
+    {
+        $tmp = [];
+
+        foreach ($tab as $key => $val) {
+            if ($val['parent'] == $this->current_folder || $val['id'] == $this->current_folder || in_array($val['parent'], $tmp, true)) {
+                $tmp[] = $val['id'];
+                unset($tab[$key]);
+            }
+        }
+        return $tab;
     }
 }
