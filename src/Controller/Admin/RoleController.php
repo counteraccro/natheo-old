@@ -66,7 +66,7 @@ class RoleController extends AppController
         $roleRepo = $this->getDoctrine()->getRepository(Role::class);
         $listeRoles = $roleRepo->listeRolePaginate($page, $limit, $filter);
 
-        return $this->render('admin/role/ajax-listing.html.twig', [
+        return $this->render('admin/role/ajax/ajax-listing.html.twig', [
             'listeRoles' => $listeRoles,
             'page' => $page,
             'limit' => $limit,

@@ -70,7 +70,7 @@ class TranslationController extends AppController
         $translationKeyRepo = $this->getDoctrine()->getRepository(TranslationKey::class);
         $listeTranslation = $translationKeyRepo->listeRoutePaginate($page, $limit, $filter);
 
-        return $this->render('admin/translation/ajax_listing.html.twig', [
+        return $this->render('admin/translation/ajax/ajax_listing.html.twig', [
             'listeTranslation' => $listeTranslation,
             'page' => $page,
             'limit' => $limit,

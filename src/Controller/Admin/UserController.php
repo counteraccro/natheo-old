@@ -70,7 +70,7 @@ class UserController extends AppController
         $userRepo = $this->getDoctrine()->getRepository(User::class);
         $listeUsers = $userRepo->listeUserPaginate($page, $limit, $filter);
 
-        return $this->render('admin/user/ajax-listing.html.twig', [
+        return $this->render('admin/user/ajax/ajax-listing.html.twig', [
             'listeUsers' => $listeUsers,
             'page' => $page,
             'limit' => $limit,

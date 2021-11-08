@@ -78,7 +78,7 @@ class RouteController extends AppController
         $nbRoutesDepreciate = $routeRepo->findBy(['is_depreciate' => 1]);
         $tabModule = $routeService->getTranslateModules();
 
-        return $this->render('admin/route/ajax_listing.html.twig', [
+        return $this->render('admin/route/ajax/ajax_listing.html.twig', [
             'listeRoutes' => $listeRoutes,
             'page' => $page,
             'limit' => $limit,

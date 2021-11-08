@@ -51,7 +51,7 @@ class MediaLibController extends AppController
 
         $folders = $this->getDoctrine()->getRepository(Folder::class)->findBy(['parent' => null]);
 
-        return $this->render('admin/media_lib/ajax-tree-folder.html.twig', [
+        return $this->render('admin/media_lib/ajax/ajax-tree-folder.html.twig', [
             'folders' => $folders
         ]);
     }
@@ -69,7 +69,7 @@ class MediaLibController extends AppController
             $folders = $this->getDoctrine()->getRepository(Folder::class)->findBy(['parent' => null]);
         }
 
-        return $this->render('admin/media_lib/ajax-see-block-folder.html.twig', [
+        return $this->render('admin/media_lib/ajax/ajax-see-block-folder.html.twig', [
             'folders' => $folders,
             'folder' => $folder
         ]);
@@ -91,7 +91,7 @@ class MediaLibController extends AppController
             $data = $this->getDoctrine()->getRepository(Folder::class)->findBy(['parent' => null]);
         }
 
-        return $this->render('admin/media_lib/ajax-see-content-folder.html.twig', [
+        return $this->render('admin/media_lib/ajax/ajax-see-content-folder.html.twig', [
             'data' => $data,
             'render' => $dataFilter['render'],
         ]);
@@ -160,7 +160,7 @@ class MediaLibController extends AppController
             $save_ok = true;
         }
 
-        return $this->render('admin/media_lib/ajax-modal-create-update-folder.html.twig', [
+        return $this->render('admin/media_lib/ajax/ajax-modal-create-update-folder.html.twig', [
             'folder' => $folder,
             'parent' => $parent,
             'title' => $title,
@@ -181,7 +181,7 @@ class MediaLibController extends AppController
     {
         $max_upload = ini_get('upload_max_filesize');
 
-        return $this->render('admin/media_lib/ajax-modal-add-media.html.twig', [
+        return $this->render('admin/media_lib/ajax/ajax-modal-add-media.html.twig', [
             'folder' => $folder,
             'max_upload' => $max_upload
         ]);
@@ -264,7 +264,7 @@ class MediaLibController extends AppController
             ]);
         }
 
-        return $this->render('admin/media_lib/ajax-modal-delete-folder.html.twig', [
+        return $this->render('admin/media_lib/ajax/ajax-modal-delete-folder.html.twig', [
             'folder' => $folder,
         ]);
     }
@@ -295,7 +295,7 @@ class MediaLibController extends AppController
             $save_ok = true;
         }
 
-        return $this->render('admin/media_lib/ajax-modal-update-media.html.twig', [
+        return $this->render('admin/media_lib/ajax/ajax-modal-update-media.html.twig', [
             'media' => $media,
             'form' => $form->createView(),
             'url' => $url,
@@ -327,7 +327,7 @@ class MediaLibController extends AppController
             ]);
         }
 
-        return $this->render('admin/media_lib/ajax-modal-delete-media.html.twig', [
+        return $this->render('admin/media_lib/ajax/ajax-modal-delete-media.html.twig', [
             'media' => $media,
         ]);
     }
