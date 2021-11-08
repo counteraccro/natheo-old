@@ -339,3 +339,14 @@
 'admin_media#Selectionner le dossier ou sera rangé le media': '__Selectionner le dossier ou sera rangé le media'
 'admin_media#Masquer ce média': '__Masquer ce média'
 'admin_media#Un média masqué n''apparaitra pas dans la selection de média pour un article ou une page': '__Un média masqué n''apparaitra pas dans la selection de média pour un article ou une page'
+'admin_media#Chargement de la modale pour afficher les informations du media': '__Chargement de la modale pour afficher les informations du media'
+'admin_media#Information': __Information
+'admin_media#Information sur le media': '__Information sur le media'
+'admin_media#Nom': __Nom
+'admin_media#Nom réel': '__Nom réel'
+'admin_media#Exension': __Exension
+'admin_media#Poids': __Poids
+'admin_media#Date upload': '__Date upload'
+'admin_media#Statistiques': __Statistiques
+'admin_media#Pages': __Pages
+'admin_media#Articles': __Articles

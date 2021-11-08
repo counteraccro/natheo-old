@@ -105,7 +105,7 @@ function addThumbnail(data) {
     let src = data.path;
 
     // Creating an thumbnail
-    $(Upload.dragAndDropid + " #block-show-img").append('<div id="thumbnail_' + num + '" class="min-img thumbnail" data-bs-toggle="tooltip" data-bs-placement="right" title="' + data.name + '"></div>');
+    $(Upload.dragAndDropid + " #block-show-img").append('<div id="thumbnail_' + num + '" class="min-img thumbnail img-thumbnail me-2" data-bs-toggle="tooltip" data-bs-placement="right" title="' + data.name + '"></div>');
     $("#thumbnail_" + num).append('<img src="' + src + '" class="img-fluid">');
 
 }

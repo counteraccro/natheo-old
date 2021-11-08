@@ -265,6 +265,16 @@ class MediaTwig extends AppExtension implements RuntimeExtensionInterface
                     </li>';
         }
 
+        if($this->accessService->isGranted('admin_media_ajax_info_media')) {
+            $html .= '<li>
+                        <a class="dropdown-item btn-delete-media" 
+                            data-loading="' . $this->translator->trans('admin_media#Chargement de la modale pour afficher les informations du media') . ' ' . $media->getName() . '"
+                            data-url="' . $this->urlGenerator->generate('admin_media_ajax_info_media', ['id' => $media->getId()]) . '">
+                            <i class="fa fa-info"></i> ' . $this->translator->trans('admin_media#Information') . '
+                        </a>
+                    </li>';
+        }
+
         /*
          * <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                                     <li><a class="dropdown-item active" href="#">Action</a></li>

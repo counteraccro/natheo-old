@@ -400,6 +400,13 @@ MediaLib.Launch = function () {
             MediaLib.loadModal($(this));
         });
 
+        /**
+         * Event lien supprimer media
+         */
+        $(MediaLib.globalIdContentFolder + ' .btn-info-media').click(function() {
+            MediaLib.loadModal($(this));
+        });
+
     }
 
     /**

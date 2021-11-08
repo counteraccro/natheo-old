@@ -1,0 +1,57 @@
+<div class="modal" tabindex="-1" id="modal-update-media">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title"><i class="fa fa-info"></i> {{ "admin_media#Information sur le media" | trans }}
+                    #{{ media.id }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-8">
+                        <div class="row">
+                            {% set colGauche = 4 %}
+                            {% set colDroite = 8 %}
+
+                            <div class="col-{{ colGauche }}">{{ "admin_media#Nom" | trans }} :</div>
+                            <div class="col-{{ colDroite }}">{{ media.name }}</div>
+                            <div class="col-{{ colGauche }}">{{ "admin_media#Nom réel" | trans }} :</div>
+                            <div class="col-{{ colDroite }}">{{ media.path }}</div>
+                            <div class="col-{{ colGauche }}">{{ "admin_media#Exension" | trans }} :</div>
+                            <div class="col-{{ colDroite }}">{{ media.extension }}</div>
+                            <div class="col-{{ colGauche }}">{{ "admin_media#Poids" | trans }} :</div>
+                            <div class="col-{{ colDroite }}">{{ media.size }} ko</div>
+                            <div class="col-{{ colGauche }}">{{ "admin_media#Date upload" | trans }} :</div>
+                            <div class="col-{{ colDroite }}">{{ media.createOn | dateFormat(dateFormat, timeFormat) }}</div>
+                            <div class="col-{{ colGauche }}">{{ "admin_media#Statistiques" | trans }} :</div>
+                            <div class="col-{{ colDroite }}">
+                                {{ "admin_media#Pages" | trans }} : 0 <br />
+                                {{ "admin_media#Articles" | trans }} : 0
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <img src="{{ path }}" class="img-thumbnail img-fluid">
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">{{ "admin_media#Fermer" | trans }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block javascripts %}
+
+    <script>
+        $(document).ready(function () {
+            let modal = new bootstrap.Modal($('#modal-update-media'), [])
+            modal.toggle();
+        });
+    </script>
+
+{% endblock %}

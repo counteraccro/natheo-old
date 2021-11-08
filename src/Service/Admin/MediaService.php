@@ -52,4 +52,9 @@ class MediaService extends AppService
         $this->doctrine->getManager()->remove($folder);
         $this->doctrine->getManager()->flush();
     }
+
+    public function getPathByType($type)
+    {
+
+    }
 }

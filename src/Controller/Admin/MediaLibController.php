@@ -331,4 +331,30 @@ class MediaLibController extends AppController
             'media' => $media,
         ]);
     }
+
+    /**
+     * Modal qui affiche les infos du media
+     * @param Media $media
+     * @return Response
+     */
+    #[Route('/info/{id}', name: 'ajax_info_media')]
+    public function modalInfoMedia(Media $media, FileUploaderService $fileUploaderService): Response
+    {
+        $dateFormat = $this->optionService->getOptionShortFormatDate();
+        $timeFormat = $this->optionService->getOptionTimeFormat();
+
+        $path = match ($media->getType()) {
+            MediaService::TYPE_FILE => $fileUploaderService->getMediathequeDefaultPath() . '/file-default.png',
+            MediaService::TYPE_AUDIO => $fileUploaderService->getMediathequeDefaultPath() . '/audio-default.png',
+            MediaService::TYPE_VIDEO => $fileUploaderService->getMediathequeDefaultPath() . '/video-default.png',
+            MediaService::TYPE_IMAGE =>  $fileUploaderService->getMediathequePath() . '/' . $media->getPath()
+        };
+
+        return $this->render('admin/media_lib/ajax/ajax-modal-info-media.html.twig', [
+            'media' => $media,
+            'dateFormat' => $dateFormat,
+            'timeFormat' => $timeFormat,
+            'path' => $path
+        ]);
+    }
 }
