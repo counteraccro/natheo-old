@@ -46,7 +46,7 @@
 
             let modale = document.getElementById('modal-add-media')
             modale.addEventListener('hidden.bs.modal', function (event) {
-               MediaLib.loadContentFolder()
+               MediaLib.loadTreeFolder({{ folder.id }})
             })
             Upload.DragAndDrop();
         });

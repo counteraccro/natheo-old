@@ -9,6 +9,7 @@
 namespace App\Twig\Admin\Media;
 
 use App\Entity\Media\Folder;
+use App\Service\Admin\MediaService;
 use App\Twig\AppExtension;
 use Doctrine\Common\Collections\Collection;
 use Twig\Extension\RuntimeExtensionInterface;
@@ -66,26 +67,57 @@ class TreeFolderTwig extends AppExtension implements RuntimeExtensionInterface
      */
     private function showTypeContent(Folder $folder): string
     {
-        return '<li class="link-filter" data-id="btn-render-img" data-folder="' . $folder->getId() . '"><i class="fa fa-file-image"></i> ' . $this->translator->trans('admin_media#Images') . '
+
+        $stats = $this->mediaService->getStatByTypeInFolder($folder);
+
+        $html = '';
+
+        foreach ($stats as $key => $stat) {
+            if ($stat == 0) {
+                continue;
+            }
+
+            switch ($key) {
+                case MediaService::TYPE_IMAGE:
+
+                    $html .= '<li class="link-filter" data-id="btn-render-img" data-folder="' . $folder->getId() . '"><i class="fa fa-file-image"></i> ' . $this->translator->trans('admin_media#Images') . '
                             <span class="badge rounded-pill bg-primary">
-                                99+
-                             </span>
-                        </li>
-                        <li class="link-filter" data-id="btn-render-file" data-folder="' . $folder->getId() . '"><i class="fa fa-file-word"></i> ' . $this->translator->trans('admin_media#Fichiers') . '
-                            <span class="badge rounded-pill bg-primary">
-                                99+
-                             </span>
-                        </li>
-                        <li class="link-filter" data-id="btn-render-video" data-folder="' . $folder->getId() . '"><i class="fa fa-file-video"></i> ' . $this->translator->trans('admin_media#Vidéos') . '
-                            <span class="badge rounded-pill bg-primary">
-                                99+
-                             </span>
-                        </li>
-                        <li class="link-filter" data-id="btn-render-audio" data-folder="' . $folder->getId() . '"><i class="fa fa-file-audio"></i> ' . $this->translator->trans('admin_media#Audio') . '
-                            <span class="badge rounded-pill bg-primary">
-                                99+
+                                ' . $stat . '
                              </span>
                         </li>';
+
+                    break;
+                case MediaService::TYPE_FILE:
+
+                    $html .= '<li class="link-filter" data-id="btn-render-file" data-folder="' . $folder->getId() . '"><i class="fa fa-file-word"></i> ' . $this->translator->trans('admin_media#Fichiers') . '
+                <span class="badge rounded-pill bg-primary">
+                ' . $stat . '
+                             </span>
+                        </li>';
+
+                    break;
+                case MediaService::TYPE_VIDEO:
+
+                    $html .= '<li class="link-filter" data-id="btn-render-video" data-folder="' . $folder->getId() . '"><i class="fa fa-file-video"></i> ' . $this->translator->trans('admin_media#Vidéos') . '
+                <span class="badge rounded-pill bg-primary">
+                ' . $stat . '
+                             </span>
+                        </li>';
+
+                    break;
+                case MediaService::TYPE_AUDIO:
+                    $html .= ' <li class="link-filter" data-id="btn-render-audio" data-folder="' . $folder->getId() . '"><i class="fa fa-file-audio"></i> ' . $this->translator->trans('admin_media#Audio') . '
+                            <span class="badge rounded-pill bg-primary">
+                                ' . $stat . '
+                             </span>
+                        </li>';
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        return $html;
     }
 
     /**
@@ -102,12 +134,10 @@ class TreeFolderTwig extends AppExtension implements RuntimeExtensionInterface
 
         $html = '<nav style="--bs-breadcrumb-divider: \'>\';" aria-label="breadcrumb" id="breadcrumb-folder-media">
               <ol class="breadcrumb mb-0 mt-2">';
-        if(empty($tab))
-        {
+        if (empty($tab)) {
             $html .= ' <li class="breadcrumb-item active" aria-current="page">Root</a></li>';
-        }
-        else {
-            $html .=  '<li class="breadcrumb-item"><a data-id="-1" href="' . $this->urlGenerator->generate('admin_media_ajax_see_folder', ['id' => '-1']) . '">Root</a></li>';
+        } else {
+            $html .= '<li class="breadcrumb-item"><a data-id="-1" href="' . $this->urlGenerator->generate('admin_media_ajax_see_folder', ['id' => '-1']) . '">Root</a></li>';
         }
         foreach ($tab as $tabFolder) {
             if ($folder->getName() == $tabFolder['name']) {

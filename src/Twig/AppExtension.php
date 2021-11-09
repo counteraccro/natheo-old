@@ -2,6 +2,8 @@
 
 namespace App\Twig;
 
+use App\Entity\Media\Media;
+use App\Service\Admin\MediaService;
 use App\Service\Admin\System\AccessService;
 use App\Service\Admin\System\DateService;
 use App\Service\Admin\System\FileUploaderService;
@@ -87,7 +89,15 @@ class AppExtension extends AbstractExtension
      */
     protected FileUploaderService $fileUploaderService;
 
+    /**
+     * @var AccessService
+     */
     protected AccessService $accessService;
+
+    /**
+     * @var MediaService
+     */
+    protected MediaService $mediaService;
 
     /**
      * @param ParameterBagInterface $parameterBag
@@ -97,12 +107,18 @@ class AppExtension extends AbstractExtension
      * @param RequestStack $requestStack
      * @param TranslationService $translationService
      * @param OptionService $optionService
+     * @param DateService $dateService
+     * @param KernelInterface $kernel
+     * @param FileUploaderService $fileUploaderService
+     * @param AccessService $accessService
+     * @param MediaService $mediaService
      */
     public function __construct(ParameterBagInterface $parameterBag, UrlGeneratorInterface $urlGenerator,
                                 TranslatorInterface   $translator, Security $security,
                                 RequestStack          $requestStack, TranslationService $translationService,
                                 OptionService       $optionService, DateService $dateService, KernelInterface $kernel,
-                                FileUploaderService $fileUploaderService, AccessService $accessService)
+                                FileUploaderService $fileUploaderService, AccessService $accessService,
+                                MediaService $mediaService)
     {
         $this->parameterBag = $parameterBag;
         $this->urlGenerator = $urlGenerator;
@@ -116,6 +132,7 @@ class AppExtension extends AbstractExtension
         $this->kernel = $kernel;
         $this->fileUploaderService = $fileUploaderService;
         $this->accessService = $accessService;
+        $this->mediaService = $mediaService;
     }
 
     /**

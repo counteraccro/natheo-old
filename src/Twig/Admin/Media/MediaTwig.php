@@ -29,18 +29,21 @@ class MediaTwig extends AppExtension implements RuntimeExtensionInterface
      */
     private mixed $filtreType = '';
 
+    private string $search = '';
+
     /**
      * Permet d'afficher le contenu d'un dossier en fonction d'un mode d'affichage
      * @param mixed $data
-     * @param string $render
+     * @param array $dataFilter
      * @return string
      */
-    public function renderModeMedia(mixed $data, string $render, mixed $filtreType): string
+    public function renderModeMedia(mixed $data, array $dataFilter): string
     {
 
-        $this->filtreType = $filtreType;
+        $this->filtreType = $dataFilter['media'];
+        $this->search = $dataFilter['search'];
 
-        $html = match ($render) {
+        $html = match ($dataFilter['render']) {
             "grid" => $this->gridMode($data),
             "table" => $this->tableMode($data),
             default => '',
@@ -60,6 +63,16 @@ class MediaTwig extends AppExtension implements RuntimeExtensionInterface
         if ($data instanceof Folder) {
 
             foreach ($data->getChildren() as $child) {
+
+                if($this->search != '')
+                {
+                    $regex = '/' . $this->search . '/';
+                    if(!preg_match_all($regex, $child->getName(), $matches, PREG_SET_ORDER, 0))
+                    {
+                        continue;
+                    }
+                }
+
                 $html .= $this->renderFolderGrid($child);
             }
 
@@ -68,6 +81,14 @@ class MediaTwig extends AppExtension implements RuntimeExtensionInterface
                 if($this->filtreType != "all" && $this->filtreType != $media->getType())
                 {
                     continue;
+                }
+                if($this->search != '')
+                {
+                    $regex = '/' . $this->search . '/';
+                    if(!preg_match_all($regex, $media->getName(), $matches, PREG_SET_ORDER, 0))
+                    {
+                        continue;
+                    }
                 }
 
                 switch ($media->getType()) {
@@ -124,6 +145,13 @@ class MediaTwig extends AppExtension implements RuntimeExtensionInterface
             else {
                 /** @var Folder $folder */
                 foreach ($data as $folder) {
+
+                    $regex = '/' . $this->search . '/';
+                    if(!preg_match_all($regex, $folder->getName(), $matches, PREG_SET_ORDER, 0))
+                    {
+                        continue;
+                    }
+
                     $html .= $this->renderFolderGrid($folder);
                 }
             }
