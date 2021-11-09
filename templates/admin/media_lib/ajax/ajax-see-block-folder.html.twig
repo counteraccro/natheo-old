@@ -116,6 +116,7 @@
             {% set params = {'id' : folder.id} %}
             {% set folderName = folder.name %}
         {% endif %}
+
         <div id="block-content-folder" class="mt-3" data-url="{{ path('admin_media_ajax_see_content_folder', params) }}"
              data-loading="{{ "admin_media#Chargement du contenu du dossier ..." | trans }} {{ folderName }} ">
 

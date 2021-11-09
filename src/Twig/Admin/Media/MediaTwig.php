@@ -29,7 +29,23 @@ class MediaTwig extends AppExtension implements RuntimeExtensionInterface
      */
     private mixed $filtreType = '';
 
+    /**
+     * Recherche
+     * @var string
+     */
     private string $search = '';
+
+    /**
+     * Format de la date
+     * @var string
+     */
+    private string $dateFormat = '';
+
+    /**
+     * Time format
+     * @var string
+     */
+    private string $timeFormat = '';
 
     /**
      * Permet d'afficher le contenu d'un dossier en fonction d'un mode d'affichage
@@ -42,6 +58,8 @@ class MediaTwig extends AppExtension implements RuntimeExtensionInterface
 
         $this->filtreType = $dataFilter['media'];
         $this->search = $dataFilter['search'];
+        $this->timeFormat = $dataFilter['timeFormat'];
+        $this->dateFormat = $dataFilter['dateFormat'];
 
         $html = match ($dataFilter['render']) {
             "grid" => $this->gridMode($data),
@@ -167,6 +185,103 @@ class MediaTwig extends AppExtension implements RuntimeExtensionInterface
     private function tableMode(mixed $data): string
     {
         $html = '';
+        $tmp = 0;
+
+        if ($data instanceof Folder) {
+
+            $html .= '<table class="table table-striped align-middle">';
+            foreach ($data->getChildren() as $child) {
+
+                if($this->search != '')
+                {
+                    $regex = '/' . $this->search . '/';
+                    if(!preg_match_all($regex, $child->getName(), $matches, PREG_SET_ORDER, 0))
+                    {
+                        continue;
+                    }
+                }
+                $tmp++;
+
+                $html .= $this->renderFolderTable($child);
+            }
+
+            foreach ($data->getMedia() as $media) {
+
+                if ($this->filtreType != "all" && $this->filtreType != $media->getType()) {
+                    continue;
+                }
+                if ($this->search != '') {
+                    $regex = '/' . $this->search . '/';
+                    if (!preg_match_all($regex, $media->getName(), $matches, PREG_SET_ORDER, 0)) {
+                        continue;
+                    }
+                }
+
+                $tmp++;
+
+                switch ($media->getType()) {
+                    case MediaService::TYPE_IMAGE :
+                        $src = $this->fileUploaderService->getMediathequePath() . '/' . $media->getPath();
+                        break;
+                    case MediaService::TYPE_FILE :
+                        $src = $this->fileUploaderService->getMediathequeDefaultPath() . '/file-default.png';
+                        break;
+                    case MediaService::TYPE_VIDEO :
+                        $src = $this->fileUploaderService->getMediathequeDefaultPath() . '/video-default.png';
+                        break;
+                    case MediaService::TYPE_AUDIO :
+                        $src = $this->fileUploaderService->getMediathequeDefaultPath() . '/audio-default.png';
+                        break;
+                    default :
+                        $src = '';
+                        break;
+                }
+
+                $name = $media->getName();
+
+                $html .= '<tr>';
+                $html .= '<td><img class="img-fluid img-thumbnail div-media" src="' . $src . '"></td>
+                    <td>' . $name . '</td>
+                    <td>' . $this->dateService->getDateFormatTranslate($media->getCreateOn(), $this->dateFormat, $this->timeFormat) . '</td>
+                    <td>Pages : 0 <br /> Articles : 0</td>
+                    <td><div class="dropdown float-end">
+                                <div class="btn btn-sm btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                                ' . $this->translator->trans('admin_media#Action') . '
+                                </div>
+                                ' . $this->getActionMedia($media) . '
+                            </div></td>';
+                $html .= '</tr>';
+            }
+
+            if($tmp == 0)
+            {
+                $html .= '<tr>';
+                $html .= '<td colspan=5>' . $this->msgFolderEmpty() . '</td>';
+                $html .= '</tr>';
+            }
+
+            $html .= '</table>';
+        }
+        else {
+            if(empty($data))
+            {
+                $html .= $this->msgFolderEmpty();
+            }
+
+            $html .= '<table class="table table-striped align-middle">';
+            /** @var Folder $folder */
+            foreach ($data as $folder) {
+
+                $regex = '/' . $this->search . '/';
+                if(!preg_match_all($regex, $folder->getName(), $matches, PREG_SET_ORDER, 0))
+                {
+                    continue;
+                }
+
+                $html .= $this->renderFolderTable($folder);
+            }
+            $html .= '</table>';
+        }
 
         return $html;
     }
@@ -202,6 +317,36 @@ class MediaTwig extends AppExtension implements RuntimeExtensionInterface
                         </span>
                     </div>
                 </div>';
+    }
+
+    /**
+     * Génère l'affichage des dossiers en mode table
+     * @param Folder $folder
+     * @return string
+     */
+    private function renderFolderTable(Folder $folder): string
+    {
+        $html = '<tr>';
+
+        $html .= '<td>
+            <div class="div-folder" 
+                    data-url="' . $this->urlGenerator->generate('admin_media_ajax_see_folder', ['id' => $folder->getId()]) . '"
+                    data-id="' . $folder->getId() . '"
+                    data-loading="' . $this->translator->trans('admin_media#Chargement du dossier') . ' ' . $folder->getName() . '">
+        </td>
+        <td>' . $folder->getName() . '</td>
+        <td></td>
+        <td></td>
+        <td><div class="dropdown float-end">
+                                <div class="btn btn-sm btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                                    ' . $this->translator->trans('admin_media#Action') . '
+                                </div>
+                                ' . $this->getActionFolder($folder) . '
+                            </div></td>';
+
+        $html .= '</tr>';
+
+        return $html;
     }
 
     /**

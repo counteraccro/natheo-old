@@ -86,7 +86,8 @@ class MediaLibController extends AppController
     {
         $dataFilter = $this->request->getCurrentRequest()->get('media-filter');
 
-        var_dump($dataFilter);
+        $dataFilter['timeFormat'] = $this->optionService->getOptionTimeFormat();
+        $dataFilter['dateFormat'] = $this->optionService->getOptionFormatDate();
 
         if ($data == null) {
             $data = $this->getDoctrine()->getRepository(Folder::class)->findBy(['parent' => null]);
