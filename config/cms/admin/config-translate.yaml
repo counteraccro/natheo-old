@@ -76,7 +76,7 @@
 'admin_global_option#Dans le cas contraire, l''ensemble des données de l''utilisateur seront supprimées.' : '__admin_global_option#Dans le cas contraire, l''ensemble des données de l''utilisateur seront supprimées.'
 'admin_global_option#Demander une confirmation avant de quitter une page contenant un formulaire' : '__admin_global_option#Demander une confirmation avant de quitter une page contenant un formulaire'
 'admin_system#Modules' : '__admin_system#Modules'
-'admin_tag#Gestion tags' : '__admin_tag#Gestion tags'
+'admin_tag#Gestion des tags' : '__admin_tag#Gestion des tags'
 'admin_faq#FAQ' : '__admin_faq#FAQ'
 'admin_faq#Questions' : '__admin_faq#Questions'
 'admin_faq#Catégories' : '__admin_faq#Catégories'

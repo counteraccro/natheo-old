@@ -11,7 +11,7 @@ menu-left-admin:
   admin_system#Modules:
     icon: 'fa-cubes'
     sub-menu:
-      admin_tag#Gestion tags:
+      admin_tag#Gestion des tags:
         icon: 'fa-tags'
         target: 'admin_tag_index'
       admin_faq#FAQ:
