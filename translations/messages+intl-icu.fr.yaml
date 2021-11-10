@@ -75,6 +75,11 @@
 'admin_global_option#Non': Non
 'admin_global_option#Dans le cas contraire, l''ensemble des données de l''utilisateur seront supprimées.': 'Dans le cas contraire, l''ensemble des données de l''utilisateur seront supprimées.'
 'admin_global_option#Demander une confirmation avant de quitter une page contenant un formulaire': 'Demander une confirmation avant de quitter une page contenant un formulaire'
+'admin_system#Modules': Modules
+'admin_tag#Gestion tags': 'Gestion tags'
+'admin_faq#FAQ': FAQ
+'admin_faq#Questions': Questions
+'admin_faq#Catégories': Catégories
 'admin_dashboard#Dashboard': Dashboard
 'admin_media#Médiathèque': Médiathèque
 'admin_media#Nouveau dossier': 'Nouveau dossier'
@@ -351,3 +356,22 @@
 'admin_media#Pages': Pages
 'admin_media#Articles': Articles
 'admin_media#Action': Action
+'admin_tag#Gestion des tags': 'Gestion des tags'
+'admin_tags#Label': Label
+'admin_tag#Nom': Nom
+'admin_tag#Ajouter un tag': 'Ajouter un tag'
+'admin_tag#Tag Crée avec succès': 'Tag Crée avec succès'
+'admin_tag#Edition du tag ': 'Edition du tag '
+'admin_tag#Tag édité avec succès': 'Tag édité avec succès'
+'admin_tag#Nom du tag': 'Nom du tag'
+'admin_tag#Le nom du tag doit être unique': 'Le nom du tag doit être unique'
+'admin_tag#Couleur du tag': 'Couleur du tag'
+'admin_tag#Valider': Valider
+'admin_tag#Statistiques': Statistiques
+'admin_tag#Action': Action
+'admin_tag#Editer': Editer
+'admin_tag#Attention cette action est définitive ! Êtes vous sur ?': 'Attention cette action est définitive ! Êtes vous sur ?'
+'admin_tag#Supprimer': Supprimer
+'admin_tag#Information sur le tag': 'Information sur le tag'
+'admin_tag#Chargement des données...': 'Chargement des données...'
+'admin_tag#Rendu': Rendu

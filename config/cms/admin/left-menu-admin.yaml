@@ -8,6 +8,21 @@ menu-left-admin:
   admin_media#Médiathèque:
     icon: 'fa-photo-video'
     target: 'admin_media_index'
+  admin_system#Modules:
+    icon: 'fa-cubes'
+    sub-menu:
+      admin_tag#Gestion tags:
+        icon: 'fa-tags'
+        target: 'admin_tag_index'
+      admin_faq#FAQ:
+        icon: 'fa-question'
+        sub-menu:
+          admin_faq#Questions:
+            icon: 'fa-question'
+            target: 'admin_tag_index'
+          admin_faq#Catégories:
+            icon: 'fa-question'
+            target: 'admin_tag_index'
   admin_permission#Permission:
     icon: 'fa-dice-d6'
     sub-menu:
@@ -28,7 +43,7 @@ menu-left-admin:
         target: 'admin_translation_index'
       admin_global_option#Options globales:
         icon: 'fa-cog'
-        target : 'admin_option_index'
+        target: 'admin_option_index'
       admin_system#Debug System:
         icon: 'fa-bug'
         target: 'admin_system_index'

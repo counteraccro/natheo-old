@@ -2,7 +2,7 @@
 /**
  * Génération du menu de gauche
  * @author Gourdon Aymeric
- * @version 1.0
+ * @version 1.1
  * @package App\Twig\Admin
  */
 
@@ -92,15 +92,22 @@ class MenuAdminTwig extends AppExtension implements RuntimeExtensionInterface
      * @param String $label
      * @param array $element
      * @param string $currentPath
+     * @param string $idRef
      * @return string
      */
-    private function generateSubElementMenu(String $label, array $element, string $currentPath): string
+    private function generateSubElementMenu(String $label, array $element, string $currentPath, string $idRef = 'sub'): string
     {
-
         $html = '';
         $show = '';
         foreach($element[self::KEY_SUB_MENU] as $subLabel => $subElement)
         {
+            if(isset($subElement[self::KEY_SUB_MENU]))
+            {
+
+                $html .= $this->generateSubElementMenu($subLabel, $subElement, $currentPath, 'sub-sub');
+                continue;
+            }
+
             if(!$this->accessService->isGranted($subElement[self::KEY_TARGET]))
             {
                 continue;
@@ -113,8 +120,14 @@ class MenuAdminTwig extends AppExtension implements RuntimeExtensionInterface
                 $show = 'show';
             }
 
+            $ms = 'ms-3';
+            if($idRef != 'sub')
+            {
+                $ms = 'ms-5';
+            }
+
                 $html .= '<li>
-                            <a href="' . $this->urlGenerator->generate($subElement[self::KEY_TARGET]) . '" class="nav-link link-light ms-3 ' . $active . '"> <i class="fa ' . $subElement[self::KEY_ICON] . '"></i> 
+                            <a href="' . $this->urlGenerator->generate($subElement[self::KEY_TARGET]) . '" class="nav-link link-light ' . $ms . ' ' . $active . '"> <i class="fa ' . $subElement[self::KEY_ICON] . '"></i> 
                             <span class="d-none d-lg-inline">' . $this->translator->trans($subLabel) . '</span>
                             <span class="d-none d-md-inline d-lg-none" data-bs-toggle="tooltip" data-bs-placement="right" title="' . $this->translator->trans($subLabel) . '">' . substr($this->translator->trans($subLabel), 0, 4) . '...</span>
                             </a>
@@ -129,12 +142,12 @@ class MenuAdminTwig extends AppExtension implements RuntimeExtensionInterface
         }
 
         return '<li>
-                    <a href="#' . $html_id . '" data-bs-toggle="collapse" class="nav-link link-light dropdown-toggle">
+                    <a href="#' . $idRef . '-' . $html_id . '" data-bs-toggle="collapse" class="nav-link link-light dropdown-toggle">
                         <i class="fas ' . $element[self::KEY_ICON] . '"></i> 
                             <span class="d-none d-lg-inline">' . $this->translator->trans($label) . '</span>
                             <span class="d-none d-md-inline d-lg-none" data-bs-toggle="tooltip" data-bs-placement="right" title="' . $this->translator->trans($label) . '">' . substr($this->translator->trans($label), 0, 4) . '</span>
                     </a>
-                        <ul class="collapse ' . $show . ' nav flex-column" id="' . $html_id . '" data-bs-parent="#menu">' . $html . '
+                        <ul class="collapse ' . $show . ' nav flex-column" id="' . $idRef . '-' . $html_id . '" data-bs-parent="#' . $idRef . '-' . $html_id . '">' . $html . '
                         </ul>
                  </li>';
     }

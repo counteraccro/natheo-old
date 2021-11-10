@@ -1,0 +1,66 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+    <div id="admin-create-update-tag">
+        <h1>{{ title }}</h1>
+
+        {{ breadcrumb | breadcrumb | raw }}
+
+
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        {{ "admin_tag#Information sur le tag" | trans }}
+                    </div>
+                    <div class="card-body">
+                        {{ form_start(form) }}
+
+                        {{ form_row(form.name) }}
+
+                        <div class="row">
+                            <div class="col-8">
+                                {{ form_row(form.color) }}
+                            </div>
+                            <div class="col-4">
+                                <label for="tag_color_exemple" class="form-label">{{ "admin_tag#Rendu" | trans }}</label> <br />
+                                <div class="badge rounded-pill mt-2" style="background-color:#FAFAFA" id="render-exemple-tag"></div>
+                            </div>
+                        </div>
+
+
+                        {{ form_row(form.valider) }}
+
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+
+                {% if action == 'edit' %}
+                <div class="card">
+                    <div class="card-header">
+                        {{ "admin_tag#Statistiques" | trans }}
+                    </div>
+                    <div class="card-body">
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+
+    <script>
+        $(document).ready(function () {
+            Tag.Launch();
+            Tag.CreateUpdate();
+        });
+    </script>
+
+{% endblock %}
+

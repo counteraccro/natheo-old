@@ -26,6 +26,15 @@
     border-bottom: 1px solid rgba(255, 255, 255, .1);
 }
 
+#left-menu-admin #menu li ul li a.dropdown-toggle {
+    margin-left: 16px;
+}
+
+#left-menu-admin #menu li ul li ul li a.ms-3 {
+    background-color: green;
+    margin-left: 32px;
+}
+
 #left-menu-admin #menu a:hover {
     background-color: var(--hover-primary);
 }

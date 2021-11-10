@@ -75,6 +75,11 @@
 'admin_global_option#Non': __Non
 'admin_global_option#Dans le cas contraire, l''ensemble des données de l''utilisateur seront supprimées.': '__Dans le cas contraire, l''ensemble des données de l''utilisateur seront supprimées.'
 'admin_global_option#Demander une confirmation avant de quitter une page contenant un formulaire': '__Demander une confirmation avant de quitter une page contenant un formulaire'
+'admin_system#Modules': __Modules
+'admin_tag#Gestion tags': '__Gestion tags'
+'admin_faq#FAQ': __FAQ
+'admin_faq#Questions': __Questions
+'admin_faq#Catégories': __Catégories
 'admin_dashboard#Dashboard': __Dashboard
 'admin_media#Médiathèque': __Médiathèque
 'admin_media#Nouveau dossier': '__Nouveau dossier'
@@ -351,3 +356,22 @@
 'admin_media#Pages': __Pages
 'admin_media#Articles': __Articles
 'admin_media#Action': __Action
+'admin_tag#Gestion des tags': '__Gestion des tags'
+'admin_tags#Label': __Label
+'admin_tag#Nom': __Nom
+'admin_tag#Ajouter un tag': '__Ajouter un tag'
+'admin_tag#Tag Crée avec succès': '__Tag Crée avec succès'
+'admin_tag#Edition du tag ': '__Edition du tag '
+'admin_tag#Tag édité avec succès': '__Tag édité avec succès'
+'admin_tag#Nom du tag': '__Nom du tag'
+'admin_tag#Le nom du tag doit être unique': '__Le nom du tag doit être unique'
+'admin_tag#Couleur du tag': '__Couleur du tag'
+'admin_tag#Valider': __Valider
+'admin_tag#Statistiques': __Statistiques
+'admin_tag#Action': __Action
+'admin_tag#Editer': __Editer
+'admin_tag#Attention cette action est définitive ! Êtes vous sur ?': '__Attention cette action est définitive ! Êtes vous sur ?'
+'admin_tag#Supprimer': __Supprimer
+'admin_tag#Information sur le tag': '__Information sur le tag'
+'admin_tag#Chargement des données...': '__Chargement des données...'
+'admin_tag#Rendu': __Rendu

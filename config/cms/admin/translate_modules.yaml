@@ -17,3 +17,4 @@ routes_modules:
   fixture : 'admin_fixture#Jeu de données'
   user : 'admin_user#Gestion des utilisateurs'
   media : 'admin_media#Médiathèque'
+  tag : 'admin_tag#Gestion des tags'

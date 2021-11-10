@@ -30,10 +30,11 @@ class UserController extends AppController
 
     /**
      * Point d'entrée de la gestion des users
+     * @param int $page
      * @return Response
      */
     #[Route('/index/{page}', name: 'index')]
-    public function index($page = 1): Response
+    public function index(int $page = 1): Response
     {
         $breadcrumb = [
             $this->translator->trans('admin_dashboard#Dashboard') => 'admin_dashboard_index',

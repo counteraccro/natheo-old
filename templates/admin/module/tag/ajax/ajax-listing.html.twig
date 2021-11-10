@@ -1,0 +1,40 @@
+<div id="listing-user">
+    <table class="table table-responsive table-hover table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">{{ "admin_tag#Nom" | trans }}</th>
+            <th scope="col">{{ "admin_tag#Statistiques" | trans }}</th>
+            <th scope="col">{{ "admin_tag#Action" | trans }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for tag in listeTags %}
+            <tr>
+                <th scope="row">{{ tag.id }}</th>
+                <td><span class="badge" style="background-color: {{ tag.color }}">{{ tag.name }}</span></td>
+                <td> Stats </td>
+                <td>
+                        {% if 'admin_tag_edit' | isGranted %}
+                            <a href="{{ path('admin_tag_edit', {'id' : tag.id}) }}" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ "admin_tag#Editer" | trans }}"><i class="fa fa-edit"></i></a>
+                        {% endif %}
+                        {% if 'admin_tag_delete' | isGranted %}
+                            <a href="{{ path('admin_tag_delete', {'id' : tag.id}) }}" onclick="return confirm('{{ "admin_tag#Attention cette action est définitive ! Êtes vous sur ?" | trans }}')" class="btn btn-sm btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ "admin_tag#Supprimer" | trans }}"><i class="fa fa-trash"></i></a>
+                        {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {{ listeTags | paginate(page, limit, route, '#admin-tag-globale .card-body') | raw }}
+
+    <script>
+        $(document).ready(function () {
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl)
+            })
+        });
+    </script>
+</div>
