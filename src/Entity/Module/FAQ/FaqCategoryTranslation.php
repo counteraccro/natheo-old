@@ -34,7 +34,7 @@ class FaqCategoryTranslation
     private $language;
 
     /**
-     * @ORM\ManyToOne(targetEntity=FaqCategory::class, inversedBy="faqCategoryTranslations")
+     * @ORM\ManyToOne(targetEntity=FaqCategory::class, inversedBy="faqCategoryTranslations", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $FaqCategory;

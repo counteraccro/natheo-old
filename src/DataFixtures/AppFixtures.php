@@ -7,6 +7,7 @@
  */
 namespace App\DataFixtures;
 
+use App\Service\Admin\System\TranslationService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
@@ -18,9 +19,15 @@ class AppFixtures extends Fixture
      */
     protected ParameterBagInterface $parameterBag;
 
-    public function __construct(ParameterBagInterface $parameterBag)
+    /**
+     * @var TranslationService
+     */
+    protected TranslationService $translationService;
+
+    public function __construct(ParameterBagInterface $parameterBag, TranslationService $translationService)
     {
         $this->parameterBag = $parameterBag;
+        $this->translationService = $translationService;
     }
 
     public function load(ObjectManager $manager)

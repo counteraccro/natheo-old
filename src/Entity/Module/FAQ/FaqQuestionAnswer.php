@@ -36,7 +36,7 @@ class FaqQuestionAnswer
     private $url;
 
     /**
-     * @ORM\ManyToOne(targetEntity=FaqCategory::class, inversedBy="faqQuestionAnswers")
+     * @ORM\ManyToOne(targetEntity=FaqCategory::class, inversedBy="faqQuestionAnswers", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $FaqCategory;

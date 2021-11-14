@@ -17,6 +17,8 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserFixtures extends Fixture implements DependentFixtureInterface
 {
+    const USER_ROOT_REF = 'user-root';
+
     /**
      * @var UserPasswordHasherInterface
      */
@@ -53,6 +55,8 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $user->setAvatar($default_avatar);
         $manager->persist($user);
         $manager->flush();
+
+        $this->setReference(self::USER_ROOT_REF, $user);
 
         // Compte user delete
         $user = new User();

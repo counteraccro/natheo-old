@@ -34,7 +34,7 @@ class FaqQuestionAnswerTranslation
     private $pageTitle;
 
     /**
-     * @ORM\ManyToOne(targetEntity=FaqQuestionAnswer::class, inversedBy="faqQuestionAnswerTranslations")
+     * @ORM\ManyToOne(targetEntity=FaqQuestionAnswer::class, inversedBy="faqQuestionAnswerTranslations", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $FaqQuestionAnswer;

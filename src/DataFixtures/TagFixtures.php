@@ -8,6 +8,9 @@ use Doctrine\Persistence\ObjectManager;
 
 class TagFixtures extends Fixture
 {
+    const TAG_NATHEO_REF = 'tag-natheo-ref';
+    const TAG_FUN_REF = 'tag-fun-ref';
+
     public function load(ObjectManager $manager): void
     {
         $tag = new Tag();
@@ -24,5 +27,8 @@ class TagFixtures extends Fixture
         $manager->persist($tag3);
 
         $manager->flush();
+
+        $this->addReference(self::TAG_NATHEO_REF, $tag);
+        $this->addReference(self::TAG_FUN_REF, $tag3);
     }
 }
