@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Entity\Admin\Role;
+use App\Entity\Module\FAQ\FaqQuestionAnswerTag;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -87,9 +88,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $isDisabled;
 
+    /**
+     * @ORM\OneToMany(targetEntity=FaqQuestionAnswerTag::class, mappedBy="User", orphanRemoval=true)
+     */
+    private $faqQuestionAnswerTags;
+
     public function __construct()
     {
         $this->rolesCms = new ArrayCollection();
+        $this->faqQuestionAnswerTags = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -302,6 +309,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsDisabled(bool $isDisabled): self
     {
         $this->isDisabled = $isDisabled;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|FaqQuestionAnswerTag[]
+     */
+    public function getFaqQuestionAnswerTags(): Collection
+    {
+        return $this->faqQuestionAnswerTags;
+    }
+
+    public function addFaqQuestionAnswerTag(FaqQuestionAnswerTag $faqQuestionAnswerTag): self
+    {
+        if (!$this->faqQuestionAnswerTags->contains($faqQuestionAnswerTag)) {
+            $this->faqQuestionAnswerTags[] = $faqQuestionAnswerTag;
+            $faqQuestionAnswerTag->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFaqQuestionAnswerTag(FaqQuestionAnswerTag $faqQuestionAnswerTag): self
+    {
+        if ($this->faqQuestionAnswerTags->removeElement($faqQuestionAnswerTag)) {
+            // set the owning side to null (unless already changed)
+            if ($faqQuestionAnswerTag->getUser() === $this) {
+                $faqQuestionAnswerTag->setUser(null);
+            }
+        }
 
         return $this;
     }
