@@ -1,0 +1,7 @@
+app_version : '0,1'
+version : '1.0.0'
+src_img : 'thumbnail.png'
+name : 'horizon'
+folder_ref : 'horizon'
+description: 'Thème par défaut de Nathéo CMS'
+creator: 'Natheo CMS'

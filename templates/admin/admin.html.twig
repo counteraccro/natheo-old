@@ -21,8 +21,8 @@
                 {% block body %}{% endblock %}
 
                 <div class="text-center p-3">
-                    Natheo CMS - {{ "" | dateFooter }} - Version Alpha 0.1
-                    <a class="text-dark" href="{{ path('admin_dashboard_todo') }}">TODO</a>
+                    {{ app_name }} - {{ "" | dateFooter }} - {{ "admin_system#Version" | trans }} {{ app_version_str }}
+                     | <a class="text-dark" href="{{ path('admin_dashboard_todo') }}"><i class="fa fa-hammer"></i> TODO</a>
                 </div>
 
             </div>

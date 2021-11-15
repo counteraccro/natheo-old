@@ -8,6 +8,7 @@
 namespace App\Controller\Admin;
 
 use App\Controller\AppController;
+use App\Service\Admin\ThemeService;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -15,8 +16,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class ThemeController extends AppController
 {
     #[Route('/index', name: 'index')]
-    public function index(): Response
+    public function index(ThemeService $themeService): Response
     {
+
+        $themeService->readThemes();
+
         $breadcrumb = [
             $this->translator->trans('admin_dashboard#Dashboard') => 'admin_dashboard_index',
             $this->translator->trans('admin_theme#Gestion des thèmes') => '',
