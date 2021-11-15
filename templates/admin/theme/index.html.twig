@@ -8,15 +8,20 @@
 
     {{ breadcrumb | breadcrumb | raw }}
 
-    <div class="card border-warning">
+    <div class="card">
         <div class="card-header">
-            <i class="fa fa-exclamation-triangle"></i> {{ "admin_theme#Thèmes installés" | trans }}
+            <i class="fa fa-pager"></i> {{ "admin_theme#Thèmes installés" | trans }}
         </div>
         <div class="card-body">
             {% for theme in tabThemes %}
-                <div class="border border-primary">
-                    <img src="{{ asset(theme.config.src_img)}}">
-                    
+
+                <div class="card float-start me-4 border-primary border-3" style="width: 25rem;">
+                    <img src="{{ asset(theme.config.src_img)}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ theme.config.name }}</h5>
+                        <p class="card-text">{{ theme.config.description }}</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
                 </div>
             {% endfor %}
         </div>
