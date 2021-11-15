@@ -1,0 +1,7 @@
+app_version : '0.1'
+version : '1.0.0'
+src_img : 'thumbnail.png'
+name : 'bootstrap'
+folder_ref : 'bootstrap'
+description: 'Thème bootstrap de base'
+creator: 'Natheo CMS'

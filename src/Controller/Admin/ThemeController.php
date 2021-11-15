@@ -19,7 +19,8 @@ class ThemeController extends AppController
     public function index(ThemeService $themeService): Response
     {
 
-        $themeService->readThemes();
+        $tabThemes = $themeService->readThemes();
+        var_dump($tabThemes);
 
         $breadcrumb = [
             $this->translator->trans('admin_dashboard#Dashboard') => 'admin_dashboard_index',
@@ -28,6 +29,7 @@ class ThemeController extends AppController
 
         return $this->render('admin/theme/index.html.twig', [
             'breadcrumb' => $breadcrumb,
+            'tabThemes' => $tabThemes,
         ]);
     }
 }

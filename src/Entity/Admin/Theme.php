@@ -19,7 +19,7 @@ class Theme
     private $id;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="string", length=50)
      */
     private $appVersion;
 
@@ -43,17 +43,22 @@ class Theme
      */
     private $is_selected;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $create_on;
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getAppVersion(): ?float
+    public function getAppVersion(): ?string
     {
         return $this->appVersion;
     }
 
-    public function setAppVersion(float $appVersion): self
+    public function setAppVersion(string $appVersion): self
     {
         $this->appVersion = $appVersion;
 
@@ -104,6 +109,18 @@ class Theme
     public function setIsSelected(bool $is_selected): self
     {
         $this->is_selected = $is_selected;
+
+        return $this;
+    }
+
+    public function getCreateOn(): ?\DateTimeInterface
+    {
+        return $this->create_on;
+    }
+
+    public function setCreateOn(\DateTimeInterface $create_on): self
+    {
+        $this->create_on = $create_on;
 
         return $this;
     }

@@ -25,7 +25,7 @@ parameters:
     app_path_js_theme_asset : '/assets/js/themes/'
     app_path_css_theme_asset : '/assets/css/themes/'
 
-    app_version : '0,1'
+    app_version : '0.1'
     app_version_str : 'Alpha 0.1'
     app_name: 'Natheo CMS'
 

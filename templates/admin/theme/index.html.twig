@@ -9,10 +9,16 @@
     {{ breadcrumb | breadcrumb | raw }}
 
     <div class="card border-warning">
-        <div class="card-header bg-warning">
+        <div class="card-header">
             <i class="fa fa-exclamation-triangle"></i> {{ "admin_theme#Thèmes installés" | trans }}
         </div>
         <div class="card-body">
+            {% for theme in tabThemes %}
+                <div class="border border-primary">
+                    <img src="{{ asset(theme.config.src_img)}}">
+                    
+                </div>
+            {% endfor %}
         </div>
     </div>
 </div>
