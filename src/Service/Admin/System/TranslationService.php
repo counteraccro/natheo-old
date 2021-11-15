@@ -80,7 +80,8 @@ class TranslationService extends AppService
         $application->setAutoExit(false);
 
         $input = new ArrayInput([
-            'command' => 'cache:clear'
+            'command' => 'cache:clear',
+            '--no-warmup' => true,
         ]);
         $output = new NullOutput();
         $application->run($input, $output);

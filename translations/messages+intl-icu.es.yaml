@@ -76,10 +76,11 @@
 'admin_global_option#Dans le cas contraire, l''ensemble des données de l''utilisateur seront supprimées.': '__Dans le cas contraire, l''ensemble des données de l''utilisateur seront supprimées.'
 'admin_global_option#Demander une confirmation avant de quitter une page contenant un formulaire': '__Demander une confirmation avant de quitter une page contenant un formulaire'
 'admin_system#Modules': __Modules
-'admin_tag#Gestion tags': '__Gestion tags'
+'admin_tag#Gestion des tags': '__Gestion des tags'
 'admin_faq#FAQ': __FAQ
 'admin_faq#Questions': __Questions
 'admin_faq#Catégories': __Catégories
+'admin_theme#Thèmes': __Thèmes
 'admin_dashboard#Dashboard': __Dashboard
 'admin_media#Médiathèque': __Médiathèque
 'admin_media#Nouveau dossier': '__Nouveau dossier'
@@ -88,6 +89,15 @@
 'admin_media#Mise à jour du dossier en cours....': '__Mise à jour du dossier en cours....'
 'admin_media#dossier supprimé avec succès': '__dossier supprimé avec succès'
 'admin_media#Chargement du dossier parent': '__Chargement du dossier parent'
+'admin_media#Mise à jour du media en cours....': '__Mise à jour du media en cours....'
+'admin_media#Média supprimé avec succès': '__Média supprimé avec succès'
+'admin_media#Chargement du dossier courant': '__Chargement du dossier courant'
+'admin_tag#Nom': __Nom
+'admin_tag#Ajouter un tag': '__Ajouter un tag'
+'admin_tag#Tag Crée avec succès': '__Tag Crée avec succès'
+'admin_tag#Edition du tag ': '__Edition du tag '
+'admin_tag#Tag édité avec succès': '__Tag édité avec succès'
+'admin_tag#Tag supprimé avec succès': '__Tag supprimé avec succès'
 'admin_global_option#Options globales': '__Options globales'
 'admin_global_option#Option mise à jour avec succès': '__Option mise à jour avec succès'
 'admin_global_option#Une erreur interne est survenue': '__Une erreur interne est survenue'
@@ -103,6 +113,7 @@
 'admin_route#Route': __Route
 'admin_route#Module': __Module
 'admin_system#Debug System': '__Debug System'
+'admin_theme#Gestion des thèmes': '__Gestion des thèmes'
 'admin_translation#Gestion des traductions': '__Gestion des traductions'
 'admin_translation#Les traductions sont à jour': '__Les traductions sont à jour'
 'admin_translation#Les traductions ne sont plus à jour vis à vis de la base de données, Vous devez régénérer les traductions depuis la base de données': '__Les traductions ne sont plus à jour vis à vis de la base de données, Vous devez régénérer les traductions depuis la base de données'
@@ -117,6 +128,10 @@
 'admin_user#Utilisateur supprimé avec succès': '__Utilisateur supprimé avec succès'
 'admin_user#Utilisateur désactivé avec succès': '__Utilisateur désactivé avec succès'
 'admin_user#Utilisateur activé avec succès': '__Utilisateur activé avec succès'
+'admin_tag#Nom du tag': '__Nom du tag'
+'admin_tag#Le nom du tag doit être unique': '__Le nom du tag doit être unique'
+'admin_tag#Couleur du tag': '__Couleur du tag'
+'admin_tag#Valider': __Valider
 'admin_role#Nom du rôle': '__Nom du rôle'
 'admin_role#Le nom du rôle doit être unique': '__Le nom du rôle doit être unique'
 'admin_role#Nom court du rôle': '__Nom court du rôle'
@@ -153,8 +168,29 @@
 'admin_media#Dossier parent': '__Dossier parent'
 'admin_media#Selectionner le dossier parent ou sera rangé le dossier': '__Selectionner le dossier parent ou sera rangé le dossier'
 'admin_media#Valider': __Valider
+'admin_media#Nom du média': '__Nom du média'
+'admin_media#Dossier': __Dossier
+'admin_media#Selectionner le dossier ou sera rangé le media': '__Selectionner le dossier ou sera rangé le media'
+'admin_media#Masquer ce média': '__Masquer ce média'
+'admin_media#Un média masqué n''apparaitra pas dans la selection de média pour un article ou une page': '__Un média masqué n''apparaitra pas dans la selection de média pour un article ou une page'
+'admin_media#Action': __Action
 'admin_media#Chargement du dossier': '__Chargement du dossier'
 'admin_media#Le dossier est actuellement vide pour le moment': '__Le dossier est actuellement vide pour le moment'
+'admin_media#Chargement de la modale pour éditer le dossier': '__Chargement de la modale pour éditer le dossier'
+'admin_media#Editer': __Editer
+'admin_media#Chargement de la modale pour déplacer le dossier': '__Chargement de la modale pour déplacer le dossier'
+'admin_media#Déplacer': __Déplacer
+'admin_media#Chargement de la modale pour supprimer le dossier': '__Chargement de la modale pour supprimer le dossier'
+'admin_media#Supprimer': __Supprimer
+'admin_media#Voir l''image': '__Voir l''image'
+'admin_media#Télécharger le fichier': '__Télécharger le fichier'
+'admin_media#Lire la vidéo': '__Lire la vidéo'
+'admin_media#Ecouter le son': '__Ecouter le son'
+'admin_media#Chargement de la modale pour editer le media': '__Chargement de la modale pour editer le media'
+'admin_media#Chargement de la modale pour déplacer le media': '__Chargement de la modale pour déplacer le media'
+'admin_media#Chargement de la modale pour supprimer le media': '__Chargement de la modale pour supprimer le media'
+'admin_media#Chargement de la modale pour afficher les informations du media': '__Chargement de la modale pour afficher les informations du media'
+'admin_media#Information': __Information
 'admin_media#Images': __Images
 'admin_media#Fichiers': __Fichiers
 'admin_media#Vidéos': __Vidéos
@@ -211,6 +247,21 @@
 'admin_media#Cette action est définitive et sans retour arrière': '__Cette action est définitive et sans retour arrière'
 'admin_media#Suppression du dossier en court....': '__Suppression du dossier en court....'
 'admin_media#Supprimer le dossier': '__Supprimer le dossier'
+'admin_media#Suppression du media': '__Suppression du media'
+'admin_media#Est vous sur de vouloir supprimer le media': '__Est vous sur de vouloir supprimer le media'
+'admin_media#Suppression du media en court....': '__Suppression du media en court....'
+'admin_media#Supprimer le media': '__Supprimer le media'
+'admin_media#Information sur le media': '__Information sur le media'
+'admin_media#Nom': __Nom
+'admin_media#Nom réel': '__Nom réel'
+'admin_media#Exension': __Exension
+'admin_media#Poids': __Poids
+'admin_media#Date upload': '__Date upload'
+'admin_media#Statistiques': __Statistiques
+'admin_media#Pages': __Pages
+'admin_media#Articles': __Articles
+'admin_media#Edition du media': '__Edition du media'
+'admin_media#Mise à jour du média réalisé avec succès': '__Mise à jour du média réalisé avec succès'
 'admin_media#Chargement de la modale pour ajouter un dossier': '__Chargement de la modale pour ajouter un dossier'
 'admin_media#Nouveau': __Nouveau
 'admin_media#Rechercher les médias dans le dossier': '__Rechercher les médias dans le dossier'
@@ -223,16 +274,20 @@
 'admin_media#Filter sur les fichiers audio': '__Filter sur les fichiers audio'
 'admin_media#Affichage en grille': '__Affichage en grille'
 'admin_media#Affichage en tableau': '__Affichage en tableau'
-'admin_media#Chargement de la modale pour éditer le dossier': '__Chargement de la modale pour éditer le dossier'
-'admin_media#Editer': __Editer
-'admin_media#Supprimer': __Supprimer
-'admin_media#Chargement de la modale pour supprimer le dossier': '__Chargement de la modale pour supprimer le dossier'
 'admin_media#Chargement de la modale pour ajouter un ou plusieurs médias dans le dossier': '__Chargement de la modale pour ajouter un ou plusieurs médias dans le dossier'
 'admin_media#Ajouter ou séléctionner un dossier pour ajouter un media': '__Ajouter ou séléctionner un dossier pour ajouter un media'
 'admin_media#Chargement du contenu du dossier ...': '__Chargement du contenu du dossier ...'
 'admin_media#Dossiers': __Dossiers
 'admin_media#Chargement des dossiers...': '__Chargement des dossiers...'
 'admin_media#Chargement des médias...': '__Chargement des médias...'
+'admin_tag#Statistiques': __Statistiques
+'admin_tag#Action': __Action
+'admin_tag#Editer': __Editer
+'admin_tag#Attention cette action est définitive ! Êtes vous sur ?': '__Attention cette action est définitive ! Êtes vous sur ?'
+'admin_tag#Supprimer': __Supprimer
+'admin_tag#Information sur le tag': '__Information sur le tag'
+'admin_tag#Rendu': __Rendu
+'admin_tag#Chargement des données...': '__Chargement des données...'
 'admin_global_option#Sauvegarde en cours...': '__Sauvegarde en cours...'
 'admin_role#Module': __Module
 'admin_role#Action': __Action
@@ -275,6 +330,7 @@
 'admin_system#Pour avoir accès aux options de la Danger zone vous devez modifier dans le fichier .env la ligne suivante': '__Pour avoir accès aux options de la Danger zone vous devez modifier dans le fichier .env la ligne suivante'
 'admin_system#Remplacer prod par dev pour passer en mode développement, ce qui donne': '__Remplacer prod par dev pour passer en mode développement, ce qui donne'
 'admin_system#Attention, le mode developpement ne doit pas être laissé en production et ne doit être utilisé que pour du développement ou de la correction de bugs de façon temporaire': '__Attention, le mode developpement ne doit pas être laissé en production et ne doit être utilisé que pour du développement ou de la correction de bugs de façon temporaire'
+'admin_theme#Thèmes installés': '__Thèmes installés'
 'admin_translation#Clée': __Clée
 'admin_translation#Réinitialisation des traductions depuis le code source du site, cela peut prendre du temps...': '__Réinitialisation des traductions depuis le code source du site, cela peut prendre du temps...'
 'admin_translation#Rechargement de la page...': '__Rechargement de la page...'
@@ -320,59 +376,3 @@
 'front_auth#Mot de passe': '__Mot de passe'
 'front_auth#Ce souvenir de moi': '__Ce souvenir de moi'
 'front_auth#Me connecter': '__Me connecter'
-'admin_media#Chargement de la modale pour déplacer le dossier': '__Chargement de la modale pour déplacer le dossier'
-'admin_media#Déplacer': __Déplacer
-'admin_media#Voir l''image': '__Voir l''image'
-'admin_media#Télécharger le fichier': '__Télécharger le fichier'
-'admin_media#Lire la vidéo': '__Lire la vidéo'
-'admin_media#Ecouter le son': '__Ecouter le son'
-'admin_media#Chargement de la modale pour editer le media': '__Chargement de la modale pour editer le media'
-'admin_media#Edition du media': '__Edition du media'
-'admin_media#Mise à jour du media en cours....': '__Mise à jour du media en cours....'
-'admin_media#Média supprimé avec succès': '__Média supprimé avec succès'
-'admin_media#Chargement du dossier courant': '__Chargement du dossier courant'
-'admin_media#Selectionner le dossier parent ou sera rangé le media': '__Selectionner le dossier parent ou sera rangé le media'
-'admin_media#Chargement de la modale pour déplacer le media': '__Chargement de la modale pour déplacer le media'
-'admin_media#Chargement de la modale pour supprimer le media': '__Chargement de la modale pour supprimer le media'
-'admin_media#Suppression du media': '__Suppression du media'
-'admin_media#Est vous sur de vouloir supprimer le media': '__Est vous sur de vouloir supprimer le media'
-'admin_media#Suppression du media en court....': '__Suppression du media en court....'
-'admin_media#Supprimer le media': '__Supprimer le media'
-'admin_media#Mise à jour du média réalisé avec succès': '__Mise à jour du média réalisé avec succès'
-'admin_media#Nom du média': '__Nom du média'
-'admin_media#Dossier': __Dossier
-'admin_media#Selectionner le dossier ou sera rangé le media': '__Selectionner le dossier ou sera rangé le media'
-'admin_media#Masquer ce média': '__Masquer ce média'
-'admin_media#Un média masqué n''apparaitra pas dans la selection de média pour un article ou une page': '__Un média masqué n''apparaitra pas dans la selection de média pour un article ou une page'
-'admin_media#Chargement de la modale pour afficher les informations du media': '__Chargement de la modale pour afficher les informations du media'
-'admin_media#Information': __Information
-'admin_media#Information sur le media': '__Information sur le media'
-'admin_media#Nom': __Nom
-'admin_media#Nom réel': '__Nom réel'
-'admin_media#Exension': __Exension
-'admin_media#Poids': __Poids
-'admin_media#Date upload': '__Date upload'
-'admin_media#Statistiques': __Statistiques
-'admin_media#Pages': __Pages
-'admin_media#Articles': __Articles
-'admin_media#Action': __Action
-'admin_tag#Gestion des tags': '__Gestion des tags'
-'admin_tags#Label': __Label
-'admin_tag#Nom': __Nom
-'admin_tag#Ajouter un tag': '__Ajouter un tag'
-'admin_tag#Tag Crée avec succès': '__Tag Crée avec succès'
-'admin_tag#Edition du tag ': '__Edition du tag '
-'admin_tag#Tag édité avec succès': '__Tag édité avec succès'
-'admin_tag#Nom du tag': '__Nom du tag'
-'admin_tag#Le nom du tag doit être unique': '__Le nom du tag doit être unique'
-'admin_tag#Couleur du tag': '__Couleur du tag'
-'admin_tag#Valider': __Valider
-'admin_tag#Statistiques': __Statistiques
-'admin_tag#Action': __Action
-'admin_tag#Editer': __Editer
-'admin_tag#Attention cette action est définitive ! Êtes vous sur ?': '__Attention cette action est définitive ! Êtes vous sur ?'
-'admin_tag#Supprimer': __Supprimer
-'admin_tag#Information sur le tag': '__Information sur le tag'
-'admin_tag#Chargement des données...': '__Chargement des données...'
-'admin_tag#Rendu': __Rendu
-'admin_tag#Tag supprimé avec succès': '__Tag supprimé avec succès'

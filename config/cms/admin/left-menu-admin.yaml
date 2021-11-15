@@ -23,6 +23,9 @@ menu-left-admin:
           admin_faq#Catégories:
             icon: 'fa-question'
             target: 'admin_tag_index'
+  admin_theme#Thèmes:
+    icon: 'fa-pager'
+    target: 'admin_theme_index'
   admin_permission#Permission:
     icon: 'fa-dice-d6'
     sub-menu:

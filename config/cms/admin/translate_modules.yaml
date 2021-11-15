@@ -18,3 +18,5 @@ routes_modules:
   user : 'admin_user#Gestion des utilisateurs'
   media : 'admin_media#Médiathèque'
   tag : 'admin_tag#Gestion des tags'
+  theme : 'admin_theme#Thèmes'
+  faq : 'admin_faq#FAQ'

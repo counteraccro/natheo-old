@@ -1,0 +1,29 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block title %}{{ "admin_theme#Gestion des thèmes" | trans }}{% endblock %}
+
+{% block body %}
+<div id="admin-system-globale">
+    <h1>{{ "admin_theme#Gestion des thèmes" | trans }}</h1>
+
+    {{ breadcrumb | breadcrumb | raw }}
+
+    <div class="card border-warning">
+        <div class="card-header bg-warning">
+            <i class="fa fa-exclamation-triangle"></i> {{ "admin_theme#Thèmes installés" | trans }}
+        </div>
+        <div class="card-body">
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+
+    <script>
+        $( document ).ready(function() {
+
+        });
+    </script>
+
+{% endblock %}

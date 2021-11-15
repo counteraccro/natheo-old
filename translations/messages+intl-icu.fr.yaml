@@ -76,10 +76,11 @@
 'admin_global_option#Dans le cas contraire, l''ensemble des données de l''utilisateur seront supprimées.': 'Dans le cas contraire, l''ensemble des données de l''utilisateur seront supprimées.'
 'admin_global_option#Demander une confirmation avant de quitter une page contenant un formulaire': 'Demander une confirmation avant de quitter une page contenant un formulaire'
 'admin_system#Modules': Modules
-'admin_tag#Gestion tags': 'Gestion tags'
+'admin_tag#Gestion des tags': 'Gestion des tags'
 'admin_faq#FAQ': FAQ
 'admin_faq#Questions': Questions
 'admin_faq#Catégories': Catégories
+'admin_theme#Thèmes': Thèmes
 'admin_dashboard#Dashboard': Dashboard
 'admin_media#Médiathèque': Médiathèque
 'admin_media#Nouveau dossier': 'Nouveau dossier'
@@ -88,6 +89,15 @@
 'admin_media#Mise à jour du dossier en cours....': 'Mise à jour du dossier en cours....'
 'admin_media#dossier supprimé avec succès': 'dossier supprimé avec succès'
 'admin_media#Chargement du dossier parent': 'Chargement du dossier parent'
+'admin_media#Mise à jour du media en cours....': 'Mise à jour du media en cours....'
+'admin_media#Média supprimé avec succès': 'Média supprimé avec succès'
+'admin_media#Chargement du dossier courant': 'Chargement du dossier courant'
+'admin_tag#Nom': Nom
+'admin_tag#Ajouter un tag': 'Ajouter un tag'
+'admin_tag#Tag Crée avec succès': 'Tag Crée avec succès'
+'admin_tag#Edition du tag ': 'Edition du tag '
+'admin_tag#Tag édité avec succès': 'Tag édité avec succès'
+'admin_tag#Tag supprimé avec succès': 'Tag supprimé avec succès'
 'admin_global_option#Options globales': 'Options globales'
 'admin_global_option#Option mise à jour avec succès': 'Option mise à jour avec succès'
 'admin_global_option#Une erreur interne est survenue': 'Une erreur interne est survenue'
@@ -103,6 +113,7 @@
 'admin_route#Route': Route
 'admin_route#Module': Module
 'admin_system#Debug System': 'Debug System'
+'admin_theme#Gestion des thèmes': 'Gestion des thèmes'
 'admin_translation#Gestion des traductions': 'Gestion des traductions'
 'admin_translation#Les traductions sont à jour': 'Les traductions sont à jour'
 'admin_translation#Les traductions ne sont plus à jour vis à vis de la base de données, Vous devez régénérer les traductions depuis la base de données': 'Les traductions ne sont plus à jour vis à vis de la base de données, Vous devez régénérer les traductions depuis la base de données'
@@ -117,6 +128,10 @@
 'admin_user#Utilisateur supprimé avec succès': 'Utilisateur supprimé avec succès'
 'admin_user#Utilisateur désactivé avec succès': 'Utilisateur désactivé avec succès'
 'admin_user#Utilisateur activé avec succès': 'Utilisateur activé avec succès'
+'admin_tag#Nom du tag': 'Nom du tag'
+'admin_tag#Le nom du tag doit être unique': 'Le nom du tag doit être unique'
+'admin_tag#Couleur du tag': 'Couleur du tag'
+'admin_tag#Valider': Valider
 'admin_role#Nom du rôle': 'Nom du rôle'
 'admin_role#Le nom du rôle doit être unique': 'Le nom du rôle doit être unique'
 'admin_role#Nom court du rôle': 'Nom court du rôle'
@@ -153,8 +168,29 @@
 'admin_media#Dossier parent': 'Dossier parent'
 'admin_media#Selectionner le dossier parent ou sera rangé le dossier': 'Selectionner le dossier parent ou sera rangé le dossier'
 'admin_media#Valider': Valider
+'admin_media#Nom du média': 'Nom du média'
+'admin_media#Dossier': Dossier
+'admin_media#Selectionner le dossier ou sera rangé le media': 'Selectionner le dossier ou sera rangé le media'
+'admin_media#Masquer ce média': 'Masquer ce média'
+'admin_media#Un média masqué n''apparaitra pas dans la selection de média pour un article ou une page': 'Un média masqué n''apparaitra pas dans la selection de média pour un article ou une page'
+'admin_media#Action': Action
 'admin_media#Chargement du dossier': 'Chargement du dossier'
 'admin_media#Le dossier est actuellement vide pour le moment': 'Le dossier est actuellement vide pour le moment'
+'admin_media#Chargement de la modale pour éditer le dossier': 'Chargement de la modale pour éditer le dossier'
+'admin_media#Editer': Editer
+'admin_media#Chargement de la modale pour déplacer le dossier': 'Chargement de la modale pour déplacer le dossier'
+'admin_media#Déplacer': Déplacer
+'admin_media#Chargement de la modale pour supprimer le dossier': 'Chargement de la modale pour supprimer le dossier'
+'admin_media#Supprimer': Supprimer
+'admin_media#Voir l''image': 'Voir l''image'
+'admin_media#Télécharger le fichier': 'Télécharger le fichier'
+'admin_media#Lire la vidéo': 'Lire la vidéo'
+'admin_media#Ecouter le son': 'Ecouter le son'
+'admin_media#Chargement de la modale pour editer le media': 'Chargement de la modale pour editer le media'
+'admin_media#Chargement de la modale pour déplacer le media': 'Chargement de la modale pour déplacer le media'
+'admin_media#Chargement de la modale pour supprimer le media': 'Chargement de la modale pour supprimer le media'
+'admin_media#Chargement de la modale pour afficher les informations du media': 'Chargement de la modale pour afficher les informations du media'
+'admin_media#Information': Information
 'admin_media#Images': Images
 'admin_media#Fichiers': Fichiers
 'admin_media#Vidéos': Vidéos
@@ -211,6 +247,21 @@
 'admin_media#Cette action est définitive et sans retour arrière': 'Cette action est définitive et sans retour arrière'
 'admin_media#Suppression du dossier en court....': 'Suppression du dossier en court....'
 'admin_media#Supprimer le dossier': 'Supprimer le dossier'
+'admin_media#Suppression du media': 'Suppression du media'
+'admin_media#Est vous sur de vouloir supprimer le media': 'Est vous sur de vouloir supprimer le media'
+'admin_media#Suppression du media en court....': 'Suppression du media en court....'
+'admin_media#Supprimer le media': 'Supprimer le media'
+'admin_media#Information sur le media': 'Information sur le media'
+'admin_media#Nom': Nom
+'admin_media#Nom réel': 'Nom réel'
+'admin_media#Exension': Exension
+'admin_media#Poids': Poids
+'admin_media#Date upload': 'Date upload'
+'admin_media#Statistiques': Statistiques
+'admin_media#Pages': Pages
+'admin_media#Articles': Articles
+'admin_media#Edition du media': 'Edition du media'
+'admin_media#Mise à jour du média réalisé avec succès': 'Mise à jour du média réalisé avec succès'
 'admin_media#Chargement de la modale pour ajouter un dossier': 'Chargement de la modale pour ajouter un dossier'
 'admin_media#Nouveau': Nouveau
 'admin_media#Rechercher les médias dans le dossier': 'Rechercher les médias dans le dossier'
@@ -223,16 +274,20 @@
 'admin_media#Filter sur les fichiers audio': 'Filter sur les fichiers audio'
 'admin_media#Affichage en grille': 'Affichage en grille'
 'admin_media#Affichage en tableau': 'Affichage en tableau'
-'admin_media#Chargement de la modale pour éditer le dossier': 'Chargement de la modale pour éditer le dossier'
-'admin_media#Editer': Editer
-'admin_media#Supprimer': Supprimer
-'admin_media#Chargement de la modale pour supprimer le dossier': 'Chargement de la modale pour supprimer le dossier'
 'admin_media#Chargement de la modale pour ajouter un ou plusieurs médias dans le dossier': 'Chargement de la modale pour ajouter un ou plusieurs médias dans le dossier'
 'admin_media#Ajouter ou séléctionner un dossier pour ajouter un media': 'Ajouter ou séléctionner un dossier pour ajouter un media'
 'admin_media#Chargement du contenu du dossier ...': 'Chargement du contenu du dossier ...'
 'admin_media#Dossiers': Dossiers
 'admin_media#Chargement des dossiers...': 'Chargement des dossiers...'
 'admin_media#Chargement des médias...': 'Chargement des médias...'
+'admin_tag#Statistiques': Statistiques
+'admin_tag#Action': Action
+'admin_tag#Editer': Editer
+'admin_tag#Attention cette action est définitive ! Êtes vous sur ?': 'Attention cette action est définitive ! Êtes vous sur ?'
+'admin_tag#Supprimer': Supprimer
+'admin_tag#Information sur le tag': 'Information sur le tag'
+'admin_tag#Rendu': Rendu
+'admin_tag#Chargement des données...': 'Chargement des données...'
 'admin_global_option#Sauvegarde en cours...': 'Sauvegarde en cours...'
 'admin_role#Module': Module
 'admin_role#Action': Action
@@ -275,6 +330,7 @@
 'admin_system#Pour avoir accès aux options de la Danger zone vous devez modifier dans le fichier .env la ligne suivante': 'Pour avoir accès aux options de la Danger zone vous devez modifier dans le fichier .env la ligne suivante'
 'admin_system#Remplacer prod par dev pour passer en mode développement, ce qui donne': 'Remplacer prod par dev pour passer en mode développement, ce qui donne'
 'admin_system#Attention, le mode developpement ne doit pas être laissé en production et ne doit être utilisé que pour du développement ou de la correction de bugs de façon temporaire': 'Attention, le mode developpement ne doit pas être laissé en production et ne doit être utilisé que pour du développement ou de la correction de bugs de façon temporaire'
+'admin_theme#Thèmes installés': 'Thèmes installés'
 'admin_translation#Clée': Clée
 'admin_translation#Réinitialisation des traductions depuis le code source du site, cela peut prendre du temps...': 'Réinitialisation des traductions depuis le code source du site, cela peut prendre du temps...'
 'admin_translation#Rechargement de la page...': 'Rechargement de la page...'
@@ -320,59 +376,3 @@
 'front_auth#Mot de passe': 'Mot de passe'
 'front_auth#Ce souvenir de moi': 'Ce souvenir de moi'
 'front_auth#Me connecter': 'Me connecter'
-'admin_media#Chargement de la modale pour déplacer le dossier': 'Chargement de la modale pour déplacer le dossier'
-'admin_media#Déplacer': Déplacer
-'admin_media#Voir l''image': 'Voir l''image'
-'admin_media#Télécharger le fichier': 'Télécharger le fichier'
-'admin_media#Lire la vidéo': 'Lire la vidéo'
-'admin_media#Ecouter le son': 'Ecouter le son'
-'admin_media#Chargement de la modale pour editer le media': 'Chargement de la modale pour editer le media'
-'admin_media#Edition du media': 'Edition du media'
-'admin_media#Mise à jour du media en cours....': 'Mise à jour du media en cours....'
-'admin_media#Média supprimé avec succès': 'Média supprimé avec succès'
-'admin_media#Chargement du dossier courant': 'Chargement du dossier courant'
-'admin_media#Selectionner le dossier parent ou sera rangé le media': 'Selectionner le dossier parent ou sera rangé le media'
-'admin_media#Chargement de la modale pour déplacer le media': 'Chargement de la modale pour déplacer le media'
-'admin_media#Chargement de la modale pour supprimer le media': 'Chargement de la modale pour supprimer le media'
-'admin_media#Suppression du media': 'Suppression du media'
-'admin_media#Est vous sur de vouloir supprimer le media': 'Est vous sur de vouloir supprimer le media'
-'admin_media#Suppression du media en court....': 'Suppression du media en court....'
-'admin_media#Supprimer le media': 'Supprimer le media'
-'admin_media#Mise à jour du média réalisé avec succès': 'Mise à jour du média réalisé avec succès'
-'admin_media#Nom du média': 'Nom du média'
-'admin_media#Dossier': Dossier
-'admin_media#Selectionner le dossier ou sera rangé le media': 'Selectionner le dossier ou sera rangé le media'
-'admin_media#Masquer ce média': 'Masquer ce média'
-'admin_media#Un média masqué n''apparaitra pas dans la selection de média pour un article ou une page': 'Un média masqué n''apparaitra pas dans la selection de média pour un article ou une page'
-'admin_media#Chargement de la modale pour afficher les informations du media': 'Chargement de la modale pour afficher les informations du media'
-'admin_media#Information': Information
-'admin_media#Information sur le media': 'Information sur le media'
-'admin_media#Nom': Nom
-'admin_media#Nom réel': 'Nom réel'
-'admin_media#Exension': Exension
-'admin_media#Poids': Poids
-'admin_media#Date upload': 'Date upload'
-'admin_media#Statistiques': Statistiques
-'admin_media#Pages': Pages
-'admin_media#Articles': Articles
-'admin_media#Action': Action
-'admin_tag#Gestion des tags': 'Gestion des tags'
-'admin_tags#Label': Label
-'admin_tag#Nom': Nom
-'admin_tag#Ajouter un tag': 'Ajouter un tag'
-'admin_tag#Tag Crée avec succès': 'Tag Crée avec succès'
-'admin_tag#Edition du tag ': 'Edition du tag '
-'admin_tag#Tag édité avec succès': 'Tag édité avec succès'
-'admin_tag#Nom du tag': 'Nom du tag'
-'admin_tag#Le nom du tag doit être unique': 'Le nom du tag doit être unique'
-'admin_tag#Couleur du tag': 'Couleur du tag'
-'admin_tag#Valider': Valider
-'admin_tag#Statistiques': Statistiques
-'admin_tag#Action': Action
-'admin_tag#Editer': Editer
-'admin_tag#Attention cette action est définitive ! Êtes vous sur ?': 'Attention cette action est définitive ! Êtes vous sur ?'
-'admin_tag#Supprimer': Supprimer
-'admin_tag#Information sur le tag': 'Information sur le tag'
-'admin_tag#Chargement des données...': 'Chargement des données...'
-'admin_tag#Rendu': Rendu
-'admin_tag#Tag supprimé avec succès': 'Tag supprimé avec succès'
