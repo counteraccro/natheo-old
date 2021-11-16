@@ -3,36 +3,87 @@
 {% block title %}{{ "admin_theme#Gestion des thèmes" | trans }}{% endblock %}
 
 {% block body %}
-<div id="admin-system-globale">
-    <h1>{{ "admin_theme#Gestion des thèmes" | trans }}</h1>
+    <div id="admin-system-globale">
+        <h1>{{ "admin_theme#Gestion des thèmes" | trans }}</h1>
 
-    {{ breadcrumb | breadcrumb | raw }}
+        {{ breadcrumb | breadcrumb | raw }}
 
-    <div class="card">
-        <div class="card-header">
-            <i class="fa fa-pager"></i> {{ "admin_theme#Thèmes installés" | trans }}
-        </div>
-        <div class="card-body">
-            {% for theme in tabThemes %}
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-pager"></i> {{ "admin_theme#Thèmes installés" | trans }}
+            </div>
+            <div class="card-body">
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    {% for theme in tabThemes %}
 
-                <div class="card float-start me-4 border-primary border-3" style="width: 25rem;">
-                    <img src="{{ asset(theme.config.src_img)}}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ theme.config.name }}</h5>
-                        <p class="card-text">{{ theme.config.description }}</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
+                        {% set selected ='' %}
+                        {% set depreciate = '' %}
+                        {% set btn = "btn-outline-primary" %}
+                        {% set btn_selected = 'fa-hand-point-up' %}
+                        {% set btn_selected_text = 'admin_theme#Selectionner ce thème' | trans %}
+                        {% set btn_disabled = '' %}
+                        {% set span_app_version = '' %}
+
+                        {% if (theme.theme.isSelected) %}
+                            {% set selected = "border-primary border-3" %}
+                            {% set btn = "btn-primary" %}
+                            {% set btn_selected = 'fa-check' %}
+                            {% set btn_selected_text = 'admin_theme#Thème selectionné' | trans %}
+                            {% set btn_disabled = 'disabled' %}
+                        {% endif %}
+                        {% if  (theme.theme.isDepreciate) %}
+                            {% set depreciate = "border-danger border-3" %}
+                            {% set selected = "" %}
+                            {% set btn = "btn-outline-danger" %}
+                            {% set span_app_version = "text-danger" %}
+
+                            {% if (theme.theme.isSelected) %}
+                                {% set btn = "btn-danger" %}
+                            {% endif %}
+
+                        {% endif %}
+
+                        <div class="col">
+                            <div class="card {{ depreciate }} {{ selected }} h-100">
+                                <img src="{{ asset(theme.config.src_img) }}" class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ theme.config.name }}</h5>
+
+                                    <p class="card-text">{{ theme.config.description }}</p>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            {{ "admin_theme#Version" | trans }} : <b>{{ theme.config.version }}</b>
+                                        </div>
+                                        <div class="col-6">
+                                            {{ "admin_theme#Version CMS" | trans }} :  <span class="{{ span_app_version }}"><b>{{ theme.config.app_version }}</b></span>
+
+                                        </div>
+                                    </div>
+                                    {% if  (theme.theme.isDepreciate) %}
+                                        <p class="text-danger mt-2">
+                                           <i class="fa fa-exclamation-triangle"></i> {{ "admin_theme#Ce template à été développé dans une version antérieur au CMS, il peut ne pas fonctionner correctement et provoquer des erreurs" | trans }}
+                                        </p>
+                                    {% endif %}
+                                    <p class="mt-2"> {{ "admin_theme#Auteur" | trans }} : {{ theme.config.creator }}</p>
+
+                                </div>
+                                <div class="card-footer">
+                                    <a href="#" class="btn {{ btn }}"><i class="fa fa-eye"></i> {{ "admin_theme#Voir" | trans }}</a>
+                                    <a href="#" class="btn {{ btn }} {{ btn_disabled }}"><i class="fa {{ btn_selected }}"></i> {{ btn_selected_text }}</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
-            {% endfor %}
+            </div>
         </div>
     </div>
-</div>
 {% endblock %}
 
 {% block javascripts %}
 
     <script>
-        $( document ).ready(function() {
+        $(document).ready(function () {
 
         });
     </script>

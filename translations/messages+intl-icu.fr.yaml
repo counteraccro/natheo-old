@@ -376,3 +376,11 @@
 'front_auth#Mot de passe': 'Mot de passe'
 'front_auth#Ce souvenir de moi': 'Ce souvenir de moi'
 'front_auth#Me connecter': 'Me connecter'
+'admin_system#Version': Version
+'admin_theme#Voir': Voir
+'admin_theme#Selectionner ce thème': 'Selectionner ce thème'
+'admin_theme#Thème selectionné': 'Thème selectionné'
+'admin_theme#Version': Version
+'admin_theme#Version CMS': 'Version CMS'
+'admin_theme#Ce template à été développé dans une version antérieur au CMS, il peut ne pas fonctionner correctement et provoquer des erreurs': 'Ce template à été développé dans une version antérieur au CMS, il peut ne pas fonctionner correctement et provoquer des erreurs'
+'admin_theme#Auteur': Auteur

@@ -20,7 +20,7 @@ class ThemeController extends AppController
     {
 
         $tabThemes = $themeService->readThemes();
-        var_dump($tabThemes);
+        //var_dump($tabThemes);
 
         $breadcrumb = [
             $this->translator->trans('admin_dashboard#Dashboard') => 'admin_dashboard_index',

@@ -37,6 +37,11 @@ a:focus {
     border-color: var(--bg-primary);
 }
 
+.btn-primary.disabled, .btn-primary:disabled {
+    background-color: var(--bg-primary);
+    border-color: var(--bg-primary);
+}
+
 .btn-primary:hover {
     color: #fff;
     background-color: var(--hover-primary);
