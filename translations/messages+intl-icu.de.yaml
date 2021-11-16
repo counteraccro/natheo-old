@@ -384,3 +384,6 @@
 'admin_theme#Version CMS': '__Version CMS'
 'admin_theme#Ce template à été développé dans une version antérieur au CMS, il peut ne pas fonctionner correctement et provoquer des erreurs': '__Ce template à été développé dans une version antérieur au CMS, il peut ne pas fonctionner correctement et provoquer des erreurs'
 'admin_theme#Auteur': __Auteur
+'admin_theme#Ajouter un thème': '__Ajouter un thème'
+'admin_user#Activer l''utilisateur': '__Activer l''utilisateur'
+'admin_user#Désactiver l''utilisateur': '__Désactiver l''utilisateur'

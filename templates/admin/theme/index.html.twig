@@ -8,6 +8,17 @@
 
         {{ breadcrumb | breadcrumb | raw }}
 
+        <div class="float-end">
+
+            {% if 'admin_tag_add' | isGranted %}
+                <a href="{{ path('admin_tag_add') }}" id="btn-download-theme" class="btn btn-primary mb-2">
+                    <i class="fas fa-upload"></i> {{ "admin_theme#Ajouter un thème" | trans }}
+                </a>
+            {% endif %}
+
+        </div>
+        <div class="clearfix"></div>
+
         <div class="card">
             <div class="card-header">
                 <i class="fa fa-pager"></i> {{ "admin_theme#Thèmes installés" | trans }}

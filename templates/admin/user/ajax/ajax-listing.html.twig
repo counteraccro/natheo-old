@@ -47,15 +47,15 @@
                         {% endif %}
 
                         {% if(user.isDisabled) %}
-                            {% set msgDisabled = "admin_user#Activer l'utilisateur" %}
+                            {% set msgDisabled = "admin_user#Activer l'utilisateur" | trans  %}
                             {% set iconeDisabled = 'user-check' %}
                         {% else %}
-                            {% set msgDisabled = "admin_user#Désactiver l'utilisateur" %}
+                            {% set msgDisabled = "admin_user#Désactiver l'utilisateur" | trans %}
                             {% set iconeDisabled = 'user-lock' %}
                         {% endif %}
 
                         {% if 'admin_user_disabled' | isGranted %}
-                            <a href="{{ path('admin_user_disabled',  {'id' : user.id}) }}" class="btn btn-sm btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ msgDisabled | trans }}"><i class="fa fa-{{ iconeDisabled }}"></i></a>
+                            <a href="{{ path('admin_user_disabled',  {'id' : user.id}) }}" class="btn btn-sm btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ msgDisabled }}"><i class="fa fa-{{ iconeDisabled }}"></i></a>
                         {% endif %}
                     {% endif %}
                 </td>
