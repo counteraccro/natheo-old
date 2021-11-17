@@ -3,7 +3,7 @@
 {% block title %}{{ "admin_theme#Détail du thème" | trans }} {{ theme.name}} {% endblock %}
 
 {% block body %}
-    <div id="admin-system-globale">
+    <div id="admin-theme-see">
         <h1>{{ "admin_theme#Détail du thème" | trans }} {{ theme.name}}</h1>
 
         {{ breadcrumb | breadcrumb | raw }}
@@ -52,7 +52,9 @@
                 <i class="fa fa-folder"></i> {{ "admin_theme#Contenu du thème" | trans }}
             </div>
             <div class="card-body">
-                {{ path | treeThemeFolder | raw }}
+                <div id="theme-tree">
+                    {{ path | treeThemeFolder | raw }}
+                </div>
             </div>
          </div>
     </div>

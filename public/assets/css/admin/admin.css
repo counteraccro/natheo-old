@@ -227,3 +227,44 @@ templates/admin/media_lib/ajax-see-content-folder.html.twig
 #see-block-content-folder .dropdown-menu li a {
     cursor: pointer;
 }
+
+/** CSS Theme */
+#admin-theme-see #theme-tree li {
+    list-style-type: none;
+    margin: 0;
+    position: relative;
+}
+
+#admin-theme-see #theme-tree li::before, #admin-theme-see #theme-tree li::after {
+    content: ' ';
+    left: -24px;
+    position: absolute;
+    right: auto
+}
+
+#admin-theme-see #theme-tree li::before {
+    border-left: 1px solid #999;
+    bottom: 50px;
+    height: 100%;
+    top: 0;
+    width: 1px
+}
+
+#admin-theme-see #theme-tree li::after {
+    border-top: 1px solid #999;
+    height: 18px;
+    top: 14px;
+    width: 25px
+}
+
+#admin-theme-see #theme-tree > ul > li::before, #admin-theme-see #theme-tree > ul > li::after {
+    border: 0
+}
+
+#admin-theme-see #theme-tree li:last-child::before {
+    height: 15px
+}
+
+#admin-theme-see #theme-tree li a {
+    text-decoration-line: none;
+}

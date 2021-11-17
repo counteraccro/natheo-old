@@ -38,13 +38,14 @@
                         l'affichage du choix du dossier parent, idéalement l'afficher en forme d'arbre
                     </li>
                     <li><span class="badge bg-danger">BUG</span> Dans <kbd>public/assets/js/admin/MediaLib.js</kbd> la fonction <kbd>MediaLib.RecursiveOpenFolder()</kbd> provoque cette erreur
-                        <br /><code>
+                        <br />
+                        <code>
                             Uncaught RangeError: Maximum call stack size exceeded <br />
-                            at String.replace (<anonymous>) <br />
+                            at String.replace (&lsaquo;anonymous&rsaquo;) <br />
                                 at se (jquery-3.6.0.min.js:2) <br />
                                 at Function.se.matches (jquery-3.6.0.min.js:2) <br />
                                 at Function.S.filter (jquery-3.6.0.min.js:2) <br />
-                                at S.fn.init.S.fn.<computed> [as next] (jquery-3.6.0.min.js:2) <br />
+                                at S.fn.init.S.fn.&lsaquo;computed&rsaquo; [as next] (jquery-3.6.0.min.js:2) <br />
                                     at Object.MediaLib.RecursiveOpenFolder (MediaLib.js?version=v1:323) <br />
                                     at Object.MediaLib.RecursiveOpenFolder (MediaLib.js?version=v1:330) <br />
                                     at Object.MediaLib.RecursiveOpenFolder (MediaLib.js?version=v1:330) <br />
@@ -66,6 +67,12 @@
             <li><b>Gestion des tags</b>
                 <ul>
                     <li><span class="badge bg-primary">Evolution</span> Ajouter les statistiques associés au tag</li>
+                </ul>
+            </li>
+            <li><b>Gestion thèmes</b>
+                <ul>
+                    <li><span class="badge bg-danger">BUG</span> Sur la page <b>Détail du thème</b> l'arborescence du dossier ne s'affiche pas correctement</li>
+                    <li><span class="badge bg-primary">Evolution</span> Sur la page <b>Détail du thème</b> Voir le contenu du fichier dans l'arborescence du dossier</li>
                 </ul>
             </li>
         </ul>

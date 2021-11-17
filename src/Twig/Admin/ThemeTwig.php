@@ -20,7 +20,10 @@ class ThemeTwig extends AppExtension implements RuntimeExtensionInterface
      */
     public function getTreeByThemeFolder(string $dir, int $depth = 100): string
     {
-        $template = array('<ul>', '<li><i class="fa fa-{icon}"></i> <a href="{path}">{file}</a></li>', '</ul>');
+        $template = array('<ul>',
+            '<li><i class="fa fa-{icon}"></i> <a href="{path}">{file}</a></li>',
+            '</ul>',
+            '<li><i class="fa fa-{icon}"></i> <span">{file}</span></li>');
 
         $response = '';
         $folder = opendir($dir);
@@ -30,7 +33,7 @@ class ThemeTwig extends AppExtension implements RuntimeExtensionInterface
                 $pathFile = $dir . '/' . $file;
 
                 if (is_dir($pathFile)) {
-                    $response .= str_replace(array('{path}', '{file}', '{icon}'), array($pathFile, $file, 'folder'), $template[1]);
+                    $response .= str_replace(array('{file}', '{icon}'), array($file, 'folder'), $template[3]);
                 } else {
                     $response .= str_replace(array('{path}', '{file}', '{icon}'), array($pathFile, $file, 'file'), $template[1]);
                 }
