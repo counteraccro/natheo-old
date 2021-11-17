@@ -9,6 +9,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Admin\Theme;
 use App\Service\Admin\ThemeService;
+use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -26,7 +27,6 @@ class ThemeController extends AppAdminController
     {
 
         $tabThemes = $themeService->readThemes();
-        //var_dump($tabThemes);
 
         $breadcrumb = [
             $this->translator->trans('admin_dashboard#Dashboard') => 'admin_dashboard_index',
@@ -49,5 +49,28 @@ class ThemeController extends AppAdminController
     {
         $this->getDoctrine()->getRepository(Theme::class)->selectTheme($theme->getId());
         return $this->redirectToRoute('admin_theme_index');
+    }
+
+    /**
+     * Permet de voir les données d'un thème
+     * @param Theme $theme
+     * @return Response
+     */
+    #[Route('/see/{id}', name: 'see')]
+    public function see(Theme $theme): Response
+    {
+        $path = $this->themeService->getThemeDirectory() . '/' . $theme->getFolderRef();
+
+        $breadcrumb = [
+            $this->translator->trans('admin_dashboard#Dashboard') => 'admin_dashboard_index',
+            $this->translator->trans('admin_theme#Gestion des thèmes') => 'admin_theme_index',
+            $this->translator->trans('admin_theme#Détail du thème') . ' ' . $theme->getName() => ''
+        ];
+
+        return $this->render('admin/theme/see.html.twig', [
+            'breadcrumb' => $breadcrumb,
+            'theme' => $theme,
+            'path' => $path
+        ]);
     }
 }

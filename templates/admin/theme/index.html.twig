@@ -75,13 +75,16 @@
                                            <i class="fa fa-exclamation-triangle"></i> {{ "admin_theme#Ce template à été développé dans une version antérieur au CMS, il peut ne pas fonctionner correctement et provoquer des erreurs" | trans }}
                                         </p>
                                     {% endif %}
+
                                     <p class="mt-2"> {{ "admin_theme#Auteur" | trans }} : {{ theme.config.creator }}</p>
 
                                 </div>
                                 <div class="card-footer">
-                                    <a href="#" class="btn {{ btn }}"><i class="fa fa-eye"></i> {{ "admin_theme#Voir" | trans }}</a>
+                                    {% if 'admin_theme_see' | isGranted %}
+                                        <a href="{{ path('admin_theme_see', {'id' : theme.theme.id}) }}" class="btn {{ btn }}"><i class="fa fa-eye"></i> {{ "admin_theme#Voir" | trans }}</a>
+                                    {% endif %}
                                     {% if 'admin_theme_select' | isGranted %}
-                                    <a href="{{ path('admin_theme_select', {'id' : theme.theme.id}) }}" class="btn {{ btn }} {{ btn_disabled }}"><i class="fa {{ btn_selected }}"></i> {{ btn_selected_text }}</a>
+                                        <a href="{{ path('admin_theme_select', {'id' : theme.theme.id}) }}" class="btn {{ btn }} {{ btn_disabled }}"><i class="fa {{ btn_selected }}"></i> {{ btn_selected_text }}</a>
                                     {% endif %}
                                 </div>
                             </div>

@@ -1,0 +1,69 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block title %}{{ "admin_theme#Détail du thème" | trans }} {{ theme.name}} {% endblock %}
+
+{% block body %}
+    <div id="admin-system-globale">
+        <h1>{{ "admin_theme#Détail du thème" | trans }} {{ theme.name}}</h1>
+
+        {{ breadcrumb | breadcrumb | raw }}
+
+        {% set span_app_version = '' %}
+        {% set border = '' %}
+        {% set bg = '' %}
+        {% set bg_style = '' %}
+        {% if  (theme.isDepreciate) %}
+            {% set border = "border-danger border-3" %}
+            {% set bg = 'bg-danger' %}
+            {% set bg_style = 'style="color: #FFF;"' %}
+            {% set span_app_version = "text-danger" %}
+        {% endif %}
+
+        <div class="card {{ border }}" >
+            <div class="card-header {{ bg }}" {{ bg_style | raw }}>
+                <i class="fa fa-pager"></i> {{ "admin_theme#Information" | trans }}
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-3">
+                        <img src="{{ asset('themes/' ~ theme.folderRef ~ '/' ~ theme.image) }}" class="img-thumbnail">
+                    </div>
+                    <div class="col">
+                        <h5>{{ theme.name }}</h5>
+                        <p class="card-text">{{ theme.description }}</p>
+                        <p class="card-text">{{ "admin_theme#Version" | trans }} : <b>{{ theme.version }}</b></p>
+                        <p class="card-text">
+                            {{ "admin_theme#Version CMS compatibilité" | trans }} :  <span class="{{ span_app_version }}"><b>{{ theme.appVersion }}</b></span>
+                        </p>
+                        {% if  (theme.isDepreciate) %}
+                            <p class="card-text text-danger">
+                                <i class="fa fa-exclamation-triangle"></i> {{ "admin_theme#Ce template à été développé dans une version antérieur au CMS, il peut ne pas fonctionner correctement et provoquer des erreurs" | trans }}
+                            </p>
+                        {% endif %}
+
+                        <p class="mt-2"> {{ "admin_theme#Auteur" | trans }} : {{ theme.creator }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+         <div class="card mt-4">
+            <div class="card-header">
+                <i class="fa fa-folder"></i> {{ "admin_theme#Contenu du thème" | trans }}
+            </div>
+            <div class="card-body">
+                {{ path | treeThemeFolder | raw }}
+            </div>
+         </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+
+    <script>
+        $(document).ready(function () {
+
+        });
+    </script>
+
+{% endblock %}

@@ -109,6 +109,8 @@ class RouteService extends AppService
             "delete" => "admin_system#Supprime une donnée de type {data}",
             "me" => "admin_system#Edition de mes données de type {data}",
             "disabled" => "admin_system#Désactive une donnée de type {data}",
+            "select" => "admin_system#Selectionne une donnée de type {data}",
+            "see" => "admin_system#Voir une donnée de type {data}",
             default => "admin_system#Route sans description",
         };
     }

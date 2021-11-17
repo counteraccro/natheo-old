@@ -59,6 +59,10 @@ class ThemeService extends AppService
                 }
                 $theme->setAppVersion($config[self::CONFIG_KEY_APP_VERSION]);
                 $theme->setFolderRef($config[self::CONFIG_KEY_FOLDER_REF]);
+                $theme->setImage($config[self::CONFIG_KEY_SRC_IMG]);
+                $theme->setVersion($config[self::CONFIG_KEY_VERSION]);
+                $theme->setDescription($config[self::CONFIG_KEY_DESCRIPTION]);
+                $theme->setCreator($config[self::CONFIG_KEY_CREATOR]);
 
                 if (floatval($this->parameterBag->get('app_version')) <= floatval($config[self::CONFIG_KEY_APP_VERSION])) {
                     $theme->setIsDepreciate(false);

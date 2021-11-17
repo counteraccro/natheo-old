@@ -48,6 +48,26 @@ class Theme
      */
     private $create_on;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $image;
+
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $version;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $description;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $creator;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -121,6 +141,54 @@ class Theme
     public function setCreateOn(\DateTimeInterface $create_on): self
     {
         $this->create_on = $create_on;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getVersion(): ?string
+    {
+        return $this->version;
+    }
+
+    public function setVersion(string $version): self
+    {
+        $this->version = $version;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getCreator(): ?string
+    {
+        return $this->creator;
+    }
+
+    public function setCreator(string $creator): self
+    {
+        $this->creator = $creator;
 
         return $this;
     }

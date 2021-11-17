@@ -20,6 +20,7 @@ use App\Twig\Admin\System\DateTwig;
 use App\Twig\Admin\System\FileTwig;
 use App\Twig\Admin\System\PaginateTwig;
 use App\Twig\Admin\System\GlobalFunctionTwig;
+use App\Twig\Admin\ThemeTwig;
 use App\Twig\Admin\TranslationTwig;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -162,6 +163,7 @@ class AppExtension extends AbstractExtension
             new TwigFilter('pathFolder', [TreeFolderTwig::class, 'getPathFolder']),
             new TwigFilter('pathFolder', [TreeFolderTwig::class, 'getPathFolder']),
             new TwigFilter('renderContentMedia', [MediaTwig::class, 'renderModeMedia']),
+            new TwigFilter('treeThemeFolder', [ThemeTwig::class, 'getTreeByThemeFolder'])
 
         ];
     }

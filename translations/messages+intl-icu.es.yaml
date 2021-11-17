@@ -387,3 +387,7 @@
 'admin_theme#Ajouter un thème': '__Ajouter un thème'
 'admin_user#Activer l''utilisateur': '__Activer l''utilisateur'
 'admin_user#Désactiver l''utilisateur': '__Désactiver l''utilisateur'
+'admin_theme#Détail du thème': '__Détail du thème'
+'admin_theme#Information': __Information
+'admin_theme#Version CMS compatibilité': '__Version CMS compatibilité'
+'admin_theme#Contenu du thème': '__Contenu du thème'
