@@ -27,15 +27,15 @@ class ThemeTwig extends AppExtension implements RuntimeExtensionInterface
 
         while ($file = readdir($folder)) {
             if ($file != '.' && $file != '..') {
-                $pathfile = $dir . '/' . $file;
+                $pathFile = $dir . '/' . $file;
 
-                if (is_dir($pathfile)) {
-                    $response .= str_replace(array('{path}', '{file}', '{icon}'), array($pathfile, $file, 'folder'), $template[1]);
+                if (is_dir($pathFile)) {
+                    $response .= str_replace(array('{path}', '{file}', '{icon}'), array($pathFile, $file, 'folder'), $template[1]);
                 } else {
-                    $response .= str_replace(array('{path}', '{file}', '{icon}'), array($pathfile, $file, 'file'), $template[1]);
+                    $response .= str_replace(array('{path}', '{file}', '{icon}'), array($pathFile, $file, 'file'), $template[1]);
                 }
-                if (is_dir($pathfile) && ($depth !== 0))
-                    $response .= $this->getTreeByThemeFolder($pathfile, $depth - 1);
+                if (is_dir($pathFile) && ($depth !== 0))
+                    $response .= $this->getTreeByThemeFolder($pathFile, $depth - 1);
             }
         }
         closedir($folder);
