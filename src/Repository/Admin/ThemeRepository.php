@@ -19,6 +19,19 @@ class ThemeRepository extends ServiceEntityRepository
         parent::__construct($registry, Theme::class);
     }
 
+    /**
+     * Permet de selectionner un thème
+     * @param int $id
+     */
+    public function selectTheme(int $id)
+    {
+        $this->createQueryBuilder('t')->update('App\Entity\Admin\Theme', 't')->set('t.is_selected', 0)->getQuery()->execute();
+
+        $this->createQueryBuilder('t')->update('App\Entity\Admin\Theme', 't')->set('t.is_selected', 1)->where('t.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()->execute();
+    }
+
     // /**
     //  * @return Theme[] Returns an array of Theme objects
     //  */

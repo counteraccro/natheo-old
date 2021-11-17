@@ -5,6 +5,7 @@
  * @version 1.0
  * @package App\Controller
  */
+
 namespace App\Controller;
 
 use App\Entity\Admin\Option;
@@ -78,7 +79,8 @@ class AppController extends AbstractController
      * @param FileService $fileService
      */
     public function __construct(TranslatorInterface $translator, RequestStack $request, OptionService $optionService,
-        TranslationService $translationService, DataSystemService $dataSystemService, KernelInterface $kernel, FileService $fileService, MediaService $mediaService)
+                                TranslationService  $translationService, DataSystemService $dataSystemService, KernelInterface $kernel,
+                                FileService         $fileService, MediaService $mediaService)
     {
         $this->translator = $translator;
         $this->request = $request;
@@ -101,8 +103,7 @@ class AppController extends AbstractController
         $filter = $this->request->getCurrentRequest()->get('search_data', []);
         if ($filter != null) {
 
-            if($filter['field'] == 'reset')
-            {
+            if ($filter['field'] == 'reset') {
                 $filter = null;
             }
 
