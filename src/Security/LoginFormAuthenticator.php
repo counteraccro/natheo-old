@@ -3,6 +3,7 @@
 namespace App\Security;
 
 use App\Entity\User;
+use App\Service\Admin\System\AccessService;
 use App\Service\Admin\System\OptionService;
 use App\Service\Admin\UserService;
 use App\Twig\Admin\Option;
@@ -65,6 +66,17 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 
         /** @var User $user */
         $user = $token->getUser();
+
+        // Mise à jour des droits
+        $tabRouteAccess = [];
+        foreach ($user->getRolesCms() as $rolesCm) {
+
+            foreach ($rolesCm->getRouteRights() as $routeRight) {
+                $tabRouteAccess[] = $routeRight->getRoute()->getRoute();
+            }
+        }
+        $request->getSession()->set(AccessService::KEY_SESSION_LISTE_ROUTE_ACCESS, $tabRouteAccess);
+
         $this->userService->updateLastLogin($user);
 
         /** Cas si le user est désactivé, on le déconnecte de force */

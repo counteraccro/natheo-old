@@ -20,6 +20,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class AppAdminController extends AbstractController
@@ -76,6 +77,11 @@ class AppAdminController extends AbstractController
     protected ThemeService $themeService;
 
     /**
+     * @var Security
+     */
+    protected Security $security;
+
+    /**
      * @param TranslatorInterface $translator
      * @param RequestStack $request
      * @param OptionService $optionService
@@ -86,7 +92,7 @@ class AppAdminController extends AbstractController
      */
     public function __construct(TranslatorInterface $translator, RequestStack $request, OptionService $optionService,
                                 TranslationService  $translationService, DataSystemService $dataSystemService, KernelInterface $kernel,
-                                FileService         $fileService, MediaService $mediaService, ThemeService $themeService)
+                                FileService         $fileService, MediaService $mediaService, ThemeService $themeService, Security $security)
     {
         $this->translator = $translator;
         $this->request = $request;
@@ -98,6 +104,7 @@ class AppAdminController extends AbstractController
         $this->fileService = $fileService;
         $this->mediaService = $mediaService;
         $this->themeService = $themeService;
+        $this->security = $security;
     }
 
     /**

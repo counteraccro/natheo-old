@@ -11,6 +11,7 @@ namespace App\Controller\Admin;
 use App\Entity\User;
 use App\Form\Admin\UserType;
 use App\Repository\UserRepository;
+use App\Service\Admin\System\AccessService;
 use App\Service\Admin\System\FileService;
 use App\Service\Admin\System\FileUploaderService;
 use App\Service\Admin\System\OptionService;
@@ -170,6 +171,16 @@ class UserController extends AppAdminController
             if ($action == 'edit') {
                 $param = ['page' => $this->getPageInSession(self::SESSION_KEY_PAGE)];
             }
+
+            // Avant la redirection raffraichissement des roles pour le user
+            $tabRouteAccess = [];
+            foreach ($user->getRolesCms() as $rolesCm) {
+                foreach ($rolesCm->getRouteRights() as $routeRight) {
+                    $tabRouteAccess[] = $routeRight->getRoute()->getRoute();
+                }
+            }
+            $this->session->set(AccessService::KEY_SESSION_LISTE_ROUTE_ACCESS, $tabRouteAccess);
+
             return $this->redirectToRoute('admin_user_index', $param);
         }
 

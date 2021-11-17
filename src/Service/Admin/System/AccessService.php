@@ -13,6 +13,8 @@ use App\Service\AppService;
 
 class AccessService extends AppService
 {
+    const KEY_SESSION_LISTE_ROUTE_ACCESS = 'list-route-access';
+
     /**
      * Permet de vérifier si l'utilisateur à les droits pour la route courante
      * Si oui retourne true sinon false;
@@ -39,14 +41,22 @@ class AccessService extends AppService
             return true;
         }
 
-        foreach ($user->getRolesCms() as $rolesCm) {
+        $tabRoute = $this->request->getSession()->get(self::KEY_SESSION_LISTE_ROUTE_ACCESS);
+        foreach ($tabRoute as $r)
+        {
+            if ($route === $r) {
+                return true;
+            }
+        }
+
+        /*foreach ($user->getRolesCms() as $rolesCm) {
 
             foreach ($rolesCm->getRouteRights() as $routeRight) {
                 if ($route === $routeRight->getRoute()->getRoute()) {
                     return true;
                 }
             }
-        }
+        }*/
         return false;
     }
 }

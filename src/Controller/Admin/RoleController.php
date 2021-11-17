@@ -9,10 +9,12 @@ namespace App\Controller\Admin;
 
 use App\Entity\Admin\Role;
 use App\Entity\Admin\RouteRight;
+use App\Entity\User;
 use App\Form\Admin\RoleType;
 use App\Repository\Admin\RoleRepository;
 use App\Repository\Admin\RouteRepository;
 use App\Service\Admin\RoleService;
+use App\Service\Admin\System\AccessService;
 use App\Service\Admin\System\OptionService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -135,6 +137,27 @@ class RoleController extends AppAdminController
             $this->getDoctrine()->getManager()->persist($role);
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash('success', $flashMsg);
+
+            // Avant la redirection raffraichissement des roles pour le user
+            $tabRouteAccess = [];
+            $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['id' => $this->security->getUser()->getId()]);
+            /** @var Role $rolesCm */
+            foreach ($user->getRolesCms() as $rolesCm) {
+
+                if($rolesCm->getName() === $role->getName())
+                {
+                    foreach ($role->getRouteRights() as $routeRight) {
+                        $tabRouteAccess[] = $routeRight->getRoute()->getRoute();
+                    }
+                }
+                else {
+                    foreach ($rolesCm->getRouteRights() as $routeRight) {
+                        $tabRouteAccess[] = $routeRight->getRoute()->getRoute();
+                    }
+                }
+            }
+            $this->session->set(AccessService::KEY_SESSION_LISTE_ROUTE_ACCESS, $tabRouteAccess);
+
             return $this->redirectToRoute('admin_role_index', ['page' => $this->getPageInSession(self::SESSION_KEY_PAGE)]);
         }
 
