@@ -1,12 +1,12 @@
 <?php
 /**
- * Controller global
+ * Controller global pour l'admin
  * @author Gourdon Aymeric
  * @version 1.0
  * @package App\Controller
  */
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Admin\Option;
 use App\Service\Admin\MediaService;
@@ -21,7 +21,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-class AppController extends AbstractController
+class AppAdminController extends AbstractController
 {
 
     /**

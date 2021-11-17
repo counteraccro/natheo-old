@@ -8,7 +8,6 @@
 
 namespace App\Controller\Admin;
 
-use App\Controller\AppController;
 use App\Repository\Admin\RouteRepository;
 use App\Service\Admin\RoleService;
 use App\Service\Admin\System\OptionService;
@@ -20,7 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 #[Route('/admin/route', name: 'admin_route_')]
-class RouteController extends AppController
+class RouteController extends AppAdminController
 {
     const SESSION_KEY_FILTER = 'session_route_filter';
 

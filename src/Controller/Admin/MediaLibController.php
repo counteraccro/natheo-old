@@ -8,7 +8,6 @@
 
 namespace App\Controller\Admin;
 
-use App\Controller\AppController;
 use App\Entity\Media\Folder;
 use App\Entity\Media\Media;
 use App\Form\Media\FolderType;
@@ -22,7 +21,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/admin/media', name: 'admin_media_')]
-class MediaLibController extends AppController
+class MediaLibController extends AppAdminController
 {
     /**
      * @return Response

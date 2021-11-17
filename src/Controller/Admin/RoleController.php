@@ -7,7 +7,6 @@
  */
 namespace App\Controller\Admin;
 
-use App\Controller\AppController;
 use App\Entity\Admin\Role;
 use App\Entity\Admin\RouteRight;
 use App\Form\Admin\RoleType;
@@ -20,7 +19,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/admin/role', name: 'admin_role_')]
-class RoleController extends AppController
+class RoleController extends AppAdminController
 {
     const SESSION_KEY_FILTER = 'session_role_filter';
     const SESSION_KEY_PAGE = 'session_role_page';

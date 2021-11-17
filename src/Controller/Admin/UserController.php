@@ -8,7 +8,6 @@
 
 namespace App\Controller\Admin;
 
-use App\Controller\AppController;
 use App\Entity\User;
 use App\Form\Admin\UserType;
 use App\Repository\UserRepository;
@@ -22,7 +21,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/admin/user', name: 'admin_user_')]
-class UserController extends AppController
+class UserController extends AppAdminController
 {
 
     const SESSION_KEY_FILTER = 'session_user_filter';

@@ -8,7 +8,7 @@
 
 namespace App\Controller\Admin\Module;
 
-use App\Controller\AppController;
+use App\Controller\Admin\AppAdminController;
 use App\Entity\Module\Tag;
 use App\Form\Admin\Module\TagType;
 use App\Repository\Module\TagRepository;
@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/admin/tag', name: 'admin_tag_')]
-class TagController extends AppController
+class TagController extends AppAdminController
 {
     const SESSION_KEY_FILTER = 'session_tag_filter';
     const SESSION_KEY_PAGE = 'session_tag_page';

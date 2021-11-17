@@ -5,21 +5,20 @@
  * @version 1.0
  * @package App\Controller
  */
-namespace App\Controller;
+namespace App\Controller\Front;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/', name: 'front_')]
-class FrontController extends AbstractController
+class FrontController extends AppFrontController
 {
     #[Route('/', name: 'front')]
     public function index(): Response
     {
+        $theme = $this->themeService->getThemeSelected();
 
-
-        return $this->render('themes/horizon/index.html.twig', [
+        return $this->render('themes/' . $theme->getFolderRef() . '/index.html.twig', [
             'controller_name' => 'FrontController',
         ]);
     }

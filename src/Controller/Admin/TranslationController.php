@@ -8,7 +8,6 @@
 
 namespace App\Controller\Admin;
 
-use App\Controller\AppController;
 use App\Entity\Admin\TranslationKey;
 use App\Entity\Admin\TranslationLabel;
 use App\Repository\Admin\TranslationKeyRepository;
@@ -21,7 +20,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/admin/translate', name: 'admin_translation_')]
-class TranslationController extends AppController
+class TranslationController extends AppAdminController
 {
     const SESSION_KEY_FILTER = 'session_translation_filter';
 

@@ -79,6 +79,15 @@ class ThemeService extends AppService
     }
 
     /**
+     * Retourne le theme selectionné
+     * @return Theme
+     */
+    public function getThemeSelected() : Theme
+    {
+        return $this->doctrine->getRepository(Theme::class)->findOneBy(['is_selected' => 1]);
+    }
+
+    /**
      * Path du dossier Themes
      * @return string
      */

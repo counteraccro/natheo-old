@@ -8,7 +8,6 @@
 
 namespace App\Controller\Admin;
 
-use App\Controller\AppController;
 use App\Service\Admin\System\OptionService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -16,7 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/admin/option', name: 'admin_option_')]
-class OptionController extends AppController
+class OptionController extends AppAdminController
 {
     /**
      * Index pour les options

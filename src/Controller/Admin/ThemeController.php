@@ -7,7 +7,6 @@
  */
 namespace App\Controller\Admin;
 
-use App\Controller\AppController;
 use App\Entity\Admin\Theme;
 use App\Service\Admin\ThemeService;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -15,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/admin/theme', name: 'admin_theme_')]
-class ThemeController extends AppController
+class ThemeController extends AppAdminController
 {
     /**
      * Point d'entrée sur la gestion des themes
