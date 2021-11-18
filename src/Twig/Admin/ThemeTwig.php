@@ -5,6 +5,7 @@
  * @version 1.0
  * @package App\Twig\Admin
  */
+
 namespace App\Twig\Admin;
 
 use App\Twig\AppExtension;
@@ -20,11 +21,6 @@ class ThemeTwig extends AppExtension implements RuntimeExtensionInterface
      */
     public function getTreeByThemeFolder(string $dir, int $depth = 100): string
     {
-        $template = array('<ul>',
-            '<li><i class="fa fa-{icon}"></i> <a href="{path}">{file}</a></li>',
-            '</ul>',
-            '<li><i class="fa fa-{icon}"></i> <span">{file}</span></li>');
-
         $response = '';
         $folder = opendir($dir);
 
@@ -33,15 +29,20 @@ class ThemeTwig extends AppExtension implements RuntimeExtensionInterface
                 $pathFile = $dir . '/' . $file;
 
                 if (is_dir($pathFile)) {
-                    $response .= str_replace(array('{file}', '{icon}'), array($file, 'folder'), $template[3]);
+                    $response .= '<li><i class="fa fa-folder"></i> <span>' . $file . '</span>';
+
+                    if (($depth !== 0)) {
+                        $response .= '<ul>';
+                        $response .= $this->getTreeByThemeFolder($pathFile, $depth - 1);
+                        $response .= '</ul>';
+                    }
+                    $response .= '</li>';
                 } else {
-                    $response .= str_replace(array('{path}', '{file}', '{icon}'), array($pathFile, $file, 'file'), $template[1]);
+                    $response .= '<li><i class="fa fa-file"></i> <a href="' . $pathFile . '">' . $file . '</a></li>';
                 }
-                if (is_dir($pathFile) && ($depth !== 0))
-                    $response .= $this->getTreeByThemeFolder($pathFile, $depth - 1);
             }
         }
         closedir($folder);
-        return $template[0] . $response . $template[2];
+        return $response;
     }
 }
