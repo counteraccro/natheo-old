@@ -406,3 +406,4 @@
 'admin_theme#Votre thème doit être un fichier .zip': '__Votre thème doit être un fichier .zip'
 'admin_theme#Le format du fichier doit être un .zip': '__Le format du fichier doit être un .zip'
 'admin_theme#Importer': __Importer
+'admin_theme#Importer mon thème': '__Importer mon thème'
