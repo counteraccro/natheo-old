@@ -111,6 +111,7 @@ class RouteService extends AppService
             "disabled" => "admin_system#Désactive une donnée de type {data}",
             "select" => "admin_system#Selectionne une donnée de type {data}",
             "see" => "admin_system#Voir une donnée de type {data}",
+            "upload" => "admin_system#Importer une donnée de type {data}",
             default => "admin_system#Route sans description",
         };
     }

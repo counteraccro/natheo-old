@@ -391,3 +391,18 @@
 'admin_theme#Information': __Information
 'admin_theme#Version CMS compatibilité': '__Version CMS compatibilité'
 'admin_theme#Contenu du thème': '__Contenu du thème'
+'admin_theme#Importer un thème': '__Importer un thème'
+'admin_system#Selectionne une donnée de type {data}': '__Selectionne une donnée de type {data}'
+'admin_system#Voir une donnée de type {data}': '__Voir une donnée de type {data}'
+'admin_system#Importer une donnée de type {data}': '__Importer une donnée de type {data}'
+'admin_theme#Pour que le thème ajouté fonctionne correctement celui ci doit contenir les données suivantes': '__Pour que le thème ajouté fonctionne correctement celui ci doit contenir les données suivantes'
+'admin_theme#Nom du thème': '__Nom du thème'
+'admin_theme#Fichier de config contentant les infos du thème': '__Fichier de config contentant les infos du thème'
+'admin_theme#Image pour illustrer le thème': '__Image pour illustrer le thème'
+'admin_theme#Vos fichiers CSS propre au thème': '__Vos fichiers CSS propre au thème'
+'admin_theme#Vos fichiers JS propre au thème': '__Vos fichiers JS propre au thème'
+'admin_theme#fichier qui centralise les appels aux assets (JS et CSS)': '__fichier qui centralise les appels aux assets (JS et CSS)'
+'admin_theme#Stucture de la page': '__Stucture de la page'
+'admin_theme#Votre thème doit être un fichier .zip': '__Votre thème doit être un fichier .zip'
+'admin_theme#Le format du fichier doit être un .zip': '__Le format du fichier doit être un .zip'
+'admin_theme#Importer': __Importer

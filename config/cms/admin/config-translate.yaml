@@ -81,3 +81,6 @@
 'admin_faq#Questions' : '__admin_faq#Questions'
 'admin_faq#Catégories' : '__admin_faq#Catégories'
 'admin_theme#Thèmes' : '__admin_theme#Thèmes'
+'admin_system#Selectionne une donnée de type {data}' : '__admin_system#Selectionne une donnée de type {data}'
+'admin_system#Voir une donnée de type {data}' : '__admin_system#Voir une donnée de type {data}'
+'admin_system#Importer une donnée de type {data}' : '__admin_system#Importer une donnée de type {data}'

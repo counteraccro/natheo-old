@@ -18,7 +18,7 @@ class FrontController extends AppFrontController
     {
         $theme = $this->themeService->getThemeSelected();
 
-        return $this->render('themes/' . $theme->getFolderRef() . '/index.html.twig', [
+        return $this->render('themes/' . $theme->getFolderRef() . '/views/index.html.twig', [
             'controller_name' => 'FrontController',
         ]);
     }
