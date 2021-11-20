@@ -10,6 +10,7 @@ namespace App\Controller\Admin;
 use App\Entity\Admin\Theme;
 use App\Service\Admin\System\FileUploaderService;
 use App\Service\Admin\ThemeService;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -97,58 +98,12 @@ class ThemeController extends AppAdminController
                 echo 'ok';
                 $zip->extractTo($fileUploaderService->getThemeTmpDirectory() . '/' . 'open-zip');
                 $zip->close();
+
+                $filesystem = new Filesystem();
+                $filesystem->mirror($fileUploaderService->getThemeTmpDirectory() . '/' . 'open-zip/theme-upload', $fileUploaderService->getThemeTemplateDirectory());
             }
 
-            /**
-             * function recurseCopy(
-            string $sourceDirectory,
-            string $destinationDirectory,
-            string $childFolder = ''
-            ): void {
-            $directory = opendir($sourceDirectory);
 
-            if (is_dir($destinationDirectory) === false) {
-            mkdir($destinationDirectory);
-            }
-
-            if ($childFolder !== '') {
-            if (is_dir("$destinationDirectory/$childFolder") === false) {
-            mkdir("$destinationDirectory/$childFolder");
-            }
-
-            while (($file = readdir($directory)) !== false) {
-            if ($file === '.' || $file === '..') {
-            continue;
-            }
-
-            if (is_dir("$sourceDirectory/$file") === true) {
-            recurseCopy("$sourceDirectory/$file", "$destinationDirectory/$childFolder/$file");
-            } else {
-            copy("$sourceDirectory/$file", "$destinationDirectory/$childFolder/$file");
-            }
-            }
-
-            closedir($directory);
-
-            return;
-            }
-
-            while (($file = readdir($directory)) !== false) {
-            if ($file === '.' || $file === '..') {
-            continue;
-            }
-
-            if (is_dir("$sourceDirectory/$file") === true) {
-            recurseCopy("$sourceDirectory/$file", "$destinationDirectory/$file");
-            }
-            else {
-            copy("$sourceDirectory/$file", "$destinationDirectory/$file");
-            }
-            }
-
-            closedir($directory);
-            }
-             */
         }
         elseif ($theme != null && $theme->getClientOriginalExtension() != 'zip')
         {
