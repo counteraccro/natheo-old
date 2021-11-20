@@ -90,7 +90,65 @@ class ThemeController extends AppAdminController
             /** @var UploadedFile $theme */
             var_dump($theme);
             $name = $fileUploaderService->upload($theme, $fileUploaderService->getThemeTmpDirectory());
-            var_dump($name);
+
+            $zip = new \ZipArchive();
+            $res = $zip->open($fileUploaderService->getThemeTmpDirectory() . '/' . $name);
+            if ($res === TRUE) {
+                echo 'ok';
+                $zip->extractTo($fileUploaderService->getThemeTmpDirectory() . '/' . 'open-zip');
+                $zip->close();
+            }
+
+            /**
+             * function recurseCopy(
+            string $sourceDirectory,
+            string $destinationDirectory,
+            string $childFolder = ''
+            ): void {
+            $directory = opendir($sourceDirectory);
+
+            if (is_dir($destinationDirectory) === false) {
+            mkdir($destinationDirectory);
+            }
+
+            if ($childFolder !== '') {
+            if (is_dir("$destinationDirectory/$childFolder") === false) {
+            mkdir("$destinationDirectory/$childFolder");
+            }
+
+            while (($file = readdir($directory)) !== false) {
+            if ($file === '.' || $file === '..') {
+            continue;
+            }
+
+            if (is_dir("$sourceDirectory/$file") === true) {
+            recurseCopy("$sourceDirectory/$file", "$destinationDirectory/$childFolder/$file");
+            } else {
+            copy("$sourceDirectory/$file", "$destinationDirectory/$childFolder/$file");
+            }
+            }
+
+            closedir($directory);
+
+            return;
+            }
+
+            while (($file = readdir($directory)) !== false) {
+            if ($file === '.' || $file === '..') {
+            continue;
+            }
+
+            if (is_dir("$sourceDirectory/$file") === true) {
+            recurseCopy("$sourceDirectory/$file", "$destinationDirectory/$file");
+            }
+            else {
+            copy("$sourceDirectory/$file", "$destinationDirectory/$file");
+            }
+            }
+
+            closedir($directory);
+            }
+             */
         }
         elseif ($theme != null && $theme->getClientOriginalExtension() != 'zip')
         {
