@@ -90,19 +90,9 @@ class ThemeController extends AppAdminController
         {
             /** @var UploadedFile $theme */
             var_dump($theme);
-            $name = $fileUploaderService->upload($theme, $fileUploaderService->getThemeTmpDirectory());
-
-            $zip = new \ZipArchive();
-            $res = $zip->open($fileUploaderService->getThemeTmpDirectory() . '/' . $name);
-            if ($res === TRUE) {
-                echo 'ok';
-                $zip->extractTo($fileUploaderService->getThemeTmpDirectory() . '/' . 'open-zip');
-                $zip->close();
-
-                $filesystem = new Filesystem();
-                $filesystem->mirror($fileUploaderService->getThemeTmpDirectory() . '/' . 'open-zip/theme-upload', $fileUploaderService->getThemeTemplateDirectory());
-            }
-
+            $name = $fileUploaderService->upload($theme, $this->themeService->getThemeTmpDirectory());
+            $result = $this->themeService->installNewTheme($name, $theme->getClientOriginalName());
+            var_dump($result);
 
         }
         elseif ($theme != null && $theme->getClientOriginalExtension() != 'zip')

@@ -90,22 +90,4 @@ class FileUploaderService extends AppService
     {
         return $this->parameterBag->get('app_path_media_mediatheque_default_asset');
     }
-
-    /**
-     * Retourne le path du dossier theme où sont stockés les .zip avant traitement
-     * @return string
-     */
-    public function getThemeTmpDirectory() : string
-    {
-        return $this->parameterBag->get('app_path_media_theme_tmp');
-    }
-
-    /**
-     * Retourne le path du dossier theme dans le template
-     * @return string
-     */
-    public function getThemeTemplateDirectory() : string
-    {
-        return $this->parameterBag->get('app_path_theme');
-    }
 }

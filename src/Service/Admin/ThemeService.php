@@ -11,6 +11,8 @@ namespace App\Service\Admin;
 use App\Entity\Admin\Theme;
 use App\Service\AppService;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\Finder\SplFileInfo;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints\Date;
 use Symfony\Component\Yaml\Yaml;
 
@@ -24,6 +26,23 @@ class ThemeService extends AppService
     const CONFIG_KEY_DESCRIPTION = 'description';
     const CONFIG_KEY_CREATOR = 'creator';
     const DEFAULT_THEME = 'horizon';
+
+
+    /**
+     * Tableau qui permet de déterminer si le thème lors de l'installation est complet
+     * @var array|false[]
+     */
+    private array $tabFolderExpected = [
+        'assets' => false,
+        'css' => false,
+        'js' => false,
+        'config' => false,
+        'views' => false,
+        'include' => false,
+        'modules' => false,
+        'blog' => false,
+        'faq' => false,
+    ];
 
     /**
      * Permet de lire et mettre à jour en base de données les thèmes présent dans le dossier templates/themes
@@ -86,7 +105,7 @@ class ThemeService extends AppService
      * Retourne le theme selectionné
      * @return Theme
      */
-    public function getThemeSelected() : Theme
+    public function getThemeSelected(): Theme
     {
         return $this->doctrine->getRepository(Theme::class)->findOneBy(['is_selected' => 1]);
     }
@@ -98,5 +117,68 @@ class ThemeService extends AppService
     public function getThemeDirectory(): string
     {
         return $this->parameterBag->get('app_path_theme');
+    }
+
+    /**
+     * Retourne le path du dossier theme où sont stockés les .zip avant traitement
+     * @return string
+     */
+    public function getThemeTmpDirectory(): string
+    {
+        return $this->parameterBag->get('app_path_media_theme_tmp');
+    }
+
+    /**
+     * Permet d'installer un nouveau Thème
+     * @param string $themeFolderName
+     * @param string $realName
+     * @return array
+     */
+    public function installNewTheme(string $themeFolderName, string $realName): array
+    {
+        $tabReturn = [
+            'success' => false,
+            'msg' => ''
+        ];
+
+        // Ouverture du zip
+        $zip = new \ZipArchive();
+        $res = $zip->open($this->getThemeTmpDirectory() . '/' . $themeFolderName);
+        if ($res === false) {
+            $tabReturn['msg'] = $this->translator->trans('admin_theme#Le thème téléchargé est vide ou corrompu');
+            return $tabReturn;
+        }
+
+        $folderZipOpen = str_replace('.zip', '', $realName);
+
+        $zip->extractTo($this->getThemeTmpDirectory());
+        $zip->close();
+
+        $finder = new Finder();
+        // Tester si la racine du zip à bien qu'un projet
+        if ($finder->directories()->depth('== 0')->in($this->getThemeTmpDirectory() . '/' . $folderZipOpen)->count() > 1) {
+            $tabReturn['msg'] = $this->translator->trans('admin_theme#Plus d\'un dossier à été détecté à la racine du dossier ZIP, Arrêt de l\'installation du thème');
+            return $tabReturn;
+        }
+
+        // Récupérer ce dossier
+        $theme_dir = $finder->directories()->depth('== 0')->in($this->getThemeTmpDirectory() . '/' . $folderZipOpen)->getIterator()->current();
+        /** @var SplFileInfo $theme_dir */
+        $theme_name = $theme_dir->getFilename();
+
+        $finder = new Finder();
+        foreach ($finder->depth('< 100')->in($this->getThemeTmpDirectory() . '/' . $folderZipOpen . '/' . $theme_name)->sortByType() as $dir) {
+            var_dump($dir);
+        }
+
+
+
+        $tabReturn['success'] = true;
+        return $tabReturn;
+
+
+        /*$filesystem = new Filesystem();
+        $filesystem->mirror($this->getThemeTmpDirectory() . '/' . 'open-zip/theme-upload', $this->getThemeDirectory());*/
+
     }
 }
