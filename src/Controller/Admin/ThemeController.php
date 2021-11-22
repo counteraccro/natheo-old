@@ -85,14 +85,15 @@ class ThemeController extends AppAdminController
     {
 
         $msg_error = '';
+        $installError = [];
         $theme = $this->request->getCurrentRequest()->files->get('theme-folder');
         if($theme != null && $theme->getClientOriginalExtension() == 'zip')
         {
             /** @var UploadedFile $theme */
             var_dump($theme);
             $name = $fileUploaderService->upload($theme, $this->themeService->getThemeTmpDirectory());
-            $result = $this->themeService->installNewTheme($name, $theme->getClientOriginalName());
-            var_dump($result);
+            $installError = $this->themeService->installNewTheme($name, $theme->getClientOriginalName());
+            var_dump($installError);
 
         }
         elseif ($theme != null && $theme->getClientOriginalExtension() != 'zip')
@@ -108,7 +109,8 @@ class ThemeController extends AppAdminController
 
         return $this->render('admin/theme/upload-theme.html.twig', [
             'breadcrumb' => $breadcrumb,
-            'msg_error' => $msg_error
+            'msg_error' => $msg_error,
+            'install_error' => $installError,
         ]);
     }
 }

@@ -14,6 +14,29 @@
                 <i class="fa fa-pager"></i> {{ "admin_theme#Importer un thème" | trans }}
             </div>
             <div class="card-body">
+
+                {% if install_error is not empty and install_error.success == false %}
+
+                    {% if install_error.msg.errors is not empty %}
+                        <div class="alert alert-danger">
+                            <h5><i class="fa fa-exclamation-circle"></i> {{ "admin_theme#Votre thème n'a pas été importé" | trans }}</h5>
+                            {% for error in install_error.msg.errors %}
+                                {{ error }}<br />
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    {% if install_error.msg.warning is not empty %}
+                        <div class="alert alert-warning">
+                            <h5><i class="fa fa-exclamation-circle"></i> {{ "admin_theme#Votre thème à correctemet été installé mais des warnings sont remontés" | trans }}</h5>
+                            {% for warning in install_error.msg.warning %}
+                                {{ warning }}<br />
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                {% endif %}
+
                 <form action="{{ path('admin_theme_upload') }}" method="post" enctype="multipart/form-data">
                     <div class="mb-3">
 
@@ -24,13 +47,17 @@
                             {% set error = '<div class="invalid-feedback">'~ msg_error ~'</div>' %}
                         {% endif %}
 
-                        <label for="download-theme" class="form-label">{{ "admin_theme#Importer un thème" | trans }}</label>
-                        <input class="form-control {{ invalid_class }}" name="theme-folder" type="file" id="download-theme">
-                        <div id="download-theme-help" class="form-text">{{ "admin_theme#Le format du fichier doit être un .zip" | trans }}</div>
+                        <label for="download-theme"
+                               class="form-label">{{ "admin_theme#Importer un thème" | trans }}</label>
+                        <input class="form-control {{ invalid_class }}" name="theme-folder" type="file"
+                               id="download-theme">
+                        <div id="download-theme-help"
+                             class="form-text">{{ "admin_theme#Le format du fichier doit être un .zip" | trans }}</div>
                         {{ error | raw }}
                     </div>
                     <div class="mb-3">
-                        <button type="submit" class="btn btn-primary"><i class="fas fa-upload"></i> {{ "admin_theme#Importer mon thème" | trans }}</button>
+                        <button type="submit" class="btn btn-primary"><i
+                                    class="fas fa-upload"></i> {{ "admin_theme#Importer mon thème" | trans }}</button>
                     </div>
                 </form>
             </div>

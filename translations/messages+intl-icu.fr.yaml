@@ -407,3 +407,11 @@
 'admin_theme#Le format du fichier doit être un .zip': 'Le format du fichier doit être un .zip'
 'admin_theme#Importer': Importer
 'admin_theme#Importer mon thème': 'Importer mon thème'
+'admin_theme#Le thème téléchargé est vide ou corrompu': 'Le thème téléchargé est vide ou corrompu'
+'admin_theme#Plus d''un dossier à été détecté à la racine du dossier ZIP, Arrêt de l''installation du thème': 'Plus d''un dossier à été détecté à la racine du dossier ZIP, Arrêt de l''installation du thème'
+'admin_theme#Le dossier %folder% n''a pas été détecté': 'Le dossier %folder% n''a pas été détecté'
+'admin_theme#Le fichier %file% n''a pas été détecté': 'Le fichier %file% n''a pas été détecté'
+'admin_theme#Un dossier obligatoire est manquant': 'Un dossier obligatoire est manquant'
+'admin_theme#un fichier obligatoire est manquant': 'un fichier obligatoire est manquant'
+'admin_theme#Votre thème n''a pas été importé': 'Votre thème n''a pas été importé'
+'admin_theme#Votre thème à correctemet été installé mais des warnings sont remontés': 'Votre thème à correctemet été installé mais des warnings sont remontés'

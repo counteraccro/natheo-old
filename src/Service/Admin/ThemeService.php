@@ -29,19 +29,27 @@ class ThemeService extends AppService
 
 
     /**
-     * Tableau qui permet de déterminer si le thème lors de l'installation est complet
+     * Tableau qui centralise les dossiers obligatoires que le thème doit avoir
      * @var array|false[]
      */
     private array $tabFolderExpected = [
-        'assets' => false,
-        'css' => false,
-        'js' => false,
+        'asset' => false,
+        'assets' . DIRECTORY_SEPARATOR . 'css' => false,
+        'assets' . DIRECTORY_SEPARATOR . 'js' => false,
         'config' => false,
         'views' => false,
-        'include' => false,
-        'modules' => false,
-        'blog' => false,
-        'faq' => false,
+        'views' . DIRECTORY_SEPARATOR . 'include' => false,
+        'views' . DIRECTORY_SEPARATOR . 'modules' => false,
+        'views' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'blog' => false,
+        'views' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'faq' => false,
+    ];
+
+    /**
+     * Tableau qui centralise les fichiers obligatoires que le thème doit avoir
+     * @var string
+     */
+    private array $tabFileExpected = [
+        'config' . DIRECTORY_SEPARATOR . 'config.yaml2' => false,
     ];
 
     /**
@@ -136,9 +144,11 @@ class ThemeService extends AppService
      */
     public function installNewTheme(string $themeFolderName, string $realName): array
     {
+        $filesystem = new \Symfony\Component\Filesystem\Filesystem();
+
         $tabReturn = [
             'success' => false,
-            'msg' => ''
+            'msg' => ['errors' => [], 'warning' => []]
         ];
 
         // Ouverture du zip
@@ -146,6 +156,7 @@ class ThemeService extends AppService
         $res = $zip->open($this->getThemeTmpDirectory() . '/' . $themeFolderName);
         if ($res === false) {
             $tabReturn['msg'] = $this->translator->trans('admin_theme#Le thème téléchargé est vide ou corrompu');
+            unlink($this->getThemeTmpDirectory() . '/' . $themeFolderName);
             return $tabReturn;
         }
 
@@ -157,7 +168,8 @@ class ThemeService extends AppService
         $finder = new Finder();
         // Tester si la racine du zip à bien qu'un projet
         if ($finder->directories()->depth('== 0')->in($this->getThemeTmpDirectory() . '/' . $folderZipOpen)->count() > 1) {
-            $tabReturn['msg'] = $this->translator->trans('admin_theme#Plus d\'un dossier à été détecté à la racine du dossier ZIP, Arrêt de l\'installation du thème');
+            $tabReturn['msg']['errors'][] = $this->translator->trans('admin_theme#Plus d\'un dossier à été détecté à la racine du dossier ZIP, Arrêt de l\'installation du thème');
+            unlink($this->getThemeTmpDirectory() . '/' . $themeFolderName);
             return $tabReturn;
         }
 
@@ -167,8 +179,47 @@ class ThemeService extends AppService
         $theme_name = $theme_dir->getFilename();
 
         $finder = new Finder();
+        // Vérification si les dossiers requis sont bien présent
+        /** @var SplFileInfo $dir */
         foreach ($finder->depth('< 100')->in($this->getThemeTmpDirectory() . '/' . $folderZipOpen . '/' . $theme_name)->sortByType() as $dir) {
-            var_dump($dir);
+
+            if(isset($this->tabFolderExpected[$dir->getRelativePathname()]))
+            {
+                $this->tabFolderExpected[$dir->getRelativePathname()] = true;
+            }
+
+            echo $dir->getRelativePathname() . '<br />';
+            if(isset($this->tabFileExpected[$dir->getRelativePathname()]))
+            {
+                $this->tabFileExpected[$dir->getRelativePathname()] = true;
+            }
+        }
+
+        $stop_install = false;
+        foreach($this->tabFolderExpected as $key => $data)
+        {
+            if($data === false)
+            {
+                $tabReturn['msg']['errors'][] = $this->translator->trans('admin_theme#Un dossier obligatoire est manquant') . ' : ' . $key;
+                $stop_install = true;
+            }
+        }
+
+        foreach($this->tabFileExpected as $key => $data)
+        {
+            if($data === false)
+            {
+                $tabReturn['msg']['errors'][] = $this->translator->trans('admin_theme#un fichier obligatoire est manquant') . ' : ' . $key;
+                $stop_install = true;
+            }
+        }
+
+        // Si un fichier manquant on stop l'installation ici
+        if($stop_install)
+        {
+            $filesystem->remove($this->getThemeTmpDirectory() . '/' . $themeFolderName);
+            $filesystem->remove($this->getThemeTmpDirectory() . '/' . $folderZipOpen);
+            return $tabReturn;
         }
 
 
