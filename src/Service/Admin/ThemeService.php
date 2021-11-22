@@ -156,7 +156,7 @@ class ThemeService extends AppService
         $res = $zip->open($this->getThemeTmpDirectory() . '/' . $themeFolderName);
         if ($res === false) {
             $tabReturn['msg'] = $this->translator->trans('admin_theme#Le thème téléchargé est vide ou corrompu');
-            unlink($this->getThemeTmpDirectory() . '/' . $themeFolderName);
+            $filesystem->remove($this->getThemeTmpDirectory() . '/' . $themeFolderName);
             return $tabReturn;
         }
 
@@ -169,7 +169,7 @@ class ThemeService extends AppService
         // Tester si la racine du zip à bien qu'un projet
         if ($finder->directories()->depth('== 0')->in($this->getThemeTmpDirectory() . '/' . $folderZipOpen)->count() > 1) {
             $tabReturn['msg']['errors'][] = $this->translator->trans('admin_theme#Plus d\'un dossier à été détecté à la racine du dossier ZIP, Arrêt de l\'installation du thème');
-            unlink($this->getThemeTmpDirectory() . '/' . $themeFolderName);
+            $filesystem->remove($this->getThemeTmpDirectory() . '/' . $themeFolderName);
             return $tabReturn;
         }
 
@@ -200,7 +200,7 @@ class ThemeService extends AppService
         {
             if($data === false)
             {
-                $tabReturn['msg']['errors'][] = $this->translator->trans('admin_theme#Un dossier obligatoire est manquant') . ' : ' . $key;
+                $tabReturn['msg']['errors'][] = $this->translator->trans('admin_theme#Un dossier obligatoire est manquant') . ' : <b>' . $key . '</b>';
                 $stop_install = true;
             }
         }
@@ -209,7 +209,7 @@ class ThemeService extends AppService
         {
             if($data === false)
             {
-                $tabReturn['msg']['errors'][] = $this->translator->trans('admin_theme#un fichier obligatoire est manquant') . ' : ' . $key;
+                $tabReturn['msg']['errors'][] = $this->translator->trans('admin_theme#un fichier obligatoire est manquant') . ' : <b>' . $key . '</b>';
                 $stop_install = true;
             }
         }
@@ -221,7 +221,6 @@ class ThemeService extends AppService
             $filesystem->remove($this->getThemeTmpDirectory() . '/' . $folderZipOpen);
             return $tabReturn;
         }
-
 
 
         $tabReturn['success'] = true;

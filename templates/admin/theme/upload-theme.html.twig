@@ -21,7 +21,7 @@
                         <div class="alert alert-danger">
                             <h5><i class="fa fa-exclamation-circle"></i> {{ "admin_theme#Votre thème n'a pas été importé" | trans }}</h5>
                             {% for error in install_error.msg.errors %}
-                                {{ error }}<br />
+                                {{ error | raw }}<br />
                             {% endfor %}
                         </div>
                     {% endif %}
@@ -30,7 +30,7 @@
                         <div class="alert alert-warning">
                             <h5><i class="fa fa-exclamation-circle"></i> {{ "admin_theme#Votre thème à correctemet été installé mais des warnings sont remontés" | trans }}</h5>
                             {% for warning in install_error.msg.warning %}
-                                {{ warning }}<br />
+                                {{ warning | raw }}<br />
                             {% endfor %}
                         </div>
                     {% endif %}
