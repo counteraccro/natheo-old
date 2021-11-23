@@ -13,6 +13,7 @@ use App\Service\Admin\ThemeService;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -55,6 +56,29 @@ class ThemeController extends AppAdminController
     }
 
     /**
+     * Permet de supprimer un thème
+     * @param Theme $theme
+     * @param int $confirm
+     * @return Response
+     */
+    #[Route('/delete/{id}/{confirm}', name: 'delete')]
+    public function delete(Theme $theme, int $confirm = 0): Response
+    {
+        if($confirm == 1)
+        {
+            return $this->json([
+                'msg' => $this->translator->trans('admin_media#dossier supprimé avec succès'),
+                'url' => $this->generateUrl('admin_media_ajax_see_folder'),
+                'str_loading' => $this->translator->trans('admin_media#Chargement du dossier parent')
+            ]);
+        }
+
+        return $this->render('admin/theme/ajax/ajax-modal-delete-theme.html.twig', [
+            'theme' => $theme,
+        ]);
+    }
+
+    /**
      * Permet de voir les données d'un thème
      * @param Theme $theme
      * @return Response
@@ -90,10 +114,33 @@ class ThemeController extends AppAdminController
         if($theme != null && $theme->getClientOriginalExtension() == 'zip')
         {
             /** @var UploadedFile $theme */
-            var_dump($theme);
             $name = $fileUploaderService->upload($theme, $this->themeService->getThemeTmpDirectory());
             $installError = $this->themeService->installNewTheme($name, $theme->getClientOriginalName());
             var_dump($installError);
+            if($installError['success'] === true)
+            {
+                echo "ici";
+                if(empty($installError['msg']['warning']))
+                {
+                    $this->addFlash('success', $this->translator->trans('admin_theme#Thème ajouté avec succès'));
+                }
+                else {
+
+                    $warningMsg = '';
+                    foreach($installError['msg']['warning'] as $warning)
+                    {
+                        $warningMsg .= '-' . $warning . '<br />';
+                    }
+
+                    if($warningMsg != "")
+                    {
+                        $warningMsg = " : <br />" . $warningMsg;
+                    }
+
+                    $this->addFlash('warning', $this->translator->trans('admin_theme#Thème ajouté avec succès mais des warnings sont remontés') . $warningMsg);
+                }
+                return $this->redirectToRoute('admin_theme_index');
+            }
 
         }
         elseif ($theme != null && $theme->getClientOriginalExtension() != 'zip')

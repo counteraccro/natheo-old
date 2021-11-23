@@ -415,3 +415,9 @@
 'admin_theme#un fichier obligatoire est manquant': 'un fichier obligatoire est manquant'
 'admin_theme#Votre thème n''a pas été importé': 'Votre thème n''a pas été importé'
 'admin_theme#Votre thème à correctemet été installé mais des warnings sont remontés': 'Votre thème à correctemet été installé mais des warnings sont remontés'
+'admin_theme#Thème ajouté avec succès': 'Thème ajouté avec succès'
+'admin_theme#Thème ajouté avec succès mais des warnings sont remontés': 'Thème ajouté avec succès mais des warnings sont remontés'
+'admin_theme#le champ suivante ne doit pas être vide': 'le champ suivante ne doit pas être vide'
+'admin_theme#le champ suivante est vide': 'le champ suivante est vide'
+'admin_theme#le nom du dossier de référence déclaré dans folder_ref ne correspond pas au dossier racine du thème': 'le nom du dossier de référence déclaré dans folder_ref ne correspond pas au dossier racine du thème'
+'admin_theme#Supprimer': Supprimer

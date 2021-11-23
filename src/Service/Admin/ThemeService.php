@@ -10,6 +10,7 @@ namespace App\Service\Admin;
 
 use App\Entity\Admin\Theme;
 use App\Service\AppService;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -27,15 +28,21 @@ class ThemeService extends AppService
     const CONFIG_KEY_CREATOR = 'creator';
     const DEFAULT_THEME = 'horizon';
 
+    const RELATIVE_PATH_CONFIG = 'config';
+    const RELATIVE_PATH_CONFIG_FILE = self::RELATIVE_PATH_CONFIG . DIRECTORY_SEPARATOR . 'config.yaml';
+    const RELATIVE_PATH_ASSET = 'assets';
+    const RELATIVE_PATH_ASSET_JS = self::RELATIVE_PATH_ASSET . DIRECTORY_SEPARATOR . 'js';
+    const RELATIVE_PATH_ASSET_CSS = self::RELATIVE_PATH_ASSET . DIRECTORY_SEPARATOR . 'css';
+
 
     /**
      * Tableau qui centralise les dossiers obligatoires que le thème doit avoir
      * @var array|false[]
      */
     private array $tabFolderExpected = [
-        'asset' => false,
-        'assets' . DIRECTORY_SEPARATOR . 'css' => false,
-        'assets' . DIRECTORY_SEPARATOR . 'js' => false,
+        self::RELATIVE_PATH_ASSET => false,
+        self::RELATIVE_PATH_ASSET_CSS => false,
+        self::RELATIVE_PATH_ASSET_JS => false,
         'config' => false,
         'views' => false,
         'views' . DIRECTORY_SEPARATOR . 'include' => false,
@@ -45,11 +52,25 @@ class ThemeService extends AppService
     ];
 
     /**
+     * Tableau qui centralise les champs attendus dans le fichier de config
+     * @var array|false[]
+     */
+    private array $tabFieldConfigExpected = [
+        self::CONFIG_KEY_NAME => ['can_empty' => false, 'success' => false],
+        self::CONFIG_KEY_APP_VERSION => ['can_empty' => false, 'success' => false],
+        self::CONFIG_KEY_SRC_IMG => ['can_empty' => true, 'success' => false],
+        self::CONFIG_KEY_VERSION => ['can_empty' => false, 'success' => false],
+        self::CONFIG_KEY_FOLDER_REF => ['can_empty' => false, 'success' => false],
+        self::CONFIG_KEY_DESCRIPTION => ['can_empty' => true, 'success' => false],
+        self::CONFIG_KEY_CREATOR => ['can_empty' => true, 'success' => false],
+    ];
+
+    /**
      * Tableau qui centralise les fichiers obligatoires que le thème doit avoir
      * @var string
      */
     private array $tabFileExpected = [
-        'config' . DIRECTORY_SEPARATOR . 'config.yaml2' => false,
+        self::RELATIVE_PATH_CONFIG_FILE => false,
     ];
 
     /**
@@ -124,7 +145,7 @@ class ThemeService extends AppService
      */
     public function getThemeDirectory(): string
     {
-        return $this->parameterBag->get('app_path_theme');
+        return $this->parameterBag->get('app_path_template_theme');
     }
 
     /**
@@ -137,6 +158,32 @@ class ThemeService extends AppService
     }
 
     /**
+     * Retourne le path du dossier js pour les themes
+     */
+    public function getThemeAssetJSDirectory(): string
+    {
+        return $this->parameterBag->get('app_path_js_theme');
+    }
+
+    /**
+     * Retourne le path du dossier css pour les themes
+     * @return string
+     */
+    public function getThemeAssetCSSDirectory(): string
+    {
+        return $this->parameterBag->get('app_path_css_theme');
+    }
+
+    /**
+     * Retourne le path du dossier theme public
+     * @return string
+     */
+    public function getThemePublicDirectory(): string
+    {
+        return $this->parameterBag->get('app_path_theme');
+    }
+
+    /**
      * Permet d'installer un nouveau Thème
      * @param string $themeFolderName
      * @param string $realName
@@ -144,7 +191,7 @@ class ThemeService extends AppService
      */
     public function installNewTheme(string $themeFolderName, string $realName): array
     {
-        $filesystem = new \Symfony\Component\Filesystem\Filesystem();
+        $filesystem = new Filesystem();
 
         $tabReturn = [
             'success' => false,
@@ -183,46 +230,94 @@ class ThemeService extends AppService
         /** @var SplFileInfo $dir */
         foreach ($finder->depth('< 100')->in($this->getThemeTmpDirectory() . '/' . $folderZipOpen . '/' . $theme_name)->sortByType() as $dir) {
 
-            if(isset($this->tabFolderExpected[$dir->getRelativePathname()]))
-            {
+            if (isset($this->tabFolderExpected[$dir->getRelativePathname()])) {
                 $this->tabFolderExpected[$dir->getRelativePathname()] = true;
             }
 
-            echo $dir->getRelativePathname() . '<br />';
-            if(isset($this->tabFileExpected[$dir->getRelativePathname()]))
-            {
+            if (isset($this->tabFileExpected[$dir->getRelativePathname()])) {
                 $this->tabFileExpected[$dir->getRelativePathname()] = true;
             }
         }
 
         $stop_install = false;
-        foreach($this->tabFolderExpected as $key => $data)
-        {
-            if($data === false)
-            {
+        foreach ($this->tabFolderExpected as $key => $data) {
+            if ($data === false) {
                 $tabReturn['msg']['errors'][] = $this->translator->trans('admin_theme#Un dossier obligatoire est manquant') . ' : <b>' . $key . '</b>';
                 $stop_install = true;
             }
         }
 
-        foreach($this->tabFileExpected as $key => $data)
-        {
-            if($data === false)
-            {
+        foreach ($this->tabFileExpected as $key => $data) {
+            if ($data === false) {
                 $tabReturn['msg']['errors'][] = $this->translator->trans('admin_theme#un fichier obligatoire est manquant') . ' : <b>' . $key . '</b>';
                 $stop_install = true;
             }
         }
 
         // Si un fichier manquant on stop l'installation ici
-        if($stop_install)
-        {
-            $filesystem->remove($this->getThemeTmpDirectory() . '/' . $themeFolderName);
-            $filesystem->remove($this->getThemeTmpDirectory() . '/' . $folderZipOpen);
+        if ($stop_install) {
+            $filesystem->remove($this->getThemeTmpDirectory() . DIRECTORY_SEPARATOR . $themeFolderName);
+            $filesystem->remove($this->getThemeTmpDirectory() . DIRECTORY_SEPARATOR . $folderZipOpen);
             return $tabReturn;
         }
 
+        // Vérification du fichier de config
+        $pathFileConfig = $this->getThemeTmpDirectory() . DIRECTORY_SEPARATOR . $folderZipOpen . DIRECTORY_SEPARATOR . $theme_name . DIRECTORY_SEPARATOR . self::RELATIVE_PATH_CONFIG_FILE;
+        $config = Yaml::parseFile($pathFileConfig);
 
+        $stop_install = false;
+        foreach ($config as $key => $value) {
+            if (isset($this->tabFieldConfigExpected[$key])) {
+
+                if ($this->tabFieldConfigExpected[$key]['can_empty'] === false && empty($value)) {
+                    $tabReturn['msg']['errors'][] = $this->translator->trans('admin_theme#le champ suivante ne doit pas être vide') . ' : <b>' . $key . '</b>';
+                    $stop_install = true;
+                }
+                if ($this->tabFieldConfigExpected[$key]['can_empty'] === true && empty($value)) {
+                    $tabReturn['msg']['warning'][] = $this->translator->trans('admin_theme#le champ suivante est vide') . ' : <b>' . $key . '</b>';
+                }
+            }
+        }
+        // Vérification si le nom déclaré dans le champ dossier_ref est bien celui du dossier principal du theme
+        if ($config[self::CONFIG_KEY_FOLDER_REF] != $theme_name) {
+            $tabReturn['msg']['errors'][] = $this->translator->trans('admin_theme#le nom du dossier de référence déclaré dans folder_ref ne correspond pas au dossier racine du thème');
+            $stop_install = true;
+        }
+
+        // Si une erreur est présente dans le fichier de config on stop l'installation ici
+        if ($stop_install) {
+            $tabReturn['success'] = false;
+            $filesystem->remove($this->getThemeTmpDirectory() . DIRECTORY_SEPARATOR . $themeFolderName);
+            //$filesystem->remove($this->getThemeTmpDirectory() . DIRECTORY_SEPARATOR . $folderZipOpen);
+            return $tabReturn;
+        }
+
+        $folder_ref = $config[self::CONFIG_KEY_FOLDER_REF];
+        $img = $config[self::CONFIG_KEY_SRC_IMG];
+
+        // Si ici s'est que tout est ok, on déplace les fichiers
+
+        // On déplace tout dans le dossier template\theme
+        $filesystem->mirror($this->getThemeTmpDirectory() . DIRECTORY_SEPARATOR . $folderZipOpen, $this->getThemeDirectory());
+
+        // Déplacement des assets
+        $filesystem->mkdir($this->getThemeAssetCSSDirectory() . DIRECTORY_SEPARATOR . $folder_ref);
+        $filesystem->mirror($this->getThemeDirectory() . DIRECTORY_SEPARATOR . $folder_ref . DIRECTORY_SEPARATOR . self::RELATIVE_PATH_ASSET_CSS, $this->getThemeAssetCSSDirectory() . DIRECTORY_SEPARATOR . $folder_ref);
+
+        $filesystem->mkdir($this->getThemeAssetJSDirectory() . DIRECTORY_SEPARATOR . $folder_ref);
+        $filesystem->mirror($this->getThemeDirectory() . DIRECTORY_SEPARATOR . $folder_ref . DIRECTORY_SEPARATOR . self::RELATIVE_PATH_ASSET_JS, $this->getThemeAssetJSDirectory() . DIRECTORY_SEPARATOR . $folder_ref);
+
+        // Déplacement de l'image de présentation
+        if (!empty($img)) {
+            $filesystem->mkdir($this->getThemePublicDirectory() . DIRECTORY_SEPARATOR . $folder_ref);
+            $filesystem->copy($this->getThemeDirectory() . DIRECTORY_SEPARATOR . $folder_ref . DIRECTORY_SEPARATOR . self::RELATIVE_PATH_CONFIG . DIRECTORY_SEPARATOR . $img,
+                $this->getThemePublicDirectory() . DIRECTORY_SEPARATOR . $folder_ref . DIRECTORY_SEPARATOR . $img, true);
+        }
+
+
+        // Tout est fini on vide le dossier TMP
+        $filesystem->remove($this->getThemeTmpDirectory() . DIRECTORY_SEPARATOR . $themeFolderName);
+        $filesystem->remove($this->getThemeTmpDirectory() . DIRECTORY_SEPARATOR . $folderZipOpen);
         $tabReturn['success'] = true;
         return $tabReturn;
 

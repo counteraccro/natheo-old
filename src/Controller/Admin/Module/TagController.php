@@ -39,7 +39,7 @@ class TagController extends AppAdminController
             'name' => $this->translator->trans("admin_tag#Nom"),
         ];
 
-        return $this->render('admin/module/tag/index.html.twig', [
+        return $this->render('admin/modules/tag/index.html.twig', [
             'breadcrumb' => $breadcrumb,
             'fieldSearch' => $fieldSearch,
             'page' => $page
@@ -63,7 +63,7 @@ class TagController extends AppAdminController
         $tagRepo = $this->getDoctrine()->getRepository(Tag::class);
         $listeTags = $tagRepo->listeTagPaginate($page, $limit, $filter);
 
-        return $this->render('admin/module/tag/ajax/ajax-listing.html.twig', [
+        return $this->render('admin/modules/tag/ajax/ajax-listing.html.twig', [
             'listeTags' => $listeTags,
             'page' => $page,
             'limit' => $limit,
@@ -114,7 +114,7 @@ class TagController extends AppAdminController
             return $this->redirectToRoute('admin_tag_index', $param);
         }
 
-        return $this->render('admin/module/tag/create-update.html.twig', [
+        return $this->render('admin/modules/tag/create-update.html.twig', [
             'breadcrumb' => $breadcrumb,
             'form' => $form->createView(),
             'title' => $title,

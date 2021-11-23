@@ -25,16 +25,14 @@
                             {% endfor %}
                         </div>
                     {% endif %}
-
-                    {% if install_error.msg.warning is not empty %}
-                        <div class="alert alert-warning">
-                            <h5><i class="fa fa-exclamation-circle"></i> {{ "admin_theme#Votre thème à correctemet été installé mais des warnings sont remontés" | trans }}</h5>
-                            {% for warning in install_error.msg.warning %}
-                                {{ warning | raw }}<br />
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-
+                {% endif %}
+                {% if  install_error is not empty and install_error.msg.warning is not empty %}
+                    <div class="alert alert-warning">
+                        <h5><i class="fa fa-exclamation-circle"></i> {{ "admin_theme#Votre thème à correctemet été installé mais des warnings sont remontés" | trans }}</h5>
+                        {% for warning in install_error.msg.warning %}
+                            {{ warning | raw }}<br />
+                        {% endfor %}
+                    </div>
                 {% endif %}
 
                 <form action="{{ path('admin_theme_upload') }}" method="post" enctype="multipart/form-data">

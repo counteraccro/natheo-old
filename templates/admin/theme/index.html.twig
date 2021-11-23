@@ -8,6 +8,23 @@
 
         {{ breadcrumb | breadcrumb | raw }}
 
+        {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }} alert-dismissible fade show msg-role-success">
+                <i class="fa fa-check"></i> {{ message | raw }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+            <script>
+                $( document ).ready(function() {
+                    function hide_msg(){
+                        $(".msg-role-success").hide(400);
+                    };
+                    window.setTimeout( hide_msg, 5000 ); // 5 seconds
+                })
+            </script>
+        {% endfor %}
+
         <div class="float-end">
 
             {% if 'admin_theme_upload' | isGranted %}
@@ -24,12 +41,13 @@
                 <i class="fa fa-pager"></i> {{ "admin_theme#Thèmes installés" | trans }}
             </div>
             <div class="card-body">
-                <div class="row row-cols-1 row-cols-md-4 g-4">
+                <div class="row row-cols-1 row-cols-md-3 g-4">
                     {% for theme in tabThemes %}
 
                         {% set selected ='' %}
                         {% set depreciate = '' %}
                         {% set btn = "btn-outline-primary" %}
+                        {% set btn_delete = "btn-outline-danger" %}
                         {% set btn_selected = 'fa-hand-point-up' %}
                         {% set btn_selected_text = 'admin_theme#Selectionner ce thème' | trans %}
                         {% set btn_disabled = '' %}
@@ -38,6 +56,7 @@
                         {% if (theme.theme.isSelected) %}
                             {% set selected = "border-primary border-3" %}
                             {% set btn = "btn-primary" %}
+                            {% set btn_delete = "btn-danger" %}
                             {% set btn_selected = 'fa-check' %}
                             {% set btn_selected_text = 'admin_theme#Thème selectionné' | trans %}
                             {% set btn_disabled = 'disabled' %}
@@ -46,6 +65,7 @@
                             {% set depreciate = "border-danger border-3" %}
                             {% set selected = "" %}
                             {% set btn = "btn-outline-danger" %}
+                            {% set btn_delete = "btn-outline-danger" %}
                             {% set span_app_version = "text-danger" %}
 
                             {% if (theme.theme.isSelected) %}
@@ -85,6 +105,9 @@
                                     {% endif %}
                                     {% if 'admin_theme_select' | isGranted %}
                                         <a href="{{ path('admin_theme_select', {'id' : theme.theme.id}) }}" class="btn {{ btn }} {{ btn_disabled }}"><i class="fa {{ btn_selected }}"></i> {{ btn_selected_text }}</a>
+                                    {% endif %}
+                                    {% if 'admin_theme_delete' | isGranted %}
+                                        <a href="{{ path('admin_theme_delete', {'id' : theme.theme.id}) }}" class="btn {{ btn_delete }}"><i class="fa fa-trash-alt"></i> {{ "admin_theme#Supprimer" | trans }}</a>
                                     {% endif %}
                                 </div>
                             </div>
