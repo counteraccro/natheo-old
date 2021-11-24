@@ -1,22 +1,29 @@
 <div class="modal" tabindex="-1" id="modale-delete-theme">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header bg-danger text-white">
-                <h5 class="modal-title"><i class="fa fa-folder-minus"></i> {{ "admin_media#Suppression du dossier" | trans }} "{{ theme.name }}"</h5>
+                <h5 class="modal-title"><i class="fa fa-upload"></i> {{ "admin_theme#Suppression du thème" | trans }} "{{ theme.name }}"</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <h5>{{ "admin_media#Attention" | trans }}</h5>
+                <h5>{{ "admin_theme#Attention" | trans }}</h5>
                 <div class="text-danger">
-                    {{ "admin_media#Est vous sur de vouloir supprimer le dossier %folder% ainsi que tous les médias associés ?"  | trans({'%folder%' : theme.name}) }} <br />
-                    <b>{{ "admin_media#Cette action est définitive et sans retour arrière" | trans }}</b>
+                    {{ "admin_theme#Est vous sur de vouloir supprimer ce thème ainsi que tous les données associées ?"  | trans }} <br />
+                    {{ "admin_theme#La suppression d'un thème implique :"  | trans }} <br >
+                    <i class="fa fa-long-arrow-alt-right"></i> {{ "admin_theme#La supression de son dossier présent dans template"  | trans }} <br >
+                    <i class="fa fa-long-arrow-alt-right"></i> {{ "admin_theme#La supression de ses assets présent dans assets/css/template et assets/js/template"  | trans }} <br >
+                    <i class="fa fa-long-arrow-alt-right"></i> {{ "admin_theme#La suppression des médias propre au thème"  | trans }} <br >
+                    <i class="fa fa-long-arrow-alt-right"></i> {{ "admin_theme#La supression des données du thème en base de données"  | trans }} <br >
+                    <i class="fa fa-long-arrow-alt-right"></i> {{ "admin_theme#Si ce thème était votre thème principal, le thème par default sera sélectionné"  | trans }} <br >
+                    <b>{{ "admin_theme#Cette action est définitive et sans retour arrière" | trans }}</b>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ "admin_media#Annuler" | trans }}</button>
-                <button type="button" class="btn btn-danger" id="btn-confirm-delete-folder"
-                        data-loading="{{ "admin_media#Suppression du dossier en court...." | trans }}"
-                        data-url="{{ path('admin_media_ajax_delete_folder', {'id' : theme.id, 'confirm' : true}) }}">{{ "admin_media#Supprimer le dossier" | trans }}</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ "admin_theme#Annuler" | trans }}</button>
+                <button type="button" class="btn btn-danger" id="btn-confirm-delete-theme"
+                        data-loading="{{ "admin_theme#Suppression du theme en court...." | trans }}"
+                        data-url="{{ path('admin_theme_ajax_delete', {'id' : theme.id, 'confirm' : true}) }}"
+                        data-redirect="{{ path('admin_theme_index') }}">{{ "admin_theme#Supprimer le thème" | trans }}</button>
             </div>
         </div>
     </div>
@@ -28,8 +35,7 @@
         $(document).ready(function () {
             let modal = new bootstrap.Modal($('#modale-delete-theme'), [])
             modal.toggle();
-
-            MediaLib.EventDeleteFolder(modal);
+            Theme.EventDelete(modal);
         });
     </script>
 

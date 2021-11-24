@@ -56,13 +56,13 @@ class ThemeService extends AppService
      * @var array|false[]
      */
     private array $tabFieldConfigExpected = [
-        self::CONFIG_KEY_NAME => ['can_empty' => false, 'success' => false],
-        self::CONFIG_KEY_APP_VERSION => ['can_empty' => false, 'success' => false],
-        self::CONFIG_KEY_SRC_IMG => ['can_empty' => true, 'success' => false],
-        self::CONFIG_KEY_VERSION => ['can_empty' => false, 'success' => false],
-        self::CONFIG_KEY_FOLDER_REF => ['can_empty' => false, 'success' => false],
-        self::CONFIG_KEY_DESCRIPTION => ['can_empty' => true, 'success' => false],
-        self::CONFIG_KEY_CREATOR => ['can_empty' => true, 'success' => false],
+        self::CONFIG_KEY_NAME => ['can_empty' => false],
+        self::CONFIG_KEY_APP_VERSION => ['can_empty' => false],
+        self::CONFIG_KEY_SRC_IMG => ['can_empty' => true],
+        self::CONFIG_KEY_VERSION => ['can_empty' => false],
+        self::CONFIG_KEY_FOLDER_REF => ['can_empty' => false],
+        self::CONFIG_KEY_DESCRIPTION => ['can_empty' => true],
+        self::CONFIG_KEY_CREATOR => ['can_empty' => true],
     ];
 
     /**
@@ -181,6 +181,15 @@ class ThemeService extends AppService
     public function getThemePublicDirectory(): string
     {
         return $this->parameterBag->get('app_path_theme');
+    }
+
+    /**
+     * Retourne le thème par default configuré
+     * @return string
+     */
+    public function getDefaultTheme():string
+    {
+        return $this->parameterBag->get('app_default_theme');
     }
 
     /**
@@ -320,10 +329,29 @@ class ThemeService extends AppService
         $filesystem->remove($this->getThemeTmpDirectory() . DIRECTORY_SEPARATOR . $folderZipOpen);
         $tabReturn['success'] = true;
         return $tabReturn;
+    }
 
+    /**
+     * Suppression d'un thème
+     * @param Theme $theme
+     */
+    public function deleteTheme(Theme $theme) {
+        $filesystem = new Filesystem();
+        $folder_ref = $theme->getFolderRef();
+        $filesystem->remove($this->getThemeAssetCSSDirectory(). DIRECTORY_SEPARATOR . $folder_ref);
+        $filesystem->remove($this->getThemeAssetJSDirectory(). DIRECTORY_SEPARATOR . $folder_ref);
+        $filesystem->remove($this->getThemeDirectory(). DIRECTORY_SEPARATOR . $folder_ref);
+        $filesystem->remove($this->getThemePublicDirectory() . DIRECTORY_SEPARATOR . $folder_ref);
 
-        /*$filesystem = new Filesystem();
-        $filesystem->mirror($this->getThemeTmpDirectory() . '/' . 'open-zip/theme-upload', $this->getThemeDirectory());*/
+        if($theme->getIsSelected() === true)
+        {
+            /** @var Theme $defaultTheme */
+            $defaultTheme = $this->doctrine->getRepository(Theme::class)->findOneBy(['name' => $this->getDefaultTheme()]);
+            $defaultTheme->setIsSelected(true);
+            $this->doctrine->getManager()->persist($defaultTheme);
+        }
 
+        $this->doctrine->getManager()->remove($theme);
+        $this->doctrine->getManager()->flush();
     }
 }

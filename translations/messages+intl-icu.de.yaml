@@ -81,6 +81,9 @@
 'admin_faq#Questions': __Questions
 'admin_faq#Catégories': __Catégories
 'admin_theme#Thèmes': __Thèmes
+'admin_system#Selectionne une donnée de type {data}': '__Selectionne une donnée de type {data}'
+'admin_system#Voir une donnée de type {data}': '__Voir une donnée de type {data}'
+'admin_system#Importer une donnée de type {data}': '__Importer une donnée de type {data}'
 'admin_dashboard#Dashboard': __Dashboard
 'admin_media#Médiathèque': __Médiathèque
 'admin_media#Nouveau dossier': '__Nouveau dossier'
@@ -392,9 +395,6 @@
 'admin_theme#Version CMS compatibilité': '__Version CMS compatibilité'
 'admin_theme#Contenu du thème': '__Contenu du thème'
 'admin_theme#Importer un thème': '__Importer un thème'
-'admin_system#Selectionne une donnée de type {data}': '__Selectionne une donnée de type {data}'
-'admin_system#Voir une donnée de type {data}': '__Voir une donnée de type {data}'
-'admin_system#Importer une donnée de type {data}': '__Importer une donnée de type {data}'
 'admin_theme#Pour que le thème ajouté fonctionne correctement celui ci doit contenir les données suivantes': '__Pour que le thème ajouté fonctionne correctement celui ci doit contenir les données suivantes'
 'admin_theme#Nom du thème': '__Nom du thème'
 'admin_theme#Fichier de config contentant les infos du thème': '__Fichier de config contentant les infos du thème'
@@ -421,3 +421,28 @@
 'admin_theme#le champ suivante est vide': '__le champ suivante est vide'
 'admin_theme#le nom du dossier de référence déclaré dans folder_ref ne correspond pas au dossier racine du thème': '__le nom du dossier de référence déclaré dans folder_ref ne correspond pas au dossier racine du thème'
 'admin_theme#Supprimer': __Supprimer
+'admin_theme#Suppression du thème': '__Suppression du thème'
+'admin_theme#Attention': __Attention
+'admin_theme#Est vous sur de vouloir supprimer ce thème ainsi que tous les données associées ?': '__Est vous sur de vouloir supprimer ce thème ainsi que tous les données associées ?'
+'admin_theme#La suppression d''un thème implique :': '__La suppression d''un thème implique :'
+'admin_theme#La supression de son dossier présent dans template': '__La supression de son dossier présent dans template'
+'admin_theme#La supression de ses assets présent dans assets/css/template et assets/js/template': '__La supression de ses assets présent dans assets/css/template et assets/js/template'
+'admin_theme#La suppression des médias propre au thème': '__La suppression des médias propre au thème'
+'admin_theme#La supression des données du thème en base de données': '__La supression des données du thème en base de données'
+'admin_theme#Cette action est définitive et sans retour arrière': '__Cette action est définitive et sans retour arrière'
+'admin_theme#Annuler': __Annuler
+'admin_theme#Suppression du theme en court....': '__Suppression du theme en court....'
+'admin_theme#Supprimer le thème': '__Supprimer le thème'
+'admin_theme#Thème supprimé avec succès': '__Thème supprimé avec succès'
+'admin_theme#Si ce thème était votre thème principal, le thème par default sera séléectionné': '__Si ce thème était votre thème principal, le thème par default sera séléectionné'
+'admin_theme#Si ce thème était votre thème principal, le thème par default sera sélectionné': '__Si ce thème était votre thème principal, le thème par default sera sélectionné'
+'admin_theme#Le fichier de config doit contenir les informations suivantes': '__Le fichier de config doit contenir les informations suivantes'
+'admin_theme#Version minimum du CMS': '__Version minimum du CMS'
+'admin_theme#Version du thème': '__Version du thème'
+'admin_theme# path pour l''image d''illustration du thème': '__ path pour l''image d''illustration du thème'
+'admin_theme#Nom du dossier de référence du thème': '__Nom du dossier de référence du thème'
+'admin_theme#Description du thème': '__Description du thème'
+'admin_theme#Auteur du thème': '__Auteur du thème'
+'admin_theme#Afin de facilité la maintenance et centralisé les assets (JS et CSS)': '__Afin de facilité la maintenance et centralisé les assets (JS et CSS)'
+'admin_theme#Vous devez appeler vos assets depuis le fichier': '__Vous devez appeler vos assets depuis le fichier'
+'admin_theme#Tous vos appels d''assets devront ce faire de la façon suivante': '__Tous vos appels d''assets devront ce faire de la façon suivante'

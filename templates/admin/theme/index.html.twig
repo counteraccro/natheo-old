@@ -3,7 +3,7 @@
 {% block title %}{{ "admin_theme#Gestion des thèmes" | trans }}{% endblock %}
 
 {% block body %}
-    <div id="admin-system-globale">
+    <div id="admin-theme-globale">
         <h1>{{ "admin_theme#Gestion des thèmes" | trans }}</h1>
 
         {{ breadcrumb | breadcrumb | raw }}
@@ -106,8 +106,8 @@
                                     {% if 'admin_theme_select' | isGranted %}
                                         <a href="{{ path('admin_theme_select', {'id' : theme.theme.id}) }}" class="btn {{ btn }} {{ btn_disabled }}"><i class="fa {{ btn_selected }}"></i> {{ btn_selected_text }}</a>
                                     {% endif %}
-                                    {% if 'admin_theme_delete' | isGranted %}
-                                        <a href="{{ path('admin_theme_delete', {'id' : theme.theme.id}) }}" class="btn {{ btn_delete }}"><i class="fa fa-trash-alt"></i> {{ "admin_theme#Supprimer" | trans }}</a>
+                                    {% if 'admin_theme_ajax_delete' | isGranted and (default_theme != theme.theme.name and "bootstrap" != theme.theme.name) %}
+                                        <a href="#" data-url="{{ path('admin_theme_ajax_delete', {'id' : theme.theme.id}) }}" id="btn-delete-theme" class="btn {{ btn_delete }}" data-loading="{{ "admin_theme#Chargement de la modale pour supprimer le thème" }}"><i class="fa fa-trash-alt"></i> {{ "admin_theme#Supprimer" | trans }}</a>
                                     {% endif %}
                                 </div>
                             </div>
@@ -123,7 +123,8 @@
 
     <script>
         $(document).ready(function () {
-
+            Theme.Launch();
+            Theme.Event();
         });
     </script>
 

@@ -19,18 +19,22 @@
 
                     {% if install_error.msg.errors is not empty %}
                         <div class="alert alert-danger">
-                            <h5><i class="fa fa-exclamation-circle"></i> {{ "admin_theme#Votre thème n'a pas été importé" | trans }}</h5>
+                            <h5>
+                                <i class="fa fa-exclamation-circle"></i> {{ "admin_theme#Votre thème n'a pas été importé" | trans }}
+                            </h5>
                             {% for error in install_error.msg.errors %}
-                                {{ error | raw }}<br />
+                                {{ error | raw }}<br/>
                             {% endfor %}
                         </div>
                     {% endif %}
                 {% endif %}
                 {% if  install_error is not empty and install_error.msg.warning is not empty %}
                     <div class="alert alert-warning">
-                        <h5><i class="fa fa-exclamation-circle"></i> {{ "admin_theme#Votre thème à correctemet été installé mais des warnings sont remontés" | trans }}</h5>
+                        <h5>
+                            <i class="fa fa-exclamation-circle"></i> {{ "admin_theme#Votre thème à correctemet été installé mais des warnings sont remontés" | trans }}
+                        </h5>
                         {% for warning in install_error.msg.warning %}
-                            {{ warning | raw }}<br />
+                            {{ warning | raw }}<br/>
                         {% endfor %}
                     </div>
                 {% endif %}
@@ -66,87 +70,130 @@
                 <i class="fa fa-info"></i> {{ "admin_theme#Information" | trans }}
             </div>
             <div class="card-body">
-                <p class="card-text">{{ "admin_theme#Pour que le thème ajouté fonctionne correctement celui ci doit contenir les données suivantes" | trans }}
-                    : </p>
-                <div id="admin-theme-see">
-                    <div id="theme-tree">
-                        <ul>
-                            <li><i class="fa fa-folder"></i> [{{ "admin_theme#Nom du thème" | trans }}]
+                <div class="row">
+
+                    <div class="col-6">
+
+
+                        <p class="card-text">{{ "admin_theme#Pour que le thème ajouté fonctionne correctement celui ci doit contenir les données suivantes" | trans }}
+                            : </p>
+                        <div id="admin-theme-see">
+                            <div id="theme-tree">
                                 <ul>
-                                    <li><i class="fa fa-folder"></i> config
+                                    <li><i class="fa fa-folder"></i> [{{ "admin_theme#Nom du thème" | trans }}]
                                         <ul>
+                                            <li><i class="fa fa-folder"></i> config
+                                                <ul>
+                                                    <li>
+                                                        <i class="fa fa-file"></i> config.yaml
+                                                        <i class="fa fa-long-arrow-alt-right"></i>
+                                                        <i>{{ "admin_theme#Fichier de config contentant les infos du thème" | trans }}</i>
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa fa-image"></i> thumbnail.png
+                                                        <i class="fa fa-long-arrow-alt-right"></i>
+                                                        <i>{{ "admin_theme#Image pour illustrer le thème" | trans }}</i>
+                                                    </li>
+                                                </ul>
+                                            </li>
                                             <li>
-                                                <i class="fa fa-file"></i> config.yaml
+                                                <i class="fa fa-folder"></i> assets
+                                                <ul>
+                                                    <li>
+                                                        <i class="fa fa-folder"></i> css
+                                                        <ul>
+                                                            <li>
+                                                                <i class="fa fa-image"></i> style.css
+                                                                <i class="fa fa-long-arrow-alt-right"></i>
+                                                                <i>{{ "admin_theme#Vos fichiers CSS propre au thème" | trans }}</i>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa fa-folder"></i> js
+                                                        <ul>
+                                                            <li>
+                                                                <i class="fa fa-file"></i> script.js
+                                                                <i class="fa fa-long-arrow-alt-right"></i>
+                                                                <i>{{ "admin_theme#Vos fichiers JS propre au thème" | trans }}</i>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-folder"></i> views
+                                                <ul>
+                                                    <li><i class="fa fa-folder"></i> include
+                                                        <ul>
+                                                            <li>
+                                                                <i class="fa fa-file"></i> assets.html.twig
+                                                                <i class="fa fa-long-arrow-alt-right"></i>
+                                                                <i>{{ "admin_theme#Fichier qui centralise les appels aux assets (JS et CSS)" | trans }}</i>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><i class="fa fa-folder"></i> modules
+                                                        <ul>
+                                                            <li><i class="fa fa-folder"></i> blog</li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><i class="fa fa-file"></i> index.html.twig</li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                            <li>
+                                                <i class="fa fa-file"></i> base.html.twig
                                                 <i class="fa fa-long-arrow-alt-right"></i>
-                                                <i>{{ "admin_theme#Fichier de config contentant les infos du thème" | trans }}</i>
+                                                <i>{{ "admin_theme#Stucture de la page" | trans }}</i>
                                             </li>
-                                            <li>
-                                                <i class="fa fa-image"></i> thumbnail.png
-                                                <i class="fa fa-long-arrow-alt-right"></i>
-                                                <i>{{ "admin_theme#Image pour illustrer le thème" | trans }}</i>
                                             </li>
                                         </ul>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-folder"></i> assets
-                                        <ul>
-                                            <li>
-                                                <i class="fa fa-folder"></i> css
-                                                <ul>
-                                                    <li>
-                                                        <i class="fa fa-image"></i> style.css
-                                                        <i class="fa fa-long-arrow-alt-right"></i>
-                                                        <i>{{ "admin_theme#Vos fichiers CSS propre au thème" | trans }}</i>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <i class="fa fa-folder"></i> js
-                                                <ul>
-                                                    <li>
-                                                        <i class="fa fa-file"></i> script.js
-                                                        <i class="fa fa-long-arrow-alt-right"></i>
-                                                        <i>{{ "admin_theme#Vos fichiers JS propre au thème" | trans }}</i>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-folder"></i> views
-                                        <ul>
-                                            <li><i class="fa fa-folder"></i> include
-                                                <ul>
-                                                    <li>
-                                                        <i class="fa fa-file"></i> assets.html.twig
-                                                        <i class="fa fa-long-arrow-alt-right"></i>
-                                                        <i>{{ "admin_theme#Fichier qui centralise les appels aux assets (JS et CSS)" | trans }}</i>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li><i class="fa fa-folder"></i> modules
-                                                <ul>
-                                                    <li><i class="fa fa-folder"></i> blog</li>
-                                                </ul>
-                                            </li>
-                                            <li><i class="fa fa-file"></i> index.html.twig</li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                    <li>
-                                        <i class="fa fa-file"></i> base.html.twig
-                                        <i class="fa fa-long-arrow-alt-right"></i>
-                                        <i>{{ "admin_theme#Stucture de la page" | trans }}</i>
-                                    </li>
                                     </li>
                                 </ul>
-                            </li>
-                        </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        {{ "admin_theme#Le fichier de config doit contenir les informations suivantes" | trans }} <br>
+
+                        <div class="border border-primary p-3">
+                            <samp>app_version : '1.X'</samp> <i
+                                    class="fa fa-long-arrow-alt-right"></i> {{ "admin_theme#Version minimum du CMS" | trans }}
+                            <br/>
+                            <samp>version : '1.X.X'</samp> <i
+                                    class="fa fa-long-arrow-alt-right"></i> {{ "admin_theme#Version du thème" | trans }}
+                            <br/>
+                            <samp>src_img : 'thumbnail.png'</samp> <i
+                                    class="fa fa-long-arrow-alt-right"></i> {{ "admin_theme# path pour l'image d'illustration du thème" | trans }}
+                            <br/>
+                            <samp>name : 'exemple'</samp> <i
+                                    class="fa fa-long-arrow-alt-right"></i> {{ "admin_theme#Nom du thème" | trans }}
+                            <br/>
+                            <samp>folder_ref : 'exemple'</samp> <i
+                                    class="fa fa-long-arrow-alt-right"></i> {{ "admin_theme#Nom du dossier de référence du thème" | trans }}
+                            <br/>
+                            <samp>description: 'une description'</samp> <i
+                                    class="fa fa-long-arrow-alt-right"></i> {{ "admin_theme#Description du thème" | trans }}
+                            <br/>
+                            <samp>creator: 'Natheo CMS'</samp> <i
+                                    class="fa fa-long-arrow-alt-right"></i> {{ "admin_theme#Auteur du thème" | trans }}
+                            <br/>
+                        </div>
+
+                        <div class="alert alert-warning mt-3">
+                            <h6> <i class="fa fa-exclamation-triangle"></i> {{ "admin_theme#Attention" | trans }}</h6>
+                            {{ "admin_theme#Afin de facilité la maintenance et centralisé les assets (JS et CSS) " | trans }} <br />
+                            {{ "admin_theme#Vous devez appeler vos assets depuis le fichier" | trans }} <kbd>[mon-theme]/views/include/assets.html.twig</kbd>
+                            <p class="mt-2">{{ "admin_theme#Tous vos appels d'assets devront ce faire de la façon suivante" | trans }} : <br />
+                                <kbd>< link rel="stylesheet" href="{{ asset('assets/[css|js]]/themes/[mon-theme]/file.[css|js]') }}"></kbd></p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 {% endblock %}
 
 {% block javascripts %}

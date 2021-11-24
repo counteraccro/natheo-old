@@ -9,11 +9,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Admin\Theme;
 use App\Service\Admin\System\FileUploaderService;
-use App\Service\Admin\ThemeService;
-use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,14 +19,14 @@ class ThemeController extends AppAdminController
 {
     /**
      * Point d'entrée sur la gestion des themes
-     * @param ThemeService $themeService
      * @return Response
      */
     #[Route('/index', name: 'index')]
-    public function index(ThemeService $themeService): Response
+    public function index(): Response
     {
 
-        $tabThemes = $themeService->readThemes();
+        $tabThemes = $this->themeService->readThemes();
+        $default_theme = $this->themeService->getDefaultTheme();
 
         $breadcrumb = [
             $this->translator->trans('admin_dashboard#Dashboard') => 'admin_dashboard_index',
@@ -40,6 +36,7 @@ class ThemeController extends AppAdminController
         return $this->render('admin/theme/index.html.twig', [
             'breadcrumb' => $breadcrumb,
             'tabThemes' => $tabThemes,
+            'default_theme' => $default_theme
         ]);
     }
 
@@ -61,15 +58,15 @@ class ThemeController extends AppAdminController
      * @param int $confirm
      * @return Response
      */
-    #[Route('/delete/{id}/{confirm}', name: 'delete')]
+    #[Route('/delete/{id}/{confirm}', name: 'ajax_delete')]
     public function delete(Theme $theme, int $confirm = 0): Response
     {
         if($confirm == 1)
         {
+
+            $this->themeService->deleteTheme($theme);
             return $this->json([
-                'msg' => $this->translator->trans('admin_media#dossier supprimé avec succès'),
-                'url' => $this->generateUrl('admin_media_ajax_see_folder'),
-                'str_loading' => $this->translator->trans('admin_media#Chargement du dossier parent')
+                'msg' => $this->translator->trans('admin_theme#Thème supprimé avec succès'),
             ]);
         }
 
@@ -107,7 +104,6 @@ class ThemeController extends AppAdminController
     #[Route('/upload-theme', name: 'upload')]
     public function uploadTheme(FileUploaderService $fileUploaderService): Response
     {
-
         $msg_error = '';
         $installError = [];
         $theme = $this->request->getCurrentRequest()->files->get('theme-folder');
