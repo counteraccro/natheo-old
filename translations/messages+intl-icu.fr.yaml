@@ -446,3 +446,5 @@
 'admin_theme#Afin de facilité la maintenance et centralisé les assets (JS et CSS)': 'Afin de facilité la maintenance et centralisé les assets (JS et CSS)'
 'admin_theme#Vous devez appeler vos assets depuis le fichier': 'Vous devez appeler vos assets depuis le fichier'
 'admin_theme#Tous vos appels d''assets devront ce faire de la façon suivante': 'Tous vos appels d''assets devront ce faire de la façon suivante'
+'admin_theme#si vous souhaitez faire une extension d''un template vous devez le faire de la façon suivante': 'si vous souhaitez faire une extension d''un template vous devez le faire de la façon suivante'
+'admin_theme#si vous souhaitez faire un include d''un fichier twig présent dans le theme vous devez le faire de la façon suivante': 'si vous souhaitez faire un include d''un fichier twig présent dans le theme vous devez le faire de la façon suivante'

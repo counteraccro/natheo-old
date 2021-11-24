@@ -183,10 +183,20 @@
 
                         <div class="alert alert-warning mt-3">
                             <h6> <i class="fa fa-exclamation-triangle"></i> {{ "admin_theme#Attention" | trans }}</h6>
-                            {{ "admin_theme#Afin de facilité la maintenance et centralisé les assets (JS et CSS) " | trans }} <br />
+                            {{ "admin_theme#Afin de facilité la maintenance et centralisé les assets (JS et CSS)" | trans }} <br />
                             {{ "admin_theme#Vous devez appeler vos assets depuis le fichier" | trans }} <kbd>[mon-theme]/views/include/assets.html.twig</kbd>
                             <p class="mt-2">{{ "admin_theme#Tous vos appels d'assets devront ce faire de la façon suivante" | trans }} : <br />
-                                <kbd>< link rel="stylesheet" href="{{ asset('assets/[css|js]]/themes/[mon-theme]/file.[css|js]') }}"></kbd></p>
+                                <kbd>< link rel="stylesheet" href="{ { asset('style.css' | cms_asset_css_url) }}"></kbd> <br />
+                                <kbd>< link rel="stylesheet" href="{ { asset('script.js' | cms_asset_js_url) }}"></kbd>
+                            </p>
+
+                            <p class="mt-2"> {{ "admin_theme#si vous souhaitez faire une extension d'un template vous devez le faire de la façon suivante" | trans }} :<br />
+                                <kbd>{ % extends 'base.html.twig' | cms_path_template %}</kbd>
+                            </p>
+
+                            <p class="mt-2"> {{ "admin_theme#si vous souhaitez faire un include d'un fichier twig présent dans le theme vous devez le faire de la façon suivante" | trans }} :<br />
+                                <kbd> { % include 'views/include/assets.html.twig' | cms_path_template %}</kbd>
+                            </p>
                         </div>
                     </div>
                 </div>
