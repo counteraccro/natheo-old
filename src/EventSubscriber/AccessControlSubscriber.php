@@ -4,6 +4,7 @@ namespace App\EventSubscriber;
 
 use App\Controller\TokenAuthenticatedController;
 use App\Service\Admin\System\AccessService;
+use App\Service\Admin\ThemeService;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\ControllerEvent;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
@@ -21,14 +22,17 @@ class AccessControlSubscriber implements EventSubscriberInterface
      */
     private AccessService $accessService;
 
+    private ThemeService $themeService;
+
     /**
      * @var Environment
      */
     private Environment $twig;
 
-    public function __construct(AccessService $accessService, Environment $twig)
+    public function __construct(AccessService $accessService, ThemeService $themeService, Environment $twig)
     {
         $this->accessService = $accessService;
+        $this->themeService = $themeService;
         $this->twig = $twig;
 
     }
@@ -40,6 +44,9 @@ class AccessControlSubscriber implements EventSubscriberInterface
      */
     public function onKernelController(ControllerEvent $event)
     {
+
+        // Mise en session du thème selectionné
+        $this->themeService->getCurrentTheme();
 
         // SI la personne n'a pas les droits on la redirige vers une page d'erreur
         if(!$this->accessService->isGranted($event->getRequest()->attributes->get('_route')))

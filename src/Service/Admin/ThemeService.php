@@ -34,6 +34,8 @@ class ThemeService extends AppService
     const RELATIVE_PATH_ASSET_JS = self::RELATIVE_PATH_ASSET . DIRECTORY_SEPARATOR . 'js';
     const RELATIVE_PATH_ASSET_CSS = self::RELATIVE_PATH_ASSET . DIRECTORY_SEPARATOR . 'css';
 
+    const KEY_SESSION_CURRENT_THEME = "session-current-theme";
+
 
     /**
      * Tableau qui centralise les dossiers obligatoires que le thème doit avoir
@@ -190,6 +192,29 @@ class ThemeService extends AppService
     public function getDefaultTheme():string
     {
         return $this->parameterBag->get('app_default_theme');
+    }
+
+    /**
+     * Permet de récupérer le dossier ref du thème courant
+     * @return string
+     */
+    public function getCurrentTheme(): string
+    {
+        if(!$this->request->getSession()->has(self::KEY_SESSION_CURRENT_THEME))
+        {
+            $this->setCurrentThemeInSession();
+        }
+        return $this->request->getSession()->get(self::KEY_SESSION_CURRENT_THEME);
+    }
+
+    /**
+     * Met à jour le thème courant
+     */
+    public function setCurrentThemeInSession()
+    {
+        /** @var Theme $theme */
+        $theme = $this->doctrine->getRepository(Theme::class)->findOneBy(['is_selected' => 1]);
+        $this->request->getSession()->set(self::KEY_SESSION_CURRENT_THEME, $theme->getFolderRef());
     }
 
     /**
@@ -353,5 +378,7 @@ class ThemeService extends AppService
 
         $this->doctrine->getManager()->remove($theme);
         $this->doctrine->getManager()->flush();
+
+        $this->setCurrentThemeInSession();
     }
 }

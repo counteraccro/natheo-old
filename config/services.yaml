@@ -23,6 +23,7 @@ parameters:
     app_path_media_mediatheque_asset: '/medias/mediatheque'
     app_path_media_mediatheque_default_asset: '/medias/mediatheque/default'
     app_path_template_theme: '%kernel.project_dir%/templates/themes'
+    app_path_template_theme_include: 'themes'
     app_path_media_theme_tmp: '%app_path_media%/theme_tmp'
     app_path_js_theme_asset : '/assets/js/themes/'
     app_path_css_theme_asset : '/assets/css/themes/'
