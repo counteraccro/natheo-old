@@ -8,7 +8,7 @@
 
 namespace App\Twig\Admin\System;
 
-use App\Twig\AppExtension;
+use App\Twig\Admin\AppExtension;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Twig\Extension\RuntimeExtensionInterface;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Twig;
+namespace App\Twig\Admin;
 
 use App\Entity\Media\Media;
 use App\Service\Admin\MediaService;

@@ -7,7 +7,7 @@
  */
 namespace App\Twig\Admin\System;
 
-use App\Twig\AppExtension;
+use App\Twig\Admin\AppExtension;
 use Symfony\Component\Asset\Package;
 use Symfony\Component\Asset\VersionStrategy\StaticVersionStrategy;
 use Twig\Extension\RuntimeExtensionInterface;

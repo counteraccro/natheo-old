@@ -10,7 +10,6 @@ namespace App\Twig\Admin;
 
 use App\Entity\Admin\Route;
 use App\Entity\Admin\RouteRight;
-use App\Twig\AppExtension;
 use Symfony\Component\Yaml\Yaml;
 use Twig\Extension\RuntimeExtensionInterface;
 

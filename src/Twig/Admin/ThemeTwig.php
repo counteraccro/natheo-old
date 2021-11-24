@@ -8,7 +8,6 @@
 
 namespace App\Twig\Admin;
 
-use App\Twig\AppExtension;
 use Twig\Extension\RuntimeExtensionInterface;
 
 class ThemeTwig extends AppExtension implements RuntimeExtensionInterface

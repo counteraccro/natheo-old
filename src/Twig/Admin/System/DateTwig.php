@@ -7,7 +7,7 @@
  */
 namespace App\Twig\Admin\System;
 
-use App\Twig\AppExtension;
+use App\Twig\Admin\AppExtension;
 use DateTime;
 use Twig\Extension\RuntimeExtensionInterface;
 

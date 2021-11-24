@@ -11,7 +11,7 @@ namespace App\Twig\Admin\Media;
 use App\Entity\Media\Folder;
 use App\Entity\Media\Media;
 use App\Service\Admin\MediaService;
-use App\Twig\AppExtension;
+use App\Twig\Admin\AppExtension;
 use Twig\Extension\RuntimeExtensionInterface;
 
 class MediaTwig extends AppExtension implements RuntimeExtensionInterface

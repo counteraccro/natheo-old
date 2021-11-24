@@ -8,11 +8,10 @@
 
 namespace App\Twig\Admin\System;
 
-use App\Twig\AppExtension;
+use App\Twig\Admin\AppExtension;
 use Symfony\Component\Asset\Package;
 use Symfony\Component\Asset\VersionStrategy\StaticVersionStrategy;
 use Symfony\Component\Finder\Finder;
-use Symfony\Component\HttpKernel\KernelInterface;
 use Twig\Extension\RuntimeExtensionInterface;
 
 class AssetTwig extends AppExtension implements RuntimeExtensionInterface

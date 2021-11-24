@@ -2,14 +2,6 @@
 
 namespace App\Twig\Admin;
 
-use App\Service\Admin\System\TranslationService;
-use App\Twig\AppExtension;
-use JetBrains\PhpStorm\Pure;
-use phpDocumentor\Reflection\PseudoTypes\CallableString;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
-use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Extension\RuntimeExtensionInterface;
 
 class TranslationTwig extends AppExtension implements RuntimeExtensionInterface

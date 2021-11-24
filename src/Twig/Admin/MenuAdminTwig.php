@@ -8,12 +8,7 @@
 
 namespace App\Twig\Admin;
 
-use App\Twig\AppExtension;
-use phpDocumentor\Reflection\Types\Self_;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Yaml\Yaml;
-use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Extension\RuntimeExtensionInterface;
 
 /**

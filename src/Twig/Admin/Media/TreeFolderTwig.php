@@ -10,8 +10,7 @@ namespace App\Twig\Admin\Media;
 
 use App\Entity\Media\Folder;
 use App\Service\Admin\MediaService;
-use App\Twig\AppExtension;
-use Doctrine\Common\Collections\Collection;
+use App\Twig\Admin\AppExtension;
 use Twig\Extension\RuntimeExtensionInterface;
 
 class TreeFolderTwig extends AppExtension implements RuntimeExtensionInterface

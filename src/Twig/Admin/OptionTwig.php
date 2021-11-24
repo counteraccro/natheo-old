@@ -8,7 +8,6 @@
 
 namespace App\Twig\Admin;
 
-use App\Twig\AppExtension;
 use Symfony\Component\Yaml\Yaml;
 use Twig\Extension\RuntimeExtensionInterface;
 

@@ -9,7 +9,7 @@
 namespace App\Twig\Admin\System;
 
 use App\Service\Admin\System\OptionService;
-use App\Twig\AppExtension;
+use App\Twig\Admin\AppExtension;
 use Symfony\Component\Validator\Constraints\Date;
 use Twig\Extension\RuntimeExtensionInterface;
 
