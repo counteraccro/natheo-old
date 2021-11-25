@@ -5,6 +5,7 @@
  * @version 1.0
  * @package App\Twig\Admin\GlobalFunctionTwig
  */
+
 namespace App\Twig\Admin\System;
 
 use App\Twig\Admin\AppExtension;
@@ -22,31 +23,25 @@ class BreadcrumbTwig extends AppExtension implements RuntimeExtensionInterface
      */
     public function htmlRender(array $elements): string
     {
-       $html = '<nav aria-label="breadcrumb">
+        $html = '<nav aria-label="breadcrumb">
               <ol class="breadcrumb">';
 
         $array = array_keys($elements);
         $last_key = end($array);
-       foreach($elements as $label => $route)
-       {
-           if($label == $last_key)
-           {
-               $html .= '<li class="breadcrumb-item active" aria-current="page">'. $label . '</li>';
-           }
-           else {
+        foreach ($elements as $label => $route) {
+            if ($label == $last_key || empty($route)) {
+                $html .= '<li class="breadcrumb-item active" aria-current="page">' . $label . '</li>';
+            } else {
 
-               if(is_array($route))
-               {
-                   $html .=  '<li class="breadcrumb-item"><a href="' . $this->urlGenerator->generate($route[0], $route[1]) . '">' . $label . '</a></li>';
-               }
-                else {
-                    $html .=  '<li class="breadcrumb-item"><a href="' . $this->urlGenerator->generate($route) . '">' . $label . '</a></li>';
+                if (is_array($route)) {
+                    $html .= '<li class="breadcrumb-item"><a href="' . $this->urlGenerator->generate($route[0], $route[1]) . '">' . $label . '</a></li>';
+                } else {
+                    $html .= '<li class="breadcrumb-item"><a href="' . $this->urlGenerator->generate($route) . '">' . $label . '</a></li>';
                 }
-
-           }
-       }
+            }
+        }
         $html .= '</ol>
             </nav>';
-       return $html;
+        return $html;
     }
 }
