@@ -84,6 +84,7 @@
 'admin_system#Selectionne une donnée de type {data}': 'Selectionne une donnée de type {data}'
 'admin_system#Voir une donnée de type {data}': 'Voir une donnée de type {data}'
 'admin_system#Importer une donnée de type {data}': 'Importer une donnée de type {data}'
+'admin_system#module {data}': 'module {data}'
 'admin_dashboard#Dashboard': Dashboard
 'admin_media#Médiathèque': Médiathèque
 'admin_media#Nouveau dossier': 'Nouveau dossier'

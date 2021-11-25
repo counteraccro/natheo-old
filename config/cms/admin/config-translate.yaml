@@ -84,3 +84,4 @@
 'admin_system#Selectionne une donnée de type {data}' : '__admin_system#Selectionne une donnée de type {data}'
 'admin_system#Voir une donnée de type {data}' : '__admin_system#Voir une donnée de type {data}'
 'admin_system#Importer une donnée de type {data}' : '__admin_system#Importer une donnée de type {data}'
+'admin_system#module {data}' : '__admin_system#module {data}'

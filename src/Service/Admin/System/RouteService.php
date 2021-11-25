@@ -73,6 +73,16 @@ class RouteService extends AppService
         if ($tab[0] == 'front') {
             return "admin_system#Action pour le front";
         }
+
+        if(in_array($tab[1], ['faq', 'toto']))
+        {
+             return match($tab[1]) {
+                 "faq" => "admin_system#Module {data}",
+                 default => "admin_system#Route sans description",
+             };
+        }
+
+
         return match ($tab[2]) {
             "index" => "admin_system#Point d'entrée du module {data}",
             "ajax" => match ($tab[3]) {
