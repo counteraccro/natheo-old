@@ -2,7 +2,7 @@
 /**
  * Gestion du fil d'arianne
  * @author Gourdon Aymeric
- * @version 1.0
+ * @version 1.0.1
  * @package App\Twig\Admin\GlobalFunctionTwig
  */
 
