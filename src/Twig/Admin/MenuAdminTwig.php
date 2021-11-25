@@ -94,6 +94,9 @@ class MenuAdminTwig extends AppExtension implements RuntimeExtensionInterface
     {
         $html = '';
         $show = '';
+        $js_script = '';
+        $html_id = "menu-" . mt_rand();
+        $id_html_ref = $idRef . '-' . $html_id;
         foreach($element[self::KEY_SUB_MENU] as $subLabel => $subElement)
         {
             if(isset($subElement[self::KEY_SUB_MENU]))
@@ -113,6 +116,13 @@ class MenuAdminTwig extends AppExtension implements RuntimeExtensionInterface
             {
                 $active = 'active';
                 $show = 'show';
+                if($idRef == 'sub-sub')
+                {
+                    $js_script = "<script>
+                       $('#" . $id_html_ref . "').parent().parent().parent().find('ul.collapse').addClass('show');
+                   </script>";
+                }
+
             }
 
             $ms = 'ms-3';
@@ -129,7 +139,7 @@ class MenuAdminTwig extends AppExtension implements RuntimeExtensionInterface
                           </li>';
         }
 
-        $html_id = "menu-" . mt_rand();
+
 
         if($html == "")
         {
@@ -137,13 +147,14 @@ class MenuAdminTwig extends AppExtension implements RuntimeExtensionInterface
         }
 
         return '<li>
-                    <a href="#' . $idRef . '-' . $html_id . '" data-bs-toggle="collapse" class="nav-link link-light dropdown-toggle">
+                    <a href="#' . $id_html_ref . '" data-bs-toggle="collapse" class="nav-link link-light dropdown-toggle">
                         <i class="fas ' . $element[self::KEY_ICON] . '"></i> 
                             <span class="d-none d-lg-inline">' . $this->translator->trans($label) . '</span>
                             <span class="d-none d-md-inline d-lg-none" data-bs-toggle="tooltip" data-bs-placement="right" title="' . $this->translator->trans($label) . '">' . substr($this->translator->trans($label), 0, 4) . '</span>
                     </a>
-                        <ul class="collapse ' . $show . ' nav flex-column" id="' . $idRef . '-' . $html_id . '" data-bs-parent="#' . $idRef . '-' . $html_id . '">' . $html . '
+                    <ul class="collapse ' . $show . ' nav flex-column" id="' . $idRef . '-' . $html_id . '" data-bs-parent="#' . $idRef . '-' . $html_id . '">' . $html . '
                         </ul>
+                        ' . $js_script . '
                  </li>';
     }
 
