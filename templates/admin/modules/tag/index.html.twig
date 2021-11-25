@@ -41,7 +41,7 @@
 
                 </div>
                 <div class="float-end">
-                    {{ fieldSearch | inputSearch('#admin-tag-globale .card-body', constant('App\\Controller\\Admin\\Module\\TagController::SESSION_KEY_FILTER')) | raw }}
+                    {{ fieldSearch | inputSearch('#admin-tag-globale .card-body', constant('App\\Controller\\Admin\\Modules\\TagController::SESSION_KEY_FILTER')) | raw }}
                 </div>
             </div>
             <div class="card-body" data-url="{{ path('admin_tag_ajax_listing', {'page' : page}) }}" data-loading="{{ "admin_tag#Chargement des données..." | trans }}">

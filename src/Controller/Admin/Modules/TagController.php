@@ -47,7 +47,7 @@ class TagController extends AppAdminController
     }
 
     /**
-     * Permet de lister les users
+     * Permet de lister les tags
      * @param int $page
      */
     #[Route('/ajax/listing/{page}', name: 'ajax_listing')]
