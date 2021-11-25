@@ -1,26 +1,26 @@
 <?php
 
-namespace App\Repository\Module\FAQ;
+namespace App\Repository\Modules\FAQ;
 
-use App\Entity\Module\FAQ\FaqCategoryTranslation;
+use App\Entity\Modules\FAQ\FaqQuestionAnswerTranslation;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method FaqCategoryTranslation|null find($id, $lockMode = null, $lockVersion = null)
- * @method FaqCategoryTranslation|null findOneBy(array $criteria, array $orderBy = null)
- * @method FaqCategoryTranslation[]    findAll()
- * @method FaqCategoryTranslation[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method FaqQuestionAnswerTranslation|null find($id, $lockMode = null, $lockVersion = null)
+ * @method FaqQuestionAnswerTranslation|null findOneBy(array $criteria, array $orderBy = null)
+ * @method FaqQuestionAnswerTranslation[]    findAll()
+ * @method FaqQuestionAnswerTranslation[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class FaqCategoryTranslationRepository extends ServiceEntityRepository
+class FaqQuestionAnswerTranslationRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, FaqCategoryTranslation::class);
+        parent::__construct($registry, FaqQuestionAnswerTranslation::class);
     }
 
     // /**
-    //  * @return FaqCategoryTranslation[] Returns an array of FaqCategoryTranslation objects
+    //  * @return FaqQuestionAnswerTranslation[] Returns an array of FaqQuestionAnswerTranslation objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class FaqCategoryTranslationRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?FaqCategoryTranslation
+    public function findOneBySomeField($value): ?FaqQuestionAnswerTranslation
     {
         return $this->createQueryBuilder('f')
             ->andWhere('f.exampleField = :val')

@@ -1,26 +1,26 @@
 <?php
 
-namespace App\Repository\Module\FAQ;
+namespace App\Repository\Modules\FAQ;
 
-use App\Entity\Module\FAQ\FaqCategory;
+use App\Entity\Modules\FAQ\FaqCategoryTranslation;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method FaqCategory|null find($id, $lockMode = null, $lockVersion = null)
- * @method FaqCategory|null findOneBy(array $criteria, array $orderBy = null)
- * @method FaqCategory[]    findAll()
- * @method FaqCategory[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method FaqCategoryTranslation|null find($id, $lockMode = null, $lockVersion = null)
+ * @method FaqCategoryTranslation|null findOneBy(array $criteria, array $orderBy = null)
+ * @method FaqCategoryTranslation[]    findAll()
+ * @method FaqCategoryTranslation[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class FaqCategoryRepository extends ServiceEntityRepository
+class FaqCategoryTranslationRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, FaqCategory::class);
+        parent::__construct($registry, FaqCategoryTranslation::class);
     }
 
     // /**
-    //  * @return FaqCategory[] Returns an array of FaqCategory objects
+    //  * @return FaqCategoryTranslation[] Returns an array of FaqCategoryTranslation objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class FaqCategoryRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?FaqCategory
+    public function findOneBySomeField($value): ?FaqCategoryTranslation
     {
         return $this->createQueryBuilder('f')
             ->andWhere('f.exampleField = :val')

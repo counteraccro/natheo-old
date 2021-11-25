@@ -3,8 +3,8 @@
 namespace App\DataFixtures\Module\FAQ;
 
 use App\DataFixtures\AppFixtures;
-use App\Entity\Module\FAQ\FaqCategory;
-use App\Entity\Module\FAQ\FaqCategoryTranslation;
+use App\Entity\Modules\FAQ\FaqCategory;
+use App\Entity\Modules\FAQ\FaqCategoryTranslation;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 

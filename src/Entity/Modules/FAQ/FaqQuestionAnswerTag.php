@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Entity\Module\FAQ;
+namespace App\Entity\Modules\FAQ;
 
-use App\Entity\Module\Tag;
+use App\Entity\Modules\Tag;
 use App\Entity\User;
-use App\Repository\Module\FAQ\FaqQuestionAnswerTagRepository;
+use App\Repository\Modules\FAQ\FaqQuestionAnswerTagRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**

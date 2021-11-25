@@ -9,9 +9,9 @@
 namespace App\Controller\Admin\Modules;
 
 use App\Controller\Admin\AppAdminController;
-use App\Entity\Module\Tag;
+use App\Entity\Modules\Tag;
 use App\Form\Admin\Module\TagType;
-use App\Repository\Module\TagRepository;
+use App\Repository\Modules\TagRepository;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

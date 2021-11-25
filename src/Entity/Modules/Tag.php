@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Entity\Module;
+namespace App\Entity\Modules;
 
-use App\Entity\Module\FAQ\FaqQuestionAnswerTag;
-use App\Repository\Module\TagRepository;
+use App\Entity\Modules\FAQ\FaqQuestionAnswerTag;
+use App\Repository\Modules\TagRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;

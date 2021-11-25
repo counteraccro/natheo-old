@@ -2,7 +2,7 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Module\Tag;
+use App\Entity\Modules\Tag;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 

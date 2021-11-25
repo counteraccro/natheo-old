@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use App\Entity\Admin\Role;
-use App\Entity\Module\FAQ\FaqQuestionAnswerTag;
+use App\Entity\Modules\FAQ\FaqQuestionAnswerTag;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;

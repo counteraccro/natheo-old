@@ -2,7 +2,7 @@
 
 namespace App\Form\Admin\Module;
 
-use App\Entity\Module\Tag;
+use App\Entity\Modules\Tag;
 use App\Form\AppType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ColorType;

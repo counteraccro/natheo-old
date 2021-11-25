@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Entity\Module\FAQ;
+namespace App\Entity\Modules\FAQ;
 
-use App\Repository\Module\FAQ\FaqQuestionAnswerTranslationRepository;
+use App\Repository\Modules\FAQ\FaqQuestionAnswerTranslationRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**

@@ -1,26 +1,26 @@
 <?php
 
-namespace App\Repository\Module\FAQ;
+namespace App\Repository\Modules\FAQ;
 
-use App\Entity\Module\FAQ\FaqQuestionAnswerTag;
+use App\Entity\Modules\FAQ\FaqCategory;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method FaqQuestionAnswerTag|null find($id, $lockMode = null, $lockVersion = null)
- * @method FaqQuestionAnswerTag|null findOneBy(array $criteria, array $orderBy = null)
- * @method FaqQuestionAnswerTag[]    findAll()
- * @method FaqQuestionAnswerTag[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method FaqCategory|null find($id, $lockMode = null, $lockVersion = null)
+ * @method FaqCategory|null findOneBy(array $criteria, array $orderBy = null)
+ * @method FaqCategory[]    findAll()
+ * @method FaqCategory[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class FaqQuestionAnswerTagRepository extends ServiceEntityRepository
+class FaqCategoryRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, FaqQuestionAnswerTag::class);
+        parent::__construct($registry, FaqCategory::class);
     }
 
     // /**
-    //  * @return FaqQuestionAnswerTag[] Returns an array of FaqQuestionAnswerTag objects
+    //  * @return FaqCategory[] Returns an array of FaqCategory objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class FaqQuestionAnswerTagRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?FaqQuestionAnswerTag
+    public function findOneBySomeField($value): ?FaqCategory
     {
         return $this->createQueryBuilder('f')
             ->andWhere('f.exampleField = :val')

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repository\Module;
+namespace App\Repository\Modules;
 
-use App\Entity\Module\Tag;
+use App\Entity\Modules\Tag;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;

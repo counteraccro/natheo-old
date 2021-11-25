@@ -1,26 +1,26 @@
 <?php
 
-namespace App\Repository\Module\FAQ;
+namespace App\Repository\Modules\FAQ;
 
-use App\Entity\Module\FAQ\FaqQuestionAnswerTranslation;
+use App\Entity\Modules\FAQ\FaqQuestionAnswer;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method FaqQuestionAnswerTranslation|null find($id, $lockMode = null, $lockVersion = null)
- * @method FaqQuestionAnswerTranslation|null findOneBy(array $criteria, array $orderBy = null)
- * @method FaqQuestionAnswerTranslation[]    findAll()
- * @method FaqQuestionAnswerTranslation[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method FaqQuestionAnswer|null find($id, $lockMode = null, $lockVersion = null)
+ * @method FaqQuestionAnswer|null findOneBy(array $criteria, array $orderBy = null)
+ * @method FaqQuestionAnswer[]    findAll()
+ * @method FaqQuestionAnswer[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class FaqQuestionAnswerTranslationRepository extends ServiceEntityRepository
+class FaqQuestionAnswerRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, FaqQuestionAnswerTranslation::class);
+        parent::__construct($registry, FaqQuestionAnswer::class);
     }
 
     // /**
-    //  * @return FaqQuestionAnswerTranslation[] Returns an array of FaqQuestionAnswerTranslation objects
+    //  * @return FaqQuestionAnswer[] Returns an array of FaqQuestionAnswer objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class FaqQuestionAnswerTranslationRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?FaqQuestionAnswerTranslation
+    public function findOneBySomeField($value): ?FaqQuestionAnswer
     {
         return $this->createQueryBuilder('f')
             ->andWhere('f.exampleField = :val')

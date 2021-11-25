@@ -1,26 +1,26 @@
 <?php
 
-namespace App\Repository\Module\FAQ;
+namespace App\Repository\Modules\FAQ;
 
-use App\Entity\Module\FAQ\FaqQuestionAnswer;
+use App\Entity\Modules\FAQ\FaqQuestionAnswerTag;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method FaqQuestionAnswer|null find($id, $lockMode = null, $lockVersion = null)
- * @method FaqQuestionAnswer|null findOneBy(array $criteria, array $orderBy = null)
- * @method FaqQuestionAnswer[]    findAll()
- * @method FaqQuestionAnswer[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method FaqQuestionAnswerTag|null find($id, $lockMode = null, $lockVersion = null)
+ * @method FaqQuestionAnswerTag|null findOneBy(array $criteria, array $orderBy = null)
+ * @method FaqQuestionAnswerTag[]    findAll()
+ * @method FaqQuestionAnswerTag[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class FaqQuestionAnswerRepository extends ServiceEntityRepository
+class FaqQuestionAnswerTagRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, FaqQuestionAnswer::class);
+        parent::__construct($registry, FaqQuestionAnswerTag::class);
     }
 
     // /**
-    //  * @return FaqQuestionAnswer[] Returns an array of FaqQuestionAnswer objects
+    //  * @return FaqQuestionAnswerTag[] Returns an array of FaqQuestionAnswerTag objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class FaqQuestionAnswerRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?FaqQuestionAnswer
+    public function findOneBySomeField($value): ?FaqQuestionAnswerTag
     {
         return $this->createQueryBuilder('f')
             ->andWhere('f.exampleField = :val')
