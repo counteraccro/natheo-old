@@ -22,7 +22,7 @@ menu-left-admin:
             target: 'admin_tag_index'
           admin_faq#Catégories:
             icon: 'fa-question'
-            target: 'admin_tag_index'
+            target: 'admin_faq_category_index'
   admin_theme#Thèmes:
     icon: 'fa-pager'
     target: 'admin_theme_index'

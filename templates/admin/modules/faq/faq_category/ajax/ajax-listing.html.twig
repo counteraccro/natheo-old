@@ -1,0 +1,51 @@
+<div id="listing-faq">
+    <table class="table table-responsive table-hover table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">{{ "admin_faq#Titre" | trans }}</th>
+            <th scope="col">{{ "admin_faq#Description" | trans }}</th>
+            <th scope="col">{{ "admin_faq#Statistiques" | trans }}</th>
+            <th scope="col">{{ "admin_faq#Action" | trans }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for faqCat in listeCats %}
+            <tr>
+                <th scope="row">{{ faqCat.id }}</th>
+                <td>Titre</td>
+                <td> Description </td>
+                <td>
+                    {% set nb = faqCat.faqQuestionAnswers | length  %}
+                    {% if nb == 0 %}
+                        {{ "admin_faq#Aucune questions" | trans }}
+                    {% elseif nb == 1 %}
+                        {{ "admin_faq#1 question" | trans }}
+                    {% elseif nb > 1 %}
+                       {{ nb }} {{ "admin_faq#Questions" | trans }}
+                    {% endif %}
+                </td>
+                <td>
+                        {% if 'admin_tag_edit' | isGranted %}
+                            <a href="{{ path('admin_tag_edit', {'id' : faqCat.id}) }}" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ "admin_faq#Editer" | trans }}"><i class="fa fa-edit"></i></a>
+                        {% endif %}
+                        {% if 'admin_tag_delete' | isGranted %}
+                            <a href="{{ path('admin_tag_delete', {'id' : faqCat.id}) }}" onclick="return confirm('{{ "admin_faq#Attention cette action est définitive ! Êtes vous sur ?" | trans }}')" class="btn btn-sm btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ "admin_faq#Supprimer" | trans }}"><i class="fa fa-trash"></i></a>
+                        {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {{ listeCats | paginate(page, limit, route, '#admin-faq-globale .card-body') | raw }}
+
+    <script>
+        $(document).ready(function () {
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl)
+            })
+        });
+    </script>
+</div>

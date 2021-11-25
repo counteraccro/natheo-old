@@ -32,6 +32,7 @@ class TagController extends AppAdminController
     {
         $breadcrumb = [
             $this->translator->trans('admin_dashboard#Dashboard') => 'admin_dashboard_index',
+            $this->translator->trans('admin_system#Modules') => '',
             $this->translator->trans('admin_tag#Gestion des tags') => '',
         ];
 

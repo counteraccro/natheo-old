@@ -448,3 +448,15 @@
 'admin_theme#Tous vos appels d''assets devront ce faire de la façon suivante': 'Tous vos appels d''assets devront ce faire de la façon suivante'
 'admin_theme#si vous souhaitez faire une extension d''un template vous devez le faire de la façon suivante': 'si vous souhaitez faire une extension d''un template vous devez le faire de la façon suivante'
 'admin_theme#si vous souhaitez faire un include d''un fichier twig présent dans le theme vous devez le faire de la façon suivante': 'si vous souhaitez faire un include d''un fichier twig présent dans le theme vous devez le faire de la façon suivante'
+'admin_faq#Gestion des catégories': 'Gestion des catégories'
+'admin_faq#Titre': Titre
+'admin_faq#Description': Description
+'admin_faq#Statistiques': Statistiques
+'admin_faq#Action': Action
+'admin_faq#Aucune questions': 'Aucune questions'
+'admin_faq#1 question': '1 question'
+'admin_faq#Editer': Editer
+'admin_faq#Attention cette action est définitive ! Êtes vous sur ?': 'Attention cette action est définitive ! Êtes vous sur ?'
+'admin_faq#Supprimer': Supprimer
+'admin_faq#Ajouter une catégorie': 'Ajouter une catégorie'
+'admin_faq#Chargement des données...': 'Chargement des données...'
