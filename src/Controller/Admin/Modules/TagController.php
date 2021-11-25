@@ -6,7 +6,7 @@
  * @package App\Controller\Admin\Module;
  */
 
-namespace App\Controller\Admin\Module;
+namespace App\Controller\Admin\Modules;
 
 use App\Controller\Admin\AppAdminController;
 use App\Entity\Module\Tag;
