@@ -96,6 +96,9 @@
 'admin_media#Mise à jour du media en cours....': '__Mise à jour du media en cours....'
 'admin_media#Média supprimé avec succès': '__Média supprimé avec succès'
 'admin_media#Chargement du dossier courant': '__Chargement du dossier courant'
+'admin_faq#Gestion des catégories': '__Gestion des catégories'
+'admin_faq#Titre': __Titre
+'admin_faq#Description': __Description
 'admin_tag#Nom': __Nom
 'admin_tag#Ajouter un tag': '__Ajouter un tag'
 'admin_tag#Tag Crée avec succès': '__Tag Crée avec succès'
@@ -118,6 +121,12 @@
 'admin_route#Module': __Module
 'admin_system#Debug System': '__Debug System'
 'admin_theme#Gestion des thèmes': '__Gestion des thèmes'
+'admin_theme#Thème supprimé avec succès': '__Thème supprimé avec succès'
+'admin_theme#Détail du thème': '__Détail du thème'
+'admin_theme#Thème ajouté avec succès': '__Thème ajouté avec succès'
+'admin_theme#Thème ajouté avec succès mais des warnings sont remontés': '__Thème ajouté avec succès mais des warnings sont remontés'
+'admin_theme#Votre thème doit être un fichier .zip': '__Votre thème doit être un fichier .zip'
+'admin_theme#Ajouter un thème': '__Ajouter un thème'
 'admin_translation#Gestion des traductions': '__Gestion des traductions'
 'admin_translation#Les traductions sont à jour': '__Les traductions sont à jour'
 'admin_translation#Les traductions ne sont plus à jour vis à vis de la base de données, Vous devez régénérer les traductions depuis la base de données': '__Les traductions ne sont plus à jour vis à vis de la base de données, Vous devez régénérer les traductions depuis la base de données'
@@ -177,6 +186,13 @@
 'admin_media#Selectionner le dossier ou sera rangé le media': '__Selectionner le dossier ou sera rangé le media'
 'admin_media#Masquer ce média': '__Masquer ce média'
 'admin_media#Un média masqué n''apparaitra pas dans la selection de média pour un article ou une page': '__Un média masqué n''apparaitra pas dans la selection de média pour un article ou une page'
+'admin_theme#Le thème téléchargé est vide ou corrompu': '__Le thème téléchargé est vide ou corrompu'
+'admin_theme#Plus d''un dossier à été détecté à la racine du dossier ZIP, Arrêt de l''installation du thème': '__Plus d''un dossier à été détecté à la racine du dossier ZIP, Arrêt de l''installation du thème'
+'admin_theme#Un dossier obligatoire est manquant': '__Un dossier obligatoire est manquant'
+'admin_theme#un fichier obligatoire est manquant': '__un fichier obligatoire est manquant'
+'admin_theme#le champ suivante ne doit pas être vide': '__le champ suivante ne doit pas être vide'
+'admin_theme#le champ suivante est vide': '__le champ suivante est vide'
+'admin_theme#le nom du dossier de référence déclaré dans folder_ref ne correspond pas au dossier racine du thème': '__le nom du dossier de référence déclaré dans folder_ref ne correspond pas au dossier racine du thème'
 'admin_media#Action': __Action
 'admin_media#Chargement du dossier': '__Chargement du dossier'
 'admin_media#Le dossier est actuellement vide pour le moment': '__Le dossier est actuellement vide pour le moment'
@@ -228,6 +244,7 @@
 'admin_translation#Rechercher un traduction par son label': '__Rechercher un traduction par son label'
 'admin_translation#Tout': __Tout
 'admin_system#Attention, si vous quittez cette page, les modifications non enregistrées seront perdues': '__Attention, si vous quittez cette page, les modifications non enregistrées seront perdues'
+'admin_system#Version': __Version
 'admin_system#Oups': __Oups
 'admin_system#Il semblerait que vous n''avez pas les droits pour visualiser ce contenu': '__Il semblerait que vous n''avez pas les droits pour visualiser ce contenu'
 'admin_system#Vous n''avez pas les droits sur cette page': '__Vous n''avez pas les droits sur cette page'
@@ -284,6 +301,16 @@
 'admin_media#Dossiers': __Dossiers
 'admin_media#Chargement des dossiers...': '__Chargement des dossiers...'
 'admin_media#Chargement des médias...': '__Chargement des médias...'
+'admin_faq#Ordre': __Ordre
+'admin_faq#Statistiques': __Statistiques
+'admin_faq#Action': __Action
+'admin_faq#Aucune questions': '__Aucune questions'
+'admin_faq#1 Question': '__1 Question'
+'admin_faq#Editer': __Editer
+'admin_faq#Attention cette action est définitive ! Êtes vous sur ?': '__Attention cette action est définitive ! Êtes vous sur ?'
+'admin_faq#Supprimer': __Supprimer
+'admin_faq#Ajouter une catégorie': '__Ajouter une catégorie'
+'admin_faq#Chargement des données...': '__Chargement des données...'
 'admin_tag#Statistiques': __Statistiques
 'admin_tag#Action': __Action
 'admin_tag#Editer': __Editer
@@ -334,7 +361,56 @@
 'admin_system#Pour avoir accès aux options de la Danger zone vous devez modifier dans le fichier .env la ligne suivante': '__Pour avoir accès aux options de la Danger zone vous devez modifier dans le fichier .env la ligne suivante'
 'admin_system#Remplacer prod par dev pour passer en mode développement, ce qui donne': '__Remplacer prod par dev pour passer en mode développement, ce qui donne'
 'admin_system#Attention, le mode developpement ne doit pas être laissé en production et ne doit être utilisé que pour du développement ou de la correction de bugs de façon temporaire': '__Attention, le mode developpement ne doit pas être laissé en production et ne doit être utilisé que pour du développement ou de la correction de bugs de façon temporaire'
+'admin_theme#Suppression du thème': '__Suppression du thème'
+'admin_theme#Attention': __Attention
+'admin_theme#Est vous sur de vouloir supprimer ce thème ainsi que tous les données associées ?': '__Est vous sur de vouloir supprimer ce thème ainsi que tous les données associées ?'
+'admin_theme#La suppression d''un thème implique :': '__La suppression d''un thème implique :'
+'admin_theme#La supression de son dossier présent dans template': '__La supression de son dossier présent dans template'
+'admin_theme#La supression de ses assets présent dans assets/css/template et assets/js/template': '__La supression de ses assets présent dans assets/css/template et assets/js/template'
+'admin_theme#La suppression des médias propre au thème': '__La suppression des médias propre au thème'
+'admin_theme#La supression des données du thème en base de données': '__La supression des données du thème en base de données'
+'admin_theme#Si ce thème était votre thème principal, le thème par default sera sélectionné': '__Si ce thème était votre thème principal, le thème par default sera sélectionné'
+'admin_theme#Cette action est définitive et sans retour arrière': '__Cette action est définitive et sans retour arrière'
+'admin_theme#Annuler': __Annuler
+'admin_theme#Suppression du theme en court....': '__Suppression du theme en court....'
+'admin_theme#Supprimer le thème': '__Supprimer le thème'
 'admin_theme#Thèmes installés': '__Thèmes installés'
+'admin_theme#Selectionner ce thème': '__Selectionner ce thème'
+'admin_theme#Thème selectionné': '__Thème selectionné'
+'admin_theme#Version': __Version
+'admin_theme#Version CMS': '__Version CMS'
+'admin_theme#Ce template à été développé dans une version antérieur au CMS, il peut ne pas fonctionner correctement et provoquer des erreurs': '__Ce template à été développé dans une version antérieur au CMS, il peut ne pas fonctionner correctement et provoquer des erreurs'
+'admin_theme#Auteur': __Auteur
+'admin_theme#Voir': __Voir
+'admin_theme#Supprimer': __Supprimer
+'admin_theme#Information': __Information
+'admin_theme#Version CMS compatibilité': '__Version CMS compatibilité'
+'admin_theme#Contenu du thème': '__Contenu du thème'
+'admin_theme#Importer un thème': '__Importer un thème'
+'admin_theme#Votre thème n''a pas été importé': '__Votre thème n''a pas été importé'
+'admin_theme#Votre thème à correctemet été installé mais des warnings sont remontés': '__Votre thème à correctemet été installé mais des warnings sont remontés'
+'admin_theme#Le format du fichier doit être un .zip': '__Le format du fichier doit être un .zip'
+'admin_theme#Importer mon thème': '__Importer mon thème'
+'admin_theme#Pour que le thème ajouté fonctionne correctement celui ci doit contenir les données suivantes': '__Pour que le thème ajouté fonctionne correctement celui ci doit contenir les données suivantes'
+'admin_theme#Nom du thème': '__Nom du thème'
+'admin_theme#Fichier de config contentant les infos du thème': '__Fichier de config contentant les infos du thème'
+'admin_theme#Image pour illustrer le thème': '__Image pour illustrer le thème'
+'admin_theme#Vos fichiers CSS propre au thème': '__Vos fichiers CSS propre au thème'
+'admin_theme#Vos fichiers JS propre au thème': '__Vos fichiers JS propre au thème'
+'admin_theme#Fichier qui centralise les appels aux assets (JS et CSS)': '__Fichier qui centralise les appels aux assets (JS et CSS)'
+'admin_theme#Stucture de la page': '__Stucture de la page'
+'admin_theme#Le fichier de config doit contenir les informations suivantes': '__Le fichier de config doit contenir les informations suivantes'
+'admin_theme#Version minimum du CMS': '__Version minimum du CMS'
+'admin_theme#Version du thème': '__Version du thème'
+'admin_theme# path pour l''image d''illustration du thème': '__ path pour l''image d''illustration du thème'
+'admin_theme#Nom du dossier de référence du thème': '__Nom du dossier de référence du thème'
+'admin_theme#Description du thème': '__Description du thème'
+'admin_theme#Auteur du thème': '__Auteur du thème'
+'admin_theme#Afin de facilité la maintenance et centralisé les assets (JS et CSS)': '__Afin de facilité la maintenance et centralisé les assets (JS et CSS)'
+'admin_theme#Vous devez appeler vos assets depuis le fichier': '__Vous devez appeler vos assets depuis le fichier'
+'admin_theme#Tous vos appels d''assets devront ce faire de la façon suivante': '__Tous vos appels d''assets devront ce faire de la façon suivante'
+'admin_theme#si vous souhaitez faire une extension d''un template vous devez le faire de la façon suivante': '__si vous souhaitez faire une extension d''un template vous devez le faire de la façon suivante'
+'admin_theme#si vous souhaitez faire un include d''un fichier twig présent dans le theme vous devez le faire de la façon suivante': '__si vous souhaitez faire un include d''un fichier twig présent dans le theme vous devez le faire de la façon suivante'
 'admin_translation#Clée': __Clée
 'admin_translation#Réinitialisation des traductions depuis le code source du site, cela peut prendre du temps...': '__Réinitialisation des traductions depuis le code source du site, cela peut prendre du temps...'
 'admin_translation#Rechargement de la page...': '__Rechargement de la page...'
@@ -355,6 +431,8 @@
 'admin_user#Editer': __Editer
 'admin_user#Attention cette action est définitive ! Êtes vous sur ?': '__Attention cette action est définitive ! Êtes vous sur ?'
 'admin_user#Supprimer': __Supprimer
+'admin_user#Activer l''utilisateur': '__Activer l''utilisateur'
+'admin_user#Désactiver l''utilisateur': '__Désactiver l''utilisateur'
 'admin_user#Résumé': __Résumé
 'admin_user#Ce compte est désactivé': '__Ce compte est désactivé'
 'admin_user#Nom': __Nom
@@ -380,84 +458,5 @@
 'front_auth#Mot de passe': '__Mot de passe'
 'front_auth#Ce souvenir de moi': '__Ce souvenir de moi'
 'front_auth#Me connecter': '__Me connecter'
-'admin_system#Version': __Version
-'admin_theme#Voir': __Voir
-'admin_theme#Selectionner ce thème': '__Selectionner ce thème'
-'admin_theme#Thème selectionné': '__Thème selectionné'
-'admin_theme#Version': __Version
-'admin_theme#Version CMS': '__Version CMS'
-'admin_theme#Ce template à été développé dans une version antérieur au CMS, il peut ne pas fonctionner correctement et provoquer des erreurs': '__Ce template à été développé dans une version antérieur au CMS, il peut ne pas fonctionner correctement et provoquer des erreurs'
-'admin_theme#Auteur': __Auteur
-'admin_theme#Ajouter un thème': '__Ajouter un thème'
-'admin_user#Activer l''utilisateur': '__Activer l''utilisateur'
-'admin_user#Désactiver l''utilisateur': '__Désactiver l''utilisateur'
-'admin_theme#Détail du thème': '__Détail du thème'
-'admin_theme#Information': __Information
-'admin_theme#Version CMS compatibilité': '__Version CMS compatibilité'
-'admin_theme#Contenu du thème': '__Contenu du thème'
-'admin_theme#Importer un thème': '__Importer un thème'
-'admin_theme#Pour que le thème ajouté fonctionne correctement celui ci doit contenir les données suivantes': '__Pour que le thème ajouté fonctionne correctement celui ci doit contenir les données suivantes'
-'admin_theme#Nom du thème': '__Nom du thème'
-'admin_theme#Fichier de config contentant les infos du thème': '__Fichier de config contentant les infos du thème'
-'admin_theme#Image pour illustrer le thème': '__Image pour illustrer le thème'
-'admin_theme#Vos fichiers CSS propre au thème': '__Vos fichiers CSS propre au thème'
-'admin_theme#Vos fichiers JS propre au thème': '__Vos fichiers JS propre au thème'
-'admin_theme#fichier qui centralise les appels aux assets (JS et CSS)': '__fichier qui centralise les appels aux assets (JS et CSS)'
-'admin_theme#Stucture de la page': '__Stucture de la page'
-'admin_theme#Votre thème doit être un fichier .zip': '__Votre thème doit être un fichier .zip'
-'admin_theme#Le format du fichier doit être un .zip': '__Le format du fichier doit être un .zip'
-'admin_theme#Importer': __Importer
-'admin_theme#Importer mon thème': '__Importer mon thème'
-'admin_theme#Le thème téléchargé est vide ou corrompu': '__Le thème téléchargé est vide ou corrompu'
-'admin_theme#Plus d''un dossier à été détecté à la racine du dossier ZIP, Arrêt de l''installation du thème': '__Plus d''un dossier à été détecté à la racine du dossier ZIP, Arrêt de l''installation du thème'
-'admin_theme#Le dossier %folder% n''a pas été détecté': '__Le dossier %folder% n''a pas été détecté'
-'admin_theme#Le fichier %file% n''a pas été détecté': '__Le fichier %file% n''a pas été détecté'
-'admin_theme#Un dossier obligatoire est manquant': '__Un dossier obligatoire est manquant'
-'admin_theme#un fichier obligatoire est manquant': '__un fichier obligatoire est manquant'
-'admin_theme#Votre thème n''a pas été importé': '__Votre thème n''a pas été importé'
-'admin_theme#Votre thème à correctemet été installé mais des warnings sont remontés': '__Votre thème à correctemet été installé mais des warnings sont remontés'
-'admin_theme#Thème ajouté avec succès': '__Thème ajouté avec succès'
-'admin_theme#Thème ajouté avec succès mais des warnings sont remontés': '__Thème ajouté avec succès mais des warnings sont remontés'
-'admin_theme#le champ suivante ne doit pas être vide': '__le champ suivante ne doit pas être vide'
-'admin_theme#le champ suivante est vide': '__le champ suivante est vide'
-'admin_theme#le nom du dossier de référence déclaré dans folder_ref ne correspond pas au dossier racine du thème': '__le nom du dossier de référence déclaré dans folder_ref ne correspond pas au dossier racine du thème'
-'admin_theme#Supprimer': __Supprimer
-'admin_theme#Suppression du thème': '__Suppression du thème'
-'admin_theme#Attention': __Attention
-'admin_theme#Est vous sur de vouloir supprimer ce thème ainsi que tous les données associées ?': '__Est vous sur de vouloir supprimer ce thème ainsi que tous les données associées ?'
-'admin_theme#La suppression d''un thème implique :': '__La suppression d''un thème implique :'
-'admin_theme#La supression de son dossier présent dans template': '__La supression de son dossier présent dans template'
-'admin_theme#La supression de ses assets présent dans assets/css/template et assets/js/template': '__La supression de ses assets présent dans assets/css/template et assets/js/template'
-'admin_theme#La suppression des médias propre au thème': '__La suppression des médias propre au thème'
-'admin_theme#La supression des données du thème en base de données': '__La supression des données du thème en base de données'
-'admin_theme#Cette action est définitive et sans retour arrière': '__Cette action est définitive et sans retour arrière'
-'admin_theme#Annuler': __Annuler
-'admin_theme#Suppression du theme en court....': '__Suppression du theme en court....'
-'admin_theme#Supprimer le thème': '__Supprimer le thème'
-'admin_theme#Thème supprimé avec succès': '__Thème supprimé avec succès'
-'admin_theme#Si ce thème était votre thème principal, le thème par default sera séléectionné': '__Si ce thème était votre thème principal, le thème par default sera séléectionné'
-'admin_theme#Si ce thème était votre thème principal, le thème par default sera sélectionné': '__Si ce thème était votre thème principal, le thème par default sera sélectionné'
-'admin_theme#Le fichier de config doit contenir les informations suivantes': '__Le fichier de config doit contenir les informations suivantes'
-'admin_theme#Version minimum du CMS': '__Version minimum du CMS'
-'admin_theme#Version du thème': '__Version du thème'
-'admin_theme# path pour l''image d''illustration du thème': '__ path pour l''image d''illustration du thème'
-'admin_theme#Nom du dossier de référence du thème': '__Nom du dossier de référence du thème'
-'admin_theme#Description du thème': '__Description du thème'
-'admin_theme#Auteur du thème': '__Auteur du thème'
-'admin_theme#Afin de facilité la maintenance et centralisé les assets (JS et CSS)': '__Afin de facilité la maintenance et centralisé les assets (JS et CSS)'
-'admin_theme#Vous devez appeler vos assets depuis le fichier': '__Vous devez appeler vos assets depuis le fichier'
-'admin_theme#Tous vos appels d''assets devront ce faire de la façon suivante': '__Tous vos appels d''assets devront ce faire de la façon suivante'
-'admin_theme#si vous souhaitez faire une extension d''un template vous devez le faire de la façon suivante': '__si vous souhaitez faire une extension d''un template vous devez le faire de la façon suivante'
-'admin_theme#si vous souhaitez faire un include d''un fichier twig présent dans le theme vous devez le faire de la façon suivante': '__si vous souhaitez faire un include d''un fichier twig présent dans le theme vous devez le faire de la façon suivante'
-'admin_faq#Gestion des catégories': '__Gestion des catégories'
-'admin_faq#Titre': __Titre
-'admin_faq#Description': __Description
-'admin_faq#Statistiques': __Statistiques
-'admin_faq#Action': __Action
-'admin_faq#Aucune questions': '__Aucune questions'
-'admin_faq#1 question': '__1 question'
-'admin_faq#Editer': __Editer
-'admin_faq#Attention cette action est définitive ! Êtes vous sur ?': '__Attention cette action est définitive ! Êtes vous sur ?'
-'admin_faq#Supprimer': __Supprimer
-'admin_faq#Ajouter une catégorie': '__Ajouter une catégorie'
-'admin_faq#Chargement des données...': '__Chargement des données...'
+'admin_faq#Descendre': __Descendre
+'admin_faq#Monter': __Monter

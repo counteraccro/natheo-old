@@ -47,7 +47,7 @@ class FaqCategoryFixtures extends AppFixtures
 
         foreach($locales as $locale)
         {
-            $title = 'Catégorie Démo';
+            $title = 'Catégorie Exemple';
             $description = 'Ceci est un texte démo';
 
             if($locale != 'fr')
@@ -65,7 +65,31 @@ class FaqCategoryFixtures extends AppFixtures
             $faqCat->addFaqCategoryTranslation($faqCatTranslation);
         }
         $manager->persist($faqCat);
-        $manager->flush();
         $this->addReference(self::FAQ_CAT_DEMO_REF, $faqCat);
+
+        $faqCat = new FaqCategory();
+        $faqCat->setCreateOn(new \DateTime())->setPosition(3);
+
+        foreach($locales as $locale)
+        {
+            $title = 'Catégorie Démo2';
+            $description = 'Ceci est un texte démo2';
+
+            if($locale != 'fr')
+            {
+                $title = '__' . $title;
+                $description = '__' . $description;
+            }
+
+            $faqCatTranslation = new FaqCategoryTranslation();
+            $faqCatTranslation->setDescription($description);
+            $faqCatTranslation->setTitle($title);
+            $faqCatTranslation->setLanguage($locale);
+            $faqCatTranslation->setFaqCategory($faqCat);
+            $manager->persist($faqCatTranslation);
+            $faqCat->addFaqCategoryTranslation($faqCatTranslation);
+        }
+        $manager->persist($faqCat);
+        $manager->flush();
     }
 }
