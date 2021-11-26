@@ -4,11 +4,13 @@ namespace App\Entity\Modules\FAQ;
 
 use App\Repository\Modules\FAQ\FaqCategoryTranslationRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=FaqCategoryTranslationRepository::class)
  * @ORM\Table(name="`cms_faq_category_translation`")
  */
+#[UniqueEntity(['slug'])]
 class FaqCategoryTranslation
 {
     /**

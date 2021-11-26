@@ -15,6 +15,7 @@ use App\Service\Admin\System\FileService;
 use App\Service\Admin\System\OptionService;
 use App\Service\Admin\System\TranslationService;
 use App\Service\Admin\ThemeService;
+use App\Service\Module\FAQ\FaqService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -82,6 +83,11 @@ class AppAdminController extends AbstractController
     protected Security $security;
 
     /**
+     * @var FaqService
+     */
+    protected FaqService $faqService;
+
+    /**
      * @param TranslatorInterface $translator
      * @param RequestStack $request
      * @param OptionService $optionService
@@ -89,10 +95,14 @@ class AppAdminController extends AbstractController
      * @param DataSystemService $dataSystemService
      * @param KernelInterface $kernel
      * @param FileService $fileService
+     * @param MediaService $mediaService
+     * @param ThemeService $themeService
+     * @param Security $security
      */
     public function __construct(TranslatorInterface $translator, RequestStack $request, OptionService $optionService,
                                 TranslationService  $translationService, DataSystemService $dataSystemService, KernelInterface $kernel,
-                                FileService         $fileService, MediaService $mediaService, ThemeService $themeService, Security $security)
+                                FileService         $fileService, MediaService $mediaService, ThemeService $themeService, Security $security,
+                                FaqService $faqService)
     {
         $this->translator = $translator;
         $this->request = $request;
@@ -105,6 +115,7 @@ class AppAdminController extends AbstractController
         $this->mediaService = $mediaService;
         $this->themeService = $themeService;
         $this->security = $security;
+        $this->faqService = $faqService;
     }
 
     /**

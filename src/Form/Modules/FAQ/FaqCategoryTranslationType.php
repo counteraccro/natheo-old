@@ -29,6 +29,7 @@ class FaqCategoryTranslationType extends AppType
                 'help' => $this->translator->trans('admin_faq#Le slug permet de définir l\'url de la catégorie, par défault c\'est le titre')
                     ])
             ->add('description', TextareaType::class, [
+                'required' => false,
                 'label' => $this->translator->trans('admin_faq#Description'),
                 'attr' => ['placeholder' => $this->translator->trans('admin_faq#Description'), 'class' => 'input-editor', 'rows' => 15],
                 'help' => $this->translator->trans('admin_faq#Ce texte sera présent sous le titre de la catégorie')

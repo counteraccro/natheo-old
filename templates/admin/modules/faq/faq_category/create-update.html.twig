@@ -29,7 +29,6 @@
                         <div class="card-body">
                             {{ form_row(translation.title, {'id' : 'titre-'~nb, 'attr': {'class': 'titre', 'data-nb' : nb, 'data-local' : translation.language.vars.value}}) }}
 
-
                             {{ form_row(translation.slug, {'id' : 'slug-'~nb, 'attr': {'class': 'slug', 'data-nb' : nb}}) }}
 
                             {{ form_row(translation.description) }}
@@ -53,7 +52,11 @@
             Wysiwyg.DefaultEditor('.input-editor');
 
             FAQCategory.Launch();
-            FAQCategory.EventCreateUpdate('#admin-create-update-faq-category', '{{ frontUrl }}', '{{ currentLocal }}', '{{ action }}');
+            let checkSlug = '{{ path('admin_faq_category_check_slug', {'slug' : 'pslug'}) }}';
+            {% if action == 'edit' %}
+                checkSlug = '{{ path('admin_faq_category_check_slug', {'slug' : 'pslug', 'id' : faqCategory.id}) }}';
+            {% endif %}
+            FAQCategory.EventCreateUpdate('#admin-create-update-faq-category', '{{ frontUrl }}', '{{ currentLocal }}', '{{ action }}', checkSlug);
             FAQCategory.UpdateSlug();
         });
     </script>

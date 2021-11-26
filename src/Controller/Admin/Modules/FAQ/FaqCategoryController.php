@@ -12,6 +12,7 @@ use App\Controller\Admin\AppAdminController;
 use App\Entity\Modules\FAQ\FaqCategory;
 use App\Entity\Modules\FAQ\FaqCategoryTranslation;
 use App\Form\Modules\FAQ\FaqCategoryType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -96,7 +97,13 @@ class FaqCategoryController extends AppAdminController
             $this->translator->trans('admin_faq#Gestion des catégories') => 'admin_faq_category_index',
         ];
 
+        $tabPositions = $this->faqService->getListeOrderFaqCategory();
+
         if ($faqCategory == null) {
+
+            $nb = count($tabPositions);
+            $tabPositions[$nb+1 . ' -> ' . $this->translator->trans('admin_faq#Nouvelle catégorie')] = $nb+1;
+
             $action = 'add';
             $faqCategory = new FaqCategory();
 
@@ -118,7 +125,7 @@ class FaqCategoryController extends AppAdminController
             $flashMsg = $this->translator->trans('admin_faq#Catégorie éditée avec succès');
         }
 
-        $form = $this->createForm(FaqCategoryType::class, $faqCategory);
+        $form = $this->createForm(FaqCategoryType::class, $faqCategory, ['positions' => $tabPositions, 'current_action' => $action]);
 
         $form->handleRequest($this->request->getCurrentRequest());
         if ($form->isSubmitted() && $form->isValid())
@@ -141,7 +148,7 @@ class FaqCategoryController extends AppAdminController
             'breadcrumb' => $breadcrumb,
             'form' => $form->createView(),
             'title' => $title,
-            'tag' => $faqCategory,
+            'faqCategory' => $faqCategory,
             'frontUrl' => $frontUrl,
             'currentLocal' => $currentLocal,
             'action' => $action,
@@ -176,6 +183,53 @@ class FaqCategoryController extends AppAdminController
         $this->getDoctrine()->getManager()->flush();
         $this->addFlash('success', $flashMsg);*/
         return $this->redirectToRoute('admin_faq_category_index');
+    }
+
+    /**
+     * Vérifie que le slug est bien unique
+     * @param string|null $slug
+     * @return JsonResponse
+     */
+    #[Route('/check-unique-slug/{slug}/', name: 'check_slug')]
+    public function checkUniqueSlug(string $slug = null): JsonResponse
+    {
+        $returnOk = ['unique' => true, 'msg' => ""];
+        $returnKo = ['unique' => false, 'msg' => $this->translator->trans('admin_faq#Une catégorie existe déjà avec ce slug')];
+        if($slug == null)
+        {
+            return $this->json($returnOk);
+        }
+
+        $id = $this->request->getCurrentRequest()->get('id');
+
+        if($id != null)
+        {
+            $params = ['slug' => $slug, 'FaqCategory' => $id];
+            $result = $this->getDoctrine()->getRepository(FaqCategoryTranslation::class)->findOneBy($params);
+
+            if($result != null)
+            {
+                // Cas edition et meme slug
+                if($result->getSlug() == $slug)
+                {
+                    return $this->json($returnOk);
+                }
+                else {
+                    return $this->json($returnKo);
+                }
+            }
+        }
+
+
+        $params = ['slug' => $slug];
+        $result = $this->getDoctrine()->getRepository(FaqCategoryTranslation::class)->findOneBy($params);
+
+        if($result != null)
+        {
+            return $this->json($returnKo);
+        }
+
+        return $this->json($returnOk);
     }
 
 

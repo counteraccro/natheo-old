@@ -61,6 +61,29 @@ class FaqCategoryRepository extends ServiceEntityRepository
         return $paginator;
     }
 
+    /**
+     * Retourne la liste de position sous la forme d'un tableau
+     * @param string $local
+     * @return array
+     */
+    public function getListeOrder(string $local): array
+    {
+        $tab = $this->createQueryBuilder('faqc')
+            ->join('faqc.faqCategoryTranslations', 'faqct')
+            ->select('faqc.position', 'faqct.title')
+            ->where('faqct.language = :language')
+            ->setParameter('language', $local)
+            ->orderBy('faqc.position', 'ASC')
+            ->getQuery()
+            ->getResult();
+
+        $return = [];
+        foreach ($tab as $item) {
+            $return[$item['position'] . ' -> ' . $item['title']] = $item['position'];
+        }
+        return $return;
+    }
+
     // /**
     //  * @return FaqCategory[] Returns an array of FaqCategory objects
     //  */

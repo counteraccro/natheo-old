@@ -470,3 +470,6 @@
 'admin_faq#Ce texte sera présent sous le titre de la catégorie': '__Ce texte sera présent sous le titre de la catégorie'
 'admin_faq#Information sur la catégorie': '__Information sur la catégorie'
 'admin_faq#Traduction': __Traduction
+'admin_faq#Url': __Url
+'admin_faq#Valider': __Valider
+'admin_faq#pour la catégorie': '__pour la catégorie'
