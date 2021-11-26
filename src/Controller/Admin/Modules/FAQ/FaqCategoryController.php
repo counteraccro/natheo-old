@@ -10,9 +10,12 @@ namespace App\Controller\Admin\Modules\FAQ;
 
 use App\Controller\Admin\AppAdminController;
 use App\Entity\Modules\FAQ\FaqCategory;
+use App\Entity\Modules\FAQ\FaqCategoryTranslation;
+use App\Form\Modules\FAQ\FaqCategoryType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 #[Route('/admin/faq/category', name: 'admin_faq_category_')]
 class FaqCategoryController extends AppAdminController
@@ -83,23 +86,63 @@ class FaqCategoryController extends AppAdminController
     #[Route('/edit/{id}', name: 'edit')]
     public function createUpdate(FaqCategory $faqCategory = null): RedirectResponse|Response
     {
-        if($faqCategory)
+        $frontUrl = $this->generateUrl('front_faq_cat', ['slug' => 'slug'], UrlGeneratorInterface::ABSOLUTE_URL);
+
+        $breadcrumb = [
+            $this->translator->trans('admin_dashboard#Dashboard') => 'admin_dashboard_index',
+            $this->translator->trans('admin_system#Modules') => '',
+            $this->translator->trans('admin_faq#FAQ') => '',
+            $this->translator->trans('admin_faq#Gestion des catégories') => 'admin_faq_category_index',
+        ];
+
+        if ($faqCategory == null) {
+            $action = 'add';
+            $faqCategory = new FaqCategory();
+
+            $locales = $this->translationService->getLocales();
+            foreach($locales as $locale)
+            {
+                $faqCategoryTranslation = new FaqCategoryTranslation();
+                $faqCategoryTranslation->setLanguage($locale);
+                $faqCategory->addFaqCategoryTranslation($faqCategoryTranslation);
+            }
+
+            $title = $this->translator->trans('admin_faq#Ajouter un catégorie');
+            $breadcrumb[$title] = '';
+            $flashMsg = $this->translator->trans('admin_faq#Catégorie crée avec succès');
+        } else {
+            $action = 'edit';
+            $title = $this->translator->trans('admin_faq#Edition de la catégorie ') . '#' . $faqCategory->getId();
+            $breadcrumb[$title] = '';
+            $flashMsg = $this->translator->trans('admin_faq#Catégorie éditée avec succès');
+        }
+
+        $form = $this->createForm(FaqCategoryType::class, $faqCategory);
+
+        $form->handleRequest($this->request->getCurrentRequest());
+        if ($form->isSubmitted() && $form->isValid())
         {
+            $faqCategory->setCreateOn(new \DateTime());
+
+            $this->getDoctrine()->getManager()->persist($faqCategory);
+            $this->getDoctrine()->getManager()->flush();
+
             $param = [];
-            /*$this->addFlash('success', $flashMsg);
+            $this->addFlash('success', $flashMsg);
             if ($action == 'edit') {
                 $param = ['page' => $this->getPageInSession(self::SESSION_KEY_PAGE)];
-            }*/
+            }
 
             return $this->redirectToRoute('admin_faq_category_index', $param);
         }
 
         return $this->render('admin/modules/faq/faq_category/create-update.html.twig', [
-            /*'breadcrumb' => $breadcrumb,
+            'breadcrumb' => $breadcrumb,
             'form' => $form->createView(),
             'title' => $title,
-            'tag' => $tag,
-            'action' => $action,*/
+            'tag' => $faqCategory,
+            'frontUrl' => $frontUrl,
+            'action' => $action,
         ]);
     }
 

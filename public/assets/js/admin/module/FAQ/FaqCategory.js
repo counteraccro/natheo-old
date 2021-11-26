@@ -20,4 +20,49 @@ FAQCategory.Launch = function () {
         let str_loading = $(id).data('loading');
         System.Ajax(url, id, true, str_loading);
     };
+
+    /**
+     * Event sur la création / Edition d'une catégorie
+     * @param globalId
+     * @param frontUrl
+     * @constructor
+     */
+    FAQCategory.EventCreateUpdate = function(globalId, frontUrl) {
+
+        FAQCategory.globalIdCreateUpdate = globalId;
+
+        $(FAQCategory.globalIdCreateUpdate + ' input.titre').keyup(function() {
+            FAQCategory.CreateSlug($(this));
+        })
+
+        $(FAQCategory.globalIdCreateUpdate + ' input.slug').keyup(function() {
+            //FAQCategory.CreateSlug($(this));
+        })
+
+        /**
+         * Met à jour le slug
+         * @constructor
+         */
+        FAQCategory.UpdateSlug = function() {
+            $(FAQCategory.globalIdCreateUpdate + ' input.titre').each(function() {
+                FAQCategory.CreateSlug($(this));
+            })
+        }
+
+        /**
+         * Permet de créer un slug
+         * @param element
+         * @constructor
+         */
+        FAQCategory.CreateSlug = function(element)
+        {
+            let slug = System.stringToSlug(element.val());
+            $(FAQCategory.globalIdCreateUpdate + ' #slug-' + element.data('nb')).val(slug);
+
+            slug = frontUrl.replace('slug', slug);
+            let help = 'Url : <a href="' + slug + '" target="_blank">' + slug + '</a>';
+
+            $(FAQCategory.globalIdCreateUpdate + ' #' + element.attr('id') + '_help').html(help);
+        }
+    }
 }

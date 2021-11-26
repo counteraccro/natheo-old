@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Form\Admin\Module;
+namespace App\Form\Modules;
 
 use App\Entity\Modules\Tag;
 use App\Form\AppType;

@@ -460,3 +460,13 @@
 'front_auth#Me connecter': '__Me connecter'
 'admin_faq#Descendre': __Descendre
 'admin_faq#Monter': __Monter
+'admin_faq#Ajouter un catégorie': '__Ajouter un catégorie'
+'admin_faq#Catégorie crée avec succès': '__Catégorie crée avec succès'
+'admin_faq#Edition de la catégorie ': '__Edition de la catégorie '
+'admin_faq#Catégorie éditée avec succès': '__Catégorie éditée avec succès'
+'admin_faq#Titre de la catégorie': '__Titre de la catégorie'
+'admin_faq#Slug': __Slug
+'admin_faq#Le slug permet de définir l''url de la catégorie, par défault c''est le titre': '__Le slug permet de définir l''url de la catégorie, par défault c''est le titre'
+'admin_faq#Ce texte sera présent sous le titre de la catégorie': '__Ce texte sera présent sous le titre de la catégorie'
+'admin_faq#Information sur la catégorie': '__Information sur la catégorie'
+'admin_faq#Traduction': __Traduction

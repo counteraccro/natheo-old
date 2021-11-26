@@ -31,12 +31,12 @@ class FaqCategory
     private $create_on;
 
     /**
-     * @ORM\OneToMany(targetEntity=FaqCategoryTranslation::class, mappedBy="FaqCategory", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=FaqCategoryTranslation::class, mappedBy="FaqCategory", orphanRemoval=true, cascade={"persist"})
      */
     private $faqCategoryTranslations;
 
     /**
-     * @ORM\OneToMany(targetEntity=FaqQuestionAnswer::class, mappedBy="FaqCategory", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=FaqQuestionAnswer::class, mappedBy="FaqCategory", orphanRemoval=true, cascade={"persist"})
      */
     private $faqQuestionAnswers;
 

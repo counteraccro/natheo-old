@@ -39,6 +39,11 @@ class FaqCategoryTranslation
      */
     private $FaqCategory;
 
+    /**
+     * @ORM\Column(type="string", length=255, unique=true)
+     */
+    private $slug;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -88,6 +93,18 @@ class FaqCategoryTranslation
     public function setFaqCategory(?FaqCategory $FaqCategory): self
     {
         $this->FaqCategory = $FaqCategory;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

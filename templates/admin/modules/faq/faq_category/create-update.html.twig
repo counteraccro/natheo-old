@@ -1,0 +1,62 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+    <div id="admin-create-update-faq-category">
+        <h1>{{ title }}</h1>
+
+        {{ breadcrumb | breadcrumb | raw }}
+
+
+        <div class="card">
+            <div class="card-header">
+                {{ "admin_faq#Information sur la catégorie" | trans }}
+            </div>
+            <div class="card-body">
+                {{ form_start(form) }}
+
+                {{ form_row(form.position) }}
+
+                {% set nb = 0 %}
+                {% for translation in form.faqCategoryTranslations %}
+                    {% set nb = nb+1 %}
+
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            {{ "admin_faq#Traduction" | trans }} {{ ("admin_translation#"~translation.language.vars.value) | trans }} {{ "admin_faq#pour la catégorie" | trans }}
+                        </div>
+                        <div class="card-body">
+                            {{ form_row(translation.title, {'id' : 'titre-'~nb, 'attr': {'class': 'titre', 'data-nb' : nb}}) }}
+
+
+                            {{ form_row(translation.slug, {'id' : 'slug-'~nb, 'attr': {'class': 'slug', 'data-nb' : nb}}) }}
+
+                            {{ form_row(translation.description) }}
+
+                            {{ form_row(translation.language) }}
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+
+    <script>
+        $(document).ready(function () {
+            Wysiwyg.DefaultEditor('.input-editor');
+
+            FAQCategory.Launch();
+            FAQCategory.EventCreateUpdate('#admin-create-update-faq-category', '{{ frontUrl }}');
+            FAQCategory.UpdateSlug();
+        });
+    </script>
+
+{% endblock %}
+

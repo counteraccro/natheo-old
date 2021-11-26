@@ -22,7 +22,7 @@
                 </td>
                 <td>
                     {% for translation in faqCat.faqCategoryTranslations %}
-                        {{ ("admin_translation#"~translation.language) | trans }} : {{ translation.description }} <br />
+                        {{ ("admin_translation#"~translation.language) | trans }} : {{ translation.description | raw }} <br />
                     {% endfor %}
                 </td>
                 <td>

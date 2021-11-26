@@ -11,6 +11,7 @@ use App\Service\Admin\System\TranslationService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class AppFixtures extends Fixture
 {
@@ -24,10 +25,16 @@ class AppFixtures extends Fixture
      */
     protected TranslationService $translationService;
 
-    public function __construct(ParameterBagInterface $parameterBag, TranslationService $translationService)
+    /**
+     * @var SluggerInterface
+     */
+    protected SluggerInterface $slugger;
+
+    public function __construct(ParameterBagInterface $parameterBag, TranslationService $translationService, SluggerInterface $slugger)
     {
         $this->parameterBag = $parameterBag;
         $this->translationService = $translationService;
+        $this->slugger = $slugger;
     }
 
     public function load(ObjectManager $manager)

@@ -27,7 +27,7 @@ class FaqCategoryFixtures extends AppFixtures
 
             if($locale != 'fr')
             {
-                $title = '__' . $title;
+                $title = '__' . $locale . '_' . $title;
                 $description = '__' . $description;
             }
 
@@ -36,6 +36,7 @@ class FaqCategoryFixtures extends AppFixtures
             $faqCatTranslation->setTitle($title);
             $faqCatTranslation->setLanguage($locale);
             $faqCatTranslation->setFaqCategory($faqCat);
+            $faqCatTranslation->setSlug($this->slugger->slug($title));
             $manager->persist($faqCatTranslation);
             $faqCat->addFaqCategoryTranslation($faqCatTranslation);
         }
@@ -52,7 +53,7 @@ class FaqCategoryFixtures extends AppFixtures
 
             if($locale != 'fr')
             {
-                $title = '__' . $title;
+                $title = '__' . $locale . '_' . $title;
                 $description = '__' . $description;
             }
 
@@ -61,6 +62,7 @@ class FaqCategoryFixtures extends AppFixtures
             $faqCatTranslation->setTitle($title);
             $faqCatTranslation->setLanguage($locale);
             $faqCatTranslation->setFaqCategory($faqCat);
+            $faqCatTranslation->setSlug($this->slugger->slug($title));
             $manager->persist($faqCatTranslation);
             $faqCat->addFaqCategoryTranslation($faqCatTranslation);
         }
@@ -77,7 +79,7 @@ class FaqCategoryFixtures extends AppFixtures
 
             if($locale != 'fr')
             {
-                $title = '__' . $title;
+                $title = '__' . $locale . '_' . $title;
                 $description = '__' . $description;
             }
 
@@ -86,6 +88,7 @@ class FaqCategoryFixtures extends AppFixtures
             $faqCatTranslation->setTitle($title);
             $faqCatTranslation->setLanguage($locale);
             $faqCatTranslation->setFaqCategory($faqCat);
+            $faqCatTranslation->setSlug($this->slugger->slug($title));
             $manager->persist($faqCatTranslation);
             $faqCat->addFaqCategoryTranslation($faqCatTranslation);
         }

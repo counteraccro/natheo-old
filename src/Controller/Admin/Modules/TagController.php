@@ -10,7 +10,7 @@ namespace App\Controller\Admin\Modules;
 
 use App\Controller\Admin\AppAdminController;
 use App\Entity\Modules\Tag;
-use App\Form\Admin\Module\TagType;
+use App\Form\Modules\TagType;
 use App\Repository\Modules\TagRepository;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
