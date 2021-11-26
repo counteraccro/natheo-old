@@ -473,3 +473,7 @@
 'admin_faq#Url': __Url
 'admin_faq#Valider': __Valider
 'admin_faq#pour la catégorie': '__pour la catégorie'
+'admin_faq#Nouvelle catégorie': '__Nouvelle catégorie'
+'admin_faq#Une catégorie existe déjà avec ce slug': '__Une catégorie existe déjà avec ce slug'
+'admin_faq#Position de la catégorie': '__Position de la catégorie'
+'admin_faq#La catégorie sera placée à la position choisie, les autres catégories seront décalé de 1 vers le bas ': '__La catégorie sera placée à la position choisie, les autres catégories seront décalé de 1 vers le bas '
