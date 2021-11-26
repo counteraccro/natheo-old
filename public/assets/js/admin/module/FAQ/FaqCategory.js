@@ -27,16 +27,12 @@ FAQCategory.Launch = function () {
      * @param frontUrl
      * @constructor
      */
-    FAQCategory.EventCreateUpdate = function(globalId, frontUrl) {
+    FAQCategory.EventCreateUpdate = function(globalId, frontUrl, currentLocal) {
 
         FAQCategory.globalIdCreateUpdate = globalId;
 
         $(FAQCategory.globalIdCreateUpdate + ' input.titre').keyup(function() {
             FAQCategory.CreateSlug($(this));
-        })
-
-        $(FAQCategory.globalIdCreateUpdate + ' input.slug').keyup(function() {
-            //FAQCategory.CreateSlug($(this));
         })
 
         /**
@@ -60,6 +56,7 @@ FAQCategory.Launch = function () {
             $(FAQCategory.globalIdCreateUpdate + ' #slug-' + element.data('nb')).val(slug);
 
             slug = frontUrl.replace('slug', slug);
+            slug = slug.replace(currentLocal, element.data('local'))
             let help = 'Url : <a href="' + slug + '" target="_blank">' + slug + '</a>';
 
             $(FAQCategory.globalIdCreateUpdate + ' #' + element.attr('id') + '_help').html(help);

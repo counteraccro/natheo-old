@@ -27,7 +27,7 @@
                             {{ "admin_faq#Traduction" | trans }} {{ ("admin_translation#"~translation.language.vars.value) | trans }} {{ "admin_faq#pour la catégorie" | trans }}
                         </div>
                         <div class="card-body">
-                            {{ form_row(translation.title, {'id' : 'titre-'~nb, 'attr': {'class': 'titre', 'data-nb' : nb}}) }}
+                            {{ form_row(translation.title, {'id' : 'titre-'~nb, 'attr': {'class': 'titre', 'data-nb' : nb, 'data-local' : translation.language.vars.value}}) }}
 
 
                             {{ form_row(translation.slug, {'id' : 'slug-'~nb, 'attr': {'class': 'slug', 'data-nb' : nb}}) }}
@@ -53,7 +53,7 @@
             Wysiwyg.DefaultEditor('.input-editor');
 
             FAQCategory.Launch();
-            FAQCategory.EventCreateUpdate('#admin-create-update-faq-category', '{{ frontUrl }}');
+            FAQCategory.EventCreateUpdate('#admin-create-update-faq-category', '{{ frontUrl }}', '{{ currentLocal }}');
             FAQCategory.UpdateSlug();
         });
     </script>

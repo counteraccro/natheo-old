@@ -87,6 +87,7 @@ class FaqCategoryController extends AppAdminController
     public function createUpdate(FaqCategory $faqCategory = null): RedirectResponse|Response
     {
         $frontUrl = $this->generateUrl('front_faq_cat', ['slug' => 'slug'], UrlGeneratorInterface::ABSOLUTE_URL);
+        $currentLocal = $this->request->getCurrentRequest()->getLocale();
 
         $breadcrumb = [
             $this->translator->trans('admin_dashboard#Dashboard') => 'admin_dashboard_index',
@@ -142,6 +143,7 @@ class FaqCategoryController extends AppAdminController
             'title' => $title,
             'tag' => $faqCategory,
             'frontUrl' => $frontUrl,
+            'currentLocal' => $currentLocal,
             'action' => $action,
         ]);
     }
