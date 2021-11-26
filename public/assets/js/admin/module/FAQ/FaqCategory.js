@@ -27,7 +27,7 @@ FAQCategory.Launch = function () {
      * @param frontUrl
      * @constructor
      */
-    FAQCategory.EventCreateUpdate = function(globalId, frontUrl, currentLocal) {
+    FAQCategory.EventCreateUpdate = function(globalId, frontUrl, currentLocal, action) {
 
         FAQCategory.globalIdCreateUpdate = globalId;
 
@@ -57,7 +57,12 @@ FAQCategory.Launch = function () {
 
             slug = frontUrl.replace('slug', slug);
             slug = slug.replace(currentLocal, element.data('local'))
-            let help = 'Url : <a href="' + slug + '" target="_blank">' + slug + '</a>';
+
+
+            let help = 'Url : ' + slug;
+            if(action === "edit") {
+                help = 'Url : <a href="' + slug + '" target="_blank">' + slug + '</a>';
+            }
 
             $(FAQCategory.globalIdCreateUpdate + ' #' + element.attr('id') + '_help').html(help);
         }

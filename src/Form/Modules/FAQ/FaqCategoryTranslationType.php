@@ -30,7 +30,7 @@ class FaqCategoryTranslationType extends AppType
                     ])
             ->add('description', TextareaType::class, [
                 'label' => $this->translator->trans('admin_faq#Description'),
-                'attr' => ['placeholder' => $this->translator->trans('admin_faq#Description'), 'class' => 'input-editor'],
+                'attr' => ['placeholder' => $this->translator->trans('admin_faq#Description'), 'class' => 'input-editor', 'rows' => 15],
                 'help' => $this->translator->trans('admin_faq#Ce texte sera présent sous le titre de la catégorie')
                     ])
             ->add('language', HiddenType::class, [

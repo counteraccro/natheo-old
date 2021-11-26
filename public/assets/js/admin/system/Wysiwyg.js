@@ -12,5 +12,7 @@ let Wysiwyg = {}
  * @constructor
  */
 Wysiwyg.DefaultEditor = function (id) {
-    $(id).summernote();
+    $(id).summernote({
+        height: 170
+    });
 }
