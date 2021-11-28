@@ -16,6 +16,6 @@ class FaqService extends AppService
     public function getListeOrderFaqCategory()
     {
         $currentLocal = $this->request->getLocale();
-        return $this->doctrine->getRepository(FaqCategory::class)->getListeOrder($currentLocal);
+        return $this->doctrine->getRepository(FaqCategory::class)->getListeOrder($currentLocal, $this->translator->trans('admin_faq#Avant'));
     }
 }

@@ -66,7 +66,7 @@ class FaqCategoryRepository extends ServiceEntityRepository
      * @param string $local
      * @return array
      */
-    public function getListeOrder(string $local): array
+    public function getListeOrder(string $local, string $txt): array
     {
         $tab = $this->createQueryBuilder('faqc')
             ->join('faqc.faqCategoryTranslations', 'faqct')
@@ -79,7 +79,7 @@ class FaqCategoryRepository extends ServiceEntityRepository
 
         $return = [];
         foreach ($tab as $item) {
-            $return[$item['position'] . ' -> ' . $item['title']] = $item['position'];
+            $return[$item['position'] . ' -> ' . $txt . ' ' . $item['title']] = $item['position'];
         }
         return $return;
     }
