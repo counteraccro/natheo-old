@@ -128,7 +128,7 @@ class TranslationService extends AppService
             $application->setAutoExit(false);
 
             $input = new ArrayInput([
-                'command' => 'translation:update',
+                'command' => 'translation:extract',
                 // (optional) define the value of command arguments
                 'locale' => $locale,
                 // (optional) pass options to the command

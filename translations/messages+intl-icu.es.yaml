@@ -99,6 +99,14 @@
 'admin_faq#Gestion des catégories': '__Gestion des catégories'
 'admin_faq#Titre': __Titre
 'admin_faq#Description': __Description
+'admin_faq#Nouvelle catégorie': '__Nouvelle catégorie'
+'admin_faq#Ajouter un catégorie': '__Ajouter un catégorie'
+'admin_faq#Catégorie crée avec succès': '__Catégorie crée avec succès'
+'admin_faq#Votre position actuel': '__Votre position actuel'
+'admin_faq#Edition de la catégorie ': '__Edition de la catégorie '
+'admin_faq#Catégorie éditée avec succès': '__Catégorie éditée avec succès'
+'admin_faq#Catégorie supprimé avec succès': '__Catégorie supprimé avec succès'
+'admin_faq#Une catégorie existe déjà avec ce slug': '__Une catégorie existe déjà avec ce slug'
 'admin_tag#Nom': __Nom
 'admin_tag#Ajouter un tag': '__Ajouter un tag'
 'admin_tag#Tag Crée avec succès': '__Tag Crée avec succès'
@@ -141,10 +149,6 @@
 'admin_user#Utilisateur supprimé avec succès': '__Utilisateur supprimé avec succès'
 'admin_user#Utilisateur désactivé avec succès': '__Utilisateur désactivé avec succès'
 'admin_user#Utilisateur activé avec succès': '__Utilisateur activé avec succès'
-'admin_tag#Nom du tag': '__Nom du tag'
-'admin_tag#Le nom du tag doit être unique': '__Le nom du tag doit être unique'
-'admin_tag#Couleur du tag': '__Couleur du tag'
-'admin_tag#Valider': __Valider
 'admin_role#Nom du rôle': '__Nom du rôle'
 'admin_role#Le nom du rôle doit être unique': '__Le nom du rôle doit être unique'
 'admin_role#Nom court du rôle': '__Nom court du rôle'
@@ -186,6 +190,18 @@
 'admin_media#Selectionner le dossier ou sera rangé le media': '__Selectionner le dossier ou sera rangé le media'
 'admin_media#Masquer ce média': '__Masquer ce média'
 'admin_media#Un média masqué n''apparaitra pas dans la selection de média pour un article ou une page': '__Un média masqué n''apparaitra pas dans la selection de média pour un article ou une page'
+'admin_faq#Titre de la catégorie': '__Titre de la catégorie'
+'admin_faq#Url': __Url
+'admin_faq#Slug': __Slug
+'admin_faq#Le slug permet de définir l''url de la catégorie, par défault c''est le titre': '__Le slug permet de définir l''url de la catégorie, par défault c''est le titre'
+'admin_faq#Ce texte sera présent sous le titre de la catégorie': '__Ce texte sera présent sous le titre de la catégorie'
+'admin_faq#Position de la catégorie': '__Position de la catégorie'
+'admin_faq#La catégorie sera placée à la position choisie, les autres catégories seront décalé de 1 vers le bas ': '__La catégorie sera placée à la position choisie, les autres catégories seront décalé de 1 vers le bas '
+'admin_faq#Valider': __Valider
+'admin_tag#Nom du tag': '__Nom du tag'
+'admin_tag#Le nom du tag doit être unique': '__Le nom du tag doit être unique'
+'admin_tag#Couleur du tag': '__Couleur du tag'
+'admin_tag#Valider': __Valider
 'admin_theme#Le thème téléchargé est vide ou corrompu': '__Le thème téléchargé est vide ou corrompu'
 'admin_theme#Plus d''un dossier à été détecté à la racine du dossier ZIP, Arrêt de l''installation du thème': '__Plus d''un dossier à été détecté à la racine du dossier ZIP, Arrêt de l''installation du thème'
 'admin_theme#Un dossier obligatoire est manquant': '__Un dossier obligatoire est manquant'
@@ -193,6 +209,7 @@
 'admin_theme#le champ suivante ne doit pas être vide': '__le champ suivante ne doit pas être vide'
 'admin_theme#le champ suivante est vide': '__le champ suivante est vide'
 'admin_theme#le nom du dossier de référence déclaré dans folder_ref ne correspond pas au dossier racine du thème': '__le nom du dossier de référence déclaré dans folder_ref ne correspond pas au dossier racine du thème'
+'admin_faq#Avant': __Avant
 'admin_media#Action': __Action
 'admin_media#Chargement du dossier': '__Chargement du dossier'
 'admin_media#Le dossier est actuellement vide pour le moment': '__Le dossier est actuellement vide pour le moment'
@@ -307,8 +324,22 @@
 'admin_faq#Aucune questions': '__Aucune questions'
 'admin_faq#1 Question': '__1 Question'
 'admin_faq#Editer': __Editer
-'admin_faq#Attention cette action est définitive ! Êtes vous sur ?': '__Attention cette action est définitive ! Êtes vous sur ?'
 'admin_faq#Supprimer': __Supprimer
+'admin_faq#Changement de la position en cours....': '__Changement de la position en cours....'
+'admin_faq#Descendre': __Descendre
+'admin_faq#Monter': __Monter
+'admin_faq#Suppression de la FAQ Catégorie': '__Suppression de la FAQ Catégorie'
+'admin_faq#Attention': __Attention
+'admin_faq#Est vous sur de vouloir supprimer cette FAQ Catégorie ainsi que tous les données associées ?': '__Est vous sur de vouloir supprimer cette FAQ Catégorie ainsi que tous les données associées ?'
+'admin_faq#La suppression d''une FAQ Catégorie implique :': '__La suppression d''une FAQ Catégorie implique :'
+'admin_faq#La supression de toutes les questions/réponses associées': '__La supression de toutes les questions/réponses associées'
+'admin_faq#Cette action est définitive et sans retour arrière': '__Cette action est définitive et sans retour arrière'
+'admin_faq#Annuler': __Annuler
+'admin_faq#Suppression de la FAQ catégorie en cours....': '__Suppression de la FAQ catégorie en cours....'
+'admin_faq#Supprimer la FAQ Catégorie': '__Supprimer la FAQ Catégorie'
+'admin_faq#Information sur la catégorie': '__Information sur la catégorie'
+'admin_faq#Traduction': __Traduction
+'admin_faq#pour la catégorie': '__pour la catégorie'
 'admin_faq#Ajouter une catégorie': '__Ajouter une catégorie'
 'admin_faq#Chargement des données...': '__Chargement des données...'
 'admin_tag#Statistiques': __Statistiques
@@ -458,35 +489,3 @@
 'front_auth#Mot de passe': '__Mot de passe'
 'front_auth#Ce souvenir de moi': '__Ce souvenir de moi'
 'front_auth#Me connecter': '__Me connecter'
-'admin_faq#Descendre': __Descendre
-'admin_faq#Monter': __Monter
-'admin_faq#Ajouter un catégorie': '__Ajouter un catégorie'
-'admin_faq#Catégorie crée avec succès': '__Catégorie crée avec succès'
-'admin_faq#Edition de la catégorie ': '__Edition de la catégorie '
-'admin_faq#Catégorie éditée avec succès': '__Catégorie éditée avec succès'
-'admin_faq#Titre de la catégorie': '__Titre de la catégorie'
-'admin_faq#Slug': __Slug
-'admin_faq#Le slug permet de définir l''url de la catégorie, par défault c''est le titre': '__Le slug permet de définir l''url de la catégorie, par défault c''est le titre'
-'admin_faq#Ce texte sera présent sous le titre de la catégorie': '__Ce texte sera présent sous le titre de la catégorie'
-'admin_faq#Information sur la catégorie': '__Information sur la catégorie'
-'admin_faq#Traduction': __Traduction
-'admin_faq#Url': __Url
-'admin_faq#Valider': __Valider
-'admin_faq#pour la catégorie': '__pour la catégorie'
-'admin_faq#Nouvelle catégorie': '__Nouvelle catégorie'
-'admin_faq#Une catégorie existe déjà avec ce slug': '__Une catégorie existe déjà avec ce slug'
-'admin_faq#Position de la catégorie': '__Position de la catégorie'
-'admin_faq#La catégorie sera placée à la position choisie, les autres catégories seront décalé de 1 vers le bas ': '__La catégorie sera placée à la position choisie, les autres catégories seront décalé de 1 vers le bas '
-'admin_faq#Avant': __Avant
-'admin_faq#Votre position actuel': '__Votre position actuel'
-'admin_faq#Changement de la position en cours....': '__Changement de la position en cours....'
-'admin_faq#Catégorie supprimé avec succès': '__Catégorie supprimé avec succès'
-'admin_faq#Suppression de la FAQ Catégorie': '__Suppression de la FAQ Catégorie'
-'admin_faq#Attention': __Attention
-'admin_faq#Est vous sur de vouloir supprimer cette FAQ Catégorie ainsi que tous les données associées ?': '__Est vous sur de vouloir supprimer cette FAQ Catégorie ainsi que tous les données associées ?'
-'admin_faq#La suppression d''une FAQ Catégorie implique :': '__La suppression d''une FAQ Catégorie implique :'
-'admin_faq#La supression de toutes les questions/réponses associées': '__La supression de toutes les questions/réponses associées'
-'admin_faq#Cette action est définitive et sans retour arrière': '__Cette action est définitive et sans retour arrière'
-'admin_faq#Annuler': __Annuler
-'admin_faq#Suppression de la FAQ catégorie en cours....': '__Suppression de la FAQ catégorie en cours....'
-'admin_faq#Supprimer la FAQ Catégorie': '__Supprimer la FAQ Catégorie'
