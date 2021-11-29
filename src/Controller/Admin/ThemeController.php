@@ -48,7 +48,7 @@ class ThemeController extends AppAdminController
     #[Route('/select/{id}', name: 'select')]
     public function select(Theme $theme): RedirectResponse
     {
-        $this->getDoctrine()->getRepository(Theme::class)->selectTheme($theme->getId());
+        $this->doctrine->getRepository(Theme::class)->selectTheme($theme->getId());
         $this->themeService->setCurrentThemeInSession();
         return $this->redirectToRoute('admin_theme_index');
     }

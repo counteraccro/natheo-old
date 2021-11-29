@@ -72,7 +72,7 @@ class RouteController extends AppAdminController
         $filter = $this->getCriteriaGeneriqueSearch(self::SESSION_KEY_FILTER);
 
         /** @var RouteRepository $routeRepo */
-        $routeRepo = $this->getDoctrine()->getRepository(\App\Entity\Admin\Route::class);
+        $routeRepo = $this->doctrine->getRepository(\App\Entity\Admin\Route::class);
         $listeRoutes = $routeRepo->listeRoutePaginate($page, $limit, $filter);
         $nbRoutesDepreciate = $routeRepo->findBy(['is_depreciate' => 1]);
         $tabModule = $routeService->getTranslateModules();
@@ -95,8 +95,8 @@ class RouteController extends AppAdminController
     #[Route('/ajax/delete/{id}', name: 'ajax_delete')]
     public function delete(\App\Entity\Admin\Route $route): JsonResponse
     {
-        $this->getDoctrine()->getManager()->remove($route);
-        $this->getDoctrine()->getManager()->flush();
+        $this->doctrine->getManager()->remove($route);
+        $this->doctrine->getManager()->flush();
         return $this->json(['success' => true]);
     }
 
@@ -107,14 +107,14 @@ class RouteController extends AppAdminController
     #[Route('/ajax/purge/', name: 'ajax_purge')]
     public function purge(): JsonResponse
     {
-        $routeRepo = $this->getDoctrine()->getRepository(\App\Entity\Admin\Route::class);
+        $routeRepo = $this->doctrine->getRepository(\App\Entity\Admin\Route::class);
         $listeRouteDepreciate = $routeRepo->findBy(['is_depreciate' => 1]);
 
         foreach($listeRouteDepreciate as $route)
         {
-            $this->getDoctrine()->getManager()->remove($route);
+            $this->doctrine->getManager()->remove($route);
         }
-        $this->getDoctrine()->getManager()->flush();
+        $this->doctrine->getManager()->flush();
 
         return $this->json(['success' => true]);
     }

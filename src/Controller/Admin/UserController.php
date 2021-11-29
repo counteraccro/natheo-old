@@ -68,7 +68,7 @@ class UserController extends AppAdminController
         $filter = $this->getCriteriaGeneriqueSearch(self::SESSION_KEY_FILTER);
 
         /** @var UserRepository $routeRepo */
-        $userRepo = $this->getDoctrine()->getRepository(User::class);
+        $userRepo = $this->doctrine->getRepository(User::class);
         $listeUsers = $userRepo->listeUserPaginate($page, $limit, $filter);
 
         return $this->render('admin/user/ajax/ajax-listing.html.twig', [
@@ -159,8 +159,8 @@ class UserController extends AppAdminController
                 $user->setLastPasswordUpdae(new \DateTime());
             }
 
-            $this->getDoctrine()->getManager()->persist($user);
-            $this->getDoctrine()->getManager()->flush();
+            $this->doctrine->getManager()->persist($user);
+            $this->doctrine->getManager()->flush();
 
             $param = [];
             $this->addFlash('success', $flashMsg);
@@ -213,8 +213,8 @@ class UserController extends AppAdminController
             // TODO Code pour remplacer les données du user par john doe
         }
 
-        $this->getDoctrine()->getManager()->remove($user);
-        $this->getDoctrine()->getManager()->flush();
+        $this->doctrine->getManager()->remove($user);
+        $this->doctrine->getManager()->flush();
         $this->addFlash('success', $flashMsg);
         return $this->redirectToRoute('admin_user_index');
     }
@@ -236,8 +236,8 @@ class UserController extends AppAdminController
             $user->setIsDisabled(false);
         }
 
-        $this->getDoctrine()->getManager()->persist($user);
-        $this->getDoctrine()->getManager()->flush();
+        $this->doctrine->getManager()->persist($user);
+        $this->doctrine->getManager()->flush();
         $this->addFlash('success', $flashMsg);
         return $this->redirectToRoute('admin_user_index', ['page' => $this->getPageInSession(self::SESSION_KEY_PAGE)]);
     }

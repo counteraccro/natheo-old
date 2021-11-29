@@ -64,7 +64,7 @@ class RoleController extends AppAdminController
         $filter = $this->getCriteriaGeneriqueSearch(self::SESSION_KEY_FILTER);
 
         /** @var RoleRepository $routeRepo */
-        $roleRepo = $this->getDoctrine()->getRepository(Role::class);
+        $roleRepo = $this->doctrine->getRepository(Role::class);
         $listeRoles = $roleRepo->listeRolePaginate($page, $limit, $filter);
 
         return $this->render('admin/role/ajax/ajax-listing.html.twig', [
@@ -90,7 +90,7 @@ class RoleController extends AppAdminController
         ];
 
         /** @var RouteRepository $RouteRepo */
-        $RouteRepo = $this->getDoctrine()->getRepository(\App\Entity\Admin\Route::class);
+        $RouteRepo = $this->doctrine->getRepository(\App\Entity\Admin\Route::class);
         $listeRoutes = $RouteRepo->getListeOrderBy();
 
         if($role == null)
@@ -129,18 +129,18 @@ class RoleController extends AppAdminController
                     $routeRight->setRoute($RouteRepo->findOneBy(['id' => $id]));
                     $routeRight->setRole($role);
                     $routeRight->setCanDelete(true)->setCanEdit(true)->setCanRead(true);
-                    $this->getDoctrine()->getManager()->persist($routeRight);
+                    $this->doctrine->getManager()->persist($routeRight);
                     $role->addRouteRight($routeRight);
                 }
             }
 
-            $this->getDoctrine()->getManager()->persist($role);
-            $this->getDoctrine()->getManager()->flush();
+            $this->doctrine->getManager()->persist($role);
+            $this->doctrine->getManager()->flush();
             $this->addFlash('success', $flashMsg);
 
             // Avant la redirection raffraichissement des roles pour le user
             $tabRouteAccess = [];
-            $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['id' => $this->security->getUser()->getId()]);
+            $user = $this->doctrine->getRepository(User::class)->findOneBy(['id' => $this->security->getUser()->getId()]);
             /** @var Role $rolesCm */
             foreach ($user->getRolesCms() as $rolesCm) {
 
@@ -175,8 +175,8 @@ class RoleController extends AppAdminController
     public function delete(Role $role)
     {
         $flashMsg = $this->translator->trans('admin_role#Rôle supprimé avec succès');
-        $this->getDoctrine()->getManager()->remove($role);
-        $this->getDoctrine()->getManager()->flush();
+        $this->doctrine->getManager()->remove($role);
+        $this->doctrine->getManager()->flush();
         $this->addFlash('success', $flashMsg);
         return $this->redirectToRoute('admin_role_index');
     }

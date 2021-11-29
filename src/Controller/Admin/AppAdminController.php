@@ -16,6 +16,7 @@ use App\Service\Admin\System\OptionService;
 use App\Service\Admin\System\TranslationService;
 use App\Service\Admin\ThemeService;
 use App\Service\Module\FAQ\FaqService;
+use Doctrine\Persistence\ManagerRegistry as Doctrine;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -23,6 +24,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Doctrine\ORM\EntityManagerInterface;
 
 class AppAdminController extends AbstractController
 {
@@ -88,6 +90,11 @@ class AppAdminController extends AbstractController
     protected FaqService $faqService;
 
     /**
+     * @var Doctrine
+     */
+    protected Doctrine  $doctrine;
+
+    /**
      * @param TranslatorInterface $translator
      * @param RequestStack $request
      * @param OptionService $optionService
@@ -102,7 +109,7 @@ class AppAdminController extends AbstractController
     public function __construct(TranslatorInterface $translator, RequestStack $request, OptionService $optionService,
                                 TranslationService  $translationService, DataSystemService $dataSystemService, KernelInterface $kernel,
                                 FileService         $fileService, MediaService $mediaService, ThemeService $themeService, Security $security,
-                                FaqService $faqService)
+                                FaqService $faqService, Doctrine $doctrine)
     {
         $this->translator = $translator;
         $this->request = $request;
@@ -116,6 +123,7 @@ class AppAdminController extends AbstractController
         $this->themeService = $themeService;
         $this->security = $security;
         $this->faqService = $faqService;
+        $this->doctrine = $doctrine;
     }
 
     /**

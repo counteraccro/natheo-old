@@ -12,6 +12,7 @@ use App\Controller\Admin\AppAdminController;
 use App\Entity\Modules\FAQ\FaqCategory;
 use App\Entity\Modules\FAQ\FaqCategoryTranslation;
 use App\Form\Modules\FAQ\FaqCategoryType;
+use App\Repository\Modules\FAQ\FaqCategoryRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -66,8 +67,8 @@ class FaqCategoryController extends AppAdminController
 
         $filter = $this->getCriteriaGeneriqueSearch(self::SESSION_KEY_FILTER);
 
-        /** @var FaqCategory $faqRepo */
-        $faqRepo = $this->getDoctrine()->getRepository(FaqCategory::class);
+        /** @var FaqCategoryRepository $faqRepo */
+        $faqRepo = $this->doctrine->getRepository(FaqCategory::class);
         $listeCats = $faqRepo->listeFaqCategoryPaginate($page, $limit, $filter);
 
         return $this->render('admin/modules/faq/faq_category/ajax/ajax-listing.html.twig', [
@@ -154,8 +155,8 @@ class FaqCategoryController extends AppAdminController
 
             $this->faqService->updatePositionFaqCategory($faqCategory, $oldPosition);
 
-            $this->getDoctrine()->getManager()->persist($faqCategory);
-            $this->getDoctrine()->getManager()->flush();
+            $this->doctrine->getManager()->persist($faqCategory);
+            $this->doctrine->getManager()->flush();
 
             $param = [];
             $this->addFlash('success', $flashMsg);
@@ -188,8 +189,8 @@ class FaqCategoryController extends AppAdminController
     {
         if($confirm == 1)
         {
-            $this->getDoctrine()->getManager()->remove($faqCategory);
-            $this->getDoctrine()->getManager()->flush();
+            $this->doctrine->getManager()->remove($faqCategory);
+            $this->doctrine->getManager()->flush();
 
             return $this->json([
                 'msg' => $this->translator->trans('admin_faq#Catégorie supprimé avec succès'),
@@ -216,13 +217,14 @@ class FaqCategoryController extends AppAdminController
         if($position > 0 && $position < count($tabPositions) && $position != $faqCategory->getPosition())
         {
 
-            $faqCategoryMove = $this->getDoctrine()->getRepository(FaqCategory::class)->getByPosition($position);
+            $faqCategoryMove = $this->doctrine->getRepository(FaqCategory::class)->getByPosition($position);
             $faqCategory->setPosition($faqCategoryMove->getPosition());
             $faqCategoryMove->setPosition($positionTmp);
 
-            $this->getDoctrine()->getManager()->persist($faqCategory);
-            $this->getDoctrine()->getManager()->persist($faqCategoryMove);
-            $this->getDoctrine()->getManager()->flush();
+
+            $this->doctrine->getManager()->persist($faqCategory);
+            $this->doctrine->getManager()->persist($faqCategoryMove);
+            $this->doctrine->getManager()->flush();
         }
         return $this->json(['success' => true]);
     }
@@ -247,7 +249,7 @@ class FaqCategoryController extends AppAdminController
         if($id != null)
         {
             $params = ['slug' => $slug, 'FaqCategory' => $id];
-            $result = $this->getDoctrine()->getRepository(FaqCategoryTranslation::class)->findOneBy($params);
+            $result = $this->doctrine->getRepository(FaqCategoryTranslation::class)->findOneBy($params);
 
             if($result != null)
             {
@@ -264,7 +266,7 @@ class FaqCategoryController extends AppAdminController
 
 
         $params = ['slug' => $slug];
-        $result = $this->getDoctrine()->getRepository(FaqCategoryTranslation::class)->findOneBy($params);
+        $result = $this->doctrine->getRepository(FaqCategoryTranslation::class)->findOneBy($params);
 
         if($result != null)
         {

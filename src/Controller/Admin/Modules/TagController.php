@@ -61,7 +61,7 @@ class TagController extends AppAdminController
         $filter = $this->getCriteriaGeneriqueSearch(self::SESSION_KEY_FILTER);
 
         /** @var TagRepository $routeRepo */
-        $tagRepo = $this->getDoctrine()->getRepository(Tag::class);
+        $tagRepo = $this->doctrine->getRepository(Tag::class);
         $listeTags = $tagRepo->listeTagPaginate($page, $limit, $filter);
 
         return $this->render('admin/modules/tag/ajax/ajax-listing.html.twig', [
@@ -104,8 +104,8 @@ class TagController extends AppAdminController
         $form->handleRequest($this->request->getCurrentRequest());
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $this->getDoctrine()->getManager()->persist($tag);
-            $this->getDoctrine()->getManager()->flush();
+            $this->doctrine->getManager()->persist($tag);
+            $this->doctrine->getManager()->flush();
 
             $param = [];
             $this->addFlash('success', $flashMsg);
@@ -133,8 +133,8 @@ class TagController extends AppAdminController
     public function delete(Tag $tag): RedirectResponse
     {
         $flashMsg = $this->translator->trans('admin_tag#Tag supprimé avec succès');
-        $this->getDoctrine()->getManager()->remove($tag);
-        $this->getDoctrine()->getManager()->flush();
+        $this->doctrine->getManager()->remove($tag);
+        $this->doctrine->getManager()->flush();
         $this->addFlash('success', $flashMsg);
         return $this->redirectToRoute('admin_tag_index');
     }

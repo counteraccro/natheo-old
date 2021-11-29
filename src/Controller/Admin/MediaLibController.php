@@ -48,7 +48,7 @@ class MediaLibController extends AppAdminController
     public function treeViewFolder(): Response
     {
 
-        $folders = $this->getDoctrine()->getRepository(Folder::class)->findBy(['parent' => null]);
+        $folders = $this->doctrine->getRepository(Folder::class)->findBy(['parent' => null]);
 
         return $this->render('admin/media_lib/ajax/ajax-tree-folder.html.twig', [
             'folders' => $folders
@@ -65,7 +65,7 @@ class MediaLibController extends AppAdminController
     {
         $folders = null;
         if ($folder == null) {
-            $folders = $this->getDoctrine()->getRepository(Folder::class)->findBy(['parent' => null]);
+            $folders = $this->doctrine->getRepository(Folder::class)->findBy(['parent' => null]);
         }
         $statFolder = $this->mediaService->getStatByTypeInFolder($folder);
         return $this->render('admin/media_lib/ajax/ajax-see-block-folder.html.twig', [
@@ -89,7 +89,7 @@ class MediaLibController extends AppAdminController
         $dataFilter['dateFormat'] = $this->optionService->getOptionFormatDate();
 
         if ($data == null) {
-            $data = $this->getDoctrine()->getRepository(Folder::class)->findBy(['parent' => null]);
+            $data = $this->doctrine->getRepository(Folder::class)->findBy(['parent' => null]);
         }
 
         return $this->render('admin/media_lib/ajax/ajax-see-content-folder.html.twig', [
@@ -144,7 +144,7 @@ class MediaLibController extends AppAdminController
             /** @var Folder $folder */
             $id = $form->get('refId')->getData();
             if ($id != -1) {
-                $folder = $this->getDoctrine()->getRepository(Folder::class)->findOneBy(['id' => $id]);
+                $folder = $this->doctrine->getRepository(Folder::class)->findOneBy(['id' => $id]);
                 $folder->setName($form->get('name')->getData());
             } else {
                 $folder = $form->getData();
@@ -156,8 +156,8 @@ class MediaLibController extends AppAdminController
                 $folder->setParent($parent);
             }
 
-            $this->getDoctrine()->getManager()->persist($folder);
-            $this->getDoctrine()->getManager()->flush();
+            $this->doctrine->getManager()->persist($folder);
+            $this->doctrine->getManager()->flush();
             $save_ok = true;
         }
 
@@ -219,8 +219,8 @@ class MediaLibController extends AppAdminController
         $media->setType($type);
         $media->setSize(0);
 
-        $this->getDoctrine()->getManager()->persist($media);
-        $this->getDoctrine()->getManager()->flush();
+        $this->doctrine->getManager()->persist($media);
+        $this->doctrine->getManager()->flush();
 
         $path = match ($type) {
             MediaService::TYPE_FILE => $fileUploaderService->getMediathequeDefaultPath() . '/file-default.png',
@@ -291,8 +291,8 @@ class MediaLibController extends AppAdminController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $media = $form->getData();
-            $this->getDoctrine()->getManager()->persist($media);
-            $this->getDoctrine()->getManager()->flush();
+            $this->doctrine->getManager()->persist($media);
+            $this->doctrine->getManager()->flush();
             $save_ok = true;
         }
 
@@ -317,8 +317,8 @@ class MediaLibController extends AppAdminController
         {
             $id = $media->getFolder()->getId();
             $this->fileService->delete($media->getPath(), $fileUploaderService->getMediathequeDirectory());
-            $this->getDoctrine()->getManager()->remove($media);
-            $this->getDoctrine()->getManager()->flush();
+            $this->doctrine->getManager()->remove($media);
+            $this->doctrine->getManager()->flush();
 
             return $this->json([
                 'msg' => $this->translator->trans('admin_media#Média supprimé avec succès'),

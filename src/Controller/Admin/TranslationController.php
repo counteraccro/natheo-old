@@ -66,7 +66,7 @@ class TranslationController extends AppAdminController
         }
 
         /** @var TranslationKeyRepository $translationKeyRepo */
-        $translationKeyRepo = $this->getDoctrine()->getRepository(TranslationKey::class);
+        $translationKeyRepo = $this->doctrine->getRepository(TranslationKey::class);
         $listeTranslation = $translationKeyRepo->listeRoutePaginate($page, $limit, $filter);
 
         return $this->render('admin/translation/ajax/ajax_listing.html.twig', [
@@ -112,8 +112,8 @@ class TranslationController extends AppAdminController
 
         if ($translationLabel->getLabel() != $label) {
             $translationLabel->setLabel($label);
-            $this->getDoctrine()->getManager()->persist($translationLabel);
-            $this->getDoctrine()->getManager()->flush();
+            $this->doctrine->getManager()->persist($translationLabel);
+            $this->doctrine->getManager()->flush();
             $this->dataSystemService->update(DataSystemService::DATA_SYSTEM_TRANSLATION_GENERATE, 1, DataSystemService::ADDITION);
         }
         return $this->json(['success' => true]);

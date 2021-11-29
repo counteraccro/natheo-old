@@ -6,7 +6,7 @@ use App\Entity\User;
 use App\Service\Admin\System\AccessService;
 use App\Service\Admin\System\OptionService;
 use App\Service\Admin\UserService;
-use App\Twig\Admin\Option;
+use App\Twig\Admin\OptionTwig;
 use Doctrine\Persistence\ManagerRegistry as Doctrine;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,7 +20,7 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Badge\CsrfTokenBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordCredentials;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
-use Symfony\Component\Security\Http\Authenticator\Passport\PassportInterface;
+//use Symfony\Component\Security\Http\Authenticator\Passport\PassportInterface;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
 class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
@@ -42,7 +42,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
         $this->userService = $userService;
     }
 
-    public function authenticate(Request $request): PassportInterface
+    public function authenticate(Request $request): Passport
     {
         $email = $request->request->get('email', '');
 
