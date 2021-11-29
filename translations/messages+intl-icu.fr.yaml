@@ -478,3 +478,15 @@
 'admin_faq#Position de la catégorie': 'Position de la catégorie'
 'admin_faq#La catégorie sera placée à la position choisie, les autres catégories seront décalé de 1 vers le bas ': 'La catégorie sera placée à la position choisie, les autres catégories seront décalé de 1 vers le bas '
 'admin_faq#Avant': Avant
+'admin_faq#Votre position actuel': 'Votre position actuel'
+'admin_faq#Changement de la position en cours....': 'Changement de la position en cours....'
+'admin_faq#Catégorie supprimé avec succès': 'Catégorie supprimé avec succès'
+'admin_faq#Suppression de la FAQ Catégorie': 'Suppression de la FAQ Catégorie'
+'admin_faq#Attention': Attention
+'admin_faq#Est vous sur de vouloir supprimer cette FAQ Catégorie ainsi que tous les données associées ?': 'Est vous sur de vouloir supprimer cette FAQ Catégorie ainsi que tous les données associées ?'
+'admin_faq#La suppression d''une FAQ Catégorie implique :': 'La suppression d''une FAQ Catégorie implique :'
+'admin_faq#La supression de toutes les questions/réponses associées': 'La supression de toutes les questions/réponses associées'
+'admin_faq#Cette action est définitive et sans retour arrière': 'Cette action est définitive et sans retour arrière'
+'admin_faq#Annuler': Annuler
+'admin_faq#Suppression de la FAQ catégorie en cours....': 'Suppression de la FAQ catégorie en cours....'
+'admin_faq#Supprimer la FAQ Catégorie': 'Supprimer la FAQ Catégorie'

@@ -103,6 +103,7 @@ class FaqCategoryController extends AppAdminController
 
             $nb = count($tabPositions);
             $tabPositions[$nb+1 . ' -> ' . $this->translator->trans('admin_faq#Nouvelle catégorie')] = $nb+1;
+            $oldPosition = $nb+1;
 
             $action = 'add';
             $faqCategory = new FaqCategory();
@@ -119,10 +120,28 @@ class FaqCategoryController extends AppAdminController
             $breadcrumb[$title] = '';
             $flashMsg = $this->translator->trans('admin_faq#Catégorie crée avec succès');
         } else {
+
+            // Affiche la position actuelle de l'élément courant
+            $arrayKeys = array_keys($tabPositions);
+            $oldKey = '';
+            $positionTmp = '';
+            foreach($tabPositions as $key => $position)
+            {
+                if($position === $faqCategory->getPosition())
+                {
+                    $oldKey = $key;
+                    $positionTmp = $position;
+                }
+            }
+            $oldKeyIndex = array_search($oldKey, $arrayKeys);
+            $arrayKeys[$oldKeyIndex] = $faqCategory->getPosition() . ' -> ' . $this->translator->trans('admin_faq#Votre position actuel') ;
+            $tabPositions =  array_combine($arrayKeys, $tabPositions);
+
             $action = 'edit';
             $title = $this->translator->trans('admin_faq#Edition de la catégorie ') . '#' . $faqCategory->getId();
             $breadcrumb[$title] = '';
             $flashMsg = $this->translator->trans('admin_faq#Catégorie éditée avec succès');
+            $oldPosition = $faqCategory->getPosition();
         }
 
         $form = $this->createForm(FaqCategoryType::class, $faqCategory, ['positions' => $tabPositions, 'current_action' => $action]);
@@ -130,7 +149,10 @@ class FaqCategoryController extends AppAdminController
         $form->handleRequest($this->request->getCurrentRequest());
         if ($form->isSubmitted() && $form->isValid())
         {
+            $faqCategory = $form->getData();
             $faqCategory->setCreateOn(new \DateTime());
+
+            $this->faqService->updatePositionFaqCategory($faqCategory, $oldPosition);
 
             $this->getDoctrine()->getManager()->persist($faqCategory);
             $this->getDoctrine()->getManager()->flush();
@@ -156,33 +178,53 @@ class FaqCategoryController extends AppAdminController
     }
 
     /**
-     * Permet de supprimer une catégorie de FAQ
+     * Permet de supprimer une catégorie FAQ
      * @param FaqCategory $faqCategory
-     * @return RedirectResponse
+     * @param int $confirm
+     * @return Response
      */
-    #[Route('/delete/{id}', name: 'delete')]
-    public function delete(FaqCategory $faqCategory): RedirectResponse
+    #[Route('/delete/{id}/{confirm}', name: 'ajax_delete')]
+    public function delete(FaqCategory $faqCategory, int $confirm = 0): Response
     {
-        /*$flashMsg = $this->translator->trans('admin_tag#Tag supprimé avec succès');
-        $this->getDoctrine()->getManager()->remove($tag);
-        $this->getDoctrine()->getManager()->flush();
-        $this->addFlash('success', $flashMsg);*/
-        return $this->redirectToRoute('admin_faq_category_index');
+        if($confirm == 1)
+        {
+            $this->getDoctrine()->getManager()->remove($faqCategory);
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->json([
+                'msg' => $this->translator->trans('admin_faq#Catégorie supprimé avec succès'),
+            ]);
+        }
+
+        return $this->render('admin/modules/faq/faq_category/ajax/ajax-modal-delete-category.html.twig', [
+            'faqCategory' => $faqCategory,
+        ]);
     }
 
     /**
      * Permet de changer la position une catégorie de FAQ
      * @param FaqCategory $faqCategory
-     * @return RedirectResponse
+     * @param int $position
+     * @return JsonResponse
      */
-    #[Route('/change-position/{id}', name: 'position')]
-    public function changePosition(FaqCategory $faqCategory, int $position): RedirectResponse
+    #[Route('/change-position/{id}/{position}', name: 'ajax_position')]
+    public function changePosition(FaqCategory $faqCategory, int $position): JsonResponse
     {
-        /*$flashMsg = $this->translator->trans('admin_tag#Tag supprimé avec succès');
-        $this->getDoctrine()->getManager()->remove($tag);
-        $this->getDoctrine()->getManager()->flush();
-        $this->addFlash('success', $flashMsg);*/
-        return $this->redirectToRoute('admin_faq_category_index');
+
+        $positionTmp = $faqCategory->getPosition();
+        $tabPositions = $this->faqService->getListeOrderFaqCategory();
+        if($position > 0 && $position < count($tabPositions) && $position != $faqCategory->getPosition())
+        {
+
+            $faqCategoryMove = $this->getDoctrine()->getRepository(FaqCategory::class)->getByPosition($position);
+            $faqCategory->setPosition($faqCategoryMove->getPosition());
+            $faqCategoryMove->setPosition($positionTmp);
+
+            $this->getDoctrine()->getManager()->persist($faqCategory);
+            $this->getDoctrine()->getManager()->persist($faqCategoryMove);
+            $this->getDoctrine()->getManager()->flush();
+        }
+        return $this->json(['success' => true]);
     }
 
     /**

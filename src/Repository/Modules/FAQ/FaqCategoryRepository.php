@@ -4,7 +4,10 @@ namespace App\Repository\Modules\FAQ;
 
 use App\Entity\Modules\FAQ\FaqCategory;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\Query\Expr;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -66,7 +69,7 @@ class FaqCategoryRepository extends ServiceEntityRepository
      * @param string $local
      * @return array
      */
-    public function getListeOrder(string $local, string $txt): array
+    public function getListePosition(string $local, string $txt): array
     {
         $tab = $this->createQueryBuilder('faqc')
             ->join('faqc.faqCategoryTranslations', 'faqct')
@@ -82,6 +85,49 @@ class FaqCategoryRepository extends ServiceEntityRepository
             $return[$item['position'] . ' -> ' . $txt . ' ' . $item['title']] = $item['position'];
         }
         return $return;
+    }
+
+    /**
+     * Retourne une liste de FAQ définie après la position envoyée en paramètre
+     * @param int $position
+     * @param string $action
+     * @return mixed
+     */
+    public function getListeAfterPosition(int $position, string $action): mixed
+    {
+        $query = $this->createQueryBuilder('faqc');
+
+        if($action == 'down')
+        {
+            $query->andWhere('faqc.position >= :position');
+        }
+        else {
+            $query->andWhere('faqc.position <= :position');
+        }
+
+        return $query->setParameter('position', $position)
+            ->orderBy('faqc.position', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    /**
+     * Retourne une FAQ en fonction de sa position
+     * @param int $position
+     */
+    public function getByPosition(int $position)
+    {
+        try {
+            return $this->createQueryBuilder('faqc')
+                ->andWhere('faqc.position = :position')
+                ->setParameter('position', $position)
+                ->getQuery()
+                ->getSingleResult();
+        } catch (NoResultException | NonUniqueResultException $e) {
+           $e->getMessage();
+           die();
+        }
     }
 
     // /**
