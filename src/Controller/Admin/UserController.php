@@ -90,7 +90,7 @@ class UserController extends AppAdminController
     #[Route('/me/{id}', name: 'me')]
     public function createUpdate(FileUploaderService $fileUploader, UserPasswordHasherInterface $passwordHarsher, User $user = null): RedirectResponse|Response
     {
-        // Vérification si l'action est bonne et conforme au données
+        // Vérification si l'action est bonne et conforme aux données
         $action_me = explode('_', $this->request->getCurrentRequest()->attributes->get('_route'))[2];
         if ($user != null && $this->getUser()->getId() != $user->getId() && $action_me == "me") {
             return $this->redirectToRoute('admin_user_edit', ['id' => $user->getId()]);
@@ -165,6 +165,7 @@ class UserController extends AppAdminController
             $param = [];
             $this->addFlash('success', $flashMsg);
             if ($action_me == "me") {
+
                 return $this->redirectToRoute('admin_dashboard_index');
             }
 
@@ -172,14 +173,17 @@ class UserController extends AppAdminController
                 $param = ['page' => $this->getPageInSession(self::SESSION_KEY_PAGE)];
             }
 
-            // Avant la redirection raffraichissement des roles pour le user
-            $tabRouteAccess = [];
-            foreach ($user->getRolesCms() as $rolesCm) {
-                foreach ($rolesCm->getRouteRights() as $routeRight) {
-                    $tabRouteAccess[] = $routeRight->getRoute()->getRoute();
+            if($user->getId() === $this->security->getUser()->getId())
+            {
+                // Avant la redirection raffraichissement des roles pour le user
+                $tabRouteAccess = [];
+                foreach ($user->getRolesCms() as $rolesCm) {
+                    foreach ($rolesCm->getRouteRights() as $routeRight) {
+                        $tabRouteAccess[] = $routeRight->getRoute()->getRoute();
+                    }
                 }
+                $this->session->set(AccessService::KEY_SESSION_LISTE_ROUTE_ACCESS, $tabRouteAccess);
             }
-            $this->session->set(AccessService::KEY_SESSION_LISTE_ROUTE_ACCESS, $tabRouteAccess);
 
             return $this->redirectToRoute('admin_user_index', $param);
         }
