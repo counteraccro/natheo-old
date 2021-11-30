@@ -27,6 +27,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Extension\AbstractExtension;
@@ -101,6 +102,11 @@ class AppExtension extends AbstractExtension
     protected MediaService $mediaService;
 
     /**
+     * @var RouterInterface
+     */
+    protected RouterInterface $router;
+
+    /**
      * @param ParameterBagInterface $parameterBag
      * @param UrlGeneratorInterface $urlGenerator
      * @param TranslatorInterface $translator
@@ -119,7 +125,7 @@ class AppExtension extends AbstractExtension
                                 RequestStack          $requestStack, TranslationService $translationService,
                                 OptionService       $optionService, DateService $dateService, KernelInterface $kernel,
                                 FileUploaderService $fileUploaderService, AccessService $accessService,
-                                MediaService $mediaService)
+                                MediaService $mediaService, RouterInterface $router)
     {
         $this->parameterBag = $parameterBag;
         $this->urlGenerator = $urlGenerator;
@@ -134,6 +140,7 @@ class AppExtension extends AbstractExtension
         $this->fileUploaderService = $fileUploaderService;
         $this->accessService = $accessService;
         $this->mediaService = $mediaService;
+        $this->router = $router;
     }
 
     /**

@@ -18,10 +18,10 @@ menu-left-admin:
         icon: 'fa-question-circle'
         sub-menu:
           admin_faq#Questions:
-            icon: 'fa-question'
+            icon: 'fa-question-circle'
             target: 'admin_tag_index'
           admin_faq#Catégories:
-            icon: 'fa-question'
+            icon: 'fa-question-circle'
             target: 'admin_faq_category_index'
   admin_theme#Thèmes:
     icon: 'fa-pager'

@@ -29,6 +29,12 @@
                                 {{ "admin_media#Pages" | trans }} : 0 <br />
                                 {{ "admin_media#Articles" | trans }} : 0
                             </div>
+                            <div class="col-{{ colGauche }}">URL :</div>
+                            <div class="col-{{ colDroite }}"> <a href="{{ path }}">{{  absolute_url(path) }}</a>
+                                <input type="hidden" id="txt-to-copy" value="{{ absolute_url(path) }}">
+                                <i class="fa fa-copy btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ "admin_media#Copier l'url" | trans }}"></i>
+                                <i class="fa fa-check" id="copy-ok" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ "admin_media#Url copiée !" | trans }}"></i>
+                            </div>
                         </div>
                     </div>
                     <div class="col-4">
@@ -51,6 +57,13 @@
         $(document).ready(function () {
             let modal = new bootstrap.Modal($('#modal-update-media'), [])
             modal.toggle();
+
+            let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl)
+            })
+
+            System.copy('.btn-copy', '#txt-to-copy', '#copy-ok');
         });
     </script>
 

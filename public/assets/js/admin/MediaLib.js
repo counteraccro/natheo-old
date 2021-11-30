@@ -221,7 +221,6 @@ MediaLib.Launch = function () {
         let str_loading = $(id).data('loading');
 
         let data = MediaLib.getDataFilterFolder();
-        console.log(data);
 
         let tmp_ref = 'btn-render-' + data['media'];
         $(MediaLib.globalId + ' #tree-view-folder li.link-filter').each(function () {

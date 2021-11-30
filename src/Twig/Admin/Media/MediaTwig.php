@@ -419,18 +419,23 @@ class MediaTwig extends AppExtension implements RuntimeExtensionInterface
         switch ($media->getType()) {
             case MediaService::TYPE_IMAGE :
                 $see = $this->translator->trans('admin_media#Voir l\'image');
+                $copy = $this->translator->trans('admin_media#Copier l\'url de l\'image');
                 break;
             case MediaService::TYPE_FILE :
                 $see = $this->translator->trans('admin_media#Télécharger le fichier');
+                $copy = $this->translator->trans('admin_media#Copier l\'url du fichier');
                 break;
             case MediaService::TYPE_VIDEO :
                 $see = $this->translator->trans('admin_media#Lire la vidéo');
+                $copy = $this->translator->trans('admin_media#Copier l\'url de la vidéo');
                 break;
             case MediaService::TYPE_AUDIO :
                 $see = $this->translator->trans('admin_media#Ecouter le son');
+                $copy = $this->translator->trans('admin_media#Copier l\'url du son');
                 break;
             default :
                 $see = '';
+                $copy = '';
                 break;
         }
 
@@ -480,6 +485,26 @@ class MediaTwig extends AppExtension implements RuntimeExtensionInterface
                         </a>
                     </li>';
         }
+
+        $btnIdCopy = "btn-id-copy" . mt_rand();
+        $btnIdCopyOk = "btn-id-copy-ok" . mt_rand();
+        $hiddenCopy = "txt-to-copy" . mt_rand();
+
+        $html .= '<li>
+                        <a class="dropdown-item"
+                            target="_blank"
+                            href="#">
+                            <span id="' . $btnIdCopy . '"><i class="fa fa-copy"></i> ' . $copy . '</span>
+                            <input type="hidden" id="' . $hiddenCopy . '" value="'. $this->router->getContext()->getHost() . $this->fileUploaderService->getMediathequePath() . '/' . $media->getPath()  . '">
+                            <span id="' . $btnIdCopyOk . '"><i class="fa fa-check"></i> ' . $this->translator->trans('admin_media#URL copiée !') . '</span>
+                        </a>
+                        
+                        <script>
+                            System.copy("#' . $btnIdCopy . '", "#' . $hiddenCopy . '", "#' . $btnIdCopyOk . '");
+                        </script>
+                        
+                        
+                    </li>';
 
         /*
          * <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
