@@ -25,13 +25,17 @@
                     <div class="card mb-4">
                         <div class="card-header">
                             {{ "admin_faq#Traduction" | trans }} {{ ("admin_translation#"~translation.language.vars.value) | trans }} {{ "admin_faq#pour la catégorie" | trans }}
+                            <!--<div class="form-check form-switch float-end">
+                                <input class="form-check-input active-translate" data-nb="{{ nb }}" type="checkbox" role="switch" id="active-translate-{{ nb }}">
+                                <label class="form-check-label" for="active-translate-{{ nb }}">{{ "admin_faq#Activer" }}</label>
+                            </div>-->
                         </div>
                         <div class="card-body">
                             {{ form_row(translation.title, {'id' : 'titre-'~nb, 'attr': {'class': 'titre', 'data-nb' : nb, 'data-local' : translation.language.vars.value}}) }}
 
                             {{ form_row(translation.slug, {'id' : 'slug-'~nb, 'attr': {'class': 'slug', 'data-nb' : nb}}) }}
 
-                            {{ form_row(translation.description) }}
+                            {{ form_row(translation.description, {'id' : 'description-'~nb}) }}
 
                             {{ form_row(translation.language) }}
                         </div>
@@ -49,7 +53,6 @@
 
     <script>
         $(document).ready(function () {
-            Wysiwyg.DefaultEditor('.input-editor');
 
             FAQCategory.Launch();
             let checkSlug = '{{ path('admin_faq_category_check_slug', {'slug' : 'pslug'}) }}';
@@ -58,6 +61,8 @@
             {% endif %}
             FAQCategory.EventCreateUpdate('#admin-create-update-faq-category', '{{ frontUrl }}', '{{ currentLocal }}', '{{ action }}', checkSlug);
             FAQCategory.UpdateSlug();
+
+            Wysiwyg.DefaultEditor('.input-editor');
         });
     </script>
 

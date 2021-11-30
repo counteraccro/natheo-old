@@ -90,6 +90,32 @@ FAQCategory.Launch = function () {
             FAQCategory.CheckUniqueSlug($(this));
         })
 
+        $(FAQCategory.globalIdCreateUpdate + ' .active-translate').each(function() {
+
+            let nb = $(this).data('nb');
+            if(!$(this).prop('checked'))
+            {
+                $(FAQCategory.globalIdCreateUpdate + ' #titre-' +nb).prop('disabled', true);
+                $(FAQCategory.globalIdCreateUpdate + ' #description-' +nb).prop('disabled', true);
+                $(FAQCategory.globalIdCreateUpdate + ' #description-' +nb).summernote("disable");
+            }
+        })
+
+        $(FAQCategory.globalIdCreateUpdate + ' .active-translate').change(function() {
+            let nb = $(this).data('nb');
+            if(!$(this).prop('checked'))
+            {
+                $(FAQCategory.globalIdCreateUpdate + ' #titre-' +nb).prop('disabled', true);
+                $(FAQCategory.globalIdCreateUpdate + ' #description-' +nb).prop('disabled', true);
+                $(FAQCategory.globalIdCreateUpdate + ' #description-' +nb).summernote("disable");
+            }
+            else {
+                $(FAQCategory.globalIdCreateUpdate + ' #titre-' +nb).prop('disabled', false);
+                $(FAQCategory.globalIdCreateUpdate + ' #description-' +nb).prop('disabled', false);
+                $(FAQCategory.globalIdCreateUpdate + ' #description-' +nb).summernote("enable");
+            }
+        })
+
         /**
          * Met à jour le slug
          * @constructor
