@@ -22,20 +22,33 @@
                 {% for translation in form.faqCategoryTranslations %}
                     {% set nb = nb+1 %}
 
+                    {% set checked = "" %}
+                    {% set see = false %}
+                    {% if currentLocal == translation.language.vars.value %}
+                        {% set checked = "checked" %}
+                    {% elseif not translation.title.vars.value is empty and  not translation.description.vars.value is empty%}
+                        {% set checked = "checked" %}
+                    {% else %}
+                        {% set see = true %}
+                        {% endif %}
+
                     <div class="card mb-4">
                         <div class="card-header">
                             {{ "admin_faq#Traduction" | trans }} {{ ("admin_translation#"~translation.language.vars.value) | trans }} {{ "admin_faq#pour la catégorie" | trans }}
-                            <!--<div class="form-check form-switch float-end">
-                                <input class="form-check-input active-translate" data-nb="{{ nb }}" type="checkbox" role="switch" id="active-translate-{{ nb }}">
+                           {% if see %}
+                               <div class="form-check form-switch float-end">
+                                <input class="form-check-input active-translate" data-nb="{{ nb }}" type="checkbox" role="switch" id="active-translate-{{ nb }}"
+                                       {{ checked }}>
                                 <label class="form-check-label" for="active-translate-{{ nb }}">{{ "admin_faq#Activer" }}</label>
-                            </div>-->
+                            </div>
+                            {% endif %}
                         </div>
                         <div class="card-body">
-                            {{ form_row(translation.title, {'id' : 'titre-'~nb, 'attr': {'class': 'titre', 'data-nb' : nb, 'data-local' : translation.language.vars.value}}) }}
+                            {{ form_row(translation.title, {'id' : 'titre-'~nb, 'attr': {'class': 'titre', 'data-nb' : nb, 'data-value' : translation.title.vars.value, 'data-local' : translation.language.vars.value}}) }}
 
                             {{ form_row(translation.slug, {'id' : 'slug-'~nb, 'attr': {'class': 'slug', 'data-nb' : nb}}) }}
 
-                            {{ form_row(translation.description, {'id' : 'description-'~nb}) }}
+                            {{ form_row(translation.description, {'id' : 'description-'~nb, 'attr': {'data-value' : translation.description.vars.value}}) }}
 
                             {{ form_row(translation.language) }}
                         </div>

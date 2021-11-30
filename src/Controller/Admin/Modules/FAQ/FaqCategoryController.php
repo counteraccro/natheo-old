@@ -100,6 +100,8 @@ class FaqCategoryController extends AppAdminController
 
         $tabPositions = $this->faqService->getListeOrderFaqCategory();
 
+        $locales = $this->translationService->getLocales();
+
         if ($faqCategory == null) {
 
             $nb = count($tabPositions);
@@ -143,6 +145,27 @@ class FaqCategoryController extends AppAdminController
             $breadcrumb[$title] = '';
             $flashMsg = $this->translator->trans('admin_faq#Catégorie éditée avec succès');
             $oldPosition = $faqCategory->getPosition();
+
+            $locales = $this->translationService->getLocales();
+            foreach($locales as $locale)
+            {
+                $is_local = false;
+                /** @var FaqCategoryTranslation $faqCategoryTranslation */
+                foreach($faqCategory->getFaqCategoryTranslations() as $faqCategoryTranslation)
+                {
+                    if($faqCategoryTranslation->getLanguage() == $locale)
+                    {
+                        $is_local = true;
+                    }
+                }
+
+                if(!$is_local)
+                {
+                    $faqCategoryTranslation = new FaqCategoryTranslation();
+                    $faqCategoryTranslation->setLanguage($locale);
+                    $faqCategory->addFaqCategoryTranslation($faqCategoryTranslation);
+                }
+            }
         }
 
         $form = $this->createForm(FaqCategoryType::class, $faqCategory, ['positions' => $tabPositions, 'current_action' => $action]);
@@ -150,8 +173,18 @@ class FaqCategoryController extends AppAdminController
         $form->handleRequest($this->request->getCurrentRequest());
         if ($form->isSubmitted() && $form->isValid())
         {
+            /** @var FaqCategory $faqCategory */
             $faqCategory = $form->getData();
             $faqCategory->setCreateOn(new \DateTime());
+
+            /** @var FaqCategoryTranslation $faqTrans */
+            foreach($faqCategory->getFaqCategoryTranslations() as $faqTrans)
+            {
+                if($faqTrans->getTitle() == "" && $faqTrans->getDescription() == "")
+                {
+                    $faqCategory->removeFaqCategoryTranslation($faqTrans);
+                }
+            }
 
             $this->faqService->updatePositionFaqCategory($faqCategory, $oldPosition);
 
