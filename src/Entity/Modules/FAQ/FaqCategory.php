@@ -36,7 +36,7 @@ class FaqCategory
     private $faqCategoryTranslations;
 
     /**
-     * @ORM\OneToMany(targetEntity=FaqQuestionAnswer::class, mappedBy="FaqCategory", orphanRemoval=true, cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=FaqQuestionAnswer::class, mappedBy="faqCategory", orphanRemoval=true, cascade={"persist"})
      */
     private $faqQuestionAnswers;
 

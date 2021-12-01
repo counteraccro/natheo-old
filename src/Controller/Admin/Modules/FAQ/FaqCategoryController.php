@@ -62,6 +62,8 @@ class FaqCategoryController extends AppAdminController
     public function listing(int $page = 1): Response
     {
 
+        $currentLocal = $this->request->getCurrentRequest()->getLocale();
+
         $this->setPageInSession(self::SESSION_KEY_PAGE, $page);
         $limit = $this->optionService->getOptionElementParPage();
 
@@ -76,6 +78,7 @@ class FaqCategoryController extends AppAdminController
             'page' => $page,
             'limit' => $limit,
             'route' => 'admin_faq_category_ajax_listing',
+            'currentLocal' => $currentLocal
         ]);
     }
 

@@ -496,3 +496,8 @@
 'admin_media#URL copiée !': '__URL copiée !'
 'admin_media#Copier l''url': '__Copier l''url'
 'admin_media#Url copiée !': '__Url copiée !'
+'admin_faq#Gestion des questions / réponses': '__Gestion des questions / réponses'
+'admin_faq#Question': __Question
+'admin_faq#Réponse': __Réponse
+'admin_faq#Catégorie': __Catégorie
+'admin_faq#Ajouter une question': '__Ajouter une question'

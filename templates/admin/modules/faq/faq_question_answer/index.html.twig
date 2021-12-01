@@ -1,0 +1,65 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block title %}{{ "admin_faq#Gestion des questions / réponses" | trans }}{% endblock %}
+
+{% block body %}
+    <div id="admin-faq-qr-globale">
+        <h1>{{ "admin_faq#Gestion des questions / réponses" | trans }}</h1>
+
+        {{ breadcrumb | breadcrumb | raw }}
+
+        {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }} alert-dismissible fade show msg-role-success">
+                <i class="fa fa-check"></i> {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+            <script>
+                $( document ).ready(function() {
+                    function hide_msg(){
+                        $(".msg-role-success").hide(400);
+                    };
+                    window.setTimeout( hide_msg, 3000 ); // 5 seconds
+                })
+            </script>
+        {% endfor %}
+
+        <div class="float-end">
+
+            {% if 'admin_faq_category_add' | isGranted %}
+                <a href="{{ path('admin_faq_category_add') }}" id="btn-new-role" class="btn btn-primary mb-2">
+                    <i class="fas fa-tag"></i> {{ "admin_faq#Ajouter une question" | trans }}
+                </a>
+            {% endif %}
+
+        </div>
+        <div class="clearfix"></div>
+        <div class="card">
+            <div class="card-header">
+                <div class="mt-2 float-start" id="info-route">
+
+                </div>
+                <div class="float-end">
+                    {{ fieldSearch | inputSearch('#admin-faq-qr-globale .card-body', constant('App\\Controller\\Admin\\Modules\\Faq\\FaqQuestionAnswerController::SESSION_KEY_FILTER')) | raw }}
+                </div>
+            </div>
+            <div class="card-body" data-url="{{ path('admin_faq_question_answer_ajax_listing', {'page' : page}) }}" data-loading="{{ "admin_faq#Chargement des données..." | trans }}">
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    <script>
+        $( document ).ready(function() {
+            FAQQuestionAnswer.Launch();
+            FAQQuestionAnswer.LoadListing();
+        });
+
+    </script>
+
+{% endblock %}

@@ -39,7 +39,7 @@ class FaqQuestionAnswer
      * @ORM\ManyToOne(targetEntity=FaqCategory::class, inversedBy="faqQuestionAnswers", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
-    private $FaqCategory;
+    private $faqCategory;
 
     /**
      * @ORM\OneToMany(targetEntity=FaqQuestionAnswerTranslation::class, mappedBy="FaqQuestionAnswer", orphanRemoval=true)
@@ -105,12 +105,12 @@ class FaqQuestionAnswer
 
     public function getFaqCategory(): ?FaqCategory
     {
-        return $this->FaqCategory;
+        return $this->faqCategory;
     }
 
-    public function setFaqCategory(?FaqCategory $FaqCategory): self
+    public function setFaqCategory(?FaqCategory $faqCategory): self
     {
-        $this->FaqCategory = $FaqCategory;
+        $this->faqCategory = $faqCategory;
 
         return $this;
     }

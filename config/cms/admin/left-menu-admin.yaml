@@ -19,7 +19,7 @@ menu-left-admin:
         sub-menu:
           admin_faq#Questions:
             icon: 'fa-question-circle'
-            target: 'admin_tag_index'
+            target: 'admin_faq_question_answer_index'
           admin_faq#Catégories:
             icon: 'fa-question-circle'
             target: 'admin_faq_category_index'

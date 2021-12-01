@@ -1,0 +1,73 @@
+<div id="listing-faq-qr">
+    <table class="table table-responsive table-hover table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">{{ "admin_faq#Ordre" | trans }}</th>
+            <th scope="col">{{ "admin_faq#Question" | trans }}</th>
+            <th scope="col">{{ "admin_faq#Réponse" | trans }}</th>
+            <th scope="col">{{ "admin_faq#Catégorie" | trans }}</th>
+            <th scope="col">{{ "admin_faq#Action" | trans }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for questionAnswer in listeQuestionAnswer %}
+            <tr>
+                <th scope="row">{{ questionAnswer.id }}</th>
+                <td>{{ questionAnswer.position }}</td>
+                <td>
+                    {% for translation in questionAnswer.faqQuestionAnswerTranslations %}
+                        {{ ("admin_translation#"~translation.language) | trans }} : {{ translation.question }} <br />
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for translation in questionAnswer.faqQuestionAnswerTranslations %}
+                        {{ ("admin_translation#"~translation.language) | trans }} : {{ translation.answer | raw }} <br />
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for translation in questionAnswer.faqCategory.faqCategoryTranslations %}
+                        {{ ("admin_translation#"~translation.language) | trans }} : {{ translation.title | raw }} <br />
+                    {% endfor %}
+                </td>
+                <td>
+                        {% if 'admin_faq_category_edit' | isGranted %}
+                            <a href="{{ path('admin_faq_category_edit', {'id' : questionAnswer.id}) }}" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ "admin_faq#Editer" | trans }}"><i class="fa fa-edit"></i></a>
+                        {% endif %}
+                        {% if 'admin_faq_category_ajax_delete' | isGranted %}
+                            <a href="#" data-url="{{ path('admin_faq_category_ajax_delete', {'id' : questionAnswer.id}) }}" data-loading="{{ "admin-faq#Chargement de la modale pour supprimer une question" }}" class="btn btn-sm btn-secondary btn-delete-faq-cat" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ "admin_faq#Supprimer" | trans }}"><i class="fa fa-trash"></i></a>
+                        {% endif %}
+                    {% if 'admin_faq_category_ajax_position' | isGranted %}
+
+                        {% set txt_loading = 'admin_faq#Changement de la position en cours....' | trans %}
+
+
+                        {% if (questionAnswer.position - 1) == 0 %}
+                            <a href="#" data-url="{{ path('admin_faq_category_ajax_position', {'id' : questionAnswer.id, 'position' : (questionAnswer.position+1)}) }}" data-loading="{{ txt_loading }}"  class="btn btn-sm btn-secondary btn-faq-cat-change-position" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ "admin_faq#Descendre" | trans }}"><i class="fa fa-long-arrow-alt-down"></i></a>
+                        {% elseif (questionAnswer.position + 1) > listeQuestionAnswer | length %}
+                            <a href="#" data-url="{{ path('admin_faq_category_ajax_position', {'id' : questionAnswer.id, 'position' : (questionAnswer.position-1)}) }}" data-loading="{{ txt_loading }}" class="btn btn-sm btn-secondary btn-faq-cat-change-position" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ "admin_faq#Monter" | trans }}"><i class="fa fa-long-arrow-alt-up"></i></a>
+                        {% elseif (questionAnswer.position - 1) > 0 %}
+                            <a href="#" data-url="{{ path('admin_faq_category_ajax_position', {'id' : questionAnswer.id, 'position' : (questionAnswer.position-1)}) }}" data-loading="{{ txt_loading }}" class="btn btn-sm btn-secondary btn-faq-cat-change-position" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ "admin_faq#Monter" | trans }}"><i class="fa fa-long-arrow-alt-up"></i></a>
+                            <a href="#" data-url="{{ path('admin_faq_category_ajax_position', {'id' : questionAnswer.id, 'position' : (questionAnswer.position+1)}) }}" data-loading="{{ txt_loading }}" class="btn btn-sm btn-secondary btn-faq-cat-change-position" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ "admin_faq#Descendre" | trans }}"><i class="fa fa-long-arrow-alt-down"></i></a>
+                        {% endif %}
+
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {{ listeQuestionAnswer | paginate(page, limit, route, '#admin-faq-qr-globale .card-body') | raw }}
+
+    <script>
+        $(document).ready(function () {
+            let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl)
+            })
+
+            FAQQuestionAnswer.EventListing("#listing-faq-qr");
+        });
+    </script>
+</div>
