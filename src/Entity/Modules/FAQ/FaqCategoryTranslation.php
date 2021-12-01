@@ -49,22 +49,22 @@ class FaqCategoryTranslation
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $page_title;
+    private $pageTitle;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $meta_description;
+    private $metaDescription;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $meta_keyword;
+    private $metaKeyword;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $meta_extra_metatags;
+    private $metaExtraMetaTags;
 
     public function getId(): ?int
     {
@@ -133,48 +133,48 @@ class FaqCategoryTranslation
 
     public function getPageTitle(): ?string
     {
-        return $this->page_title;
+        return $this->pageTitle;
     }
 
-    public function setPageTitle(?string $page_title): self
+    public function setPageTitle(?string $pageTitle): self
     {
-        $this->page_title = $page_title;
+        $this->pageTitle = $pageTitle;
 
         return $this;
     }
 
     public function getMetaDescription(): ?string
     {
-        return $this->meta_description;
+        return $this->metaDescription;
     }
 
-    public function setMetaDescription(?string $meta_description): self
+    public function setMetaDescription(?string $metaDescription): self
     {
-        $this->meta_description = $meta_description;
+        $this->metaDescription = $metaDescription;
 
         return $this;
     }
 
     public function getMetaKeyword(): ?string
     {
-        return $this->meta_keyword;
+        return $this->metaKeyword;
     }
 
-    public function setMetaKeyword(?string $meta_keyword): self
+    public function setMetaKeyword(?string $metaKeyword): self
     {
-        $this->meta_keyword = $meta_keyword;
+        $this->metaKeyword = $metaKeyword;
 
         return $this;
     }
 
-    public function getMetaExtraMetatags(): ?string
+    public function getMetaExtraMetaTags(): ?string
     {
-        return $this->meta_extra_metatags;
+        return $this->metaExtraMetaTags;
     }
 
-    public function setMetaExtraMetatags(?string $meta_extra_metatags): self
+    public function setMetaExtraMetaTags(?string $metaExtraMetaTags): self
     {
-        $this->meta_extra_metatags = $meta_extra_metatags;
+        $this->metaExtraMetaTags = $metaExtraMetaTags;
 
         return $this;
     }
