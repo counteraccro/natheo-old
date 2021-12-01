@@ -97,3 +97,8 @@ a:focus {
 .text-primary {
     color: var(--bg-primary) !important;
 }
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: var(--text-primary-contrast);
+    background-color: var(--bg-primary);
+}

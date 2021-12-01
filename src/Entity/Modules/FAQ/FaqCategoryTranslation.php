@@ -46,6 +46,26 @@ class FaqCategoryTranslation
      */
     private $slug;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $page_title;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $meta_description;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $meta_keyword;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $meta_extra_metatags;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -107,6 +127,54 @@ class FaqCategoryTranslation
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getPageTitle(): ?string
+    {
+        return $this->page_title;
+    }
+
+    public function setPageTitle(?string $page_title): self
+    {
+        $this->page_title = $page_title;
+
+        return $this;
+    }
+
+    public function getMetaDescription(): ?string
+    {
+        return $this->meta_description;
+    }
+
+    public function setMetaDescription(?string $meta_description): self
+    {
+        $this->meta_description = $meta_description;
+
+        return $this;
+    }
+
+    public function getMetaKeyword(): ?string
+    {
+        return $this->meta_keyword;
+    }
+
+    public function setMetaKeyword(?string $meta_keyword): self
+    {
+        $this->meta_keyword = $meta_keyword;
+
+        return $this;
+    }
+
+    public function getMetaExtraMetatags(): ?string
+    {
+        return $this->meta_extra_metatags;
+    }
+
+    public function setMetaExtraMetatags(?string $meta_extra_metatags): self
+    {
+        $this->meta_extra_metatags = $meta_extra_metatags;
 
         return $this;
     }

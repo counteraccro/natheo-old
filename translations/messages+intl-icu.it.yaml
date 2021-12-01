@@ -501,3 +501,16 @@
 'admin_faq#Réponse': __Réponse
 'admin_faq#Catégorie': __Catégorie
 'admin_faq#Ajouter une question': '__Ajouter une question'
+'admin_faq#Titre de la page': '__Titre de la page'
+'admin_faq#Le titre de la page sur le navigateur (balise <title>)': '__Le titre de la page sur le navigateur (balise <title>)'
+'admin_faq#Meta Description': '__Meta Description'
+'admin_faq#Description qui sera affiché dans les résultats des moteurs de recherches': '__Description qui sera affiché dans les résultats des moteurs de recherches'
+'admin_faq#Mots clés': '__Mots clés'
+'admin_faq#Mot clés pour décrire la catégorie pour le SEO': '__Mot clés pour décrire la catégorie pour le SEO'
+'admin_faq#Autres méta tags': '__Autres méta tags'
+'admin_faq#Saisissez ici vos métatags personnalisés qui seront affichés dans la balise <head> de la page': '__Saisissez ici vos métatags personnalisés qui seront affichés dans la balise <head> de la page'
+'admin_faq#SEO': __SEO
+'admin_faq#Positionnement': __Positionnement
+'admin_faq#Activer': __Activer
+'admin_faq#SEO pour la catégorie': '__SEO pour la catégorie'
+'admin_faq#pour le SEO de la catégorie': '__pour le SEO de la catégorie'

@@ -24,11 +24,15 @@ class FaqCategoryFixtures extends AppFixtures
         {
             $title = 'CMS NatheoCMS';
             $description = 'Toutes vos questions sur le CMS NatheoCMS';
+            $metaDescription = 'FAQ NatheoCMS - Réponse à toutes vos questions';
+            $metaKeyWord = 'FAQ';
 
             if($locale != 'fr')
             {
                 $title = '__' . $locale . '_' . $title;
                 $description = '__' . $description;
+                $metaDescription = '__' . $metaDescription;
+                $metaKeyWord = $metaKeyWord . ' ' . $locale;
             }
 
             $faqCatTranslation = new FaqCategoryTranslation();
@@ -37,6 +41,9 @@ class FaqCategoryFixtures extends AppFixtures
             $faqCatTranslation->setLanguage($locale);
             $faqCatTranslation->setFaqCategory($faqCat);
             $faqCatTranslation->setSlug($this->slugger->slug($title));
+            $faqCatTranslation->setPageTitle($title);
+            $faqCatTranslation->setMetaDescription($metaDescription);
+            $faqCatTranslation->setMetaKeyword($metaKeyWord);
             $manager->persist($faqCatTranslation);
             $faqCat->addFaqCategoryTranslation($faqCatTranslation);
         }
@@ -63,6 +70,7 @@ class FaqCategoryFixtures extends AppFixtures
             $faqCatTranslation->setLanguage($locale);
             $faqCatTranslation->setFaqCategory($faqCat);
             $faqCatTranslation->setSlug($this->slugger->slug($title));
+            $faqCatTranslation->setPageTitle($title);
             $manager->persist($faqCatTranslation);
             $faqCat->addFaqCategoryTranslation($faqCatTranslation);
         }
@@ -89,6 +97,7 @@ class FaqCategoryFixtures extends AppFixtures
             $faqCatTranslation->setLanguage($locale);
             $faqCatTranslation->setFaqCategory($faqCat);
             $faqCatTranslation->setSlug($this->slugger->slug($title));
+            $faqCatTranslation->setPageTitle($title);
             $manager->persist($faqCatTranslation);
             $faqCat->addFaqCategoryTranslation($faqCatTranslation);
         }

@@ -88,6 +88,9 @@ FAQCategory.Launch = function () {
 
         $(FAQCategory.globalIdCreateUpdate + ' input.titre').change(function () {
             FAQCategory.CheckUniqueSlug($(this));
+
+            let nb = $(this).data('nb');
+            $(FAQCategory.globalIdCreateUpdate + ' #page-title-' +nb).val($(this).val())
         })
 
         $(FAQCategory.globalIdCreateUpdate + ' .active-translate').each(function() {
@@ -98,6 +101,10 @@ FAQCategory.Launch = function () {
                 $(FAQCategory.globalIdCreateUpdate + ' #titre-' +nb).prop('disabled', true);
                 $(FAQCategory.globalIdCreateUpdate + ' #description-' +nb).prop('disabled', true);
                 $(FAQCategory.globalIdCreateUpdate + ' #description-' +nb).summernote("disable");
+                $(FAQCategory.globalIdCreateUpdate + ' #page-title-' +nb).prop('disabled', true)
+                $(FAQCategory.globalIdCreateUpdate + ' #meta-description-' +nb).prop('disabled', true);
+                $(FAQCategory.globalIdCreateUpdate + ' #meta-keyword-' +nb).prop('disabled', true);
+                $(FAQCategory.globalIdCreateUpdate + ' #meta-extra-metatags-' +nb).prop('disabled', true);
             }
         })
 
@@ -109,16 +116,29 @@ FAQCategory.Launch = function () {
                 $(FAQCategory.globalIdCreateUpdate + ' #description-' +nb).prop('disabled', true).val('');
                 $(FAQCategory.globalIdCreateUpdate + ' #description-' +nb).summernote("disable");
                 $(FAQCategory.globalIdCreateUpdate + ' #description-' +nb).summernote('code', '');
+                $(FAQCategory.globalIdCreateUpdate + ' #page-title-' +nb).prop('disabled', true).val('');
+                $(FAQCategory.globalIdCreateUpdate + ' #meta-description-' +nb).prop('disabled', true).val('');
+                $(FAQCategory.globalIdCreateUpdate + ' #meta-keyword-' +nb).prop('disabled', true).val('');
+                $(FAQCategory.globalIdCreateUpdate + ' #meta-extra-metatags-' +nb).prop('disabled', true).val('');
             }
             else {
 
                 let titreVal = $(FAQCategory.globalIdCreateUpdate + ' #titre-' +nb).data('value');
                 let descriptionVal = $(FAQCategory.globalIdCreateUpdate + ' #description-' +nb).data('value');
+                let pageitle = $(FAQCategory.globalIdCreateUpdate + ' #page-title-' +nb).data('value');
+                let metaDescription = $(FAQCategory.globalIdCreateUpdate + ' #meta-description-' +nb).data('value');
+                let metaKeyword = $(FAQCategory.globalIdCreateUpdate + ' #meta-keyword-' +nb).data('value');
+                let metaExtraMetatags = $(FAQCategory.globalIdCreateUpdate + ' #meta-extra-metatags-' +nb).data('value');
 
                 $(FAQCategory.globalIdCreateUpdate + ' #titre-' +nb).prop('disabled', false).val(titreVal);
                 $(FAQCategory.globalIdCreateUpdate + ' #description-' +nb).prop('disabled', false).val(descriptionVal);
                 $(FAQCategory.globalIdCreateUpdate + ' #description-' +nb).summernote("enable");
                 $(FAQCategory.globalIdCreateUpdate + ' #description-' +nb).summernote('code', descriptionVal);
+
+                $(FAQCategory.globalIdCreateUpdate + ' #page-title-' +nb).prop('disabled', false).val(pageitle);
+                $(FAQCategory.globalIdCreateUpdate + ' #meta-description-' +nb).prop('disabled', false).val(metaDescription);
+                $(FAQCategory.globalIdCreateUpdate + ' #meta-keyword-' +nb).prop('disabled', false).val(metaKeyword);
+                $(FAQCategory.globalIdCreateUpdate + ' #meta-extra-metatags-' +nb).prop('disabled', false).val(metaExtraMetatags);
             }
         })
 

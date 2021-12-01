@@ -8,15 +8,32 @@
 
         {{ breadcrumb | breadcrumb | raw }}
 
+        {{ form_start(form) }}
+        <ul class="nav nav-pills" id="myTab" role="tablist">
+            <li class="nav-item">
+                <button class="nav-link active" id="faq-cat-tab" data-bs-toggle="tab" data-bs-target="#faq-cat"
+                        type="button"
+                        role="tab" aria-controls="faq-cat"
+                        aria-selected="true"> {{ "admin_faq#Information sur la catégorie" | trans }}</button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" id="seo-tab" data-bs-toggle="tab" data-bs-target="#seo" type="button"
+                        role="tab" aria-controls="seo" aria-selected="false">
+                    <i class="fab fa-searchengin"></i> {{ "admin_faq#SEO" | trans }}
+                </button>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active m-3" id="faq-cat" role="tabpanel" aria-labelledby="faq-cat-tab">
 
-        <div class="card">
-            <div class="card-header">
-                {{ "admin_faq#Information sur la catégorie" | trans }}
-            </div>
-            <div class="card-body">
-                {{ form_start(form) }}
-
-                {{ form_row(form.position) }}
+                <div class="card mb-4">
+                    <div class="card-header">
+                        {{ "admin_faq#Positionnement" | trans }}
+                    </div>
+                    <div class="card-body">
+                        {{ form_row(form.position) }}
+                    </div>
+                </div>
 
                 {% set nb = 0 %}
                 {% for translation in form.faqCategoryTranslations %}
@@ -26,21 +43,23 @@
                     {% set see = false %}
                     {% if currentLocal == translation.language.vars.value %}
                         {% set checked = "checked" %}
-                    {% elseif not translation.title.vars.value is empty and  not translation.description.vars.value is empty%}
+                    {% elseif not translation.title.vars.value is empty and  not translation.description.vars.value is empty %}
                         {% set checked = "checked" %}
                     {% else %}
                         {% set see = true %}
-                        {% endif %}
+                    {% endif %}
 
                     <div class="card mb-4">
                         <div class="card-header">
                             {{ "admin_faq#Traduction" | trans }} {{ ("admin_translation#"~translation.language.vars.value) | trans }} {{ "admin_faq#pour la catégorie" | trans }}
-                           {% if see %}
-                               <div class="form-check form-switch float-end">
-                                <input class="form-check-input active-translate" data-nb="{{ nb }}" type="checkbox" role="switch" id="active-translate-{{ nb }}"
-                                       {{ checked }}>
-                                <label class="form-check-label" for="active-translate-{{ nb }}">{{ "admin_faq#Activer" }}</label>
-                            </div>
+                            {% if see %}
+                                <div class="form-check form-switch float-end">
+                                    <input class="form-check-input active-translate" data-nb="{{ nb }}" type="checkbox"
+                                           role="switch" id="active-translate-{{ nb }}"
+                                            {{ checked }}>
+                                    <label class="form-check-label"
+                                           for="active-translate-{{ nb }}">{{ "admin_faq#Activer" | trans }}</label>
+                                </div>
                             {% endif %}
                         </div>
                         <div class="card-body">
@@ -56,9 +75,38 @@
 
                 {% endfor %}
 
-                {{ form_end(form) }}
+
+            </div>
+            <div class="tab-pane fade m-3" id="seo" role="tabpanel" aria-labelledby="seo-tab">
+                {% set nb = 0 %}
+                {% for translation in form.faqCategoryTranslations %}
+                    {% set nb = nb+1 %}
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            {{ "admin_faq#Traduction" | trans }} {{ ("admin_translation#"~translation.language.vars.value) | trans }} {{ "admin_faq#pour le SEO de la catégorie" | trans }}
+                        </div>
+                        <div class="card-body">
+
+                            {{ form_row(translation.page_title, {'id' : 'page-title-'~nb, 'attr': {'data-value' : translation.page_title.vars.value}}) }}
+
+                            {{ form_row(translation.meta_description, {'id' : 'meta-description-'~nb, 'attr': {'data-value' : translation.meta_description.vars.value}}) }}
+
+                            {{ form_row(translation.meta_keyword, {'id' : 'meta-keyword-'~nb, 'attr': {'data-value' : translation.meta_keyword.vars.value}}) }}
+
+                            {{ form_row(translation.meta_extra_metatags, {'id' : 'meta-extra-metatags-'~nb, 'attr': {'data-value' : translation.meta_extra_metatags.vars.value}}) }}
+
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
         </div>
+
+        <div class="m-3">
+            {{ form_row(form.valider) }}
+        </div>
+
+
+        {{ form_end(form) }}
     </div>
 {% endblock %}
 
@@ -70,7 +118,7 @@
             FAQCategory.Launch();
             let checkSlug = '{{ path('admin_faq_category_check_slug', {'slug' : 'pslug'}) }}';
             {% if action == 'edit' %}
-                checkSlug = '{{ path('admin_faq_category_check_slug', {'slug' : 'pslug', 'id' : faqCategory.id}) }}';
+            checkSlug = '{{ path('admin_faq_category_check_slug', {'slug' : 'pslug', 'id' : faqCategory.id}) }}';
             {% endif %}
             FAQCategory.EventCreateUpdate('#admin-create-update-faq-category', '{{ frontUrl }}', '{{ currentLocal }}', '{{ action }}', checkSlug);
             FAQCategory.UpdateSlug();
