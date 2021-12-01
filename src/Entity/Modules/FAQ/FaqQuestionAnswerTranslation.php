@@ -44,6 +44,21 @@ class FaqQuestionAnswerTranslation
      */
     private $language;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $metaDescription;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $metaKeyword;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $metaExtraMetaTags;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +120,42 @@ class FaqQuestionAnswerTranslation
     public function setLanguage(string $language): self
     {
         $this->language = $language;
+
+        return $this;
+    }
+
+    public function getMetaDescription(): ?string
+    {
+        return $this->metaDescription;
+    }
+
+    public function setMetaDescription(?string $metaDescription): self
+    {
+        $this->metaDescription = $metaDescription;
+
+        return $this;
+    }
+
+    public function getMetaKeyword(): ?string
+    {
+        return $this->metaKeyword;
+    }
+
+    public function setMetaKeyword(?string $metaKeyword): self
+    {
+        $this->metaKeyword = $metaKeyword;
+
+        return $this;
+    }
+
+    public function getMetaExtraMetaTags(): ?string
+    {
+        return $this->metaExtraMetaTags;
+    }
+
+    public function setMetaExtraMetaTags(?string $metaExtraMetaTags): self
+    {
+        $this->metaExtraMetaTags = $metaExtraMetaTags;
 
         return $this;
     }
