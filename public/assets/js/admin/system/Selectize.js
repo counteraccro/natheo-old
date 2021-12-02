@@ -41,7 +41,7 @@ Selectize.selectTags = function(id) {
                     color = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
                     Selectize.tabColor[item.name] = color;
                 }
-                return '<div><span class="badge me-2" style="background-color: ' + color + '">' + item.name + '</span></div>';
+                return '<span class="badge me-2" style="background-color: ' + color + '">' + item.name + '</div>';
             }
         },
         load: function(query, callback) {
