@@ -6,6 +6,7 @@ use App\Entity\Modules\FAQ\FaqCategory;
 use App\Entity\Modules\FAQ\FaqQuestionAnswer;
 use App\Form\AppType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\ChoiceList\ChoiceList;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -48,6 +49,7 @@ class FaqQuestionAnswerType extends AppType
                     $this->translator->trans('admin_faq#Masquer') => 0,
                     $this->translator->trans('admin_faq#Publier') => 1,
                 ] ,
+                'empty_data' => 0,
                 'expanded' => true,
                 'multiple' => false,
                 'label' => $this->translator->trans('admin_faq#Publication'),
