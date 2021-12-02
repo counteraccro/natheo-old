@@ -227,6 +227,7 @@ FAQQuestionAnswer.Launch = function () {
         let urlListPosition = $(blocList).data('url');
 
         url = urlListPosition.replace('0', id);
+        $(blocList).loader();
 
         $.ajax({
             method: 'GET',
@@ -234,6 +235,7 @@ FAQQuestionAnswer.Launch = function () {
         })
             .done(function (html) {
                 $(blocList).html(html);
+                $(blocList).removeLoader();
             })
     }
 
