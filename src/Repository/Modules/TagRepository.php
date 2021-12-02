@@ -59,6 +59,21 @@ class TagRepository extends ServiceEntityRepository
         return $paginator;
     }
 
+    /**
+     * Renvoi une liste de tags en fonction de son nom
+     * @param String $name
+     * @return mixed
+     */
+    public function getByName(String $name): mixed
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.name LIKE :val')
+            ->setParameter('val', '%' . $name . '%')
+            ->orderBy('t.name', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Tag[] Returns an array of Tag objects
     //  */

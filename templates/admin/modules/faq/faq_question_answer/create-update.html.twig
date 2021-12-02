@@ -41,7 +41,8 @@
                                     {% set question_id = faqQuestionAnswer.id %}
                                 {% endif %}
 
-                                <div id="faq-question-answer-position-block" data-url="{{ path('admin_faq_question_answer_ajax_liste_position', {'id' : 0, 'question_id' : question_id}) }}">
+                                <div id="faq-question-answer-position-block"
+                                     data-url="{{ path('admin_faq_question_answer_ajax_liste_position', {'id' : 0, 'question_id' : question_id}) }}">
 
                                 </div>
                             </div>
@@ -54,6 +55,13 @@
                             </div>
                             <div class="card-body">
                                 {{ form_row(form.status) }}
+
+
+                                <label class="form-label"
+                                       for="select-faq-question-answer-tag">{{ "admin_faq#Tags" | trans }}</label>
+                                <select id="select-faq-question-answer-tag" name="faq-question-answer-tag" data-url="{{ path('admin_tag_search') }}">
+                                </select>
+
                             </div>
                         </div>
                     </div>
@@ -150,6 +158,7 @@
             FAQQuestionAnswer.UpdateSlug();
 
             Wysiwyg.DefaultEditor('.input-editor');
+            Selectize.selectTags('#select-faq-question-answer-tag');
         });
     </script>
 

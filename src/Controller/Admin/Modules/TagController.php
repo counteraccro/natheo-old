@@ -12,9 +12,14 @@ use App\Controller\Admin\AppAdminController;
 use App\Entity\Modules\Tag;
 use App\Form\Modules\TagType;
 use App\Repository\Modules\TagRepository;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 #[Route('/admin/tag', name: 'admin_tag_')]
 class TagController extends AppAdminController
@@ -137,5 +142,26 @@ class TagController extends AppAdminController
         $this->doctrine->getManager()->flush();
         $this->addFlash('success', $flashMsg);
         return $this->redirectToRoute('admin_tag_index');
+    }
+
+    /**
+     * Retourne une liste de tags en fonction d'un critère de recherche
+     * @param string $search
+     * @return JsonResponse
+     */
+    #[Route('/search/{search}', name: 'search')]
+    public function searchTag(string $search = ""): JsonResponse
+    {
+        /** @var TagRepository $tagRepo */
+        $tagRepo = $this->doctrine->getRepository(Tag::class);
+        $result = $tagRepo->getByName($search);
+
+        $encoders = [new JsonEncoder()];
+        $normalizers = [new ObjectNormalizer()];
+
+        $serializer = new Serializer($normalizers, $encoders);
+        $result = $serializer->serialize($result, 'json', [AbstractNormalizer::ATTRIBUTES => ['id', 'name', 'color']]);
+
+        return $this->json($result);
     }
 }
