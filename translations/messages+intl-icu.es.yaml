@@ -514,3 +514,16 @@
 'admin_faq#Activer': __Activer
 'admin_faq#SEO pour la catégorie': '__SEO pour la catégorie'
 'admin_faq#pour le SEO de la catégorie': '__pour le SEO de la catégorie'
+'admin_faq#Ajouter un question / réponse': '__Ajouter un question / réponse'
+'admin_faq#Question ajoutée avec succès': '__Question ajoutée avec succès'
+'admin_faq#Edition de la question / réponse ': '__Edition de la question / réponse '
+'admin_faq#Question éditée avec succès': '__Question éditée avec succès'
+'admin_faq#Une question existe déjà avec ce slug': '__Une question existe déjà avec ce slug'
+'admin_faq#La question': '__La question'
+'admin_faq#Réponse à votre question': '__Réponse à votre question'
+'admin_faq#Masquer': __Masquer
+'admin_faq#Publier': __Publier
+'admin_faq#Publication': __Publication
+'admin_faq#Information sur la question / réponse': '__Information sur la question / réponse'
+'admin_faq#Autres infos': '__Autres infos'
+'admin_faq#pour la question': '__pour la question'

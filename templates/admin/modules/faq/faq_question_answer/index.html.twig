@@ -27,8 +27,8 @@
 
         <div class="float-end">
 
-            {% if 'admin_faq_category_add' | isGranted %}
-                <a href="{{ path('admin_faq_category_add') }}" id="btn-new-role" class="btn btn-primary mb-2">
+            {% if 'admin_faq_question_answer_add' | isGranted %}
+                <a href="{{ path('admin_faq_question_answer_add') }}" id="btn-new-role" class="btn btn-primary mb-2">
                     <i class="fas fa-tag"></i> {{ "admin_faq#Ajouter une question" | trans }}
                 </a>
             {% endif %}

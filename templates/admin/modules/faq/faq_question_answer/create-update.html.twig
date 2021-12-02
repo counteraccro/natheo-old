@@ -1,0 +1,157 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+    <div id="admin-create-update-faq-question-answer">
+        <h1>{{ title }}</h1>
+
+        {{ breadcrumb | breadcrumb | raw }}
+
+        {{ form_start(form) }}
+        <ul class="nav nav-pills" id="myTab" role="tablist">
+            <li class="nav-item">
+                <button class="nav-link active" id="faq-qa-tab" data-bs-toggle="tab" data-bs-target="#faq-qa"
+                        type="button"
+                        role="tab" aria-controls="faq-qa"
+                        aria-selected="true"> {{ "admin_faq#Information sur la question / réponse" | trans }}</button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" id="seo-tab" data-bs-toggle="tab" data-bs-target="#seo" type="button"
+                        role="tab" aria-controls="seo" aria-selected="false">
+                    <i class="fab fa-searchengin"></i> {{ "admin_faq#SEO" | trans }}
+                </button>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active m-3" id="faq-qa" role="tabpanel" aria-labelledby="faq-qa-tab">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                {{ "admin_faq#Positionnement" | trans }}
+                            </div>
+                            <div class="card-body">
+                                {{ form_row(form.faqCategory, {'id' : 'select-faq-cat'}) }}
+                                {{ form_row(form.position, {'id' : 'position-faq-qr'}) }}
+
+                                {% set question_id = 0 %}
+                                {% if action == "edit" %}
+                                    {% set question_id = faqQuestionAnswer.id %}
+                                {% endif %}
+
+                                <div id="faq-question-answer-position-block" data-url="{{ path('admin_faq_question_answer_ajax_liste_position', {'id' : 0, 'question_id' : question_id}) }}">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                {{ "admin_faq#Autres infos" | trans }}
+                            </div>
+                            <div class="card-body">
+                                {{ form_row(form.status) }}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                {% set nb = 0 %}
+                {% for translation in form.faqQuestionAnswerTranslations %}
+                    {% set nb = nb+1 %}
+
+                    {% set checked = "" %}
+                    {% set see = false %}
+                    {% if currentLocal == translation.language.vars.value %}
+                        {% set checked = "checked" %}
+                    {% elseif not translation.question.vars.value is empty and  not translation.answer.vars.value is empty %}
+                        {% set checked = "checked" %}
+                    {% else %}
+                        {% set see = true %}
+                    {% endif %}
+
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            {{ "admin_faq#Traduction" | trans }} {{ ("admin_translation#"~translation.language.vars.value) | trans }} {{ "admin_faq#pour la question" | trans }}
+                            {% if see %}
+                                <div class="form-check form-switch float-end">
+                                    <input class="form-check-input active-translate" data-nb="{{ nb }}" type="checkbox"
+                                           role="switch" id="active-translate-{{ nb }}"
+                                            {{ checked }}>
+                                    <label class="form-check-label"
+                                           for="active-translate-{{ nb }}">{{ "admin_faq#Activer" | trans }}</label>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="card-body">
+                            {{ form_row(translation.question, {'id' : 'question-'~nb, 'attr': {'class': 'question', 'data-nb' : nb, 'data-value' : translation.question.vars.value, 'data-local' : translation.language.vars.value}}) }}
+
+                            {{ form_row(translation.slug, {'id' : 'slug-'~nb, 'attr': {'class': 'slug', 'data-nb' : nb}}) }}
+
+                            {{ form_row(translation.answer, {'id' : 'answer-'~nb, 'attr': {'data-value' : translation.answer.vars.value}}) }}
+
+                            {{ form_row(translation.language) }}
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+
+            </div>
+            <div class="tab-pane fade m-3" id="seo" role="tabpanel" aria-labelledby="seo-tab">
+                {% set nb = 0 %}
+                {% for translation in form.faqQuestionAnswerTranslations %}
+                    {% set nb = nb+1 %}
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            {{ "admin_faq#Traduction" | trans }} {{ ("admin_translation#"~translation.language.vars.value) | trans }} {{ "admin_faq#pour le SEO de la catégorie" | trans }}
+                        </div>
+                        <div class="card-body">
+
+                            {{ form_row(translation.pageTitle, {'id' : 'page-title-'~nb, 'attr': {'data-value' : translation.pageTitle.vars.value}}) }}
+
+                            {{ form_row(translation.metaDescription, {'id' : 'meta-description-'~nb, 'attr': {'data-value' : translation.metaDescription.vars.value}}) }}
+
+                            {{ form_row(translation.metaKeyword, {'id' : 'meta-keyword-'~nb, 'attr': {'data-value' : translation.metaKeyword.vars.value}}) }}
+
+                            {{ form_row(translation.metaExtraMetaTags, {'id' : 'meta-extra-metatags-'~nb, 'attr': {'data-value' : translation.metaExtraMetaTags.vars.value}}) }}
+
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="m-3">
+            {{ form_row(form.valider) }}
+        </div>
+
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+
+    <script>
+        $(document).ready(function () {
+
+            FAQQuestionAnswer.Launch();
+            let checkSlug = '{{ path('admin_faq_question_answer_check_slug', {'slug' : 'pslug'}) }}';
+            {% if action == 'edit' %}
+            checkSlug = '{{ path('admin_faq_question_answer_check_slug', {'slug' : 'pslug', 'id' : faqQuestionAnswer.id}) }}';
+            {% endif %}
+            FAQQuestionAnswer.EventCreateUpdate('#admin-create-update-faq-question-answer', '{{ frontUrl }}', '{{ currentLocal }}', '{{ action }}', checkSlug);
+            FAQQuestionAnswer.UpdateSlug();
+
+            Wysiwyg.DefaultEditor('.input-editor');
+        });
+    </script>
+
+{% endblock %}
+

@@ -29,7 +29,6 @@ class FaqQuestionAnswerFixtures extends AppFixtures implements DependentFixtureI
         $questionAnswer->setPosition(1)->setCreateOn(new \DateTime())->setStatus(FaqService::STATUS_PUBLISHED);
 
         $pageTitle = 'qu-est-ce-que-natheocms';
-        $questionAnswer->setUrl($pageTitle);
         $questionAnswer->setFaqCategory($this->getReference(FaqCategoryFixtures::FAQ_CAT_NATHEO_REF));
 
         $question = "qu'est ce que NatheoCMS ?";
@@ -44,7 +43,6 @@ class FaqQuestionAnswerFixtures extends AppFixtures implements DependentFixtureI
         $questionAnswer->setPosition(2)->setCreateOn(new \DateTime())->setStatus(FaqService::STATUS_PUBLISHED);
 
         $pageTitle = 'natheocms-est-il-gratuit';
-        $questionAnswer->setUrl($pageTitle);
         $questionAnswer->setFaqCategory($this->getReference(FaqCategoryFixtures::FAQ_CAT_NATHEO_REF));
 
         $question = "NatheoCMS est-il gratuit ?";
@@ -59,7 +57,6 @@ class FaqQuestionAnswerFixtures extends AppFixtures implements DependentFixtureI
         $questionAnswer->setPosition(1)->setCreateOn(new \DateTime())->setStatus(FaqService::STATUS_PUBLISHED);
 
         $pageTitle = 'question-test';
-        $questionAnswer->setUrl($pageTitle);
         $questionAnswer->setFaqCategory($this->getReference(FaqCategoryFixtures::FAQ_CAT_DEMO_REF));
 
         $question = "Une question test";
@@ -101,6 +98,7 @@ class FaqQuestionAnswerFixtures extends AppFixtures implements DependentFixtureI
             $questionAnswerTranslation->setAnswer($answer_l);
             $questionAnswerTranslation->setQuestion($question_l);
             $questionAnswerTranslation->setLanguage($locale);
+            $questionAnswerTranslation->setSlug($this->slugger->slug($pageTitle_l));
             $questionAnswerTranslation->setPageTitle($pageTitle_l);
             $questionAnswerTranslation->setFaqQuestionAnswer($faqQuestionAnswer);
             $questionAnswerTranslation->setMetaDescription($locale . '-' . $pageTitle_l);

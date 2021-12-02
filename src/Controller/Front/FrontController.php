@@ -23,10 +23,27 @@ class FrontController extends AppFrontController
         ]);
     }
 
+    /**
+     * @param string $slug
+     * @return Response
+     */
     #[Route('/modules/faq/category/{slug}', name: 'faq_cat')]
     public function faqCat(string $slug): Response
     {
 
+        $theme = $this->themeService->getThemeSelected();
+        return $this->render('themes/' . $theme->getFolderRef() . '/views/index.html.twig', [
+            'controller_name' => 'FrontController',
+        ]);
+    }
+
+    /**
+     * @param string $slug
+     * @return Response
+     */
+    #[Route('/modules/faq/question/{slug}', name: 'faq_question_answer')]
+    public function faqQuestionAnswer(string $slug): Response
+    {
         $theme = $this->themeService->getThemeSelected();
         return $this->render('themes/' . $theme->getFolderRef() . '/views/index.html.twig', [
             'controller_name' => 'FrontController',

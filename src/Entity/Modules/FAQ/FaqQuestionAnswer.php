@@ -31,18 +31,13 @@ class FaqQuestionAnswer
     private $status;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $url;
-
-    /**
      * @ORM\ManyToOne(targetEntity=FaqCategory::class, inversedBy="faqQuestionAnswers", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $faqCategory;
 
     /**
-     * @ORM\OneToMany(targetEntity=FaqQuestionAnswerTranslation::class, mappedBy="FaqQuestionAnswer", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=FaqQuestionAnswerTranslation::class, mappedBy="FaqQuestionAnswer", orphanRemoval=true, cascade={"persist"})
      */
     private $faqQuestionAnswerTranslations;
 
@@ -87,18 +82,6 @@ class FaqQuestionAnswer
     public function setStatus(int $status): self
     {
         $this->status = $status;
-
-        return $this;
-    }
-
-    public function getUrl(): ?string
-    {
-        return $this->url;
-    }
-
-    public function setUrl(string $url): self
-    {
-        $this->url = $url;
 
         return $this;
     }

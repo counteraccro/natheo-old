@@ -1,0 +1,49 @@
+<div id="list-question-answer-position">
+    <label for="faq_question_answer_position" class="form-label required">Position</label>
+    <select id="faq_question_answer_position" class="form-control">
+        {% set str = '' %}
+        {% set id = '' %}
+        {% set nb = 0 %}
+        {% set global_selected = '' %}
+        {% for questionAnswer in faqCategory.faqQuestionAnswers %}
+            {% set id = questionAnswer.id %}
+            {% set nb = nb+1 %}
+            {% set str = questionAnswer.faqQuestionAnswerTranslations.first.question %}
+            {% for translation in questionAnswer.faqQuestionAnswerTranslations %}
+                {% if(translation.language == currentLocal) %}
+                    {% set str = translation.question %}
+                {% endif %}
+            {% endfor %}
+
+            {% set selected = '' %}
+            {% if(question_id == questionAnswer.id) %}
+                {% set selected = 'selected' %}
+                {% set global_selected = 'selected' %}
+            {% endif %}
+
+            <option {{ selected }} value="{{ questionAnswer.position }}">
+                {% if selected == 'selected' %}
+                    {{ questionAnswer.position }} -> {{ "admin_faq#Votre position actuelle" | trans }}
+                {% else %}
+                    {{ questionAnswer.position }} -> {{ "admin_faq#Avant" | trans }} {{ str }}
+                {% endif %}
+            </option>
+        {% endfor %}
+
+        {% if (question_id == 0) or (global_selected == '') %}
+            <option selected value="{{ nb+1 }}">{{ nb+1 }} -> {{ "Nouvelle question" }}</option>
+        {% endif %}
+    </select>
+</div>
+
+{% block javascripts %}
+
+    <script>
+        $(document).ready(function () {
+
+            FAQQuestionAnswer.Launch();
+            FAQQuestionAnswer.EventListePosition();
+        });
+    </script>
+
+{% endblock %}

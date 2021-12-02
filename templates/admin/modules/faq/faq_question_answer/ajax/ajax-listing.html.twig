@@ -31,8 +31,8 @@
                     {% endfor %}
                 </td>
                 <td>
-                        {% if 'admin_faq_category_edit' | isGranted %}
-                            <a href="{{ path('admin_faq_category_edit', {'id' : questionAnswer.id}) }}" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ "admin_faq#Editer" | trans }}"><i class="fa fa-edit"></i></a>
+                        {% if 'admin_faq_question_answer_edit' | isGranted %}
+                            <a href="{{ path('admin_faq_question_answer_edit', {'id' : questionAnswer.id}) }}" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ "admin_faq#Editer" | trans }}"><i class="fa fa-edit"></i></a>
                         {% endif %}
                         {% if 'admin_faq_category_ajax_delete' | isGranted %}
                             <a href="#" data-url="{{ path('admin_faq_category_ajax_delete', {'id' : questionAnswer.id}) }}" data-loading="{{ "admin-faq#Chargement de la modale pour supprimer une question" }}" class="btn btn-sm btn-secondary btn-delete-faq-cat" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ "admin_faq#Supprimer" | trans }}"><i class="fa fa-trash"></i></a>
