@@ -58,10 +58,16 @@
                                 {{ form_row(form.status) }}
 
 
-                                <label class="form-label"
-                                       for="select-faq-question-answer-tag">{{ "admin_faq#Tags" | trans }}</label>
-                                <select id="select-faq-question-answer-tag" name="faq-question-answer-tag" data-url="{{ path('admin_tag_search') }}">
-                                </select>
+                                <label for="tag-list" class="form-label">{{ "admin_faq#Tags" | trans }}</label>
+                                <div class="input-group mb-3">
+                                    <input class="form-control" data-url="{{ path('admin_tag_search') }}" list="tag-list-options" id="tag-list" data-new="{{ "admin_faq#Ajouter le tag" | trans }}" placeholder="{{ "admin_faq#Recherche un tag" | trans }}">
+                                    <button class="btn btn-primary" type="button" id="btn-modal-add-tag">{{ "admin_faq#Nouveau tag" | trans }}</button>
+                                    <datalist id="tag-list-options"></datalist>
+                                </div>
+
+                                <fieldset class="border p-2">
+                                    <legend class="float-none" style="width:inherit; padding:0 10px; border-bottom:none; font-size: 1em;">{{ "admin_faq#Tags ajoutés" | trans }}</legend>
+                                </fieldset>
 
                             </div>
                         </div>
@@ -159,7 +165,9 @@
             FAQQuestionAnswer.UpdateSlug();
 
             Wysiwyg.DefaultEditor('.input-editor');
-            Selectize.selectTags('#select-faq-question-answer-tag');
+
+            Tag.Launch();
+            Tag.SelectTagForElement('#tag-list');
         });
     </script>
 

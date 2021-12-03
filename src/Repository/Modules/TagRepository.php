@@ -70,6 +70,7 @@ class TagRepository extends ServiceEntityRepository
             ->andWhere('t.name LIKE :val')
             ->setParameter('val', '%' . $name . '%')
             ->orderBy('t.name', 'ASC')
+            ->setMaxResults(10)
             ->getQuery()
             ->getResult();
     }
