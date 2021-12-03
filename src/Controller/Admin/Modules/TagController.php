@@ -26,6 +26,7 @@ class TagController extends AppAdminController
 {
     const SESSION_KEY_FILTER = 'session_tag_filter';
     const SESSION_KEY_PAGE = 'session_tag_page';
+    const SESSION_KEY_TMP_TAG = 'session_tag_tmp_save';
 
     /**
      * Point d'entrée de la gestion des tags
@@ -163,5 +164,20 @@ class TagController extends AppAdminController
         $result = $serializer->serialize($result, 'json', [AbstractNormalizer::ATTRIBUTES => ['id', 'name', 'color']]);
 
         return $this->json($result);
+    }
+
+
+    /**
+     * Permet de sauvegarder en sessions les tags qui doivent être associés à une autre entité
+     */
+    #[Route('/save-tmp-tags/{id}', name: 'tmp_save')]
+    public function saveTmpTags(Tag $tag)
+    {
+        $tabTmp = $this->session->get(self::SESSION_KEY_TMP_TAG, []);
+
+        $tabTmp[$tag->getId()] = $tag;
+        $this->session->set(self::SESSION_KEY_TMP_TAG, $tabTmp);
+
+        return $this->json(['success' => true]);
     }
 }

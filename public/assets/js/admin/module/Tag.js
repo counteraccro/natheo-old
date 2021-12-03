@@ -52,9 +52,10 @@ Tag.Launch = function () {
      * @param id
      * @constructor
      */
-    Tag.SelectTagForElement = function (id) {
+    Tag.SelectTagForElement = function (id, url_save) {
 
         let idOptionList = id + '-options';
+        url_save = url_save.substring(0, url_save.length - 1);
 
         /**
          * Retourne une option d'une dataList si elle existe
@@ -74,6 +75,9 @@ Tag.Launch = function () {
             return result;
         }
 
+        /**
+         * A chaque caractère saisi
+         */
         $(id).keypress(function () {
 
             let url = $(this).data('url');
@@ -103,7 +107,15 @@ Tag.Launch = function () {
         $(id).bind('input', function () {
             let element = Tag.GetOptionInDataList($(id).val(), idOptionList);
             if (element != null) {
-                console.log(element.data('id') + ' -> ' + element.val());
+
+                $.ajax({
+                    method: 'GET',
+                    url: url_save + element.data('id'),
+                })
+                    .done(function (response) {
+
+                    })
+
             }
         });
     }

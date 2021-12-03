@@ -170,8 +170,8 @@ class AppExtension extends AbstractExtension
             new TwigFilter('pathFolder', [TreeFolderTwig::class, 'getPathFolder']),
             new TwigFilter('pathFolder', [TreeFolderTwig::class, 'getPathFolder']),
             new TwigFilter('renderContentMedia', [MediaTwig::class, 'renderModeMedia']),
-            new TwigFilter('treeThemeFolder', [ThemeTwig::class, 'getTreeByThemeFolder'])
-
+            new TwigFilter('treeThemeFolder', [ThemeTwig::class, 'getTreeByThemeFolder']),
+            new TwigFilter('selectTagForEntity', [TagTwig::class, 'selectTagForEntity'])
         ];
     }
 }
