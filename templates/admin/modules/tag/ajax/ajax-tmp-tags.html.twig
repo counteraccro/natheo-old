@@ -1,0 +1,25 @@
+<div id="tags-tmp" data-url="{{ path('admin_tag_ajax_tmp_delete', {'id' : 0}) }}">
+
+    {% for tag in tags %}
+        <span class="badge" style="background-color: {{ tag.color }}">
+            {{ tag.name }}
+            <button type="button" data-id="{{ tag.id }}" class="btn-close" aria-label="Close"></button>
+        </span>
+    {% endfor %}
+</div>
+
+<script>
+    url = $('#tags-tmp').data('url');
+    url_delete = url.substring(0, url.length - 1);
+
+    $('#tags-tmp .btn-close').click(function() {
+
+        let id = $(this).data('id');
+        $.ajax({
+            method: 'GET',
+            url: url_delete + id,
+        }).done(function (response) {
+            Tag.LoadTmpTag();
+        })
+    })
+</script>

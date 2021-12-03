@@ -52,10 +52,13 @@ Tag.Launch = function () {
      * @param id
      * @constructor
      */
-    Tag.SelectTagForElement = function (id, url_save) {
+    Tag.SelectTagForElement = function (idInput, url_save) {
 
-        let idOptionList = id + '-options';
+        let idOptionList = idInput + '-options';
         url_save = url_save.substring(0, url_save.length - 1);
+
+        let idContent = idInput + '-content';
+        let url_read = $(idContent).data('url');
 
         /**
          * Retourne une option d'une dataList si elle existe
@@ -75,10 +78,22 @@ Tag.Launch = function () {
             return result;
         }
 
+        Tag.LoadTmpTag = function()
+        {
+            $(idContent).loader();
+            $.ajax({
+                method: 'GET',
+                url: url_read,
+            }).done(function (html) {
+                $(idContent).html(html);
+                $(idContent).removeLoader();
+            })
+        }
+
         /**
          * A chaque caractère saisi
          */
-        $(id).keypress(function () {
+        $(idInput).keypress(function () {
 
             let url = $(this).data('url');
             let newStr = $(this).data('new');
@@ -104,20 +119,22 @@ Tag.Launch = function () {
         /**
          * Bin du champ de recherche de tag
          */
-        $(id).bind('input', function () {
-            let element = Tag.GetOptionInDataList($(id).val(), idOptionList);
+        $(idInput).bind('input', function () {
+            let element = Tag.GetOptionInDataList($(idInput).val(), idOptionList);
             if (element != null) {
+
 
                 $.ajax({
                     method: 'GET',
                     url: url_save + element.data('id'),
+                }).done(function (response) {
+                    Tag.LoadTmpTag();
+                    $(idInput).val('');
                 })
-                    .done(function (response) {
-
-                    })
-
             }
         });
+
+        Tag.LoadTmpTag();
     }
 
 }

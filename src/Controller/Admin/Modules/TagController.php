@@ -150,7 +150,7 @@ class TagController extends AppAdminController
      * @param string $search
      * @return JsonResponse
      */
-    #[Route('/search/{search}', name: 'search')]
+    #[Route('/ajax/search/{search}', name: 'ajax_search')]
     public function searchTag(string $search = ""): JsonResponse
     {
         /** @var TagRepository $tagRepo */
@@ -169,13 +169,45 @@ class TagController extends AppAdminController
 
     /**
      * Permet de sauvegarder en sessions les tags qui doivent être associés à une autre entité
+     * @param Tag $tag
+     * @return JsonResponse
      */
-    #[Route('/save-tmp-tags/{id}', name: 'tmp_save')]
-    public function saveTmpTags(Tag $tag)
+    #[Route('/ajax/save-tmp-tags/{id}', name: 'ajax_tmp_save')]
+    public function saveTmpTags(Tag $tag): JsonResponse
     {
         $tabTmp = $this->session->get(self::SESSION_KEY_TMP_TAG, []);
 
         $tabTmp[$tag->getId()] = $tag;
+        $this->session->set(self::SESSION_KEY_TMP_TAG, $tabTmp);
+
+        return $this->json(['success' => true]);
+    }
+
+    /**
+     * Permet d'afficher au format HTML tags stocké en TMP
+     * @return Response
+     */
+    #[Route('/ajax/read-tmp-tags', name: 'ajax_tmp_read')]
+    public function readTmpTags(): Response
+    {
+        $tags = $this->session->get(self::SESSION_KEY_TMP_TAG, []);
+
+        return $this->render('admin/modules/tag/ajax/ajax-tmp-tags.html.twig', [
+            'tags' => $tags,
+        ]);
+    }
+
+    /**
+     * Permet de supprimer de la session le tag qui est envoyé en paramètre
+     * @param Tag $tag
+     * @return JsonResponse
+     */
+    #[Route('/ajax/delete-tmp-tags/{id}', name: 'ajax_tmp_delete')]
+    public function deleteTmpTags(Tag $tag): JsonResponse
+    {
+        $tabTmp = $this->session->get(self::SESSION_KEY_TMP_TAG, []);
+
+        unset($tabTmp[$tag->getId()]);
         $this->session->set(self::SESSION_KEY_TMP_TAG, $tabTmp);
 
         return $this->json(['success' => true]);
