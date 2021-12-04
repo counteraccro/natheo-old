@@ -157,6 +157,16 @@ class TagController extends AppAdminController
         $tagRepo = $this->doctrine->getRepository(Tag::class);
         $result = $tagRepo->getByName($search);
 
+        // Si le tag à déjà été saisi pas la peine de le proposer
+        $tabTmp = $this->session->get(self::SESSION_KEY_TMP_TAG, []);
+        foreach($result as $key => $item)
+        {
+            if(isset($tabTmp[$item->getId()]))
+            {
+                unset($result[$key]);
+            }
+        }
+
         $encoders = [new JsonEncoder()];
         $normalizers = [new ObjectNormalizer()];
 

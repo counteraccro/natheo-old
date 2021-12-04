@@ -130,6 +130,7 @@ Tag.Launch = function () {
                 }).done(function (response) {
                     Tag.LoadTmpTag();
                     $(idInput).val('');
+                    $(idOptionList).html('');
                 })
             }
         });
