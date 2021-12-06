@@ -17,6 +17,7 @@ use App\Entity\Modules\FAQ\FaqQuestionAnswerTag;
 use App\Entity\Modules\FAQ\FaqQuestionAnswerTranslation;
 use App\Form\Modules\FAQ\FaqQuestionAnswerType;
 use App\Repository\Modules\FAQ\FaqQuestionAnswerRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -76,10 +77,13 @@ class FaqQuestionAnswerController extends AppAdminController
 
         /** @var FaqQuestionAnswerRepository $faqRepo */
         $faqQuestionAnswerRepo = $this->doctrine->getRepository(FaqQuestionAnswer::class);
+        /** @var Paginator $listeQuestionAnswer */
         $listeQuestionAnswer = $faqQuestionAnswerRepo->listePaginate($page, $limit, $filter);
+
 
         return $this->render('admin/modules/faq/faq_question_answer/ajax/ajax-listing.html.twig', [
             'listeQuestionAnswer' => $listeQuestionAnswer,
+            'listeQuestionAnswerArray' => $listeQuestionAnswer->getIterator(),
             'page' => $page,
             'limit' => $limit,
             'route' => 'admin_faq_question_answer_ajax_listing',
@@ -264,11 +268,48 @@ class FaqQuestionAnswerController extends AppAdminController
         $currentLocal = $this->request->getCurrentRequest()->getLocale();
         $question_id = $this->request->getCurrentRequest()->get('question_id', 0);
 
+        //getByCategoryOrderByPosition
+
+        $questions = $this->doctrine->getRepository(FaqQuestionAnswer::class)->getByCategoryOrderByPosition($faqCategory);
+
         return $this->render('admin/modules/faq/faq_question_answer/ajax/ajax-liste-position.html.twig',
             [
+                'questions' => $questions,
                 'faqCategory' => $faqCategory,
                 'currentLocal' => $currentLocal,
                 'question_id' => $question_id,
             ]);
+    }
+
+    /**
+     * Permet de changer la position une question/réponse d'une catégorie de FAQ
+     * @param FaqQuestionAnswer $faqQuestionAnswer
+     * @param FaqCategory $faqCategory
+     * @param int $position
+     * @return JsonResponse
+     */
+    #[Route('/change-position/{id}/{faqCategory}/{position}', name: 'ajax_position')]
+    public function changePosition(FaqQuestionAnswer $faqQuestionAnswer, FaqCategory $faqCategory, int $position): JsonResponse
+    {
+        $positionTmp = $faqQuestionAnswer->getPosition();
+        $tabPositions = $faqCategory->getFaqQuestionAnswers();
+
+        if($position > 0 && $position <= count($tabPositions) && $position != $faqQuestionAnswer->getPosition())
+        {
+
+            $faqQuestionAnswerMove = $this->doctrine->getRepository(FaqQuestionAnswer::class)->getByPosition($faqCategory, $position);
+            $faqQuestionAnswer->setPosition($faqQuestionAnswerMove->getPosition());
+            $faqQuestionAnswerMove->setPosition($positionTmp);
+
+
+            $this->doctrine->getManager()->persist($faqQuestionAnswer);
+            $this->doctrine->getManager()->persist($faqQuestionAnswerMove);
+            $this->doctrine->getManager()->flush();
+
+            return $this->json(['success' => true]);
+        }
+
+        return $this->json(['success' => 'no change']);
+
     }
 }

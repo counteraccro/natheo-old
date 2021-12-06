@@ -5,7 +5,7 @@
         {% set id = '' %}
         {% set nb = 0 %}
         {% set global_selected = '' %}
-        {% for questionAnswer in faqCategory.faqQuestionAnswers %}
+        {% for questionAnswer in questions %}
             {% set id = questionAnswer.id %}
             {% set nb = nb+1 %}
             {% set str = questionAnswer.faqQuestionAnswerTranslations.first.question %}

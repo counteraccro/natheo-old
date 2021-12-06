@@ -9,6 +9,7 @@ namespace App\Service\Module\FAQ;
 
 use App\Entity\Modules\FAQ\FaqCategory;
 use App\Entity\Modules\FAQ\FaqQuestionAnswer;
+use App\Repository\Modules\FAQ\FaqQuestionAnswerRepository;
 use App\Service\AppService;
 
 class FaqService extends AppService
@@ -74,6 +75,41 @@ class FaqService extends AppService
      */
     public function updatePositionFaqQuestionAnswer(FaqQuestionAnswer $faqQuestionAnswer, int $oldPosition)
     {
+        /** @var FaqQuestionAnswerRepository $faqQuestRep */
+        $faqQuestRep = $this->doctrine->getRepository(FaqQuestionAnswer::class);
+        $faqCat = $faqQuestionAnswer->getFaqCategory();
+        $newPosition = $faqQuestionAnswer->getPosition();
+        if ($newPosition < $oldPosition) {
+            $action = "up";
+        } else {
+            $action = "down";
+        }
+
+        $result = $faqQuestRep->getListeAfterPosition($oldPosition, $faqCat, $action);
+
+        /** @var FaqQuestionAnswer $faqQE */
+        foreach ($result as $faqQE) {
+            if ($faqQE->getId() === $faqQuestionAnswer->getId()) {
+                continue;
+            }
+
+            if ($faqQuestionAnswer->getPosition() < $oldPosition) {
+                if ($faqQE->getPosition() >= $newPosition) {
+                    $faqQE->setPosition($faqQE->getPosition() + 1);
+                }
+            } else {
+
+                if ($faqQE->getPosition() <= $newPosition) {
+                    $faqQE->setPosition($faqQE->getPosition() - 1);
+                }
+            }
+
+            $this->doctrine->getManager()->persist($faqQE);
+        }
+        $this->doctrine->getManager()->flush();
+
+
+
         /*$faqRep = $this->doctrine->getRepository(FaqCategory::class);
 
         $newPosition = $faqCategory->getPosition();

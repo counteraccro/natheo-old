@@ -22,29 +22,29 @@ FAQQuestionAnswer.Launch = function () {
     };
 
     /**
-     * Event sur le listing des catégories
+     * Event sur le listing des question reponses
      * @param globalId
      * @constructor
      */
     FAQQuestionAnswer.EventListing = function (globalId) {
         FAQQuestionAnswer.globalIdListing = globalId;
 
-        /*$(FAQQuestionAnswer.globalIdListing + ' .btn-faq-cat-change-position').click(function() {
+        $(FAQQuestionAnswer.globalIdListing + ' .btn-faq-cat-change-position').click(function() {
 
             let url = $(this).data('url');
             let str_loading = $(this).data('loading');
 
-            $(FAQCategory.globalIdListing).loader(str_loading);
+            $(FAQQuestionAnswer.globalIdListing).loader(str_loading);
 
             $.ajax({
                 method: 'GET',
                 url: url,
             })
                 .done(function (response) {
-                    FAQCategory.LoadListing();
+                    FAQQuestionAnswer.LoadListing();
                 });
             return false;
-        })*/
+        })
 
         /**
          * Event pour la suppression d'une Categorie

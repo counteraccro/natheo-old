@@ -2,8 +2,11 @@
 
 namespace App\Repository\Modules\FAQ;
 
+use App\Entity\Modules\FAQ\FaqCategory;
 use App\Entity\Modules\FAQ\FaqQuestionAnswer;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -72,6 +75,71 @@ class FaqQuestionAnswerRepository extends ServiceEntityRepository
             ->setFirstResult($limit * ($current_page - 1))
             ->setMaxResults($limit);
         return $paginator;
+    }
+
+    /**
+     * Retourne une liste de FAQ question définie après la position envoyée en paramètre ainsi que la catégorie
+     * @param int $position
+     * @param FaqCategory $faqCategory
+     * @param string $action
+     * @return mixed
+     */
+    public function getListeAfterPosition(int $position, FaqCategory $faqCategory, string $action): mixed
+    {
+        $query = $this->createQueryBuilder('faqq');
+        $query->where('faqq.faqCategory = :faqCat')
+            ->setParameter('faqCat', $faqCategory);
+
+        if($action == 'down')
+        {
+            $query->andWhere('faqq.position >= :position');
+        }
+        else {
+            $query->andWhere('faqq.position <= :position');
+        }
+
+        return $query->setParameter('position', $position)
+            ->orderBy('faqq.position', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    /**
+     * Retourne une liste de QuestionRéponse en fonction d'une catégorie trié par position
+     * @param FaqCategory $faqCategory
+     */
+    public function getByCategoryOrderByPosition(FaqCategory $faqCategory)
+    {
+        $query = $this->createQueryBuilder('faqq');
+        return $query->where('faqq.faqCategory = :faqCat')
+            ->setParameter('faqCat', $faqCategory)
+            ->orderBy('faqq.position', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    /**
+     * Retourne une FAQ Question / réponse en fonction de sa position et de sa catégorie
+     * @param FaqCategory $faqCategory
+     * @param int $position
+     * @return int|mixed|string|void
+     */
+    public function getByPosition(FaqCategory $faqCategory, int $position)
+    {
+        try {
+            return $this->createQueryBuilder('faqq')
+                ->where('faqq.faqCategory = :faqCat')
+                ->setParameter('faqCat', $faqCategory)
+                ->andWhere('faqq.position = :position')
+                ->setParameter('position', $position)
+                ->getQuery()
+                ->getSingleResult();
+        } catch (NoResultException | NonUniqueResultException $e) {
+            echo $e->getMessage();
+            die();
+        }
     }
 
     // /**
