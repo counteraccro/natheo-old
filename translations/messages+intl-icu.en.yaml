@@ -85,6 +85,8 @@
 'admin_system#Voir une donnée de type {data}': '__Voir une donnée de type {data}'
 'admin_system#Importer une donnée de type {data}': '__Importer une donnée de type {data}'
 'admin_system#module {data}': '__module {data}'
+'admin_system#Appel Ajax pour ajouter un tag': '__Appel Ajax pour ajouter un tag'
+'admin_page#Pages': __Pages
 'admin_dashboard#Dashboard': __Dashboard
 'admin_media#Médiathèque': __Médiathèque
 'admin_media#Nouveau dossier': '__Nouveau dossier'
@@ -533,7 +535,6 @@
 'admin_faq#Recherche un tag': '__Recherche un tag'
 'admin_faq#Nouveau tag': '__Nouveau tag'
 'admin_faq#Tags ajoutés': '__Tags ajoutés'
-'admin_system#Appel Ajax pour ajouter un tag': '__Appel Ajax pour ajouter un tag'
 'admin_faq#Question / réponse supprimé avec succès': '__Question / réponse supprimé avec succès'
 'admin_tag#Chargement de la modale pour ajouter un tag': '__Chargement de la modale pour ajouter un tag'
 'admin_faq#Suppression de la Question / Réponse': '__Suppression de la Question / Réponse'
@@ -543,3 +544,6 @@
 'admin_faq#Suppression de la question / réponse en cours....': '__Suppression de la question / réponse en cours....'
 'admin_faq#Supprimer la question / réponse': '__Supprimer la question / réponse'
 'admin_tag#Sauvegarde en cours': '__Sauvegarde en cours'
+'admin_page#Gestion des pages': '__Gestion des pages'
+'admin_page#Ajouter une page': '__Ajouter une page'
+'admin_page#Chargement des données...': '__Chargement des données...'

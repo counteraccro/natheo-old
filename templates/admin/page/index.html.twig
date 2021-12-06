@@ -1,0 +1,61 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block title %}{{ "admin_page#Gestion des pages" | trans }}{% endblock %}
+
+{% block body %}
+    <div id="admin-page-globale">
+        <h1>{{ "admin_page#Gestion des pages" | trans }}</h1>
+
+        {{ breadcrumb | breadcrumb | raw }}
+
+        {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }} alert-dismissible fade show msg-role-success">
+                <i class="fa fa-check"></i> {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+            <script>
+                $( document ).ready(function() {
+                    function hide_msg(){
+                        $(".msg-role-success").hide(400);
+                    };
+                    window.setTimeout( hide_msg, 3000 ); // 5 seconds
+                })
+            </script>
+        {% endfor %}
+
+        <div class="float-end">
+
+            {% if 'admin_faq_category_add' | isGranted %}
+                <a href="{{ path('admin_faq_category_add') }}" id="btn-new-role" class="btn btn-primary mb-2">
+                    <i class="fas fa-tag"></i> {{ "admin_page#Ajouter une page" | trans }}
+                </a>
+            {% endif %}
+
+        </div>
+        <div class="clearfix"></div>
+        <div class="card">
+            <div class="card-header">
+                <div class="float-end">
+                    {{ fieldSearch | inputSearch('#admin-page-globale .card-body', constant('App\\Controller\\Admin\\PageController::SESSION_KEY_FILTER')) | raw }}
+                </div>
+            </div>
+            <div class="card-body" data-url="{{ path('admin_page_ajax_listing', {'page' : page}) }}" data-loading="{{ "admin_page#Chargement des données..." | trans }}">
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    <script>
+        $( document ).ready(function() {
+            //FAQCategory.Launch();
+            //FAQCategory.LoadListing();
+        });
+
+    </script>
+
+{% endblock %}

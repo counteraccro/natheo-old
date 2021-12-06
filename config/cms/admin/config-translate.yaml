@@ -86,3 +86,4 @@
 'admin_system#Importer une donnée de type {data}' : '__admin_system#Importer une donnée de type {data}'
 'admin_system#module {data}' : '__admin_system#module {data}'
 'admin_system#Appel Ajax pour ajouter un tag' : 'admin_system#Appel Ajax pour ajouter un tag'
+'admin_page#Pages' : 'admin_page#Pages'
