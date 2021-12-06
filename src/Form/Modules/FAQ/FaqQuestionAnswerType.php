@@ -49,7 +49,7 @@ class FaqQuestionAnswerType extends AppType
                     $this->translator->trans('admin_faq#Masquer') => 0,
                     $this->translator->trans('admin_faq#Publier') => 1,
                 ] ,
-                'empty_data' => 0,
+                //'empty_data' => 0,
                 'expanded' => true,
                 'multiple' => false,
                 'label' => $this->translator->trans('admin_faq#Publication'),

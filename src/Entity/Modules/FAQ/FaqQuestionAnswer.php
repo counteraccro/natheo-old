@@ -47,7 +47,7 @@ class FaqQuestionAnswer
     private $create_on;
 
     /**
-     * @ORM\OneToMany(targetEntity=FaqQuestionAnswerTag::class, mappedBy="FaqQuestionAnswer", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=FaqQuestionAnswerTag::class, mappedBy="FaqQuestionAnswer", orphanRemoval=true, cascade={"persist"})
      */
     private $faqQuestionAnswerTags;
 

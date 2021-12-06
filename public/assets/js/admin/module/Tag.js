@@ -138,4 +138,41 @@ Tag.Launch = function () {
         Tag.LoadTmpTag();
     }
 
+    /**
+     * Event sur la popin d'ajout d'un tag
+     * @constructor
+     */
+    Tag.EventModalAdd = function(modal, callback)
+    {
+        $('#modal-add-tmp-tag #form-ajax-add-tag').submit(function(e) {
+
+            e.preventDefault();
+            let str_loading = $('#modal-add-tmp-tag').data('loading');
+
+            let form = $(this);
+            let url = form.attr('action');
+
+            $('#modal-add-tmp-tag').loader(str_loading);
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: form.serialize(), // serializes the form's elements.
+                success: function(data)
+                {
+                    $('#modal-add-tmp-tag').removeLoader();
+                    if(data.status === "success")
+                    {
+                        Tag.LoadTmpTag();
+                        modal.hide();
+                    }
+                    else {
+                        modal.hide();
+                        $(System.adminBlockModalId).html(data);
+                    }
+                }
+            });
+        })
+    }
+
 }

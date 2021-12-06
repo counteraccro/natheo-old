@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Gestion de la FAQ
+ * @author Gourdon Aymeric
+ * @version 1.0
+ * @package App\Service\Module\FAQ
+ */
 namespace App\Service\Module\FAQ;
 
 use App\Entity\Modules\FAQ\FaqCategory;

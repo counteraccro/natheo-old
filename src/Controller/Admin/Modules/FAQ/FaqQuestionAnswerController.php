@@ -9,9 +9,11 @@
 namespace App\Controller\Admin\Modules\FAQ;
 
 use App\Controller\Admin\AppAdminController;
+use App\Controller\Admin\Modules\TagController;
 use App\Entity\Modules\FAQ\FaqCategory;
 use App\Entity\Modules\FAQ\FaqCategoryTranslation;
 use App\Entity\Modules\FAQ\FaqQuestionAnswer;
+use App\Entity\Modules\FAQ\FaqQuestionAnswerTag;
 use App\Entity\Modules\FAQ\FaqQuestionAnswerTranslation;
 use App\Form\Modules\FAQ\FaqQuestionAnswerType;
 use App\Repository\Modules\FAQ\FaqQuestionAnswerRepository;
@@ -42,6 +44,8 @@ class FaqQuestionAnswerController extends AppAdminController
             $this->translator->trans('admin_faq#FAQ') => '',
             $this->translator->trans('admin_faq#Gestion des questions / réponses') => '',
         ];
+
+        $this->tagService->resetTmpTag();
 
         $fieldSearch = [
             'question' => $this->translator->trans("admin_faq#Question"),
@@ -144,6 +148,12 @@ class FaqQuestionAnswerController extends AppAdminController
                     $faqQuestionAnswer->addFaqQuestionAnswerTranslation($faqQuestionAnswerTranslation);
                 }
             }
+
+            foreach ($faqQuestionAnswer->getFaqQuestionAnswerTags() as $faqTag) {
+                $tag = $faqTag->getTag();
+                $name = $tag->getName();
+                $this->tagService->addTmptag($tag);
+            }
         }
 
         $form = $this->createForm(FaqQuestionAnswerType::class, $faqQuestionAnswer, ['current_action' => $action, 'current_local' => $currentLocal]);
@@ -161,6 +171,22 @@ class FaqQuestionAnswerController extends AppAdminController
                 }
             }
 
+            // On supprime tous les tags
+            foreach ($faqQuestionAnswer->getFaqQuestionAnswerTags() as $faqtag) {
+                $faqQuestionAnswer->removeFaqQuestionAnswerTag($faqtag);
+            }
+
+            // On remet les tags selectionnés
+            $tags = $this->tagService->readTmpTag();
+            foreach ($tags as $tag) {
+                $faqQuestionAnswerTag = new FaqQuestionAnswerTag();
+                $faqQuestionAnswerTag->setTag($tag);
+                $faqQuestionAnswerTag->setCreateOn(new \DateTime());
+                $faqQuestionAnswerTag->setFaqQuestionAnswer($faqQuestionAnswer);
+                $faqQuestionAnswerTag->setUser($this->getUser());
+                $faqQuestionAnswer->addFaqQuestionAnswerTag($faqQuestionAnswerTag);
+            }
+
             $this->faqService->updatePositionFaqQuestionAnswer($faqQuestionAnswer, $oldPosition);
             $this->doctrine->getManager()->persist($faqQuestionAnswer);
             $this->doctrine->getManager()->flush();
@@ -171,6 +197,7 @@ class FaqQuestionAnswerController extends AppAdminController
                 $param = ['page' => $this->getPageInSession(self::SESSION_KEY_PAGE)];
             }
 
+            $this->tagService->resetTmpTag();
             return $this->redirectToRoute('admin_faq_question_answer_index', $param);
         }
 

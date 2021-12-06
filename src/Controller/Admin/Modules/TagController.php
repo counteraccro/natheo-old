@@ -12,6 +12,7 @@ use App\Controller\Admin\AppAdminController;
 use App\Entity\Modules\Tag;
 use App\Form\Modules\TagType;
 use App\Repository\Modules\TagRepository;
+use App\Service\Module\TagService;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,7 +27,6 @@ class TagController extends AppAdminController
 {
     const SESSION_KEY_FILTER = 'session_tag_filter';
     const SESSION_KEY_PAGE = 'session_tag_page';
-    const SESSION_KEY_TMP_TAG = 'session_tag_tmp_save';
 
     /**
      * Point d'entrée de la gestion des tags
@@ -158,7 +158,7 @@ class TagController extends AppAdminController
         $result = $tagRepo->getByName($search);
 
         // Si le tag à déjà été saisi pas la peine de le proposer
-        $tabTmp = $this->session->get(self::SESSION_KEY_TMP_TAG, []);
+        $tabTmp = $this->session->get(TagService::SESSION_KEY_TMP_TAG, []);
         foreach($result as $key => $item)
         {
             if(isset($tabTmp[$item->getId()]))
@@ -185,11 +185,7 @@ class TagController extends AppAdminController
     #[Route('/ajax/save-tmp-tags/{id}', name: 'ajax_tmp_save')]
     public function saveTmpTags(Tag $tag): JsonResponse
     {
-        $tabTmp = $this->session->get(self::SESSION_KEY_TMP_TAG, []);
-
-        $tabTmp[$tag->getId()] = $tag;
-        $this->session->set(self::SESSION_KEY_TMP_TAG, $tabTmp);
-
+        $this->tagService->addTmptag($tag);
         return $this->json(['success' => true]);
     }
 
@@ -200,7 +196,7 @@ class TagController extends AppAdminController
     #[Route('/ajax/read-tmp-tags', name: 'ajax_tmp_read')]
     public function readTmpTags(): Response
     {
-        $tags = $this->session->get(self::SESSION_KEY_TMP_TAG, []);
+        $tags = $this->tagService->readTmpTag();
 
         return $this->render('admin/modules/tag/ajax/ajax-tmp-tags.html.twig', [
             'tags' => $tags,
@@ -215,11 +211,34 @@ class TagController extends AppAdminController
     #[Route('/ajax/delete-tmp-tags/{id}', name: 'ajax_tmp_delete')]
     public function deleteTmpTags(Tag $tag): JsonResponse
     {
-        $tabTmp = $this->session->get(self::SESSION_KEY_TMP_TAG, []);
-
-        unset($tabTmp[$tag->getId()]);
-        $this->session->set(self::SESSION_KEY_TMP_TAG, $tabTmp);
-
+        $this->tagService->deleteTmpTag($tag);
         return $this->json(['success' => true]);
+    }
+
+    /**
+     * Permet de créer un tag depuis une modale
+     * @return RedirectResponse|Response
+     */
+    #[Route('/ajax/add/', name: 'ajax_tmp_add')]
+    public function ajaxModalCreate(): RedirectResponse|Response
+    {
+        $tag = new Tag();
+
+        $form = $this->createForm(TagType::class, $tag);
+
+        $form->handleRequest($this->request->getCurrentRequest());
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $this->doctrine->getManager()->persist($tag);
+            $this->doctrine->getManager()->flush();
+
+            $this->tagService->addTmptag($tag);
+
+            return $this->json(['status' => 'success']);
+
+        }
+        return $this->render('admin/modules/tag/ajax/ajax-modal-create.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 }

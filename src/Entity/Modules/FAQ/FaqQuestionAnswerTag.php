@@ -21,13 +21,13 @@ class FaqQuestionAnswerTag
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=FaqQuestionAnswer::class, inversedBy="faqQuestionAnswerTags")
+     * @ORM\ManyToOne(targetEntity=FaqQuestionAnswer::class, inversedBy="faqQuestionAnswerTags", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $FaqQuestionAnswer;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Tag::class, inversedBy="faqQuestionAnswerTags")
+     * @ORM\ManyToOne(targetEntity=Tag::class, inversedBy="faqQuestionAnswerTags", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $tag;

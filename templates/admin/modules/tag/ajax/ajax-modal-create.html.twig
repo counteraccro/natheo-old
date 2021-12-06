@@ -1,0 +1,38 @@
+<div class="modal" id="modal-add-tmp-tag" tabindex="-1" data-loading="{{ "admin_tag#Sauvegarde en cours" | trans }}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{ "admin_tag#Ajouter un tag" | trans }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            {{ form_start(form, {'attr' : {'id' : 'form-ajax-add-tag', 'action' : path('admin_tag_ajax_tmp_add')}}) }}
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-8">
+                        {{ form_row(form.name) }}
+                    </div>
+                    <div class="col">
+                        {{ form_row(form.color) }}
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                {{ form_row(form.valider, {'id' : 'btn-submit'}) }}
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+
+{% block javascripts %}
+
+  <script>
+    $(document).ready(function () {
+      let modal = new bootstrap.Modal($('#modal-add-tmp-tag'), [])
+      modal.toggle();
+
+      Tag.EventModalAdd(modal, );
+    });
+  </script>
+
+{% endblock %}

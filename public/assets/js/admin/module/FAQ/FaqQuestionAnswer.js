@@ -89,12 +89,32 @@ FAQQuestionAnswer.Launch = function () {
 
         $(FAQQuestionAnswer.globalIdCreateUpdate + ' input.question').change(function () {
             FAQQuestionAnswer.CheckUniqueSlug($(this));
+
+            let nb = $(this).data('nb');
+            $(FAQQuestionAnswer.globalIdCreateUpdate + ' #page-title-' +nb).val($(this).val())
         })
 
         $(FAQQuestionAnswer.globalIdCreateUpdate + ' #select-faq-cat').change(function () {
             let id = $(this).val();
             FAQQuestionAnswer.LoadListePosition(id);
         });
+
+        $(FAQQuestionAnswer.globalIdCreateUpdate + ' #btn-modal-add-tag').click(function() {
+            let url = $(this).data('url');
+            let str_loading = $(this).data('loading');
+            let id = System.adminBlockModalId;
+
+            $('body').loader(str_loading);
+
+            $.ajax({
+                method: 'GET',
+                url: url,
+            })
+                .done(function (html) {
+                    $('body').removeLoader(str_loading);
+                    $(System.adminBlockModalId).html(html);
+                });
+        })
 
         $(FAQQuestionAnswer.globalIdCreateUpdate + ' .active-translate').each(function () {
 

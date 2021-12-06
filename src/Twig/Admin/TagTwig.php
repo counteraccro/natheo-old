@@ -14,7 +14,7 @@ class TagTwig extends AppExtension implements RuntimeExtensionInterface
         $html = '<label for="tag-list" class="form-label">' . $this->translator->trans('admin_faq#Tags') . '</label>
                     <div class="input-group mb-3">
                         <input class="form-control" data-url="' . $this->router->generate('admin_tag_ajax_search') . '" list="tag-list-options" id="tag-list" data-new="' . $this->translator->trans('admin_faq#Ajouter le tag') . '" placeholder="' . $this->translator->trans("admin_faq#Recherche un tag") . '">
-                        <button class="btn btn-primary" type="button" id="btn-modal-add-tag">' . $this->translator->trans('admin_faq#Nouveau tag') . '</button>
+                        <button class="btn btn-primary" data-url="' . $this->router->generate(('admin_tag_ajax_tmp_add')) . '" data-loading="' . $this->translator->trans('admin_tag#Chargement de la modale pour ajouter un tag') . '" type="button" id="btn-modal-add-tag">' . $this->translator->trans('admin_faq#Nouveau tag') . '</button>
                         <datalist id="tag-list-options"></datalist>
                     </div>
 
