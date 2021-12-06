@@ -250,7 +250,7 @@ class FaqCategoryController extends AppAdminController
 
         $positionTmp = $faqCategory->getPosition();
         $tabPositions = $this->faqService->getListeOrderFaqCategory();
-        if($position > 0 && $position < count($tabPositions) && $position != $faqCategory->getPosition())
+        if($position > 0 && $position <= count($tabPositions) && $position != $faqCategory->getPosition())
         {
 
             $faqCategoryMove = $this->doctrine->getRepository(FaqCategory::class)->getByPosition($position);
