@@ -47,9 +47,9 @@ FAQQuestionAnswer.Launch = function () {
         })
 
         /**
-         * Event pour la suppression d'une Categorie
+         * Event pour la suppression d'une Question Réponse
          */
-        /*$(FAQQuestionAnswer.globalIdListing + ' .btn-delete-faq-cat').click(function() {
+        $(FAQQuestionAnswer.globalIdListing + ' .btn-delete-faq-cat').click(function() {
 
             let url = $(this).data('url');
             let str_loading = $(this).data('loading');
@@ -65,7 +65,7 @@ FAQQuestionAnswer.Launch = function () {
                     $('body').removeLoader(str_loading);
                     $(System.adminBlockModalId).html(html);
                 });
-        });*/
+        });
     }
 
     /**
@@ -265,32 +265,32 @@ FAQQuestionAnswer.Launch = function () {
      * @constructor
      */
     FAQQuestionAnswer.EventDelete = function (modal) {
-        FAQQuestionAnswer.globalIdDeleteTheme = '#modale-delete-faq-cat';
+        FAQQuestionAnswer.globalIdDeleteTheme = '#modale-delete-faq-qr';
 
         /**
          * Event sur le click du bouton confirmer
          */
-        /*$(FAQCategory.globalIdDeleteTheme + ' #btn-confirm-delete-faq-cat').click(function() {
+        $(FAQQuestionAnswer.globalIdDeleteTheme + ' #btn-confirm-delete-faq-qr').click(function() {
 
             let url = $(this).data('url');
             let str_loading = $(this).data('loading');
             let redirect = $(this).data('redirect');
 
-            $(FAQCategory.globalIdDeleteTheme + ' .modal-body').loader(str_loading);
+            $(FAQQuestionAnswer.globalIdDeleteTheme + ' .modal-body').loader(str_loading);
 
             $.ajax({
                 method: 'GET',
                 url: url,
             })
                 .done(function (response) {
-                    $(FAQCategory.globalIdDeleteTheme + ' .modal-body').removeLoader();
-                    $(FAQCategory.globalIdDeleteTheme + ' .modal-body').html(response.msg);
+                    $(FAQQuestionAnswer.globalIdDeleteTheme + ' .modal-body').removeLoader();
+                    $(FAQQuestionAnswer.globalIdDeleteTheme + ' .modal-body').html(response.msg);
 
                     setTimeout(function(){
                         modal.toggle();
                         document.location.href= redirect;
                     }, 1500);
                 });
-        })*/
+        })
     }
 }

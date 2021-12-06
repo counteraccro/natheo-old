@@ -310,6 +310,29 @@ class FaqQuestionAnswerController extends AppAdminController
         }
 
         return $this->json(['success' => 'no change']);
+    }
 
+    /**
+     * Permet de supprimer une question réponse FAQ
+     * @param FaqQuestionAnswer $faqQuestionAnswer
+     * @param int $confirm
+     * @return Response
+     */
+    #[Route('/delete/{id}/{confirm}', name: 'ajax_delete')]
+    public function delete(FaqQuestionAnswer $faqQuestionAnswer, int $confirm = 0): Response
+    {
+        if($confirm == 1)
+        {
+            $this->doctrine->getManager()->remove($faqQuestionAnswer);
+            $this->doctrine->getManager()->flush();
+
+            return $this->json([
+                'msg' => $this->translator->trans('admin_faq#Question / réponse supprimé avec succès'),
+            ]);
+        }
+
+        return $this->render('admin/modules/faq/faq_question_answer/ajax/ajax-modal-delete-question-answer.html.twig', [
+            'faqCategory' => $faqQuestionAnswer,
+        ]);
     }
 }

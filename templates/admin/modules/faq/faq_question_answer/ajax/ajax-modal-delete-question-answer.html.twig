@@ -1,0 +1,38 @@
+<div class="modal" tabindex="-1" id="modale-delete-faq-qr">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title"><i class="fa fa-trash-alt"></i> {{ "admin_faq#Suppression de la Question / Réponse" | trans }} #{{ faqCategory.id }}"</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h5>{{ "admin_faq#Attention" | trans }}</h5>
+                <div class="text-danger">
+                    {{ "admin_faq#Est vous sur de vouloir supprimer cette question / réponse ainsi que tous les données associées ?"  | trans }} <br />
+                    {{ "admin_faq#La suppression d'un question / réponse implique"  | trans }} : <br >
+                    <i class="fa fa-long-arrow-alt-right"></i> {{ "admin_faq#La supression de toutes les tags associés (uniquement les liaisons"  | trans }} <br >
+                    <b>{{ "admin_faq#Cette action est définitive et sans retour arrière" | trans }}</b>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ "admin_faq#Annuler" | trans }}</button>
+                <button type="button" class="btn btn-danger" id="btn-confirm-delete-faq-qr"
+                        data-loading="{{ "admin_faq#Suppression de la question / réponse en cours...." | trans }}"
+                        data-url="{{ path('admin_faq_question_answer_ajax_delete', {'id' : faqCategory.id, 'confirm' : true}) }}"
+                        data-redirect="{{ path('admin_faq_question_answer_index') }}">{{ "admin_faq#Supprimer la question / réponse" | trans }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block javascripts %}
+
+    <script>
+        $(document).ready(function () {
+            let modal = new bootstrap.Modal($('#modale-delete-faq-qr'), [])
+            modal.toggle();
+            FAQQuestionAnswer.EventDelete(modal);
+        });
+    </script>
+
+{% endblock %}
