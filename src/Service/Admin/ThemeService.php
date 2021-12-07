@@ -26,7 +26,7 @@ class ThemeService extends AppService
     const CONFIG_KEY_FOLDER_REF = 'folder_ref';
     const CONFIG_KEY_DESCRIPTION = 'description';
     const CONFIG_KEY_CREATOR = 'creator';
-    const DEFAULT_THEME = 'horizon';
+    const DEFAULT_THEME = 'bootstrap';
 
     const RELATIVE_PATH_CONFIG = 'config';
     const RELATIVE_PATH_CONFIG_FILE = self::RELATIVE_PATH_CONFIG . DIRECTORY_SEPARATOR . 'config.yaml';

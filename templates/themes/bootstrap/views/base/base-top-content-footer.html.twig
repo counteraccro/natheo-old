@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' | cms_path_template %}
+
+{% block body %}
+    <header class="border border-primary rounded mb-3 p-4">
+        Header
+    </header>
+
+    <main class="container-fluid border border-primary rounded mb-3 p-4">
+        {% block main %}{% endblock %}
+    </main>
+
+    <footer class="border border-primary rounded p-4">
+        footer
+    </footer>
+{% endblock %}
