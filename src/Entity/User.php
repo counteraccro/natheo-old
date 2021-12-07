@@ -2,6 +2,9 @@
 
 namespace App\Entity;
 
+use App\Entity\Admin\Page\Page;
+use App\Entity\Admin\Page\PageMedia;
+use App\Entity\Admin\Page\PageTag;
 use App\Entity\Admin\Role;
 use App\Entity\Modules\FAQ\FaqQuestionAnswerTag;
 use App\Repository\UserRepository;
@@ -93,10 +96,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $faqQuestionAnswerTags;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Page::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $pages;
+
+    /**
+     * @ORM\OneToMany(targetEntity=PageTag::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $pageTags;
+
+    /**
+     * @ORM\OneToMany(targetEntity=PageMedia::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $pageMedia;
+
     public function __construct()
     {
         $this->rolesCms = new ArrayCollection();
         $this->faqQuestionAnswerTags = new ArrayCollection();
+        $this->pages = new ArrayCollection();
+        $this->pageTags = new ArrayCollection();
+        $this->pageMedia = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -337,6 +358,96 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($faqQuestionAnswerTag->getUser() === $this) {
                 $faqQuestionAnswerTag->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Page[]
+     */
+    public function getPages(): Collection
+    {
+        return $this->pages;
+    }
+
+    public function addPage(Page $page): self
+    {
+        if (!$this->pages->contains($page)) {
+            $this->pages[] = $page;
+            $page->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePage(Page $page): self
+    {
+        if ($this->pages->removeElement($page)) {
+            // set the owning side to null (unless already changed)
+            if ($page->getUser() === $this) {
+                $page->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|PageTag[]
+     */
+    public function getPageTags(): Collection
+    {
+        return $this->pageTags;
+    }
+
+    public function addPageTag(PageTag $pageTag): self
+    {
+        if (!$this->pageTags->contains($pageTag)) {
+            $this->pageTags[] = $pageTag;
+            $pageTag->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePageTag(PageTag $pageTag): self
+    {
+        if ($this->pageTags->removeElement($pageTag)) {
+            // set the owning side to null (unless already changed)
+            if ($pageTag->getUser() === $this) {
+                $pageTag->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|PageMedia[]
+     */
+    public function getPageMedia(): Collection
+    {
+        return $this->pageMedia;
+    }
+
+    public function addPageMedium(PageMedia $pageMedium): self
+    {
+        if (!$this->pageMedia->contains($pageMedium)) {
+            $this->pageMedia[] = $pageMedium;
+            $pageMedium->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePageMedium(PageMedia $pageMedium): self
+    {
+        if ($this->pageMedia->removeElement($pageMedium)) {
+            // set the owning side to null (unless already changed)
+            if ($pageMedium->getUser() === $this) {
+                $pageMedium->setUser(null);
             }
         }
 

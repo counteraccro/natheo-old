@@ -2,6 +2,7 @@
 
 namespace App\Entity\Modules;
 
+use App\Entity\Admin\Page\PageTag;
 use App\Entity\Modules\FAQ\FaqQuestionAnswerTag;
 use App\Repository\Modules\TagRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -38,9 +39,15 @@ class Tag
      */
     private $faqQuestionAnswerTags;
 
+    /**
+     * @ORM\OneToMany(targetEntity=PageTag::class, mappedBy="tag", orphanRemoval=true)
+     */
+    private $pageTags;
+
     public function __construct()
     {
         $this->faqQuestionAnswerTags = new ArrayCollection();
+        $this->pageTags = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -96,6 +103,36 @@ class Tag
             // set the owning side to null (unless already changed)
             if ($faqQuestionAnswerTag->getTag() === $this) {
                 $faqQuestionAnswerTag->setTag(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|PageTag[]
+     */
+    public function getPageTags(): Collection
+    {
+        return $this->pageTags;
+    }
+
+    public function addPageTag(PageTag $pageTag): self
+    {
+        if (!$this->pageTags->contains($pageTag)) {
+            $this->pageTags[] = $pageTag;
+            $pageTag->setTag($this);
+        }
+
+        return $this;
+    }
+
+    public function removePageTag(PageTag $pageTag): self
+    {
+        if ($this->pageTags->removeElement($pageTag)) {
+            // set the owning side to null (unless already changed)
+            if ($pageTag->getTag() === $this) {
+                $pageTag->setTag(null);
             }
         }
 

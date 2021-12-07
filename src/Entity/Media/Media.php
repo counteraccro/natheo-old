@@ -2,7 +2,10 @@
 
 namespace App\Entity\Media;
 
+use App\Entity\Admin\Page\PageMedia;
 use App\Repository\Media\MediaRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -58,6 +61,16 @@ class Media
      * @ORM\Column(type="integer")
      */
     private $size;
+
+    /**
+     * @ORM\OneToMany(targetEntity=PageMedia::class, mappedBy="media", orphanRemoval=true)
+     */
+    private $pageMedia;
+
+    public function __construct()
+    {
+        $this->pageMedia = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -156,6 +169,36 @@ class Media
     public function setSize(int $size): self
     {
         $this->size = $size;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|PageMedia[]
+     */
+    public function getPageMedia(): Collection
+    {
+        return $this->pageMedia;
+    }
+
+    public function addPageMedium(PageMedia $pageMedium): self
+    {
+        if (!$this->pageMedia->contains($pageMedium)) {
+            $this->pageMedia[] = $pageMedium;
+            $pageMedium->setMedia($this);
+        }
+
+        return $this;
+    }
+
+    public function removePageMedium(PageMedia $pageMedium): self
+    {
+        if ($this->pageMedia->removeElement($pageMedium)) {
+            // set the owning side to null (unless already changed)
+            if ($pageMedium->getMedia() === $this) {
+                $pageMedium->setMedia(null);
+            }
+        }
 
         return $this;
     }
