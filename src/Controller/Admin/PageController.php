@@ -7,6 +7,7 @@
  */
 namespace App\Controller\Admin;
 
+use App\Entity\Admin\Page\Page;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -64,5 +65,41 @@ class PageController extends AppAdminController
             'limit' => $limit,
             'route' => 'admin_role_ajax_listing',
         ]);*/
+    }
+
+    /**
+     * Permet de créer / éditer une page
+     * @param int $page
+     * @return Response
+     */
+    #[Route('/add/', name: 'add')]
+    #[Route('/edit/{id}', name: 'edit')]
+    public function createUpdate(Page $page = null): Response
+    {
+
+        $breadcrumb = [
+            $this->translator->trans('admin_dashboard#Dashboard') => 'admin_dashboard_index',
+            $this->translator->trans('admin_page#Gestion des pages') => 'admin_page_index',
+        ];
+
+        if($page == null)
+        {
+            $page = new Page();
+            $title = $this->translator->trans('admin_page#Créer une page');
+            $breadcrumb[$title] = '';
+            //$flashMsg = $this->translator->trans('admin_page#Page créée avec succès');
+        }
+        else {
+
+            $title = $this->translator->trans('admin_page#Edition de la page ') . '#' . $page->getId();
+            $breadcrumb[$title] = '';
+            //$flashMsg = $this->translator->trans('admin_page#Page édité avec succès');
+        }
+
+        return $this->render('admin/page/create-update.html.twig', [
+            'breadcrumb' => $breadcrumb,
+            'title' => $title,
+            'page' => $page
+        ]);
     }
 }

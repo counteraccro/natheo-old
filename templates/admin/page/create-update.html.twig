@@ -1,0 +1,51 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+    <div id="admin-create-update-page">
+        <h1>{{ title }}</h1>
+
+        {{ breadcrumb | breadcrumb | raw }}
+
+        <div class="border rounded">
+            div
+        </div>
+
+        <ul class="nav nav-pills" id="myTab" role="tablist">
+            <li class="nav-item">
+                <button class="nav-link active" id="content-page-tab" data-bs-toggle="tab" data-bs-target="#content-page"
+                        type="button"
+                        role="tab" aria-controls="content-page"
+                        aria-selected="true"> {{ "admin_page#Contenu" | trans }}</button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" id="seo-tab" data-bs-toggle="tab" data-bs-target="#seo" type="button"
+                        role="tab" aria-controls="seo" aria-selected="false">
+                    <i class="fab fa-searchengin"></i> {{ "admin_page#SEO" | trans }}
+                </button>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active m-3" id="content-page" role="tabpanel" aria-labelledby="content-page-tab">
+                Contenu
+            </div>
+            <div class="tab-pane fade m-3" id="seo" role="tabpanel" aria-labelledby="seo-tab">
+                SEO
+            </div>
+        </div>
+
+        <div class="m-3">
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+
+    <script>
+        $(document).ready(function () {
+        });
+    </script>
+
+{% endblock %}
+
