@@ -142,7 +142,7 @@ Tag.Launch = function () {
      * Event sur la popin d'ajout d'un tag
      * @constructor
      */
-    Tag.EventModalAdd = function(modal, callback)
+    Tag.EventModalAdd = function(modal)
     {
         $('#modal-add-tmp-tag #form-ajax-add-tag').submit(function(e) {
 
