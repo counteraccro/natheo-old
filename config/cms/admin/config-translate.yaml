@@ -90,3 +90,5 @@
 'admin_system#Appel Ajax pour voir le contenu de type {data}' : 'admin_system#Appel Ajax pour voir le contenu de type {data}'
 'admin_system#Appel Ajax pour choisir un template pour une page' : 'admin_system#Appel Ajax pour choisir un template pour une page'
 'admin_system#Appel Ajax pour choisir une donnée de type {data}' : 'admin_system#ppel Ajax pour choisir une donnée de type {data}'
+'admin_system#Appel Ajax pour charger un template' : 'admin_system#Appel Ajax pour charger un template'
+'admin_system#Appel Ajax pour charger une donnée de type {data}' : 'admin_system#Appel Ajax pour charger une donnée de type {data}'

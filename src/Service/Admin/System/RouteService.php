@@ -99,6 +99,10 @@ class RouteService extends AppService
                     "template" => "admin_system#Appel Ajax pour choisir un template pour une page",
                     default => "admin_system#Appel Ajax pour choisir une donnée de type {data}"
                 },
+                "load" => match($tab[4]) {
+                    "template" => "admin_system#Appel Ajax pour charger un template",
+                    default => "admin_system#Appel Ajax pour charger une donnée de type {data}"
+                },
                 "see" => match($tab[4]) {
                     "folder", "content" => "admin_system#Appel Ajax pour voir le contenu d'un dossier",
                     default => "admin_system#Appel Ajax pour voir le contenu de type {data}"
