@@ -95,8 +95,13 @@ class RouteService extends AppService
                 "reload" => "admin_system#Appel Ajax pour recharger les données de type {data}",
                 "check" => "admin_system#Appel Ajax pour checker les données de type {data}",
                 "tree" =>  "admin_system#Appel Ajax pour générer un arbre de donnée de type {data}",
+                "select" => match($tab[4]) {
+                    "template" => "admin_system#Appel Ajax pour choisir un template pour une page",
+                    default => "admin_system#ppel Ajax pour choisir une donnée de type {data}"
+                },
                 "see" => match($tab[4]) {
                     "folder", "content" => "admin_system#Appel Ajax pour voir le contenu d'un dossier",
+                    default => "admin_system#Appel Ajax pour voir le contenu de type {data}"
                 },
                 "add" => match($tab[4]) {
                     "folder" => "admin_system#Appel Ajax pour créer un dossier",
