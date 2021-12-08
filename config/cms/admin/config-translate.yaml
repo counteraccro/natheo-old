@@ -87,3 +87,6 @@
 'admin_system#module {data}' : '__admin_system#module {data}'
 'admin_system#Appel Ajax pour ajouter un tag' : 'admin_system#Appel Ajax pour ajouter un tag'
 'admin_page#Pages' : 'admin_page#Pages'
+'admin_system#Appel Ajax pour voir le contenu de type {data}' : 'admin_system#Appel Ajax pour voir le contenu de type {data}'
+'admin_system#Appel Ajax pour choisir un template pour une page' : 'admin_system#Appel Ajax pour choisir un template pour une page'
+'admin_system#Appel Ajax pour choisir une donnée de type {data}' : 'admin_system#ppel Ajax pour choisir une donnée de type {data}'
