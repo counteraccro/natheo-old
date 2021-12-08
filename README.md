@@ -5,6 +5,8 @@ NathéoCMS est un petit CMS développé en PHP et qui permet de faire une gestio
 Fonctionnalités
 - 
 
+/!\ *Le CMS étant en développement la liste des fonctionnalités peut évoluer à tout moment et n'est pas forcément à jour*
+
 Liste des fonctionnalités présente sur le CMS :
 - **Gestion des thèmes**
   - Switcher entre les deux thèmes présents par défauts ou développer votre propre thème.
@@ -72,3 +74,14 @@ Installation
 Étape 6: accès au projet via l'url
 
 `http://localhost:8000`
+
+Communauté
+-
+
+Envi de nous aider pour :
+- Le développement du CMS
+- La traduction
+- La découverte de bugs
+- Ou tout simplement venir discuter du projet / poser vos questions
+
+Vous pouvez venir sur le discord du CMS : https://discord.gg/vMY2RNZsKn
