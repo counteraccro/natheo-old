@@ -10,6 +10,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Admin\Option;
 use App\Service\Admin\MediaService;
+use App\Service\Admin\PageService;
 use App\Service\Admin\System\DataSystemService;
 use App\Service\Admin\System\FileService;
 use App\Service\Admin\System\OptionService;
@@ -100,6 +101,8 @@ class AppAdminController extends AbstractController
      */
     protected TagService $tagService;
 
+    protected PageService $pageService;
+
     /**
      * @param TranslatorInterface $translator
      * @param RequestStack $request
@@ -111,11 +114,14 @@ class AppAdminController extends AbstractController
      * @param MediaService $mediaService
      * @param ThemeService $themeService
      * @param Security $security
+     * @param FaqService $faqService
+     * @param Doctrine $doctrine
+     * @param TagService $tagService
      */
     public function __construct(TranslatorInterface $translator, RequestStack $request, OptionService $optionService,
                                 TranslationService  $translationService, DataSystemService $dataSystemService, KernelInterface $kernel,
                                 FileService         $fileService, MediaService $mediaService, ThemeService $themeService, Security $security,
-                                FaqService $faqService, Doctrine $doctrine, TagService $tagService)
+                                FaqService $faqService, Doctrine $doctrine, TagService $tagService, PageService $pageService)
     {
         $this->translator = $translator;
         $this->request = $request;
@@ -131,6 +137,7 @@ class AppAdminController extends AbstractController
         $this->faqService = $faqService;
         $this->doctrine = $doctrine;
         $this->tagService = $tagService;
+        $this->pageService = $pageService;
     }
 
     /**

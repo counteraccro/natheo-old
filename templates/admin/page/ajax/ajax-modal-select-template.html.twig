@@ -1,0 +1,96 @@
+<div class="modal" id="modal-select-template-page" tabindex="-1" data-url-select="{{ path('admin_page_ajax_select_save_template') }}" data-loading="{{ "admin_page#Changement du template en cours" | trans }}">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{ "admin_page#Choix du template" | trans }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radio-page-select-template" id="radio-template-1" value="1" {% if(id == 1) %} checked {% endif %}>
+                            <label class="form-check-label" for="radio-template-1">
+                                {{ "admin_page#Template 1" | trans }}
+
+                                <table style="border-spacing:5px;border-collapse:separate; width: 200px; margin-left: -28px;text-align: center; font-size: 11px;">
+                                    <tr>
+                                        <td class="border" style="height: 30px;">{{ "admin_page#Top" | trans }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border" style="height: 30px;">{{ "admin_page#Content" | trans }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border"style="height: 30px;">{{ "admin_page#Footer" | trans }}</td>
+                                    </tr>
+                                </table>
+
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radio-page-select-template" id="radio-template-2" value="2" {% if(id == 2) %} checked {% endif %}>
+                            <label class="form-check-label" for="radio-template-2">
+                                {{ "admin_page#Template 2" | trans }}
+
+                                <table style="border-spacing:5px;border-collapse:separate; width: 200px; margin-left: -28px;text-align: center;font-size: 11px;">
+                                    <tr>
+                                        <td colspan="3" style="height: 30px;" class="border">{{ "admin_page#Top" | trans }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="height: 30px;" class="border">{{ "admin_page#Left" | trans }}</td>
+                                        <td style="height: 30px;" colspan="2" class="border">{{ "admin_page#Content" | trans }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="height: 30px;" colspan="3" class="border">{{ "admin_page#Footer" | trans }}</td>
+                                    </tr>
+                                </table>
+
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radio-page-select-template" id="radio-template-3" value="3" {% if(id == 3) %} checked {% endif %}>
+                            <label class="form-check-label" for="radio-template-3">
+                                {{ "admin_page#Template 3" | trans }}
+
+                                <table style="border-spacing:5px;border-collapse:separate; width: 200px; margin-left: -28px;text-align: center;font-size: 11px;">
+                                    <tr>
+                                        <td style="height: 30px;" colspan="3" class="border">{{ "admin_page#Top" | trans }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="height: 30px;" colspan="2" class="border">{{ "admin_page#Content" | trans }}</td>
+                                        <td style="height: 30px;" class="border">{{ "admin_page#Right" | trans }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="height: 30px;" colspan="3" class="border">{{ "admin_page#Footer" | trans }}</td>
+                                    </tr>
+                                </table>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div id="txt-success" class="float-start me-3 text-success"><i>{{ "admin_page#Template selectionné avec succès" | trans }}</i></div>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">{{ "admin_page#Fermer" | trans }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block javascripts %}
+
+<script>
+    $(document).ready(function () {
+        let modal = new bootstrap.Modal($('#modal-select-template-page'), [])
+        modal.toggle();
+
+        Page.EventSelectTemplate('#modal-select-template-page');
+    });
+</script>
+
+{% endblock %}

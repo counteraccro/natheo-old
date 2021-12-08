@@ -551,3 +551,27 @@
 'admin_page#Edition de la page ': '__Edition de la page '
 'admin_page#Contenu': __Contenu
 'admin_page#SEO': __SEO
+'admin_system#Appel Ajax pour voir le contenu de type {data}': '__Appel Ajax pour voir le contenu de type {data}'
+'admin_system#Appel Ajax pour choisir un template pour une page': '__Appel Ajax pour choisir un template pour une page'
+'admin_system#ppel Ajax pour choisir une donnée de type {data}': '__ppel Ajax pour choisir une donnée de type {data}'
+'admin_page#Tags': __Tags
+'admin_page#Options': __Options
+'admin_page#Template': __Template
+'admin_page#Choisir un template': '__Choisir un template'
+'admin_page#Changement du template en cours': '__Changement du template en cours'
+'admin_page#Choix du template': '__Choix du template'
+'admin_page#Chargement de la modale de selection de template': '__Chargement de la modale de selection de template'
+'admin_page#Template 1': '__Template 1'
+'admin_page#Top': __Top
+'admin_page#Content': __Content
+'admin_page#Footer': __Footer
+'admin_page#Left': __Left
+'admin_page#Template 2': '__Template 2'
+'admin_page#Template 3': '__Template 3'
+'admin_page#Right': __Right
+'admin_system#Appel Ajax pour choisir une donnée de type {data}': '__Appel Ajax pour choisir une donnée de type {data}'
+'admin_system#Appel Ajax pour charger un template': '__Appel Ajax pour charger un template'
+'admin_system#Appel Ajax pour charger une donnée de type {data}': '__Appel Ajax pour charger une donnée de type {data}'
+'admin_page#Thème selectionné avec succès': '__Thème selectionné avec succès'
+'admin_page#Fermer': __Fermer
+'admin_page#Chargement du template en cours': '__Chargement du template en cours'

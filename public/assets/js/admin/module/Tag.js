@@ -78,6 +78,10 @@ Tag.Launch = function () {
             return result;
         }
 
+        /**
+         * Affichage des tags stockés en sessions
+         * @constructor
+         */
         Tag.LoadTmpTag = function()
         {
             $(idContent).loader();
