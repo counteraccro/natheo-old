@@ -1,1 +1,15 @@
-{{ template }}
+<div id="block-content-element-page">
+    {{ template }}
+</div>
+
+
+{% block javascripts %}
+
+    <script>
+        $(document).ready(function () {
+            Page.EventContent('#block-content-element-page');
+            $('#hidden-base-input').val('{{ template }}');
+        });
+    </script>
+
+{% endblock %}

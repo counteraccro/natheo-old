@@ -17,9 +17,52 @@ Page.Launch = function() {
         Page.createUpdateGlobalId = globalId;
 
         /**
+         * Event sur le choix de la langue
+         */
+        $(Page.createUpdateGlobalId + ' #select-language').change(function() {
+            let language = $(this).val();
+            let url = $(Page.createUpdateGlobalId + ' #block-form-page').data('url');
+            let tabTmp = url.split('/');
+
+            if(tabTmp.length === 7)
+            {
+                url = url.substring(0, url.length - 2) + language;
+            }
+            else {
+                url = url + '/' + language;
+            }
+            Page.LoadFormPage(url);
+        })
+
+    }
+
+    /**
+     * Permet de charger le block contenant le formulaire de la page
+     * @constructor
+     */
+    Page.LoadFormPage = function(url = null)
+    {
+        let id = '#block-form-page';
+        if(url == null)
+        {
+            url = $(id).data('url');
+        }
+        let str_loading = $(id).data('loading');
+        System.Ajax(url, id, true, str_loading);
+    }
+
+    /**
+     * Event sur le block form appelé en ajax dans la vue createUpdate'
+     * @constructor
+     */
+    Page.EventAjaxCreateUpdate = function(globalId) {
+
+        Page.ajaxCreateUpdateGlobalId = globalId;
+
+        /**
          * Click pour ouvrir la modale de choix du template
          */
-        $(Page.createUpdateGlobalId + ' #btn-modal-select-template').click(function() {
+        $(Page.ajaxCreateUpdateGlobalId + ' #btn-modal-select-template').click(function() {
 
             let url = $(this).attr('href');
             let str_loading = $(this).data('loading');
@@ -68,8 +111,9 @@ Page.Launch = function() {
 
             let url = $(Page.selectTemplateGlobalId).data('url-select')
             let str_loading = $(Page.selectTemplateGlobalId).data('loading');
+            let val = $(this).val();
 
-            url = url + '/' + $(this).val();
+            url = url + '/' + val;
 
             $(Page.selectTemplateGlobalId + ' .modal-dialog').loader(str_loading);
 
@@ -87,5 +131,15 @@ Page.Launch = function() {
                 });
 
         })
+    }
+
+    /**
+     * Event sur la partie content de la création d'une page
+     * @param globalId
+     * @constructor
+     */
+    Page.EventContent = function(globalId)
+    {
+        Page.eventContentGlobalId = globalId;
     }
 }

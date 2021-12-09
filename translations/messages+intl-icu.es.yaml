@@ -575,3 +575,19 @@
 'admin_page#Thème selectionné avec succès': '__Thème selectionné avec succès'
 'admin_page#Fermer': __Fermer
 'admin_page#Chargement du template en cours': '__Chargement du template en cours'
+'admin_system#Appel Ajax pour ajouter une page': '__Appel Ajax pour ajouter une page'
+'admin_system#Appel Ajax pour éditer une page': '__Appel Ajax pour éditer une page'
+'admin_system#Module faq': '__Module faq'
+'admin_page#Template selectionné avec succès': '__Template selectionné avec succès'
+'admin_page#Chargement du formulaire...': '__Chargement du formulaire...'
+'admin_page#Autoriser que cette page puisse avoir des enfants': '__Autoriser que cette page puisse avoir des enfants'
+'admin_page#Si cette case est coché, la page peut être associé à une autre page': '__Si cette case est coché, la page peut être associé à une autre page'
+'admin_page#Autoriser que cette page puisse être modifiée': '__Autoriser que cette page puisse être modifiée'
+'admin_page#Si cette case est coché, seul l''utilisateur root pourra modifier cette page': '__Si cette case est coché, seul l''utilisateur root pourra modifier cette page'
+'admin_page#Autoriser que cette page puisse être supprimée': '__Autoriser que cette page puisse être supprimée'
+'admin_page#Si cette case est coché, seul l''utilisateur root pourra supprimer cette page': '__Si cette case est coché, seul l''utilisateur root pourra supprimer cette page'
+'admin_page#Masquer': __Masquer
+'admin_page#Publier': __Publier
+'admin_page#Publication': __Publication
+'admin_page#Valider': __Valider
+'admin_page#Choisir la langue': '__Choisir la langue'

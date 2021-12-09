@@ -9,6 +9,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Admin\Page\Page;
+use App\Form\Admin\Page\PageType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -71,7 +72,7 @@ class PageController extends AppAdminController
 
     /**
      * Permet de créer / éditer une page
-     * @param int $page
+     * @param Page|null $page
      * @return Response
      */
     #[Route('/add/', name: 'add')]
@@ -79,27 +80,64 @@ class PageController extends AppAdminController
     public function createUpdate(Page $page = null): Response
     {
 
+        $currentLocale = $this->request->getCurrentRequest()->getLocale();
+        $locales = $this->translationService->getLocales();
+
         $breadcrumb = [
             $this->translator->trans('admin_dashboard#Dashboard') => 'admin_dashboard_index',
             $this->translator->trans('admin_page#Gestion des pages') => 'admin_page_index',
         ];
 
         if ($page == null) {
-            $page = new Page();
             $title = $this->translator->trans('admin_page#Créer une page');
             $breadcrumb[$title] = '';
-            //$flashMsg = $this->translator->trans('admin_page#Page créée avec succès');
+            $url_form = $this->generateUrl('admin_page_ajax_add_page', ['language' => $currentLocale]);
         } else {
-
             $title = $this->translator->trans('admin_page#Edition de la page ') . '#' . $page->getId();
             $breadcrumb[$title] = '';
-            //$flashMsg = $this->translator->trans('admin_page#Page édité avec succès');
+            $url_form = $this->generateUrl('admin_page_ajax_edit_page', ['id' => $page->getId(), 'language' => $currentLocale]);
         }
 
         return $this->render('admin/page/create-update.html.twig', [
             'breadcrumb' => $breadcrumb,
             'title' => $title,
-            'page' => $page
+            'url_form' => $url_form,
+            'locales' => $locales,
+            'currentLocale' => $currentLocale
+        ]);
+    }
+
+    /**
+     * Permet de créer / éditer une page
+     * @param Page|null $page
+     * @return Response
+     */
+    #[Route('/ajax/add/{language}', name: 'ajax_add_page')]
+    #[Route('/ajax/edit/{id}/{language}', name: 'ajax_edit_page')]
+    public function ajaxCreateUpdate(Page $page = null, string $language = 'fr'): Response
+    {
+
+        if($page == null)
+        {
+            $page = new Page();
+        }
+        else {
+
+        }
+
+        $form = $this->createForm(PageType::class, $page);
+
+        $form->handleRequest($this->request->getCurrentRequest());
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $page = $form->getData();
+            var_dump($page);
+        }
+
+        return $this->render('admin/page/ajax/ajax-create-update.html.twig', [
+            'page' => $page,
+            'form' => $form->createView(),
+            'language' => $language
         ]);
     }
 
