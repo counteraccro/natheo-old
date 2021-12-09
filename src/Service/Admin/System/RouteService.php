@@ -111,6 +111,7 @@ class RouteService extends AppService
                     "folder" => "admin_system#Appel Ajax pour créer un dossier",
                     "media" => "admin_system#Appel Ajax pour ajouter un media",
                     "tag" => "admin_system#Appel Ajax pour ajouter un tag",
+                    "page" => "admin_system#Appel Ajax pour ajouter une page",
                     default => "admin_system#Appel Ajax pour créer une donnée"
                 },
                 "popin" => match($tab[4]) {
@@ -120,6 +121,7 @@ class RouteService extends AppService
                 "edit" => match($tab[4]) {
                     "folder" => "admin_system#Appel Ajax pour éditer un dossier",
                     "media" => "admin_system#Appel Ajax pour éditer un media",
+                    "page" => "admin_system#Appel Ajax pour éditer une page",
                     default => "admin_system#Appel Ajax pour éditer une donnée"
                 },
                 default => "admin_system#Appel Ajax sans description",
