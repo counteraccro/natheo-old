@@ -89,10 +89,9 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
         /*if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }*/
-
-        echo "Authentification ne semble plus fonctionner depuis la mise à jour 6.0.1";
-        //return new RedirectResponse($this->urlGenerator->generate('admin_dashboard_index', ['_locale' => $default_local]));
-        throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+        
+        return new RedirectResponse($this->urlGenerator->generate('admin_dashboard_index', ['_locale' => $default_local]));
+        //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 
     protected function getLoginUrl(Request $request): string
