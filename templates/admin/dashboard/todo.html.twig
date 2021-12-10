@@ -15,12 +15,13 @@
         <ul>
             <li><b>Authentification</b></li>
                 <ul>
-                    <li><span class="badge bg-danger">BUG</span><span class="text-danger">l'Authentification ne fonctionne plus depuis le passage en 6.0.1, l'erreur est <kbd>Invalid CSRF token</kbd></span><br />
+                    <li><s><span class="badge bg-danger">BUG</span><span class="text-danger">l'Authentification ne fonctionne plus depuis le passage en 6.0.1, l'erreur est <kbd>Invalid CSRF token</kbd></span><br />
                     Solution de contournement actuellement : <br />
                      - Tentative de connection => erreur <kbd>Invalid CSRF token</kbd> <br />
                      - Retour arrière via le navigateur puis nouvelle connexion <br />
                      - Erreur pas de redirection définie, c'est que l'authentification à marché <br >
-                        - Saisir manuellement l'url du back pour y acceder avec une session valide
+                        - Saisir manuellement l'url du back pour y acceder avec une session valide</s>
+                        <span class="badge bg-primary"><i class="fa fa-check"></i> FIXE</span> le 10/12/2021 - commit : <a href="https://github.com/counteraccro/natheo/commit/c048c9377640945b6287f8be489e293cd01bf05f">c048...</a>
                     </li>
                 </ul>
             <li><b>Mise à jour des routes</b>
