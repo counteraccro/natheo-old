@@ -84,4 +84,4 @@ Envi de nous aider pour :
 - La découverte de bugs
 - Ou tout simplement venir discuter du projet / poser vos questions
 
-Vous pouvez venir sur le discord du CMS : https://discord.gg/vMY2RNZsKn
+Discord officiel : https://discord.gg/vMY2RNZsKn

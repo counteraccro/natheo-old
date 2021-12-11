@@ -47,7 +47,14 @@ class RoleFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
     }
 
-    private function addRouteRight(ObjectManager $manager, Role $role, array $tabModule)
+    /**
+     * Ajout une liste de route à un role
+     * @param ObjectManager $manager
+     * @param Role $role
+     * @param array $tabModule
+     * @return Role
+     */
+    private function addRouteRight(ObjectManager $manager, Role $role, array $tabModule): Role
     {
         /** @var RouteRepository $routeRepo */
         $routeRepo = $manager->getRepository(Route::class);
