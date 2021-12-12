@@ -35,6 +35,23 @@ Liste des fonctionnalités présente sur le CMS :
     - **TAG**
       - Gestion des tags utilisé pour vos contenus.
 
+A faire
+-
+
+Liste de fonctionnalités non exhaustive que je souhaite ajouter par la suite au CMS
+
+- **Modules**
+  - Gestionnaire de blog
+  - Gestionnaire de menus
+  - Gestionnaire de formulaire simple
+- **Divers**
+    - Système de backup SQL
+    - Permettre de pouvoir voir / executer du code SQL depuis l'admin
+    - Système de gestion des emails
+      - Configuration serveur mail
+      - Template
+    - Intégrer une partie public / zone membre côté front
+    - Système de bundle pour l'ajout de fonctionnalité par des développeurs tiers
 
 Informations
 -
