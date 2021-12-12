@@ -76,14 +76,14 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
 
         // Compte admin
         $user = new User();
-        $user->setEmail('counteraccro@gmail.com');
+        $user->setEmail('user@mail.com');
         $user->setPassword($this->passwordHarsher->hashPassword(
             $user,
-            'counteraccro@gmail.com'
+            'user@mail.com'
         ));
-        $user->setName('Counter');
-        $user->setPublicationName('Counteraccro');
-        $user->setSurname('Accro');
+        $user->setName('User');
+        $user->setPublicationName('Public name');
+        $user->setSurname('Surname User');
         $user->setPasswordStrenght('<span class="badge bg-success">?</span>');
         $user->addRolesCms($this->getReference(RoleFixtures::FIXTURE_ROLE_ADM_REF));
         $user->setIsDisabled(false);
