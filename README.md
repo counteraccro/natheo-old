@@ -75,6 +75,10 @@ Installation
 
 `http://localhost:8000`
 
+Pour vous connecter : 
+ - Compte superadmin : admin@admin.com/admin@admin.com
+ - Compte user : user@mail.com/user@mail.com
+
 Communauté
 -
 
