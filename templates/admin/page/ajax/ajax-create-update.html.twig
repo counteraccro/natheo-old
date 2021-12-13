@@ -1,4 +1,4 @@
-<div id="form-create-update-page">
+<div id="form-create-update-page" data-url="{{ path('admin_page_ajax_save_page_tmp', {'language' : language}) }}">
     {% if(page.id == null) %}
         {% set action = path('admin_page_ajax_add_page', {'language' : language}) %}
     {% else %}
@@ -6,6 +6,15 @@
     {% endif %}
 
     {{ form_start(form, {'attr' : {'id' : 'form-ajax-add-edit-page', 'action' : action}}) }}
+
+    {% for translation in form.pageTranslations %}
+        {% if(translation.language.vars.value == language) %}
+            {{ form_row(translation.pageTitle, {'id' : 'pageTitle', 'attr': {'class': 'input-save page-title', 'data-associate' : 'pageTranslations', 'data-name' : 'pageTitle'}}) }}
+        {% else %}
+            {% do translation.pageTitle.setRendered() %}
+        {% endif %}
+    {% endfor %}
+
     <ul class="nav nav-pills" id="myTab" role="tablist">
         <li class="nav-item">
             <button class="nav-link active" id="content-page-tab" data-bs-toggle="tab"
@@ -54,15 +63,13 @@
             {% for translation in form.pageTranslations %}
 
                 {% if(translation.language.vars.value == language) %}
-                    {{ form_row(translation.pageTitle, {'id' : 'pageTitle', 'attr': {'class': 'pageTitle', 'data-nb' : 1}}) }}
-                    {{ form_row(translation.slug, {'id' : 'slug', 'attr': {'class': 'slug', 'data-nb' : 1}}) }}
-                    {{ form_row(translation.language, {'id' : 'language', 'attr': {'class': 'language', 'data-nb' : 1}}) }}
-                    {{ form_row(translation.navigationTitle, {'id' : 'navigationTitle', 'attr': {'class': 'navigationTitle', 'data-nb' : 1}}) }}
-                    {{ form_row(translation.metaDescription, {'id' : 'metaDescription', 'attr': {'class': 'metaDescription', 'data-nb' : 1}}) }}
-                    {{ form_row(translation.metaKeyword, {'id' : 'metaKeyword', 'attr': {'class': 'metaKeyword', 'data-nb' : 1}}) }}
-                    {{ form_row(translation.metaExtraMetaTags, {'id' : 'metaExtraMetaTags', 'attr': {'class': 'metaExtraMetaTags', 'data-nb' : 1}}) }}
+                    {{ form_row(translation.slug, {'id' : 'slug', 'attr': {'class': 'input-save slug', 'data-associate' : 'pageTranslations', 'data-name' : 'slug'}}) }}
+                    {{ form_row(translation.language, {'id' : 'language', 'attr': {'class': 'input-save language', 'data-associate' : 'pageTranslations', 'data-name' : 'language'}}) }}
+                    {{ form_row(translation.navigationTitle, {'id' : 'navigationTitle', 'attr': {'class': 'input-save navigation-title', 'data-associate' : 'pageTranslations', 'data-name' : 'navigationTitle'}}) }}
+                    {{ form_row(translation.metaDescription, {'id' : 'metaDescription', 'attr': {'class': 'input-save meta-description', 'data-associate' : 'pageTranslations', 'data-name' : 'metaDescription'}}) }}
+                    {{ form_row(translation.metaKeyword, {'id' : 'metaKeyword', 'attr': {'class': 'input-save meta-keyword', 'data-associate' : 'pageTranslations', 'data-name' : 'metaKeyword'}}) }}
+                    {{ form_row(translation.metaExtraMetaTags, {'id' : 'metaExtraMetaTags', 'attr': {'class': 'input-save meta-extraMetaTags', 'data-associate' : 'pageTranslations', 'data-name' : 'metaExtraMetaTags'}}) }}
                 {% else %}
-                    {% do translation.pageTitle.setRendered() %}
                     {% do translation.slug.setRendered() %}
                     {% do translation.language.setRendered() %}
                     {% do translation.navigationTitle.setRendered() %}
@@ -75,11 +82,11 @@
         </div>
         <div class="tab-pane fade m-3" id="options" role="tabpanel" aria-labelledby="options-tab">
 
-            {{ form_row(form.status) }}
+            {{ form_row(form.status, {'attr': {'class': 'input-save status', 'data-associate' : '', 'data-name' : 'status'}}) }}
 
-            {{ form_row(form.can_have_children) }}
-            {{ form_row(form.can_edit) }}
-            {{ form_row(form.can_delete) }}
+            {{ form_row(form.can_have_children, {'attr': {'class': 'input-save status', 'data-associate' : '', 'data-name' : 'canHaveChildren'}}) }}
+            {{ form_row(form.can_edit, {'attr': {'class': 'input-save status', 'data-associate' : '', 'data-name' : 'canEdit'}}) }}
+            {{ form_row(form.can_delete, {'attr': {'class': 'input-save status', 'data-associate' : '', 'data-name' : 'canDelete'}}) }}
         </div>
         <div class="tab-pane fade m-3" id="tags" role="tabpanel" aria-labelledby="tags-tab">
             {{ "" | selectTagForEntity | raw }}

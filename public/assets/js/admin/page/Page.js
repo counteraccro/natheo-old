@@ -103,6 +103,40 @@ Page.Launch = function() {
 
             return false;
         });
+
+        $(Page.ajaxCreateUpdateGlobalId + ' .input-save').change(function() {
+
+            let url = $(Page.ajaxCreateUpdateGlobalId).data('url');
+            let associate = $(this).data('associate');
+            let name = $(this).data('name');
+
+            let val = $(this).val();
+
+            // Cas checkbox
+            if(['canHaveChildren', 'canEdit', 'canDelete'].includes(name))
+            {
+                val = 0;
+                if ($(this).is(":checked"))
+                {
+                    val = 1;
+                }
+            }
+
+            // cas radio
+            if(val === "")
+            {
+                val = $('input[name="page[' + $(this).data('name') +']"]:checked').val()
+            }
+
+            $.ajax({
+                method: 'POST',
+                data : {'val' : val, 'associate' : associate, 'name' : name},
+                url: url,
+            })
+                .done(function (html) {
+
+                });
+        })
     }
 
     /**

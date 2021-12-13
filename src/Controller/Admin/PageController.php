@@ -206,4 +206,37 @@ class PageController extends AppAdminController
             'currentLocale' => $language,
         ]);
     }
+
+    /**
+     * Sauvegarde en session l'objet page ainsi que ses données associées
+     * @param string $language
+     * @return Response
+     */
+    #[Route('/ajax/save-page-tmp/{language}', name: 'ajax_save_page_tmp')]
+    public function ajaxSaveObjPage(string $language): Response
+    {
+        $data = $this->request->getCurrentRequest()->request->all();
+
+        $page = $this->pageService->getCurrentObjPage();
+
+        if(isset($data['associate']) && $data['associate'] != "")
+        {
+            $tmp = 'get' . ucfirst($data['associate']);
+            foreach($page->{$tmp}() as &$associate)
+            {
+                if($associate->getLanguage() == $language)
+                {
+                    $tmp = 'set' . ucfirst($data['name']);
+                    $associate->{$tmp}($data['val']);
+                }
+            }
+        }
+        else {
+            $tmp = 'set' . ucfirst($data['name']);
+            $page->{$tmp}($data['val']);
+        }
+        $this->session->set(PageService::SESSION_KEY_CURRENT_LOCAl_PAGE, $page);
+
+        return $this->json(['success' => true]);
+    }
 }
