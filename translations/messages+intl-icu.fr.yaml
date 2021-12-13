@@ -87,6 +87,14 @@
 'admin_system#module {data}': 'module {data}'
 'admin_system#Appel Ajax pour ajouter un tag': 'Appel Ajax pour ajouter un tag'
 'admin_page#Pages': Pages
+'admin_system#Appel Ajax pour voir le contenu de type {data}': 'Appel Ajax pour voir le contenu de type {data}'
+'admin_system#Appel Ajax pour choisir un template pour une page': 'Appel Ajax pour choisir un template pour une page'
+'admin_system#Appel Ajax pour choisir une donnée de type {data}': 'Appel Ajax pour choisir une donnée de type {data}'
+'admin_system#Appel Ajax pour charger un template': 'Appel Ajax pour charger un template'
+'admin_system#Appel Ajax pour charger une donnée de type {data}': 'Appel Ajax pour charger une donnée de type {data}'
+'admin_system#Appel Ajax pour ajouter une page': 'Appel Ajax pour ajouter une page'
+'admin_system#Appel Ajax pour éditer une page': 'Appel Ajax pour éditer une page'
+'admin_system#Module faq': 'Module faq'
 'admin_dashboard#Dashboard': Dashboard
 'admin_media#Médiathèque': Médiathèque
 'admin_media#Nouveau dossier': 'Nouveau dossier'
@@ -551,8 +559,6 @@
 'admin_page#Edition de la page ': 'Edition de la page '
 'admin_page#Contenu': Contenu
 'admin_page#SEO': SEO
-'admin_system#Appel Ajax pour voir le contenu de type {data}': 'Appel Ajax pour voir le contenu de type {data}'
-'admin_system#Appel Ajax pour choisir un template pour une page': 'Appel Ajax pour choisir un template pour une page'
 'admin_system#ppel Ajax pour choisir une donnée de type {data}': 'ppel Ajax pour choisir une donnée de type {data}'
 'admin_page#Tags': Tags
 'admin_page#Options': Options
@@ -569,15 +575,9 @@
 'admin_page#Template 2': 'Template 2'
 'admin_page#Template 3': 'Template 3'
 'admin_page#Right': Right
-'admin_system#Appel Ajax pour choisir une donnée de type {data}': 'Appel Ajax pour choisir une donnée de type {data}'
-'admin_system#Appel Ajax pour charger un template': 'Appel Ajax pour charger un template'
-'admin_system#Appel Ajax pour charger une donnée de type {data}': 'Appel Ajax pour charger une donnée de type {data}'
 'admin_page#Thème selectionné avec succès': 'Thème selectionné avec succès'
 'admin_page#Fermer': Fermer
 'admin_page#Chargement du template en cours': 'Chargement du template en cours'
-'admin_system#Appel Ajax pour ajouter une page': 'Appel Ajax pour ajouter une page'
-'admin_system#Appel Ajax pour éditer une page': 'Appel Ajax pour éditer une page'
-'admin_system#Module faq': 'Module faq'
 'admin_page#Template selectionné avec succès': 'Template selectionné avec succès'
 'admin_page#Chargement du formulaire...': 'Chargement du formulaire...'
 'admin_page#Autoriser que cette page puisse avoir des enfants': 'Autoriser que cette page puisse avoir des enfants'
@@ -591,3 +591,19 @@
 'admin_page#Publication': Publication
 'admin_page#Valider': Valider
 'admin_page#Choisir la langue': 'Choisir la langue'
+'admin-page#Cette page est déjà disponible dans les langues suivantes': 'Cette page est déjà disponible dans les langues suivantes'
+'admin_page#Selectionner une langue': 'Selectionner une langue'
+'admin_page#Chargement des langues disponibles': 'Chargement des langues disponibles'
+'admin_page#Titre de la page': 'Titre de la page'
+'admin_page#Le titre de la page sur le navigateur (balise <title>)': 'Le titre de la page sur le navigateur (balise <title>)'
+'admin_page#Slug': Slug
+'admin_page#Le slug permet de définir l''url de la page, par défault c''est le titre': 'Le slug permet de définir l''url de la page, par défault c''est le titre'
+'admin_page#Titre de la page dans les menus': 'Titre de la page dans les menus'
+'admin_page#Titre de la page dans le menus': 'Titre de la page dans le menus'
+'admin_page#Le titre de la page qui apparaitra dans les menus': 'Le titre de la page qui apparaitra dans les menus'
+'admin_page#Meta Description': 'Meta Description'
+'admin_page#Description qui sera affiché dans les résultats des moteurs de recherches': 'Description qui sera affiché dans les résultats des moteurs de recherches'
+'admin_page#Mots clés': 'Mots clés'
+'admin_page#Mot clés pour décrire la catégorie pour le SEO': 'Mot clés pour décrire la catégorie pour le SEO'
+'admin_page#Autres méta tags': 'Autres méta tags'
+'admin_page#Saisissez ici vos métatags personnalisés qui seront affichés dans la balise <head> de la page': 'Saisissez ici vos métatags personnalisés qui seront affichés dans la balise <head> de la page'

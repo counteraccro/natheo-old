@@ -6,6 +6,7 @@ use App\Entity\Admin\Page\Page;
 use App\Form\AppType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -47,6 +48,10 @@ class PageType extends AppType
             ->add('base', HiddenType::class)
             //->add('parent')
             //->add('user')
+            ->add('pageTranslations', CollectionType::class, [
+                'entry_type' => PageTranslationType::class,
+                'entry_options' => ['label' => false],
+            ])
             ->add("valider", SubmitType::class, [
                 'label' => $this->translator->trans('admin_page#Valider')
             ])

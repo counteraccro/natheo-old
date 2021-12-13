@@ -13,8 +13,8 @@
             <div class="row">
                 <div class="col-4">
                     <label for="select-language" class="form-label">{{ "admin_page#Choisir la langue" | trans }}</label>
-                    <select class="form-select" id="select-language">
-
+                    <select class="form-select" id="select-language" data-empty="{{ "admin_page#Aucune nouvelle langue à ajouter" }}">
+                        <option value="">{{ "admin_page#Selectionner une langue" | trans }}</option>
                         {% for locale in locales %}
                             {% set str = "admin_translation#"~locale %}
                             <option value="{{ locale }}" {% if currentLocale == locale %} selected {% endif %}>{{ str | trans }}</option>
@@ -22,7 +22,9 @@
                     </select>
                 </div>
                 <div class="col-6">
+                    <div id="select-language-page" data-url="{{ path('admin_page_ajax_load_page_language') }}", data-loading="{{ "admin_page#Chargement des langues disponibles" | trans }}">
 
+                    </div>
                 </div>
             </div>
 

@@ -10,6 +10,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Admin\Page\Page;
 use App\Form\Admin\Page\PageType;
+use App\Service\Admin\PageService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -28,6 +29,9 @@ class PageController extends AppAdminController
     #[Route('/index/{page}', name: 'index')]
     public function index(int $page = 1): Response
     {
+        $this->pageService->removeCurrentObjPage();
+        $this->tagService->resetTmpTag();
+
         $breadcrumb = [
             $this->translator->trans('admin_dashboard#Dashboard') => 'admin_dashboard_index',
             $this->translator->trans('admin_page#Gestion des pages') => '',
@@ -117,13 +121,16 @@ class PageController extends AppAdminController
     public function ajaxCreateUpdate(Page $page = null, string $language = 'fr'): Response
     {
 
-        if($page == null)
+        $page = $this->pageService->setCurrentObjPage($language, $page);
+        $this->session->set(PageService::SESSION_KEY_CURRENT_LOCAl_PAGE, $language);
+
+        /*if($page == null)
         {
             $page = new Page();
         }
         else {
 
-        }
+        }*/
 
         $form = $this->createForm(PageType::class, $page);
 
@@ -170,7 +177,6 @@ class PageController extends AppAdminController
 
     /**
      * Permet de charger le template selectionné pour l'édition / création d'une page
-     * @param int $id
      * @return Response
      */
     #[Route('/ajax/load-template', name: 'ajax_load_template')]
@@ -182,5 +188,22 @@ class PageController extends AppAdminController
             'template' => $tabTemplate['base']
         ]);
 
+    }
+
+    /**
+     * Permet de charger la page courante pour générer la liste de choix de langue
+     * @param string $language
+     * @return Response
+     */
+    #[Route('/ajax/load-page-language', name: 'ajax_load_page_language')]
+    public function loadPageLanguage() : Response
+    {
+        $page = $this->pageService->getCurrentObjPage();
+        $language = $this->session->get(PageService::SESSION_KEY_CURRENT_LOCAl_PAGE);
+
+        return $this->render('admin/page/ajax/ajax-load-page-language.html.twig', [
+            'page' => $page,
+            'currentLocale' => $language,
+        ]);
     }
 }

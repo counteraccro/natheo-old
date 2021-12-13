@@ -15,7 +15,6 @@ Page.Launch = function() {
     Page.EventCreateUpdate = function(globalId) {
 
         Page.createUpdateGlobalId = globalId;
-
         /**
          * Event sur le choix de la langue
          */
@@ -33,20 +32,43 @@ Page.Launch = function() {
             }
             Page.LoadFormPage(url);
         })
-
     }
 
     /**
      * Permet de charger le block contenant le formulaire de la page
      * @constructor
      */
-    Page.LoadFormPage = function(url = null)
+    Page.LoadFormPage = function(url = null, urlChoiceLanguage = null)
     {
         let id = '#block-form-page';
         if(url == null)
         {
             url = $(id).data('url');
         }
+        let str_loading = $(id).data('loading');
+        //System.Ajax(url, id, true, str_loading);
+
+        $(id).loader(str_loading);
+        $.ajax({
+            method: 'GET',
+            url: url,
+        })
+            .done(function (html) {
+                $(id).removeLoader(str_loading);
+                $(id).html(html);
+                Page.LoadChoiceLanguage();
+            });
+    }
+
+    /**
+     * Charge la selection de langue
+     * @constructor
+     */
+    Page.LoadChoiceLanguage = function()
+    {
+        let id = '#select-language-page';
+        let url = $(id).data('url');
+
         let str_loading = $(id).data('loading');
         System.Ajax(url, id, true, str_loading);
     }
@@ -141,5 +163,51 @@ Page.Launch = function() {
     Page.EventContent = function(globalId)
     {
         Page.eventContentGlobalId = globalId;
+    }
+
+    /**
+     * Event sur les boutons de choix de la langue
+     * @param globalId
+     * @constructor
+     */
+    Page.EventChoiceLanguage = function(globalId)
+    {
+        Page.eventChoiceLanguageGlobalId = globalId;
+
+        $(Page.eventChoiceLanguageGlobalId + ' .btn-select-language').each(function() {
+
+            let language = $(this).data('language');
+
+            $('#select-language option').each(function() {
+                let val = $(this).val();
+
+                if(val === language)
+                {
+                    $('#select-language').children('option[value="' + val + '"]').remove();
+                }
+            })
+
+            if($('#select-language option').length === 1)
+            {
+                $('#select-language').append('<option value="#" selected="selected">' + $('#select-language').data('empty') + '</option>');
+                $('#select-language').prop('disabled', 'disabled');
+            }
+        })
+
+        $(Page.eventChoiceLanguageGlobalId + ' .btn').click(function() {
+
+            let language = $(this).data('language');
+            let url = $('#block-form-page').data('url');
+            let tabTmp = url.split('/');
+
+            if(tabTmp.length === 7)
+            {
+                url = url.substring(0, url.length - 2) + language;
+            }
+            else {
+                url = url + '/' + language;
+            }
+            Page.LoadFormPage(url);
+        })
     }
 }

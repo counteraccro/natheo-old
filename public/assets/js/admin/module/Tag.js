@@ -82,8 +82,7 @@ Tag.Launch = function () {
          * Affichage des tags stockés en sessions
          * @constructor
          */
-        Tag.LoadTmpTag = function()
-        {
+        Tag.LoadTmpTag = function () {
             $(idContent).loader();
             $.ajax({
                 method: 'GET',
@@ -139,6 +138,23 @@ Tag.Launch = function () {
             }
         });
 
+        $('#btn-modal-add-tag-for-entity').click(function () {
+            let url = $(this).data('url');
+            let str_loading = $(this).data('loading');
+            let id = System.adminBlockModalId;
+
+            $('body').loader(str_loading);
+
+            $.ajax({
+                method: 'GET',
+                url: url,
+            })
+                .done(function (html) {
+                    $('body').removeLoader(str_loading);
+                    $(System.adminBlockModalId).html(html);
+                });
+        })
+
         Tag.LoadTmpTag();
     }
 
@@ -146,9 +162,8 @@ Tag.Launch = function () {
      * Event sur la popin d'ajout d'un tag
      * @constructor
      */
-    Tag.EventModalAdd = function(modal)
-    {
-        $('#modal-add-tmp-tag #form-ajax-add-tag').submit(function(e) {
+    Tag.EventModalAdd = function (modal) {
+        $('#modal-add-tmp-tag #form-ajax-add-tag').submit(function (e) {
 
             e.preventDefault();
             let str_loading = $('#modal-add-tmp-tag').data('loading');
@@ -162,15 +177,12 @@ Tag.Launch = function () {
                 type: "POST",
                 url: url,
                 data: form.serialize(), // serializes the form's elements.
-                success: function(data)
-                {
+                success: function (data) {
                     $('#modal-add-tmp-tag').removeLoader();
-                    if(data.status === "success")
-                    {
+                    if (data.status === "success") {
                         Tag.LoadTmpTag();
                         modal.hide();
-                    }
-                    else {
+                    } else {
                         modal.hide();
                         $(System.adminBlockModalId).html(data);
                     }
@@ -178,5 +190,4 @@ Tag.Launch = function () {
             });
         })
     }
-
 }

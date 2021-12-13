@@ -1,0 +1,25 @@
+<div id="select-language-page mb-5" class="">
+    <label class="form-label">{{ "admin-page#Cette page est déjà disponible dans les langues suivantes" | trans }}</label>
+    <div>
+    {% for pageTranslation in page.getPageTranslations %}
+        {% set str_language = "admin_translation#"~ pageTranslation.language %}
+
+        {% set btn_class = "btn-outline-primary" %}
+        {% if (currentLocale == pageTranslation.language) %}
+            {% set btn_class = "btn-primary" %}
+        {% endif %}
+
+        <div class="btn btn-select-language {{ btn_class }}" data-language="{{ pageTranslation.language }}">{{ str_language | trans }}</div>
+    {% endfor %}
+    </div>
+</div>
+
+{% block javascripts %}
+
+    <script>
+        $(document).ready(function () {
+            Page.EventChoiceLanguage('#select-language-page');
+        });
+    </script>
+
+{% endblock %}

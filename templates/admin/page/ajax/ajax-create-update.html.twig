@@ -51,7 +51,27 @@
 
         </div>
         <div class="tab-pane fade m-3" id="seo" role="tabpanel" aria-labelledby="seo-tab">
-            SEO
+            {% for translation in form.pageTranslations %}
+
+                {% if(translation.language.vars.value == language) %}
+                    {{ form_row(translation.pageTitle, {'id' : 'pageTitle', 'attr': {'class': 'pageTitle', 'data-nb' : 1}}) }}
+                    {{ form_row(translation.slug, {'id' : 'slug', 'attr': {'class': 'slug', 'data-nb' : 1}}) }}
+                    {{ form_row(translation.language, {'id' : 'language', 'attr': {'class': 'language', 'data-nb' : 1}}) }}
+                    {{ form_row(translation.navigationTitle, {'id' : 'navigationTitle', 'attr': {'class': 'navigationTitle', 'data-nb' : 1}}) }}
+                    {{ form_row(translation.metaDescription, {'id' : 'metaDescription', 'attr': {'class': 'metaDescription', 'data-nb' : 1}}) }}
+                    {{ form_row(translation.metaKeyword, {'id' : 'metaKeyword', 'attr': {'class': 'metaKeyword', 'data-nb' : 1}}) }}
+                    {{ form_row(translation.metaExtraMetaTags, {'id' : 'metaExtraMetaTags', 'attr': {'class': 'metaExtraMetaTags', 'data-nb' : 1}}) }}
+                {% else %}
+                    {% do translation.pageTitle.setRendered() %}
+                    {% do translation.slug.setRendered() %}
+                    {% do translation.language.setRendered() %}
+                    {% do translation.navigationTitle.setRendered() %}
+                    {% do translation.metaDescription.setRendered() %}
+                    {% do translation.metaKeyword.setRendered() %}
+                    {% do translation.metaExtraMetaTags.setRendered() %}
+                {% endif %}
+
+            {% endfor %}
         </div>
         <div class="tab-pane fade m-3" id="options" role="tabpanel" aria-labelledby="options-tab">
 

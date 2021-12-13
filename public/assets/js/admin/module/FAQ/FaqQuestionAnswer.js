@@ -99,7 +99,7 @@ FAQQuestionAnswer.Launch = function () {
             FAQQuestionAnswer.LoadListePosition(id);
         });
 
-        $(FAQQuestionAnswer.globalIdCreateUpdate + ' #btn-modal-add-tag').click(function() {
+        /*$(FAQQuestionAnswer.globalIdCreateUpdate + ' #btn-modal-add-tag').click(function() {
             let url = $(this).data('url');
             let str_loading = $(this).data('loading');
             let id = System.adminBlockModalId;
@@ -114,7 +114,7 @@ FAQQuestionAnswer.Launch = function () {
                     $('body').removeLoader(str_loading);
                     $(System.adminBlockModalId).html(html);
                 });
-        })
+        })*/
 
         $(FAQQuestionAnswer.globalIdCreateUpdate + ' .active-translate').each(function () {
 
