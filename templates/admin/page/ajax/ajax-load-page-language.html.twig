@@ -1,5 +1,5 @@
 <div id="select-language-page mb-5" class="">
-    <label class="form-label">{{ "admin-page#Cette page est déjà disponible dans les langues suivantes" | trans }}</label>
+    <label class="form-label">{{ "admin_page#Cette page est déjà disponible dans les langues suivantes" | trans }}</label>
     <div>
     {% for pageTranslation in page.getPageTranslations %}
         {% set str_language = "admin_translation#"~ pageTranslation.language %}

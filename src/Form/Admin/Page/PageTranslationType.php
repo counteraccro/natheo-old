@@ -20,7 +20,7 @@ class PageTranslationType extends AppType
                 'label' => $this->translator->trans('admin_page#Titre de la page'),
                 'required' => false,
                 'attr' => ['placeholder' => $this->translator->trans('admin_page#Titre de la page')],
-                'help' => $this->translator->trans('Url : ')
+                'help' => 'Url : '
             ])
             ->add('slug', HiddenType::class, [
                 'label' => $this->translator->trans('admin_page#Slug'),
