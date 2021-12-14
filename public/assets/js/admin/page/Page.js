@@ -12,9 +12,29 @@ Page.Launch = function() {
      * Event sur la création / édition d'une page
      * @constructor
      */
-    Page.EventCreateUpdate = function(globalId) {
+    Page.EventCreateUpdate = function(globalId, frontUrl, currentLocal, action, urlCheckSlug) {
 
         Page.createUpdateGlobalId = globalId;
+
+        $(Page.createUpdateGlobalId + ' input.page-title').keyup(function () {
+            Page.CreateSlug($(this));
+        })
+
+        $(Page.createUpdateGlobalId + ' input.page-title').change(function () {
+            Page.CheckUniqueSlug($(this));
+
+            //let nb = $(this).data('nb');
+            //$(FAQCategory.globalIdCreateUpdate + ' #page-title-' +nb).val($(this).val())
+        })
+
+        $(Page.createUpdateGlobalId + ' .active-translate').each(function() {
+
+            let nb = $(this).data('nb');
+            if(!$(this).prop('checked'))
+            {
+                $(Page.createUpdateGlobalId + ' .page-translate-input-' + nb).prop('disabled', true);
+            }
+        });
 
         /**
          * Click pour ouvrir la modale de choix du template
@@ -38,6 +58,89 @@ Page.Launch = function() {
 
             return false;
         });
+
+
+        /** Active ou désactive le bloc de la langue courante */
+        $(Page.createUpdateGlobalId + ' .active-translate').change(function() {
+            let nb = $(this).data('nb');
+            let check = $(this).prop('checked');
+
+            $(Page.createUpdateGlobalId + ' .page-translate-input-' + nb).each(function() {
+                let val = $(this).data('value');
+
+                if(!check)
+                {
+                    $(this).prop('disabled', true).val('');
+                }
+                else {
+                    $(this).prop('disabled', false).val(val);
+                }
+            });
+        })
+
+        /**
+         * Met à jour le slug
+         * @constructor
+         */
+        Page.UpdateSlug = function () {
+            $(Page.createUpdateGlobalId + ' input.page-title').each(function () {
+                Page.CreateSlug($(this));
+            })
+        }
+
+        /**
+         * Permet de créer un slug
+         * @param element
+         * @constructor
+         */
+        Page.CreateSlug = function (element) {
+            let slug = System.stringToSlug(element.val());
+            $(Page.createUpdateGlobalId + ' #slug-' + element.data('nb')).val(slug);
+
+            slug = frontUrl.replace('slug', slug);
+            slug = slug.replace(currentLocal, element.data('local'))
+
+            let help = 'Url : ' + slug;
+            if (action === "edit") {
+                help = 'Url : <a href="' + slug + '" target="_blank">' + slug + '</a>';
+            }
+
+            $(Page.createUpdateGlobalId + ' #' + element.attr('id') + '_help').html(help);
+        }
+
+        /**
+         * Vérifie si le slug est unique
+         * @param element
+         * @constructor
+         */
+        Page.CheckUniqueSlug = function (element) {
+            let slug = System.stringToSlug(element.val());
+
+            if(slug === "")
+            {
+                slug = "!";
+            }
+
+            url = urlCheckSlug.replace('pslug', slug);
+
+            $.ajax({
+                method: 'GET',
+                url: url,
+            })
+                .done(function (response) {
+                    if(response.msg !== "")
+                    {
+                        element.addClass('is-invalid');
+                        $(Page.createUpdateGlobalId + ' #' + element.attr('id') + '_help').html(response.msg).addClass('text-danger');
+                        $(Page.createUpdateGlobalId + ' #page_valider').prop( "disabled", true );
+                    }
+                    else {
+                        element.removeClass('is-invalid');
+                        $(Page.createUpdateGlobalId + ' #' + element.attr('id') + '_help').removeClass('text-danger');
+                        $(Page.createUpdateGlobalId + ' #page_valider').prop( "disabled", false );
+                    }
+                });
+        }
     }
 
     /**

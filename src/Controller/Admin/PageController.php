@@ -13,8 +13,10 @@ use App\Entity\Admin\Page\PageTranslation;
 use App\Form\Admin\Page\PageType;
 use App\Service\Admin\PageService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 #[Route('/admin/page', name: 'admin_page_')]
 class PageController extends AppAdminController
@@ -50,6 +52,28 @@ class PageController extends AppAdminController
     }
 
     /**
+     * Permet de lister les pages
+     * @param int $page
+     * @return Response
+     */
+    #[Route('/ajax/listing/{page}', name: 'ajax_listing')]
+    public function listing(int $page = 1): Response
+    {
+        /*$this->setPageInSession(self::SESSION_KEY_PAGE, $page);
+        $limit = $this->optionService->getOptionElementParPage();
+        $filter = $this->getCriteriaGeneriqueSearch(self::SESSION_KEY_FILTER);
+        /** @var RoleRepository $routeRepo
+        $roleRepo = $this->doctrine->getRepository(Role::class);
+        $listeRoles = $roleRepo->listeRolePaginate($page, $limit, $filter);
+        return $this->render('admin/role/ajax/ajax-listing.html.twig', [
+            'listeRoles' => $listeRoles,
+            'page' => $page,
+            'limit' => $limit,
+            'route' => 'admin_role_ajax_listing',
+        ]);*/
+    }
+
+    /**
      * Permet de créer / éditer une page
      * @param Page|null $page
      * @return Response
@@ -61,6 +85,7 @@ class PageController extends AppAdminController
 
         $currentLocale = $this->request->getCurrentRequest()->getLocale();
         $locales = $this->translationService->getLocales();
+        $frontUrl = $this->generateUrl('front_front_slug', ['slug' => 'slug'], UrlGeneratorInterface::ABSOLUTE_URL);
 
         $breadcrumb = [
             $this->translator->trans('admin_dashboard#Dashboard') => 'admin_dashboard_index',
@@ -68,6 +93,8 @@ class PageController extends AppAdminController
         ];
 
         if ($page == null) {
+
+            $action = 'add';
             $title = $this->translator->trans('admin_page#Créer une page');
             $breadcrumb[$title] = '';
 
@@ -81,6 +108,8 @@ class PageController extends AppAdminController
             }
 
         } else {
+
+            $action = 'edit';
             $title = $this->translator->trans('admin_page#Edition de la page ') . '#' . $page->getId();
             $breadcrumb[$title] = '';
         }
@@ -100,7 +129,9 @@ class PageController extends AppAdminController
             'locales' => $locales,
             'currentLocal' => $currentLocale,
             'page' => $page,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'frontUrl' => $frontUrl,
+            'action' => $action
         ]);
     }
 
@@ -144,5 +175,45 @@ class PageController extends AppAdminController
             'template' => $tabTemplate['base']
         ]);
 
+    }
+
+    /**
+     * Vérifie que le slug est bien unique
+     * @param string|null $slug
+     * @return JsonResponse
+     */
+    #[Route('/ajax/check-unique-slug/{slug}/', name: 'ajax_check_slug')]
+    public function checkUniqueSlug(string $slug = null): JsonResponse
+    {
+        $returnOk = ['unique' => true, 'msg' => ""];
+        $returnKo = ['unique' => false, 'msg' => $this->translator->trans('admin_page#Une page existe déjà avec ce slug')];
+        if ($slug == null) {
+            return $this->json($returnOk);
+        }
+
+        $id = $this->request->getCurrentRequest()->get('id');
+
+        if ($id != null) {
+            $params = ['slug' => $slug, 'Page' => $id];
+            $result = $this->doctrine->getRepository(PageTranslation::class)->findOneBy($params);
+
+            if ($result != null) {
+                // Cas edition et meme slug
+                if ($result->getSlug() == $slug) {
+                    return $this->json($returnOk);
+                } else {
+                    return $this->json($returnKo);
+                }
+            }
+        }
+
+        $params = ['slug' => $slug];
+        $result = $this->doctrine->getRepository(PageTranslation::class)->findOneBy($params);
+
+        if ($result != null) {
+            return $this->json($returnKo);
+        }
+
+        return $this->json($returnOk);
     }
 }

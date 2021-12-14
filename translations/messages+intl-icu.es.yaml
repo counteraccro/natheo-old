@@ -609,3 +609,7 @@
 'admin_page#Saisissez ici vos métatags personnalisés qui seront affichés dans la balise <head> de la page': '__Saisissez ici vos métatags personnalisés qui seront affichés dans la balise <head> de la page'
 'admin_page#Le titre de la page qui apparaitra dans les menu': '__Le titre de la page qui apparaitra dans les menu'
 'admin_page#Aucune nouvelle langue à ajouter': '__Aucune nouvelle langue à ajouter'
+'admin_page#Une page existe déjà avec ce slug': '__Une page existe déjà avec ce slug'
+'admin_page#Traduction': __Traduction
+'admin_page#pour la page': '__pour la page'
+'admin_page#Activer': __Activer

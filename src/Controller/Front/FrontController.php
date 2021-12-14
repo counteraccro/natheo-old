@@ -14,7 +14,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class FrontController extends AppFrontController
 {
     #[Route('/', name: 'front')]
-    public function index(): Response
+    #[Route('/page/{slug}', name: 'front_slug')]
+    public function index(string $slug = null): Response
     {
         $theme = $this->themeService->getThemeSelected();
 
