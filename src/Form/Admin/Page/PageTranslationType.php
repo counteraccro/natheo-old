@@ -18,7 +18,7 @@ class PageTranslationType extends AppType
         $builder
             ->add('pageTitle', TextType::class, [
                 'label' => $this->translator->trans('admin_page#Titre de la page'),
-                'required' => false,
+                'required' => true,
                 'attr' => ['placeholder' => $this->translator->trans('admin_page#Titre de la page')],
                 'help' => 'Url : '
             ])
@@ -30,7 +30,7 @@ class PageTranslationType extends AppType
             ->add('language', TextType::class)
             ->add('navigationTitle', TextType::class, [
                 'label' => $this->translator->trans('admin_page#Titre de la page dans les menus'),
-                'required' => false,
+                'required' => true,
                 'attr' => ['placeholder' => $this->translator->trans('admin_page#Titre de la page dans le menus')],
                 'help' => $this->translator->trans('admin_page#Le titre de la page qui apparaitra dans les menu')
             ])

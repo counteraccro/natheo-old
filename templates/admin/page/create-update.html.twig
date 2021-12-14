@@ -11,9 +11,9 @@
 
         <div id="block-form-page">
             {% if(page.id == null) %}
-                {% set action = path('admin_page_add', {'language' : currentLocal}) %}
+                {% set action = path('admin_page_add') %}
             {% else %}
-                {% set action = path('admin_page_edit', {'id' : page.id, 'language' : currentLocal}) %}
+                {% set action = path('admin_page_edit', {'id' : page.id}) %}
             {% endif %}
 
             {{ form_start(form, {'attr' : {'id' : 'form-ajax-add-edit-page', 'action' : action}}) }}
