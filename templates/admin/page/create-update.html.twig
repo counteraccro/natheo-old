@@ -90,13 +90,15 @@
                                 {% endif %}
                             </div>
                             <div class="card-body">
-                                {{ form_row(translation.pageTitle, {'id' : 'pageTitle-'~nb, 'attr': {'class': 'page-translate-input-'~nb~' page-title', 'data-nb' : nb, 'data-value' : translation.pageTitle.vars.value, 'data-local' : translation.language.vars.value}}) }}
+                                {{ form_row(translation.pageTitle, {'id' : 'pageTitle-'~nb, 'attr': {'class': 'page-translate-input-'~nb~' page-title', 'data-nb' : nb, 'data-value' : translation.pageTitle.vars.value, 'data-local' : translation.language.vars.value, 'data-default' : constant('App\\Service\\Admin\\PageService::DEFAULT_NAME_PAGE_TITLE')}}) }}
                                 {{ form_row(translation.slug, {'id' : 'slug-'~nb, 'attr': {'class': 'page-translate-input-'~nb, 'data-nb' : nb, 'data-value' : translation.slug.vars.value, 'data-local' : translation.language.vars.value}}) }}
                                 {{ form_row(translation.language, {'id' : 'language-'~nb, 'attr': {'class': 'page-translate-input-'~nb, 'data-nb' : nb, 'data-value' : translation.language.vars.value, 'data-local' : translation.language.vars.value}}) }}
-                                {{ form_row(translation.navigationTitle, {'id' : 'navigationTitle-'~nb, 'attr': {'class': 'page-translate-input-'~nb, 'data-nb' : nb, 'data-value' : translation.navigationTitle.vars.value, 'data-local' : translation.language.vars.value}}) }}
+                                {{ form_row(translation.navigationTitle, {'id' : 'navigationTitle-'~nb, 'attr': {'class': 'page-translate-input-'~nb, 'data-nb' : nb, 'data-value' : translation.navigationTitle.vars.value, 'data-local' : translation.language.vars.value, 'data-default' : constant('App\\Service\\Admin\\PageService::DEFAULT_NAME_NAVIGATION_TITLE')}}) }}
                                 {{ form_row(translation.metaDescription, {'id' : 'metaDescription-'~nb, 'attr': {'class': 'page-translate-input-'~nb, 'data-nb' : nb, 'data-value' : translation.metaDescription.vars.value, 'data-local' : translation.language.vars.value}}) }}
                                 {{ form_row(translation.metaKeyword, {'id' : 'metaKeyword-'~nb, 'attr': {'class': 'page-translate-input-'~nb, 'data-nb' : nb, 'data-value' : translation.metaKeyword.vars.value, 'data-local' : translation.language.vars.value}}) }}
                                 {{ form_row(translation.metaExtraMetaTags, {'id' : 'metaExtraMetaTags-'~nb, 'attr': {'class': 'page-translate-input-'~nb, 'data-nb' : nb, 'data-value' : translation.metaExtraMetaTags.vars.value, 'data-local' : translation.language.vars.value}}) }}
+
+                                <div class="text-primary msg-info-disabled-{{ nb }}" style="display: none"><i>{{ "admin_page#Traduction désactivée pour cette langue" | trans }}</i></div>
                             </div>
                         </div>
                     {% endfor %}

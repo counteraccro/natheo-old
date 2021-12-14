@@ -27,7 +27,9 @@ class PageTranslationType extends AppType
                 'attr' => ['placeholder' => $this->translator->trans('admin_page#Slug')],
                 'help' => $this->translator->trans('admin_page#Le slug permet de définir l\'url de la page, par défault c\'est le titre')
             ])
-            ->add('language', TextType::class)
+            ->add('language', TextType::class, [
+                'required' => false,
+            ])
             ->add('navigationTitle', TextType::class, [
                 'label' => $this->translator->trans('admin_page#Titre de la page dans les menus'),
                 'required' => true,

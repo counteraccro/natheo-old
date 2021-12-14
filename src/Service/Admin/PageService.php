@@ -15,10 +15,8 @@ use App\Service\AppService;
 class PageService extends AppService
 {
     const SESSION_KEY_SELECT_TEMPLATE = 'session_select_template';
-
-    const SESSION_KEY_OBJ_PAGE = 'session_obj_page';
-
-    const SESSION_KEY_CURRENT_LOCAl_PAGE = 'session_key_current_local_page';
+    const DEFAULT_NAME_PAGE_TITLE = 'page-title';
+    const DEFAULT_NAME_NAVIGATION_TITLE = 'navigation-title';
 
     /**
      * Tableau de référence pour le choix des templates

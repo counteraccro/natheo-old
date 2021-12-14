@@ -104,6 +104,12 @@ class PageController extends AppAdminController
             foreach ($locales as $locale) {
                 $pageTranslation = new PageTranslation();
                 $pageTranslation->setLanguage($locale);
+                if($currentLocale != $locale)
+                {
+                    $pageTranslation->setPageTitle(PageService::DEFAULT_NAME_PAGE_TITLE);
+                    $pageTranslation->setNavigationTitle(PageService::DEFAULT_NAME_NAVIGATION_TITLE);
+                }
+
                 $page->addPageTranslation($pageTranslation);
             }
 

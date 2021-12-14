@@ -23,8 +23,8 @@ Page.Launch = function() {
         $(Page.createUpdateGlobalId + ' input.page-title').change(function () {
             Page.CheckUniqueSlug($(this));
 
-            //let nb = $(this).data('nb');
-            //$(FAQCategory.globalIdCreateUpdate + ' #page-title-' +nb).val($(this).val())
+            let nb = $(this).data('nb');
+            $(Page.createUpdateGlobalId + ' #navigationTitle-' +nb).val($(this).val())
         })
 
         $(Page.createUpdateGlobalId + ' .active-translate').each(function() {
@@ -32,7 +32,12 @@ Page.Launch = function() {
             let nb = $(this).data('nb');
             if(!$(this).prop('checked'))
             {
-                $(Page.createUpdateGlobalId + ' .page-translate-input-' + nb).prop('disabled', true);
+                //$(Page.createUpdateGlobalId + ' .page-translate-input-' + nb).prop('disabled', true);
+                $(Page.createUpdateGlobalId + ' .page-translate-input-' + nb).parent('.mb-3').hide();
+                if (typeof $(Page.createUpdateGlobalId + ' .page-translate-input-' + nb).data('default') === undefined) {
+                    $(Page.createUpdateGlobalId + ' .page-translate-input-' + nb).val( $(Page.createUpdateGlobalId + ' .page-translate-input-' + nb).data('default'));
+                }
+                $(Page.createUpdateGlobalId + ' .msg-info-disabled-' + nb).show();
             }
         });
 
@@ -70,10 +75,22 @@ Page.Launch = function() {
 
                 if(!check)
                 {
-                    $(this).prop('disabled', true).val('');
+                    $(this).parent('.mb-3').hide();
+                    $(Page.createUpdateGlobalId + ' .msg-info-disabled-' + nb).show();
+                    if (typeof $(this).data('default') === undefined) {
+                        $(this).val( $(this).data('default'));
+                    }
                 }
                 else {
-                    $(this).prop('disabled', false).val(val);
+                    $(this).parent('.mb-3').show();
+                    $(Page.createUpdateGlobalId + ' .msg-info-disabled-' + nb).hide();
+                    if (typeof $(this).data('default') === undefined) {
+                        $(this).val('a');
+                    }
+                    else {
+                        $(this).val($(this).data('value'));
+                    }
+
                 }
             });
         })
