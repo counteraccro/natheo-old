@@ -8,30 +8,117 @@
 
         {{ breadcrumb | breadcrumb | raw }}
 
-        <div class="border rounded p-3 mb-3">
 
-            <div class="row">
-                <div class="col-4">
-                    <label for="select-language" class="form-label">{{ "admin_page#Choisir la langue" | trans }}</label>
-                    <select class="form-select" id="select-language" data-empty="{{ "admin_page#Aucune nouvelle langue à ajouter" | trans }}">
-                        <option value="">{{ "admin_page#Selectionner une langue" | trans }}</option>
-                        {% for locale in locales %}
-                            {% set str = "admin_translation#"~locale %}
-                            <option value="{{ locale }}" {% if currentLocale == locale %} selected {% endif %}>{{ str | trans }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class="col-6">
-                    <div id="select-language-page" data-url="{{ path('admin_page_ajax_load_page_language') }}", data-loading="{{ "admin_page#Chargement des langues disponibles" | trans }}">
+        <div id="block-form-page">
+            {% if(page.id == null) %}
+                {% set action = path('admin_page_add', {'language' : currentLocal}) %}
+            {% else %}
+                {% set action = path('admin_page_edit', {'id' : page.id, 'language' : currentLocal}) %}
+            {% endif %}
+
+            {{ form_start(form, {'attr' : {'id' : 'form-ajax-add-edit-page', 'action' : action}}) }}
+            <ul class="nav nav-pills" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <button class="nav-link active" id="content-page-tab" data-bs-toggle="tab"
+                            data-bs-target="#content-page"
+                            type="button"
+                            role="tab" aria-controls="content-page"
+                            aria-selected="true"> {{ "admin_page#Contenu" | trans }}</button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" id="seo-tab" data-bs-toggle="tab" data-bs-target="#seo" type="button"
+                            role="tab" aria-controls="seo" aria-selected="false">
+                        <i class="fab fa-searchengin"></i> {{ "admin_page#SEO" | trans }}
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" id="tags-tab" data-bs-toggle="tab" data-bs-target="#tags" type="button"
+                            role="tab" aria-controls="seo" aria-selected="false">
+                        <i class="fa fa-tags"></i> {{ "admin_page#Tags" | trans }}
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" id="options-tab" data-bs-toggle="tab" data-bs-target="#options"
+                            type="button"
+                            role="tab" aria-controls="seo" aria-selected="false">
+                        <i class="fa fa-cog"></i> {{ "admin_page#Options" | trans }}
+                    </button>
+                </li>
+
+            </ul>
+            <div class="tab-content border mt-1" id="myTabContent">
+                <div class="tab-pane fade show active m-3" id="content-page" role="tabpanel"
+                     aria-labelledby="content-page-tab">
+                    {{ "admin_page#Template" | trans }} :
+                    <a href="{{ path('admin_page_ajax_select_template') }}" id="btn-modal-select-template"
+                       data-loading="{{ "admin_page#Chargement de la modale de selection de template" | trans }}"> {{ "admin_page#Choisir un template" | trans }} </a>
+
+                    <div id="content-template" data-url="{{ path('admin_page_ajax_load_template') }}"
+                         data-loading="{{ "admin_page#Chargement du template en cours" | trans }}">
 
                     </div>
+
+                    {{ form_row(form.base, {"id" : 'hidden-base-input'}) }}
+
+                </div>
+                <div class="tab-pane fade m-3" id="seo" role="tabpanel" aria-labelledby="seo-tab">
+                    {% set nb = 0 %}
+                    {% for translation in form.pageTranslations %}
+                        {% set nb = nb+1 %}
+
+                        {% set checked = "" %}
+                        {% set see = false %}
+                        {% if currentLocal == translation.language.vars.value %}
+                            {% set checked = "checked" %}
+                        {% elseif not translation.pageTitle.vars.value is empty and  not translation.slug.vars.value is empty %}
+                            {% set checked = "checked" %}
+                        {% else %}
+                            {% set see = true %}
+                        {% endif %}
+
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                {{ "admin_faq#Traduction" | trans }} {{ ("admin_translation#"~translation.language.vars.value) | trans }} {{ "admin_faq#pour la question" | trans }}
+                                {% if see %}
+                                    <div class="form-check form-switch float-end">
+                                        <input class="form-check-input active-translate" data-nb="{{ nb }}" type="checkbox"
+                                               role="switch" id="active-translate-{{ nb }}"
+                                                {{ checked }}>
+                                        <label class="form-check-label"
+                                               for="active-translate-{{ nb }}">{{ "admin_faq#Activer" | trans }}</label>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="card-body">
+                                {{ form_row(translation.pageTitle, {'id' : 'pageTitle', 'attr': {'class': 'input-save page-title', 'data-associate' : 'pageTranslations', 'data-name' : 'pageTitle'}}) }}
+                                {{ form_row(translation.slug, {'id' : 'slug', 'attr': {'class': 'input-save slug', 'data-associate' : 'pageTranslations', 'data-name' : 'slug'}}) }}
+                                {{ form_row(translation.language, {'id' : 'language', 'attr': {'class': 'input-save language', 'data-associate' : 'pageTranslations', 'data-name' : 'language'}}) }}
+                                {{ form_row(translation.navigationTitle, {'id' : 'navigationTitle', 'attr': {'class': 'input-save navigation-title', 'data-associate' : 'pageTranslations', 'data-name' : 'navigationTitle'}}) }}
+                                {{ form_row(translation.metaDescription, {'id' : 'metaDescription', 'attr': {'class': 'input-save meta-description', 'data-associate' : 'pageTranslations', 'data-name' : 'metaDescription'}}) }}
+                                {{ form_row(translation.metaKeyword, {'id' : 'metaKeyword', 'attr': {'class': 'input-save meta-keyword', 'data-associate' : 'pageTranslations', 'data-name' : 'metaKeyword'}}) }}
+                                {{ form_row(translation.metaExtraMetaTags, {'id' : 'metaExtraMetaTags', 'attr': {'class': 'input-save meta-extraMetaTags', 'data-associate' : 'pageTranslations', 'data-name' : 'metaExtraMetaTags'}}) }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="tab-pane fade m-3" id="options" role="tabpanel" aria-labelledby="options-tab">
+
+                    {{ form_row(form.status, {'attr': {'class': 'input-save status', 'data-associate' : '', 'data-name' : 'status'}}) }}
+
+                    {{ form_row(form.can_have_children, {'attr': {'class': 'input-save status', 'data-associate' : '', 'data-name' : 'canHaveChildren'}}) }}
+                    {{ form_row(form.can_edit, {'attr': {'class': 'input-save status', 'data-associate' : '', 'data-name' : 'canEdit'}}) }}
+                    {{ form_row(form.can_delete, {'attr': {'class': 'input-save status', 'data-associate' : '', 'data-name' : 'canDelete'}}) }}
+                </div>
+                <div class="tab-pane fade m-3" id="tags" role="tabpanel" aria-labelledby="tags-tab">
+                    {{ "" | selectTagForEntity | raw }}
                 </div>
             </div>
 
-        </div>
+            <div class="m-3">
+                {{ form_row(form.valider) }}
+            </div>
 
-        <div id="block-form-page" data-url="{{ url_form }}", data-loading="{{ "admin_page#Chargement du formulaire..." | trans }}">
-
+            {{ form_end(form) }}
         </div>
     </div>
 {% endblock %}
@@ -42,7 +129,7 @@
         $(document).ready(function () {
             Page.Launch();
             Page.EventCreateUpdate('#admin-create-update-page');
-            Page.LoadFormPage();
+            Page.LoadTemplate();
         });
     </script>
 

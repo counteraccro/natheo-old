@@ -9,6 +9,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Admin\Page\Page;
+use App\Entity\Admin\Page\PageTranslation;
 use App\Form\Admin\Page\PageType;
 use App\Service\Admin\PageService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,7 +20,6 @@ use Symfony\Component\Routing\Annotation\Route;
 class PageController extends AppAdminController
 {
     const SESSION_KEY_FILTER = 'session_role_filter';
-    const SESSION_KEY_PAGE = 'session_role_page';
 
     /**
      * Point d'entrée pour les pages
@@ -29,7 +29,6 @@ class PageController extends AppAdminController
     #[Route('/index/{page}', name: 'index')]
     public function index(int $page = 1): Response
     {
-        $this->pageService->removeCurrentObjPage();
         $this->tagService->resetTmpTag();
 
         $breadcrumb = [
@@ -48,30 +47,6 @@ class PageController extends AppAdminController
             'fieldSearch' => $fieldSearch,
             'page' => $page
         ]);
-    }
-
-    /**
-     * Permet de lister les pages
-     * @param int $page
-     * @return Response
-     */
-    #[Route('/ajax/listing/{page}', name: 'ajax_listing')]
-    public function listing(int $page = 1): Response
-    {
-        /*$this->setPageInSession(self::SESSION_KEY_PAGE, $page);
-        $limit = $this->optionService->getOptionElementParPage();
-        $filter = $this->getCriteriaGeneriqueSearch(self::SESSION_KEY_FILTER);
-
-        /** @var RoleRepository $routeRepo
-        $roleRepo = $this->doctrine->getRepository(Role::class);
-        $listeRoles = $roleRepo->listeRolePaginate($page, $limit, $filter);
-
-        return $this->render('admin/role/ajax/ajax-listing.html.twig', [
-            'listeRoles' => $listeRoles,
-            'page' => $page,
-            'limit' => $limit,
-            'route' => 'admin_role_ajax_listing',
-        ]);*/
     }
 
     /**
@@ -95,42 +70,20 @@ class PageController extends AppAdminController
         if ($page == null) {
             $title = $this->translator->trans('admin_page#Créer une page');
             $breadcrumb[$title] = '';
-            $url_form = $this->generateUrl('admin_page_ajax_add_page', ['language' => $currentLocale]);
+
+            $page = new Page();
+
+            $locales = $this->translationService->getLocales();
+            foreach ($locales as $locale) {
+                $pageTranslation = new PageTranslation();
+                $pageTranslation->setLanguage($locale);
+                $page->addPageTranslation($pageTranslation);
+            }
+
         } else {
             $title = $this->translator->trans('admin_page#Edition de la page ') . '#' . $page->getId();
             $breadcrumb[$title] = '';
-            $url_form = $this->generateUrl('admin_page_ajax_edit_page', ['id' => $page->getId(), 'language' => $currentLocale]);
         }
-
-        return $this->render('admin/page/create-update.html.twig', [
-            'breadcrumb' => $breadcrumb,
-            'title' => $title,
-            'url_form' => $url_form,
-            'locales' => $locales,
-            'currentLocale' => $currentLocale
-        ]);
-    }
-
-    /**
-     * Permet de créer / éditer une page
-     * @param Page|null $page
-     * @return Response
-     */
-    #[Route('/ajax/add/{language}', name: 'ajax_add_page')]
-    #[Route('/ajax/edit/{id}/{language}', name: 'ajax_edit_page')]
-    public function ajaxCreateUpdate(Page $page = null, string $language = 'fr'): Response
-    {
-
-        $page = $this->pageService->setCurrentObjPage($language, $page);
-        $this->session->set(PageService::SESSION_KEY_CURRENT_LOCAl_PAGE, $language);
-
-        /*if($page == null)
-        {
-            $page = new Page();
-        }
-        else {
-
-        }*/
 
         $form = $this->createForm(PageType::class, $page);
 
@@ -141,10 +94,13 @@ class PageController extends AppAdminController
             var_dump($page);
         }
 
-        return $this->render('admin/page/ajax/ajax-create-update.html.twig', [
+        return $this->render('admin/page/create-update.html.twig', [
+            'breadcrumb' => $breadcrumb,
+            'title' => $title,
+            'locales' => $locales,
+            'currentLocal' => $currentLocale,
             'page' => $page,
-            'form' => $form->createView(),
-            'language' => $language
+            'form' => $form->createView()
         ]);
     }
 
@@ -188,55 +144,5 @@ class PageController extends AppAdminController
             'template' => $tabTemplate['base']
         ]);
 
-    }
-
-    /**
-     * Permet de charger la page courante pour générer la liste de choix de langue
-     * @param string $language
-     * @return Response
-     */
-    #[Route('/ajax/load-page-language', name: 'ajax_load_page_language')]
-    public function loadPageLanguage() : Response
-    {
-        $page = $this->pageService->getCurrentObjPage();
-        $language = $this->session->get(PageService::SESSION_KEY_CURRENT_LOCAl_PAGE);
-
-        return $this->render('admin/page/ajax/ajax-load-page-language.html.twig', [
-            'page' => $page,
-            'currentLocale' => $language,
-        ]);
-    }
-
-    /**
-     * Sauvegarde en session l'objet page ainsi que ses données associées
-     * @param string $language
-     * @return Response
-     */
-    #[Route('/ajax/save-page-tmp/{language}', name: 'ajax_save_page_tmp')]
-    public function ajaxSaveObjPage(string $language): Response
-    {
-        $data = $this->request->getCurrentRequest()->request->all();
-
-        $page = $this->pageService->getCurrentObjPage();
-
-        if(isset($data['associate']) && $data['associate'] != "")
-        {
-            $tmp = 'get' . ucfirst($data['associate']);
-            foreach($page->{$tmp}() as &$associate)
-            {
-                if($associate->getLanguage() == $language)
-                {
-                    $tmp = 'set' . ucfirst($data['name']);
-                    $associate->{$tmp}($data['val']);
-                }
-            }
-        }
-        else {
-            $tmp = 'set' . ucfirst($data['name']);
-            $page->{$tmp}($data['val']);
-        }
-        $this->session->set(PageService::SESSION_KEY_CURRENT_LOCAl_PAGE, $page);
-
-        return $this->json(['success' => true]);
     }
 }

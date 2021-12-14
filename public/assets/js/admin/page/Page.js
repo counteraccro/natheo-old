@@ -15,76 +15,11 @@ Page.Launch = function() {
     Page.EventCreateUpdate = function(globalId) {
 
         Page.createUpdateGlobalId = globalId;
-        /**
-         * Event sur le choix de la langue
-         */
-        $(Page.createUpdateGlobalId + ' #select-language').change(function() {
-            let language = $(this).val();
-            let url = $(Page.createUpdateGlobalId + ' #block-form-page').data('url');
-            let tabTmp = url.split('/');
-
-            if(tabTmp.length === 7)
-            {
-                url = url.substring(0, url.length - 2) + language;
-            }
-            else {
-                url = url + '/' + language;
-            }
-            Page.LoadFormPage(url);
-        })
-    }
-
-    /**
-     * Permet de charger le block contenant le formulaire de la page
-     * @constructor
-     */
-    Page.LoadFormPage = function(url = null, urlChoiceLanguage = null)
-    {
-        let id = '#block-form-page';
-        if(url == null)
-        {
-            url = $(id).data('url');
-        }
-        let str_loading = $(id).data('loading');
-        //System.Ajax(url, id, true, str_loading);
-
-        $(id).loader(str_loading);
-        $.ajax({
-            method: 'GET',
-            url: url,
-        })
-            .done(function (html) {
-                $(id).removeLoader(str_loading);
-                $(id).html(html);
-                Page.LoadChoiceLanguage();
-            });
-    }
-
-    /**
-     * Charge la selection de langue
-     * @constructor
-     */
-    Page.LoadChoiceLanguage = function()
-    {
-        let id = '#select-language-page';
-        let url = $(id).data('url');
-
-        let str_loading = $(id).data('loading');
-        System.Ajax(url, id, true, str_loading);
-    }
-
-    /**
-     * Event sur le block form appelé en ajax dans la vue createUpdate'
-     * @constructor
-     */
-    Page.EventAjaxCreateUpdate = function(globalId) {
-
-        Page.ajaxCreateUpdateGlobalId = globalId;
 
         /**
          * Click pour ouvrir la modale de choix du template
          */
-        $(Page.ajaxCreateUpdateGlobalId + ' #btn-modal-select-template').click(function() {
+        $(Page.createUpdateGlobalId + ' #btn-modal-select-template').click(function() {
 
             let url = $(this).attr('href');
             let str_loading = $(this).data('loading');
@@ -103,40 +38,6 @@ Page.Launch = function() {
 
             return false;
         });
-
-        $(Page.ajaxCreateUpdateGlobalId + ' .input-save').change(function() {
-
-            let url = $(Page.ajaxCreateUpdateGlobalId).data('url');
-            let associate = $(this).data('associate');
-            let name = $(this).data('name');
-
-            let val = $(this).val();
-
-            // Cas checkbox
-            if(['canHaveChildren', 'canEdit', 'canDelete'].includes(name))
-            {
-                val = 0;
-                if ($(this).is(":checked"))
-                {
-                    val = 1;
-                }
-            }
-
-            // cas radio
-            if(val === "")
-            {
-                val = $('input[name="page[' + $(this).data('name') +']"]:checked').val()
-            }
-
-            $.ajax({
-                method: 'POST',
-                data : {'val' : val, 'associate' : associate, 'name' : name},
-                url: url,
-            })
-                .done(function (html) {
-
-                });
-        })
     }
 
     /**
@@ -197,51 +98,5 @@ Page.Launch = function() {
     Page.EventContent = function(globalId)
     {
         Page.eventContentGlobalId = globalId;
-    }
-
-    /**
-     * Event sur les boutons de choix de la langue
-     * @param globalId
-     * @constructor
-     */
-    Page.EventChoiceLanguage = function(globalId)
-    {
-        Page.eventChoiceLanguageGlobalId = globalId;
-
-        $(Page.eventChoiceLanguageGlobalId + ' .btn-select-language').each(function() {
-
-            let language = $(this).data('language');
-
-            $('#select-language option').each(function() {
-                let val = $(this).val();
-
-                if(val === language)
-                {
-                    $('#select-language').children('option[value="' + val + '"]').remove();
-                }
-            })
-
-            if($('#select-language option').length === 1)
-            {
-                $('#select-language').append('<option value="#" selected="selected">' + $('#select-language').data('empty') + '</option>');
-                $('#select-language').prop('disabled', 'disabled');
-            }
-        })
-
-        $(Page.eventChoiceLanguageGlobalId + ' .btn').click(function() {
-
-            let language = $(this).data('language');
-            let url = $('#block-form-page').data('url');
-            let tabTmp = url.split('/');
-
-            if(tabTmp.length === 7)
-            {
-                url = url.substring(0, url.length - 2) + language;
-            }
-            else {
-                url = url + '/' + language;
-            }
-            Page.LoadFormPage(url);
-        })
     }
 }
