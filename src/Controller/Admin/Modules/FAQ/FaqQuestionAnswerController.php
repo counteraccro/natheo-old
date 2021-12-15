@@ -15,6 +15,7 @@ use App\Entity\Modules\FAQ\FaqCategoryTranslation;
 use App\Entity\Modules\FAQ\FaqQuestionAnswer;
 use App\Entity\Modules\FAQ\FaqQuestionAnswerTag;
 use App\Entity\Modules\FAQ\FaqQuestionAnswerTranslation;
+use App\Entity\Modules\Tag;
 use App\Form\Modules\FAQ\FaqQuestionAnswerType;
 use App\Repository\Modules\FAQ\FaqQuestionAnswerRepository;
 use Doctrine\ORM\Tools\Pagination\Paginator;
@@ -152,12 +153,6 @@ class FaqQuestionAnswerController extends AppAdminController
                     $faqQuestionAnswer->addFaqQuestionAnswerTranslation($faqQuestionAnswerTranslation);
                 }
             }
-
-            foreach ($faqQuestionAnswer->getFaqQuestionAnswerTags() as $faqTag) {
-                $tag = $faqTag->getTag();
-                $name = $tag->getName();
-                $this->tagService->addTmptag($tag);
-            }
         }
 
         $form = $this->createForm(FaqQuestionAnswerType::class, $faqQuestionAnswer, ['current_action' => $action, 'current_local' => $currentLocal]);
@@ -184,6 +179,8 @@ class FaqQuestionAnswerController extends AppAdminController
             $tags = $this->tagService->readTmpTag();
             foreach ($tags as $tag) {
                 $faqQuestionAnswerTag = new FaqQuestionAnswerTag();
+
+                $tag = $this->doctrine->getRepository(Tag::class)->findOneBy(['id' => $tag->getId()]);
                 $faqQuestionAnswerTag->setTag($tag);
                 $faqQuestionAnswerTag->setCreateOn(new \DateTime());
                 $faqQuestionAnswerTag->setFaqQuestionAnswer($faqQuestionAnswer);
@@ -203,6 +200,12 @@ class FaqQuestionAnswerController extends AppAdminController
 
             $this->tagService->resetTmpTag();
             return $this->redirectToRoute('admin_faq_question_answer_index', $param);
+        }
+
+        foreach ($faqQuestionAnswer->getFaqQuestionAnswerTags() as $faqTag) {
+            $tag = $faqTag->getTag();
+            $name = $tag->getName();
+            $this->tagService->addTmptag($tag);
         }
 
         return $this->render('admin/modules/faq/faq_question_answer/create-update.html.twig', [

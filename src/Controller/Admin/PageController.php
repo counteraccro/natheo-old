@@ -11,6 +11,7 @@ namespace App\Controller\Admin;
 use App\Entity\Admin\Page\Page;
 use App\Entity\Admin\Page\PageTag;
 use App\Entity\Admin\Page\PageTranslation;
+use App\Entity\Modules\Tag;
 use App\Form\Admin\Page\PageType;
 use App\Service\Admin\PageService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -120,10 +121,27 @@ class PageController extends AppAdminController
             $action = 'edit';
             $title = $this->translator->trans('admin_page#Edition de la page ') . '#' . $page->getId();
             $breadcrumb[$title] = '';
+
+            foreach ($locales as $locale) {
+                $is_local = false;
+                /** @var PageTranslation $pageTranslation */
+                foreach ($page->getPageTranslations() as $pageTranslation) {
+                    if ($pageTranslation->getLanguage() == $locale) {
+                        $is_local = true;
+                    }
+                }
+
+                if (!$is_local) {
+                    $pageTranslation = new PageTranslation();
+                    $pageTranslation->setLanguage($locale);
+                    $pageTranslation->setPageTitle(PageService::DEFAULT_NAME_PAGE_TITLE);
+                    $pageTranslation->setNavigationTitle(PageService::DEFAULT_NAME_NAVIGATION_TITLE);
+                    $page->addPageTranslation($pageTranslation);
+                }
+            }
         }
 
         $form = $this->createForm(PageType::class, $page);
-
         $form->handleRequest($this->request->getCurrentRequest());
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -144,6 +162,7 @@ class PageController extends AppAdminController
             $tags = $this->tagService->readTmpTag();
             foreach ($tags as $tag) {
                 $pageTag = new PageTag();
+                $tag = $this->doctrine->getRepository(Tag::class)->findOneBy(['id' => $tag->getId()]);
                 $pageTag->setTag($tag);
                 $pageTag->setCreateOn(new \DateTime());
                 $pageTag->setPage($page);
@@ -156,6 +175,12 @@ class PageController extends AppAdminController
 
             $page = $this->getPageInSession(self::SESSION_KEY_PAGE);
             return $this->redirectToRoute('admin_page_index', ['page' => $page]);
+        }
+
+        foreach ($page->getTags() as $pageTags) {
+            $tag = $pageTags->getTag();
+            $name = $tag->getName();
+            $this->tagService->addTmptag($tag);
         }
 
         return $this->render('admin/page/create-update.html.twig', [
