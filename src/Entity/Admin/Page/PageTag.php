@@ -21,13 +21,13 @@ class PageTag
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Page::class, inversedBy="tags")
+     * @ORM\ManyToOne(targetEntity=Page::class, inversedBy="tags", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $page;
 
     /**
-     * @ORM\ManyToOne(targetEntity=tag::class, inversedBy="pageTags")
+     * @ORM\ManyToOne(targetEntity=tag::class, inversedBy="pageTags", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $tag;

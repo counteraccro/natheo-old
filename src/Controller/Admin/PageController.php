@@ -9,6 +9,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Admin\Page\Page;
+use App\Entity\Admin\Page\PageTag;
 use App\Entity\Admin\Page\PageTranslation;
 use App\Form\Admin\Page\PageType;
 use App\Service\Admin\PageService;
@@ -21,7 +22,8 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 #[Route('/admin/page', name: 'admin_page_')]
 class PageController extends AppAdminController
 {
-    const SESSION_KEY_FILTER = 'session_role_filter';
+    const SESSION_KEY_FILTER = 'session_page_filter';
+    const SESSION_KEY_PAGE = 'session_page_page';
 
     /**
      * Point d'entrée pour les pages
@@ -125,8 +127,35 @@ class PageController extends AppAdminController
         $form->handleRequest($this->request->getCurrentRequest());
         if ($form->isSubmitted() && $form->isValid()) {
 
+            /** @var Page $page */
             $page = $form->getData();
-            var_dump($page);
+            $page->setCreateOn(new \DateTime());
+            $page->setUser($this->getUser());
+
+            foreach($page->getPageTranslations() as $pageTranslation)
+            {
+                if($pageTranslation->getPageTitle() == PageService::DEFAULT_NAME_PAGE_TITLE && $pageTranslation->getNavigationTitle() == PageService::DEFAULT_NAME_NAVIGATION_TITLE)
+                {
+                    $page->removePageTranslation($pageTranslation);
+                }
+            }
+
+            // On remet les tags selectionnés
+            $tags = $this->tagService->readTmpTag();
+            foreach ($tags as $tag) {
+                $pageTag = new PageTag();
+                $pageTag->setTag($tag);
+                $pageTag->setCreateOn(new \DateTime());
+                $pageTag->setPage($page);
+                $pageTag->setUser($this->getUser());
+                $page->addTag($pageTag);
+            }
+
+            $this->doctrine->getManager()->persist($page);
+            $this->doctrine->getManager()->flush();
+
+            $page = $this->getPageInSession(self::SESSION_KEY_PAGE);
+            return $this->redirectToRoute('admin_page_index', ['page' => $page]);
         }
 
         return $this->render('admin/page/create-update.html.twig', [

@@ -34,7 +34,7 @@ Page.Launch = function() {
             {
                 //$(Page.createUpdateGlobalId + ' .page-translate-input-' + nb).prop('disabled', true);
                 $(Page.createUpdateGlobalId + ' .page-translate-input-' + nb).parent('.mb-3').hide();
-                if (typeof $(Page.createUpdateGlobalId + ' .page-translate-input-' + nb).data('default') === undefined) {
+                if ($(Page.createUpdateGlobalId + ' .page-translate-input-' + nb).data('default') !== '') {
                     $(Page.createUpdateGlobalId + ' .page-translate-input-' + nb).val( $(Page.createUpdateGlobalId + ' .page-translate-input-' + nb).data('default'));
                 }
                 $(Page.createUpdateGlobalId + ' .msg-info-disabled-' + nb).show();
@@ -77,18 +77,18 @@ Page.Launch = function() {
                 {
                     $(this).parent('.mb-3').hide();
                     $(Page.createUpdateGlobalId + ' .msg-info-disabled-' + nb).show();
-                    if (typeof $(this).data('default') === undefined) {
+                    if ($(this).data('default') !== '') {
                         $(this).val( $(this).data('default'));
                     }
                 }
                 else {
                     $(this).parent('.mb-3').show();
                     $(Page.createUpdateGlobalId + ' .msg-info-disabled-' + nb).hide();
-                    if (typeof $(this).data('default') === undefined) {
-                        $(this).val('a');
+                    if($(this).data('default') !== '') {
+                        $(this).val('');
                     }
                     else {
-                        $(this).val($(this).data('value'));
+                        $(this).val(val);
                     }
 
                 }

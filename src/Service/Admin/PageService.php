@@ -15,8 +15,8 @@ use App\Service\AppService;
 class PageService extends AppService
 {
     const SESSION_KEY_SELECT_TEMPLATE = 'session_select_template';
-    const DEFAULT_NAME_PAGE_TITLE = 'page-title';
-    const DEFAULT_NAME_NAVIGATION_TITLE = 'navigation-title';
+    const DEFAULT_NAME_PAGE_TITLE = 'page-default-value-to-delete';
+    const DEFAULT_NAME_NAVIGATION_TITLE = 'page-default-value-to-delete';
 
     /**
      * Tableau de référence pour le choix des templates

@@ -40,7 +40,7 @@ class Tag
     private $faqQuestionAnswerTags;
 
     /**
-     * @ORM\OneToMany(targetEntity=PageTag::class, mappedBy="tag", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=PageTag::class, mappedBy="tag", orphanRemoval=true, cascade={"persist"})
      */
     private $pageTags;
 

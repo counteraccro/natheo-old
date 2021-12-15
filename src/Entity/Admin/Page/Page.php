@@ -74,17 +74,17 @@ class Page
     private $base;
 
     /**
-     * @ORM\OneToMany(targetEntity=PageTranslation::class, mappedBy="page", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=PageTranslation::class, mappedBy="page", orphanRemoval=true, cascade={"persist"})
      */
     private $pageTranslations;
 
     /**
-     * @ORM\OneToMany(targetEntity=PageTag::class, mappedBy="page", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=PageTag::class, mappedBy="page", orphanRemoval=true, cascade={"persist"})
      */
     private $tags;
 
     /**
-     * @ORM\OneToMany(targetEntity=PageMedia::class, mappedBy="page", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=PageMedia::class, mappedBy="page", orphanRemoval=true, cascade={"persist"})
      */
     private $pageMedia;
 

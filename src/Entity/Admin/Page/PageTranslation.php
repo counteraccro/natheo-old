@@ -54,7 +54,7 @@ class PageTranslation
     private $metaExtraMetaTags;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Page::class, inversedBy="pageTranslations")
+     * @ORM\ManyToOne(targetEntity=Page::class, inversedBy="pageTranslations", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $page;
