@@ -105,11 +105,13 @@
                 </div>
                 <div class="tab-pane fade m-3" id="options" role="tabpanel" aria-labelledby="options-tab">
 
-                    {{ form_row(form.status, {'attr': {'class': 'input-save status', 'data-associate' : '', 'data-name' : 'status'}}) }}
+                    {{ form_row(form.status) }}
 
-                    {{ form_row(form.can_have_children, {'attr': {'class': 'input-save status', 'data-associate' : '', 'data-name' : 'canHaveChildren'}}) }}
-                    {{ form_row(form.can_edit, {'attr': {'class': 'input-save status', 'data-associate' : '', 'data-name' : 'canEdit'}}) }}
-                    {{ form_row(form.can_delete, {'attr': {'class': 'input-save status', 'data-associate' : '', 'data-name' : 'canDelete'}}) }}
+                    {{  form_row(form.parent) }}
+
+                    {{ form_row(form.can_have_children) }}
+                    {{ form_row(form.can_edit) }}
+                    {{ form_row(form.can_delete) }}
                 </div>
                 <div class="tab-pane fade m-3" id="tags" role="tabpanel" aria-labelledby="tags-tab">
                     {{ "" | selectTagForEntity | raw }}
@@ -130,9 +132,9 @@
     <script>
         $(document).ready(function () {
 
-            let checkSlug = '{{ path('admin_page_ajax_check_slug', {'slug' : 'pslug'}) }}';
+            let checkSlug = '{{ path('admin_page_ajax_check_slug', {'slug' : 'pslug', 'language' : 'lang'}) }}';
             {% if action == 'edit' %}
-            checkSlug = '{{ path('admin_page_ajax_check_slug', {'slug' : 'pslug', 'id' : page.id}) }}';
+            checkSlug = '{{ path('admin_page_ajax_check_slug', {'slug' : 'pslug', 'id' : page.id, 'language' : 'toreplace'}) }}';
             {% endif %}
 
             Page.Launch();

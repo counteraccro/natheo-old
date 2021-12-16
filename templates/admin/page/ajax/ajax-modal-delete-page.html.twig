@@ -1,0 +1,36 @@
+<div class="modal" tabindex="-1" id="modale-delete-page">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title"><i class="fa fa-trash"></i> {{ "admin_page#Suppression de la page" | trans }} "{{ page.id }}"</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h5>{{ "admin_page#Attention" | trans }}</h5>
+                <div class="text-danger">
+                    {{ "admin_page#Est vous sur de vouloir supprimer cette page ainsi que tous les données associées ?"  | trans }} <br />
+                    <b>{{ "admin_page#Cette action est définitive et sans retour arrière" | trans }}</b>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ "admin_page#Annuler" | trans }}</button>
+                <button type="button" class="btn btn-danger" id="btn-confirm-delete-page"
+                        data-loading="{{ "admin_page#Suppression de la page en court...." | trans }}"
+                        data-url="{{ path('admin_page_ajax_delete', {'id' : page.id, 'confirm' : true}) }}"
+                        data-redirect="{{ path('admin_page_index') }}">{{ "admin_page#Supprimer la page" | trans }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block javascripts %}
+
+    <script>
+        $(document).ready(function () {
+            let modal = new bootstrap.Modal($('#modale-delete-page'), [])
+            modal.toggle();
+            Page.EventDelete(modal);
+        });
+    </script>
+
+{% endblock %}

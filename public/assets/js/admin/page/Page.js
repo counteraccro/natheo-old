@@ -8,6 +8,28 @@ let Page = {};
 
 Page.Launch = function() {
 
+    Page.globalId = '#admin-page-globale';
+
+    Page.LoadListing = function() {
+
+        let id = Page.globalId + ' .card-body';
+        let url = $(id).data('url');
+
+        let str_loading = $(id).data('loading');
+        System.Ajax(url, id, true, str_loading);
+    }
+
+    /**
+     * Event sur le listing des pages
+     * @constructor
+     */
+    Page.EventListing = function() {
+
+        $(Page.globalId + ' .btn-delete-page').click(function() {
+            Page.loadModal($(this));
+        })
+    }
+
     /**
      * Event sur la création / édition d'une page
      * @constructor
@@ -139,6 +161,7 @@ Page.Launch = function() {
             }
 
             url = urlCheckSlug.replace('pslug', slug);
+            url = url.replace('toreplace', element.data('local'));
 
             $.ajax({
                 method: 'GET',
@@ -208,6 +231,63 @@ Page.Launch = function() {
                 });
 
         })
+    }
+
+    /**
+     * Event sur la popin de supression d'une page
+     * @param modal
+     * @constructor
+     */
+    Page.EventDelete = function(modal) {
+        Page.globalIdDelete = '#modale-delete-page';
+
+        /**
+         * Event sur le click du bouton confirmer
+         */
+        $(Page.globalIdDelete + ' #btn-confirm-delete-page').click(function() {
+
+            let url = $(this).data('url');
+            let str_loading = $(this).data('loading');
+            let redirect = $(this).data('redirect');
+
+            $(Page.globalIdDelete + ' .modal-body').loader(str_loading);
+
+            $.ajax({
+                method: 'GET',
+                url: url,
+            })
+                .done(function (response) {
+                    $(Page.globalIdDelete + ' .modal-body').removeLoader();
+                    $(Page.globalIdDelete + ' .modal-body').html(response.msg);
+
+                    setTimeout(function(){
+                        modal.toggle();
+                        document.location.href= redirect;
+                    }, 1500);
+                });
+        })
+    }
+
+    /**
+     * Permet de charger le contenu d'une popin
+     * @param element
+     */
+    Page.loadModal = function(element) {
+
+        let url = element.data('url');
+        let str_loading = element.data('loading');
+        let id = System.adminBlockModalId;
+
+        $('body').loader(str_loading);
+
+        $.ajax({
+            method: 'GET',
+            url: url,
+        })
+            .done(function (html) {
+                $('body').removeLoader(str_loading);
+                $(System.adminBlockModalId).html(html);
+            });
     }
 
     /**

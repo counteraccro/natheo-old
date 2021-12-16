@@ -613,3 +613,20 @@
 'admin_page#Traduction': Traduction
 'admin_page#pour la page': 'pour la page'
 'admin_page#Activer': Activer
+'admin_page#Page supprimée avec succès': 'Page supprimée avec succès'
+'admin_page#Lier cette page à une autre ?': 'Lier cette page à une autre ?'
+'admin_page#Selectionner la page parente, laisser vide si vous ne souhaitez pas associer de parent à cette page': 'Selectionner la page parente, laisser vide si vous ne souhaitez pas associer de parent à cette page'
+'admin_page#Titre': Titre
+'admin_page#Dernière modification': 'Dernière modification'
+'admin_page#Créée par': 'Créée par'
+'admin_page#Action': Action
+'admin_page#Editer': Editer
+'admin_page#Supprimer': Supprimer
+'admin_page#Suppression de la page': 'Suppression de la page'
+'admin_page#Attention': Attention
+'admin_page#Est vous sur de vouloir supprimer cette page ainsi que tous les données associées ?': 'Est vous sur de vouloir supprimer cette page ainsi que tous les données associées ?'
+'admin_page#Cette action est définitive et sans retour arrière': 'Cette action est définitive et sans retour arrière'
+'admin_page#Annuler': Annuler
+'admin_page#Suppression du theme en court....': 'Suppression du theme en court....'
+'admin_page#Supprimer la page': 'Supprimer la page'
+'admin_page#Traduction désactivée pour cette langue': 'Traduction désactivée pour cette langue'
