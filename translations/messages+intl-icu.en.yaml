@@ -95,6 +95,7 @@
 'admin_system#Appel Ajax pour ajouter une page': '__Appel Ajax pour ajouter une page'
 'admin_system#Appel Ajax pour éditer une page': '__Appel Ajax pour éditer une page'
 'admin_system#Module faq': '__Module faq'
+'admin_menu#Menu': __Menu
 'admin_dashboard#Dashboard': __Dashboard
 'admin_media#Médiathèque': __Médiathèque
 'admin_media#Nouveau dossier': '__Nouveau dossier'
@@ -117,6 +118,17 @@
 'admin_faq#Catégorie éditée avec succès': '__Catégorie éditée avec succès'
 'admin_faq#Catégorie supprimé avec succès': '__Catégorie supprimé avec succès'
 'admin_faq#Une catégorie existe déjà avec ce slug': '__Une catégorie existe déjà avec ce slug'
+'admin_faq#Gestion des questions / réponses': '__Gestion des questions / réponses'
+'admin_faq#Question': __Question
+'admin_faq#Réponse': __Réponse
+'admin_faq#Catégorie': __Catégorie
+'admin_faq#Ajouter un question / réponse': '__Ajouter un question / réponse'
+'admin_faq#Question ajoutée avec succès': '__Question ajoutée avec succès'
+'admin_faq#Edition de la question / réponse ': '__Edition de la question / réponse '
+'admin_faq#Question éditée avec succès': '__Question éditée avec succès'
+'admin_faq#Une question existe déjà avec ce slug': '__Une question existe déjà avec ce slug'
+'admin_faq#Question / réponse supprimé avec succès': '__Question / réponse supprimé avec succès'
+'admin_menu#Gestion des menus': '__Gestion des menus'
 'admin_tag#Nom': __Nom
 'admin_tag#Ajouter un tag': '__Ajouter un tag'
 'admin_tag#Tag Crée avec succès': '__Tag Crée avec succès'
@@ -126,6 +138,13 @@
 'admin_global_option#Options globales': '__Options globales'
 'admin_global_option#Option mise à jour avec succès': '__Option mise à jour avec succès'
 'admin_global_option#Une erreur interne est survenue': '__Une erreur interne est survenue'
+'admin_page#Gestion des pages': '__Gestion des pages'
+'admin_page#Titre': __Titre
+'admin_page#Titre navigation': '__Titre navigation'
+'admin_page#Créer une page': '__Créer une page'
+'admin_page#Edition de la page ': '__Edition de la page '
+'admin_page#Une page existe déjà avec ce slug': '__Une page existe déjà avec ce slug'
+'admin_page#Page supprimée avec succès': '__Page supprimée avec succès'
 'admin_role#Nom': __Nom
 'admin_role#Label': __Label
 'admin_role#Label court': '__Label court'
@@ -159,6 +178,30 @@
 'admin_user#Utilisateur supprimé avec succès': '__Utilisateur supprimé avec succès'
 'admin_user#Utilisateur désactivé avec succès': '__Utilisateur désactivé avec succès'
 'admin_user#Utilisateur activé avec succès': '__Utilisateur activé avec succès'
+'admin_page#Titre de la page': '__Titre de la page'
+'admin_page#Slug': __Slug
+'admin_page#Le slug permet de définir l''url de la page, par défault c''est le titre': '__Le slug permet de définir l''url de la page, par défault c''est le titre'
+'admin_page#Titre de la page dans les menus': '__Titre de la page dans les menus'
+'admin_page#Titre de la page dans le menus': '__Titre de la page dans le menus'
+'admin_page#Le titre de la page qui apparaitra dans les menu': '__Le titre de la page qui apparaitra dans les menu'
+'admin_page#Meta Description': '__Meta Description'
+'admin_page#Description qui sera affiché dans les résultats des moteurs de recherches': '__Description qui sera affiché dans les résultats des moteurs de recherches'
+'admin_page#Mots clés': '__Mots clés'
+'admin_page#Mot clés pour décrire la catégorie pour le SEO': '__Mot clés pour décrire la catégorie pour le SEO'
+'admin_page#Autres méta tags': '__Autres méta tags'
+'admin_page#Saisissez ici vos métatags personnalisés qui seront affichés dans la balise <head> de la page': '__Saisissez ici vos métatags personnalisés qui seront affichés dans la balise <head> de la page'
+'admin_page#Autoriser que cette page puisse avoir des enfants': '__Autoriser que cette page puisse avoir des enfants'
+'admin_page#Si cette case est coché, la page peut être associé à une autre page': '__Si cette case est coché, la page peut être associé à une autre page'
+'admin_page#Autoriser que cette page puisse être modifiée': '__Autoriser que cette page puisse être modifiée'
+'admin_page#Si cette case est coché, seul l''utilisateur root pourra modifier cette page': '__Si cette case est coché, seul l''utilisateur root pourra modifier cette page'
+'admin_page#Autoriser que cette page puisse être supprimée': '__Autoriser que cette page puisse être supprimée'
+'admin_page#Si cette case est coché, seul l''utilisateur root pourra supprimer cette page': '__Si cette case est coché, seul l''utilisateur root pourra supprimer cette page'
+'admin_page#Masquer': __Masquer
+'admin_page#Publier': __Publier
+'admin_page#Publication': __Publication
+'admin_page#Lier cette page à une autre ?': '__Lier cette page à une autre ?'
+'admin_page#Selectionner la page parente, laisser vide si vous ne souhaitez pas associer de parent à cette page': '__Selectionner la page parente, laisser vide si vous ne souhaitez pas associer de parent à cette page'
+'admin_page#Valider': __Valider
 'admin_role#Nom du rôle': '__Nom du rôle'
 'admin_role#Le nom du rôle doit être unique': '__Le nom du rôle doit être unique'
 'admin_role#Nom court du rôle': '__Nom court du rôle'
@@ -205,9 +248,22 @@
 'admin_faq#Slug': __Slug
 'admin_faq#Le slug permet de définir l''url de la catégorie, par défault c''est le titre': '__Le slug permet de définir l''url de la catégorie, par défault c''est le titre'
 'admin_faq#Ce texte sera présent sous le titre de la catégorie': '__Ce texte sera présent sous le titre de la catégorie'
+'admin_faq#Titre de la page': '__Titre de la page'
+'admin_faq#Le titre de la page sur le navigateur (balise <title>)': '__Le titre de la page sur le navigateur (balise <title>)'
+'admin_faq#Meta Description': '__Meta Description'
+'admin_faq#Description qui sera affiché dans les résultats des moteurs de recherches': '__Description qui sera affiché dans les résultats des moteurs de recherches'
+'admin_faq#Mots clés': '__Mots clés'
+'admin_faq#Mot clés pour décrire la catégorie pour le SEO': '__Mot clés pour décrire la catégorie pour le SEO'
+'admin_faq#Autres méta tags': '__Autres méta tags'
+'admin_faq#Saisissez ici vos métatags personnalisés qui seront affichés dans la balise <head> de la page': '__Saisissez ici vos métatags personnalisés qui seront affichés dans la balise <head> de la page'
 'admin_faq#Position de la catégorie': '__Position de la catégorie'
 'admin_faq#La catégorie sera placée à la position choisie, les autres catégories seront décalé de 1 vers le bas ': '__La catégorie sera placée à la position choisie, les autres catégories seront décalé de 1 vers le bas '
 'admin_faq#Valider': __Valider
+'admin_faq#La question': '__La question'
+'admin_faq#Réponse à votre question': '__Réponse à votre question'
+'admin_faq#Masquer': __Masquer
+'admin_faq#Publier': __Publier
+'admin_faq#Publication': __Publication
 'admin_tag#Nom du tag': '__Nom du tag'
 'admin_tag#Le nom du tag doit être unique': '__Le nom du tag doit être unique'
 'admin_tag#Couleur du tag': '__Couleur du tag'
@@ -230,14 +286,19 @@
 'admin_media#Chargement de la modale pour supprimer le dossier': '__Chargement de la modale pour supprimer le dossier'
 'admin_media#Supprimer': __Supprimer
 'admin_media#Voir l''image': '__Voir l''image'
+'admin_media#Copier l''url de l''image': '__Copier l''url de l''image'
 'admin_media#Télécharger le fichier': '__Télécharger le fichier'
+'admin_media#Copier l''url du fichier': '__Copier l''url du fichier'
 'admin_media#Lire la vidéo': '__Lire la vidéo'
+'admin_media#Copier l''url de la vidéo': '__Copier l''url de la vidéo'
 'admin_media#Ecouter le son': '__Ecouter le son'
+'admin_media#Copier l''url du son': '__Copier l''url du son'
 'admin_media#Chargement de la modale pour editer le media': '__Chargement de la modale pour editer le media'
 'admin_media#Chargement de la modale pour déplacer le media': '__Chargement de la modale pour déplacer le media'
 'admin_media#Chargement de la modale pour supprimer le media': '__Chargement de la modale pour supprimer le media'
 'admin_media#Chargement de la modale pour afficher les informations du media': '__Chargement de la modale pour afficher les informations du media'
 'admin_media#Information': __Information
+'admin_media#URL copiée !': '__URL copiée !'
 'admin_media#Images': __Images
 'admin_media#Fichiers': __Fichiers
 'admin_media#Vidéos': __Vidéos
@@ -261,6 +322,12 @@
 'admin_pagination#Par page': '__Par page'
 'admin_pagination#Précédent': __Précédent
 'admin_pagination#Suivant': __Suivant
+'admin_faq#Tags': __Tags
+'admin_faq#Ajouter le tag': '__Ajouter le tag'
+'admin_faq#Recherche un tag': '__Recherche un tag'
+'admin_tag#Chargement de la modale pour ajouter un tag': '__Chargement de la modale pour ajouter un tag'
+'admin_faq#Nouveau tag': '__Nouveau tag'
+'admin_faq#Tags ajoutés': '__Tags ajoutés'
 'admin_translation#Vous devez cocher au moins une langue pour effectuer une recherche': '__Vous devez cocher au moins une langue pour effectuer une recherche'
 'admin_translation#Application': __Application
 'admin_translation#Module': __Module
@@ -308,6 +375,8 @@
 'admin_media#Statistiques': __Statistiques
 'admin_media#Pages': __Pages
 'admin_media#Articles': __Articles
+'admin_media#Copier l''url': '__Copier l''url'
+'admin_media#Url copiée !': '__Url copiée !'
 'admin_media#Edition du media': '__Edition du media'
 'admin_media#Mise à jour du média réalisé avec succès': '__Mise à jour du média réalisé avec succès'
 'admin_media#Chargement de la modale pour ajouter un dossier': '__Chargement de la modale pour ajouter un dossier'
@@ -348,19 +417,81 @@
 'admin_faq#Suppression de la FAQ catégorie en cours....': '__Suppression de la FAQ catégorie en cours....'
 'admin_faq#Supprimer la FAQ Catégorie': '__Supprimer la FAQ Catégorie'
 'admin_faq#Information sur la catégorie': '__Information sur la catégorie'
+'admin_faq#SEO': __SEO
+'admin_faq#Positionnement': __Positionnement
 'admin_faq#Traduction': __Traduction
 'admin_faq#pour la catégorie': '__pour la catégorie'
+'admin_faq#Activer': __Activer
+'admin_faq#pour le SEO de la catégorie': '__pour le SEO de la catégorie'
 'admin_faq#Ajouter une catégorie': '__Ajouter une catégorie'
 'admin_faq#Chargement des données...': '__Chargement des données...'
+'admin_faq#Votre position actuelle': '__Votre position actuelle'
+'admin_faq#Suppression de la Question / Réponse': '__Suppression de la Question / Réponse'
+'admin_faq#Est vous sur de vouloir supprimer cette question / réponse ainsi que tous les données associées ?': '__Est vous sur de vouloir supprimer cette question / réponse ainsi que tous les données associées ?'
+'admin_faq#La suppression d''un question / réponse implique': '__La suppression d''un question / réponse implique'
+'admin_faq#La supression de toutes les tags associés (uniquement les liaisons': '__La supression de toutes les tags associés (uniquement les liaisons'
+'admin_faq#Suppression de la question / réponse en cours....': '__Suppression de la question / réponse en cours....'
+'admin_faq#Supprimer la question / réponse': '__Supprimer la question / réponse'
+'admin_faq#Information sur la question / réponse': '__Information sur la question / réponse'
+'admin_faq#Autres infos': '__Autres infos'
+'admin_faq#pour la question': '__pour la question'
+'admin_faq#Ajouter une question': '__Ajouter une question'
+'admin_menu#Ajouter un menu': '__Ajouter un menu'
+'admin_menu#Chargement des données...': '__Chargement des données...'
 'admin_tag#Statistiques': __Statistiques
 'admin_tag#Action': __Action
 'admin_tag#Editer': __Editer
 'admin_tag#Attention cette action est définitive ! Êtes vous sur ?': '__Attention cette action est définitive ! Êtes vous sur ?'
 'admin_tag#Supprimer': __Supprimer
+'admin_tag#Sauvegarde en cours': '__Sauvegarde en cours'
 'admin_tag#Information sur le tag': '__Information sur le tag'
 'admin_tag#Rendu': __Rendu
 'admin_tag#Chargement des données...': '__Chargement des données...'
 'admin_global_option#Sauvegarde en cours...': '__Sauvegarde en cours...'
+'admin_page#Dernière modification': '__Dernière modification'
+'admin_page#Créée par': '__Créée par'
+'admin_page#Action': __Action
+'admin_page#Editer': __Editer
+'admin_page#Supprimer': __Supprimer
+'admin_page#Suppression de la page': '__Suppression de la page'
+'admin_page#Attention': __Attention
+'admin_page#Est vous sur de vouloir supprimer cette page ainsi que tous les données associées ?': '__Est vous sur de vouloir supprimer cette page ainsi que tous les données associées ?'
+'admin_page#Cette action est définitive et sans retour arrière': '__Cette action est définitive et sans retour arrière'
+'admin_page#Annuler': __Annuler
+'admin_page#Suppression de la page en court....': '__Suppression de la page en court....'
+'admin_page#Supprimer la page': '__Supprimer la page'
+'admin_page#Changement du template en cours': '__Changement du template en cours'
+'admin_page#Choix du template': '__Choix du template'
+'admin_page#Template 1': '__Template 1'
+'admin_page#Top': __Top
+'admin_page#Content': __Content
+'admin_page#Footer': __Footer
+'admin_page#Template 2': '__Template 2'
+'admin_page#Left': __Left
+'admin_page#Template 3': '__Template 3'
+'admin_page#Right': __Right
+'admin_page#Template selectionné avec succès': '__Template selectionné avec succès'
+'admin_page#Fermer': __Fermer
+'admin_page#Entête': __Entête
+'admin_page#Ajouter un élément': '__Ajouter un élément'
+'admin_page#Centre': __Centre
+'admin_page#Partie Gauche': '__Partie Gauche'
+'admin_page#Partie droite': '__Partie droite'
+'admin_page#Pied de page': '__Pied de page'
+'admin_page#Contenu': __Contenu
+'admin_page#SEO': __SEO
+'admin_page#Tags': __Tags
+'admin_page#Options': __Options
+'admin_page#Template': __Template
+'admin_page#Chargement de la modale de selection de template': '__Chargement de la modale de selection de template'
+'admin_page#Choisir un template': '__Choisir un template'
+'admin_page#Chargement du template en cours': '__Chargement du template en cours'
+'admin_page#Traduction': __Traduction
+'admin_page#pour la page': '__pour la page'
+'admin_page#Activer': __Activer
+'admin_page#Traduction désactivée pour cette langue': '__Traduction désactivée pour cette langue'
+'admin_page#Ajouter une page': '__Ajouter une page'
+'admin_page#Chargement des données...': '__Chargement des données...'
 'admin_role#Module': __Module
 'admin_role#Action': __Action
 'admin_role#Editer': __Editer
@@ -499,146 +630,3 @@
 'front_auth#Mot de passe': '__Mot de passe'
 'front_auth#Ce souvenir de moi': '__Ce souvenir de moi'
 'front_auth#Me connecter': '__Me connecter'
-'admin_media#Copier l''url de l''image': '__Copier l''url de l''image'
-'admin_media#Copier l''url du fichier': '__Copier l''url du fichier'
-'admin_media#Copier l''url de la vidéo': '__Copier l''url de la vidéo'
-'admin_media#Copier l''url du son': '__Copier l''url du son'
-'admin_media#URL copiée !': '__URL copiée !'
-'admin_media#Copier l''url': '__Copier l''url'
-'admin_media#Url copiée !': '__Url copiée !'
-'admin_faq#Gestion des questions / réponses': '__Gestion des questions / réponses'
-'admin_faq#Question': __Question
-'admin_faq#Réponse': __Réponse
-'admin_faq#Catégorie': __Catégorie
-'admin_faq#Ajouter une question': '__Ajouter une question'
-'admin_faq#Titre de la page': '__Titre de la page'
-'admin_faq#Le titre de la page sur le navigateur (balise <title>)': '__Le titre de la page sur le navigateur (balise <title>)'
-'admin_faq#Meta Description': '__Meta Description'
-'admin_faq#Description qui sera affiché dans les résultats des moteurs de recherches': '__Description qui sera affiché dans les résultats des moteurs de recherches'
-'admin_faq#Mots clés': '__Mots clés'
-'admin_faq#Mot clés pour décrire la catégorie pour le SEO': '__Mot clés pour décrire la catégorie pour le SEO'
-'admin_faq#Autres méta tags': '__Autres méta tags'
-'admin_faq#Saisissez ici vos métatags personnalisés qui seront affichés dans la balise <head> de la page': '__Saisissez ici vos métatags personnalisés qui seront affichés dans la balise <head> de la page'
-'admin_faq#SEO': __SEO
-'admin_faq#Positionnement': __Positionnement
-'admin_faq#Activer': __Activer
-'admin_faq#SEO pour la catégorie': '__SEO pour la catégorie'
-'admin_faq#pour le SEO de la catégorie': '__pour le SEO de la catégorie'
-'admin_faq#Ajouter un question / réponse': '__Ajouter un question / réponse'
-'admin_faq#Question ajoutée avec succès': '__Question ajoutée avec succès'
-'admin_faq#Edition de la question / réponse ': '__Edition de la question / réponse '
-'admin_faq#Question éditée avec succès': '__Question éditée avec succès'
-'admin_faq#Une question existe déjà avec ce slug': '__Une question existe déjà avec ce slug'
-'admin_faq#La question': '__La question'
-'admin_faq#Réponse à votre question': '__Réponse à votre question'
-'admin_faq#Masquer': __Masquer
-'admin_faq#Publier': __Publier
-'admin_faq#Publication': __Publication
-'admin_faq#Information sur la question / réponse': '__Information sur la question / réponse'
-'admin_faq#Autres infos': '__Autres infos'
-'admin_faq#pour la question': '__pour la question'
-'admin_faq#Votre position actuelle': '__Votre position actuelle'
-'admin_faq#Tags': __Tags
-'admin_faq#Ajouter le tag': '__Ajouter le tag'
-'admin_faq#Recherche un tag': '__Recherche un tag'
-'admin_faq#Nouveau tag': '__Nouveau tag'
-'admin_faq#Tags ajoutés': '__Tags ajoutés'
-'admin_faq#Question / réponse supprimé avec succès': '__Question / réponse supprimé avec succès'
-'admin_tag#Chargement de la modale pour ajouter un tag': '__Chargement de la modale pour ajouter un tag'
-'admin_faq#Suppression de la Question / Réponse': '__Suppression de la Question / Réponse'
-'admin_faq#Est vous sur de vouloir supprimer cette question / réponse ainsi que tous les données associées ?': '__Est vous sur de vouloir supprimer cette question / réponse ainsi que tous les données associées ?'
-'admin_faq#La suppression d''un question / réponse implique': '__La suppression d''un question / réponse implique'
-'admin_faq#La supression de toutes les tags associés (uniquement les liaisons': '__La supression de toutes les tags associés (uniquement les liaisons'
-'admin_faq#Suppression de la question / réponse en cours....': '__Suppression de la question / réponse en cours....'
-'admin_faq#Supprimer la question / réponse': '__Supprimer la question / réponse'
-'admin_tag#Sauvegarde en cours': '__Sauvegarde en cours'
-'admin_page#Gestion des pages': '__Gestion des pages'
-'admin_page#Ajouter une page': '__Ajouter une page'
-'admin_page#Chargement des données...': '__Chargement des données...'
-'admin_page#Créer une page': '__Créer une page'
-'admin_page#Edition de la page ': '__Edition de la page '
-'admin_page#Contenu': __Contenu
-'admin_page#SEO': __SEO
-'admin_system#ppel Ajax pour choisir une donnée de type {data}': '__ppel Ajax pour choisir une donnée de type {data}'
-'admin_page#Tags': __Tags
-'admin_page#Options': __Options
-'admin_page#Template': __Template
-'admin_page#Choisir un template': '__Choisir un template'
-'admin_page#Changement du template en cours': '__Changement du template en cours'
-'admin_page#Choix du template': '__Choix du template'
-'admin_page#Chargement de la modale de selection de template': '__Chargement de la modale de selection de template'
-'admin_page#Template 1': '__Template 1'
-'admin_page#Top': __Top
-'admin_page#Content': __Content
-'admin_page#Footer': __Footer
-'admin_page#Left': __Left
-'admin_page#Template 2': '__Template 2'
-'admin_page#Template 3': '__Template 3'
-'admin_page#Right': __Right
-'admin_page#Thème selectionné avec succès': '__Thème selectionné avec succès'
-'admin_page#Fermer': __Fermer
-'admin_page#Chargement du template en cours': '__Chargement du template en cours'
-'admin_page#Template selectionné avec succès': '__Template selectionné avec succès'
-'admin_page#Chargement du formulaire...': '__Chargement du formulaire...'
-'admin_page#Autoriser que cette page puisse avoir des enfants': '__Autoriser que cette page puisse avoir des enfants'
-'admin_page#Si cette case est coché, la page peut être associé à une autre page': '__Si cette case est coché, la page peut être associé à une autre page'
-'admin_page#Autoriser que cette page puisse être modifiée': '__Autoriser que cette page puisse être modifiée'
-'admin_page#Si cette case est coché, seul l''utilisateur root pourra modifier cette page': '__Si cette case est coché, seul l''utilisateur root pourra modifier cette page'
-'admin_page#Autoriser que cette page puisse être supprimée': '__Autoriser que cette page puisse être supprimée'
-'admin_page#Si cette case est coché, seul l''utilisateur root pourra supprimer cette page': '__Si cette case est coché, seul l''utilisateur root pourra supprimer cette page'
-'admin_page#Masquer': __Masquer
-'admin_page#Publier': __Publier
-'admin_page#Publication': __Publication
-'admin_page#Valider': __Valider
-'admin_page#Choisir la langue': '__Choisir la langue'
-'admin_page#Cette page est déjà disponible dans les langues suivantes': '__Cette page est déjà disponible dans les langues suivantes'
-'admin_page#Selectionner une langue': '__Selectionner une langue'
-'admin_page#Chargement des langues disponibles': '__Chargement des langues disponibles'
-'admin_page#Titre de la page': '__Titre de la page'
-'admin_page#Le titre de la page sur le navigateur (balise <title>)': '__Le titre de la page sur le navigateur (balise <title>)'
-'admin_page#Slug': __Slug
-'admin_page#Le slug permet de définir l''url de la page, par défault c''est le titre': '__Le slug permet de définir l''url de la page, par défault c''est le titre'
-'admin_page#Titre de la page dans les menus': '__Titre de la page dans les menus'
-'admin_page#Titre de la page dans le menus': '__Titre de la page dans le menus'
-'admin_page#Le titre de la page qui apparaitra dans les menus': '__Le titre de la page qui apparaitra dans les menus'
-'admin_page#Meta Description': '__Meta Description'
-'admin_page#Description qui sera affiché dans les résultats des moteurs de recherches': '__Description qui sera affiché dans les résultats des moteurs de recherches'
-'admin_page#Mots clés': '__Mots clés'
-'admin_page#Mot clés pour décrire la catégorie pour le SEO': '__Mot clés pour décrire la catégorie pour le SEO'
-'admin_page#Autres méta tags': '__Autres méta tags'
-'admin_page#Saisissez ici vos métatags personnalisés qui seront affichés dans la balise <head> de la page': '__Saisissez ici vos métatags personnalisés qui seront affichés dans la balise <head> de la page'
-'admin_page#Le titre de la page qui apparaitra dans les menu': '__Le titre de la page qui apparaitra dans les menu'
-'admin_page#Aucune nouvelle langue à ajouter': '__Aucune nouvelle langue à ajouter'
-'admin_page#Une page existe déjà avec ce slug': '__Une page existe déjà avec ce slug'
-'admin_page#Traduction': __Traduction
-'admin_page#pour la page': '__pour la page'
-'admin_page#Activer': __Activer
-'admin_page#Page supprimée avec succès': '__Page supprimée avec succès'
-'admin_page#Lier cette page à une autre ?': '__Lier cette page à une autre ?'
-'admin_page#Selectionner la page parente, laisser vide si vous ne souhaitez pas associer de parent à cette page': '__Selectionner la page parente, laisser vide si vous ne souhaitez pas associer de parent à cette page'
-'admin_page#Titre': __Titre
-'admin_page#Dernière modification': '__Dernière modification'
-'admin_page#Créée par': '__Créée par'
-'admin_page#Action': __Action
-'admin_page#Editer': __Editer
-'admin_page#Supprimer': __Supprimer
-'admin_page#Suppression de la page': '__Suppression de la page'
-'admin_page#Attention': __Attention
-'admin_page#Est vous sur de vouloir supprimer cette page ainsi que tous les données associées ?': '__Est vous sur de vouloir supprimer cette page ainsi que tous les données associées ?'
-'admin_page#Cette action est définitive et sans retour arrière': '__Cette action est définitive et sans retour arrière'
-'admin_page#Annuler': __Annuler
-'admin_page#Suppression du theme en court....': '__Suppression du theme en court....'
-'admin_page#Supprimer la page': '__Supprimer la page'
-'admin_page#Traduction désactivée pour cette langue': '__Traduction désactivée pour cette langue'
-'admin_page#Titre navigation': '__Titre navigation'
-'admin_page#Suppression de la page en court....': '__Suppression de la page en court....'
-'admin_page#Entête': __Entête
-'admin_page#Ajouter un élément': '__Ajouter un élément'
-'admin_page#Centre': __Centre
-'admin_page#Partie Gauche': '__Partie Gauche'
-'admin_page#Partie droite': '__Partie droite'
-'admin_page#Pied de page': '__Pied de page'
-'admin_menu#Gestion des menus': '__Gestion des menus'
-'admin_menu#Ajouter un menu': '__Ajouter un menu'
-'admin_menu#Chargement des données...': '__Chargement des données...'
-'admin_menu#menu': __menu
