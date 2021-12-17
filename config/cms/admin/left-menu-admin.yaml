@@ -26,6 +26,9 @@ menu-left-admin:
           admin_faq#Catégories:
             icon: 'fa-question-circle'
             target: 'admin_faq_category_index'
+      admin_menu#Gestion des menus:
+        icon: 'fa-list-alt'
+        target: 'admin_menu_index'
   admin_theme#Thèmes:
     icon: 'fa-pager'
     target: 'admin_theme_index'

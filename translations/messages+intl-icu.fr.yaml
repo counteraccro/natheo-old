@@ -638,3 +638,7 @@
 'admin_page#Partie Gauche': 'Partie Gauche'
 'admin_page#Partie droite': 'Partie droite'
 'admin_page#Pied de page': 'Pied de page'
+'admin_menu#Gestion des menus': 'Gestion des menus'
+'admin_menu#Ajouter un menu': 'Ajouter un menu'
+'admin_menu#Chargement des données...': 'Chargement des données...'
+'admin_menu#menu': Menu

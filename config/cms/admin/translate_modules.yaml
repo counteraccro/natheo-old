@@ -21,3 +21,4 @@ routes_modules:
   theme : 'admin_theme#Thèmes'
   faq : 'admin_faq#FAQ'
   page: 'admin_page#Pages'
+  menu: 'admin_menu#Menu'
