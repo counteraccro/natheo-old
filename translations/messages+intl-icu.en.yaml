@@ -632,3 +632,9 @@
 'admin_page#Traduction désactivée pour cette langue': '__Traduction désactivée pour cette langue'
 'admin_page#Titre navigation': '__Titre navigation'
 'admin_page#Suppression de la page en court....': '__Suppression de la page en court....'
+'admin_page#Entête': __Entête
+'admin_page#Ajouter un élément': '__Ajouter un élément'
+'admin_page#Centre': __Centre
+'admin_page#Partie Gauche': '__Partie Gauche'
+'admin_page#Partie droite': '__Partie droite'
+'admin_page#Pied de page': '__Pied de page'

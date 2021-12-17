@@ -18,14 +18,19 @@ class PageService extends AppService
     const DEFAULT_NAME_PAGE_TITLE = 'page-default-value-to-delete';
     const DEFAULT_NAME_NAVIGATION_TITLE = 'page-default-value-to-delete';
 
+    const BASE_TOP_CONTENT_FOOTER = 'base-top-content-footer';
+    const BASE_TOP_LEFT_CONTENT_FOOTER = 'base-top-left-content-footer';
+    const BASE_TOP_CONTENT_RIGHT_FOOTER = 'base-top-content-right-footer';
+
+
     /**
      * Tableau de référence pour le choix des templates
      * @var array|array[]
      */
     private array $tabRefTemplate = [
-        1 => ['id' => 1, 'base' => 'base-top-content-footer'],
-        2 => ['id' => 2, 'base' => 'base-top-left-content-footer'],
-        3 => ['id' => 3, 'base' => 'base-top-content-right-footer']
+        1 => ['id' => 1, 'base' => self::BASE_TOP_CONTENT_FOOTER],
+        2 => ['id' => 2, 'base' => self::BASE_TOP_LEFT_CONTENT_FOOTER],
+        3 => ['id' => 3, 'base' => self::BASE_TOP_CONTENT_RIGHT_FOOTER]
     ];
 
     private int $defaultTheme = 1;

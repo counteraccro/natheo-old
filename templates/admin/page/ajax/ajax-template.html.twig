@@ -1,5 +1,114 @@
 <div id="block-content-element-page">
-    {{ template }}
+    <div class="row">
+        <div class="col-12">
+            <div class="border border-primary rounded-3 mt-4 mb-3">
+                <div class="border-bottom border-primary">
+                    <h6 class="ms-2 mt-2">{{ "admin_page#Entête" | trans }}</h6>
+                </div>
+                <div class="p-2">
+                    <div class="text-center">
+                        <div class="btn btn-primary">{{ "admin_page#Ajouter un élément" | trans }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% if(template == constant('App\\Service\\Admin\\PageService::BASE_TOP_CONTENT_FOOTER')) %}
+
+        <div class="col-12">
+            <div class="border border-primary rounded-3 mb-3">
+                <div class="border-bottom border-primary">
+                    <h6 class="ms-2 mt-2">{{ "admin_page#Centre" | trans }}</h6>
+                </div>
+                <div class="p-2">
+                    <div class="text-center">
+                        <div class="btn btn-primary">{{ "admin_page#Ajouter un élément" | trans }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% endif %}
+
+        {% if(template == constant('App\\Service\\Admin\\PageService::BASE_TOP_LEFT_CONTENT_FOOTER')) %}
+
+        <div class="col-4">
+            <div class="border border-primary rounded-3 mb-3">
+                <div class="border-bottom border-primary">
+                    <h6 class="ms-2 mt-2">{{ "admin_page#Partie Gauche" | trans }}</h6>
+                </div>
+                <div class="p-2">
+
+                    <div class="text-center">
+                        <div class="btn btn-primary">{{ "admin_page#Ajouter un élément" | trans }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-8">
+            <div class="border border-primary rounded-3 mb-3">
+                <div class="border-bottom border-primary">
+                    <h6 class="ms-2 mt-2">{{ "admin_page#Centre" | trans }}</h6>
+                </div>
+                <div class="p-2">
+
+                    <div class="text-center">
+                        <div class="btn btn-primary">{{ "admin_page#Ajouter un élément" | trans }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% endif %}
+
+        {% if(template == constant('App\\Service\\Admin\\PageService::BASE_TOP_CONTENT_RIGHT_FOOTER')) %}
+
+        <div class="col-8">
+            <div class="border border-primary rounded-3 mb-3">
+                <div class="border-bottom border-primary">
+                    <h6 class="ms-2 mt-2">{{ "admin_page#Centre" | trans }}</h6>
+                </div>
+                <div class="p-2">
+
+                    <div class="text-center">
+                        <div class="btn btn-primary">{{ "admin_page#Ajouter un élément" | trans }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="border border-primary rounded-3 mb-3">
+                <div class="border-bottom border-primary">
+                    <h6 class="ms-2 mt-2">{{ "admin_page#Partie droite" | trans }}</h6>
+                </div>
+                <div class="p-2">
+
+                    <div class="text-center">
+                        <div class="btn btn-primary">{{ "admin_page#Ajouter un élément" | trans }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% endif %}
+
+        <div class="col-12">
+            <div class="border border-primary rounded-3 mb-3">
+                <div class="border-bottom border-primary">
+                    <h6 class="ms-2 mt-2">{{ "admin_page#Pied de page" | trans }}</h6>
+                </div>
+                <div class="p-2">
+
+                    <div class="text-center">
+                        <div class="btn btn-primary">{{ "admin_page#Ajouter un élément" | trans }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>
 
 
