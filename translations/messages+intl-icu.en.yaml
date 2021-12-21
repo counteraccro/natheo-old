@@ -630,3 +630,10 @@
 'front_auth#Mot de passe': '__Mot de passe'
 'front_auth#Ce souvenir de moi': '__Ce souvenir de moi'
 'front_auth#Me connecter': '__Me connecter'
+'admin_menu#Gestion des menu': '__Gestion des menu'
+'admin_menu#Menu Créé avec succès': '__Menu Créé avec succès'
+'admin_menu#Edition du menu ': '__Edition du menu '
+'admin_menu#Menu édité avec succès': '__Menu édité avec succès'
+'admin_menu#Valider': __Valider
+'admin_menu#Information sur le menu': '__Information sur le menu'
+'admin_menu#Exemple de rendu': '__Exemple de rendu'

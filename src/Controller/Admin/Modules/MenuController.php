@@ -8,6 +8,9 @@
 namespace App\Controller\Admin\Modules;
 
 use App\Controller\Admin\AppAdminController;
+use App\Entity\Modules\Menu\Menu;
+use App\Form\Modules\Menu\MenuType;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -65,5 +68,58 @@ class MenuController extends AppAdminController
             'limit' => $limit,
             'route' => 'admin_tag_ajax_listing',
         ]);*/
+    }
+
+    /**
+     * Permet de créer / éditer un tag
+     * @param Menu|null $menu
+     * @return RedirectResponse|Response
+     */
+    #[Route('/add/', name: 'add')]
+    #[Route('/edit/{id}', name: 'edit')]
+    public function createUpdate(Menu $menu = null): RedirectResponse|Response
+    {
+        $breadcrumb = [
+            $this->translator->trans('admin_dashboard#Dashboard') => 'admin_dashboard_index',
+            $this->translator->trans('admin_system#Modules') => '',
+            $this->translator->trans('admin_menu#Gestion des menu') => ['admin_menu_index', ['page' => $this->getPageInSession(self::SESSION_KEY_PAGE)]]
+        ];
+
+        if ($menu == null) {
+            $action = 'add';
+            $menu = new Menu();
+            $title = $this->translator->trans('admin_menu#Ajouter un menu');
+            $breadcrumb[$title] = '';
+            $flashMsg = $this->translator->trans('admin_menu#Menu Créé avec succès');
+        } else {
+            $action = 'edit';
+            $title = $this->translator->trans('admin_menu#Edition du menu ') . '#' . $menu->getId();
+            $breadcrumb[$title] = '';
+            $flashMsg = $this->translator->trans('admin_menu#Menu édité avec succès');
+        }
+
+        $form = $this->createForm(MenuType::class, $menu);
+
+        $form->handleRequest($this->request->getCurrentRequest());
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            //$this->doctrine->getManager()->persist($tag);
+            //$this->doctrine->getManager()->flush();
+
+            $param = [];
+            $this->addFlash('success', $flashMsg);
+            if ($action == 'edit') {
+                $param = ['page' => $this->getPageInSession(self::SESSION_KEY_PAGE)];
+            }
+            //return $this->redirectToRoute('admin_tag_index', $param);
+        }
+
+        return $this->render('admin/modules/menu/create-update.html.twig', [
+            'breadcrumb' => $breadcrumb,
+            'form' => $form->createView(),
+            'title' => $title,
+            'menu' => $menu,
+            'action' => $action,
+        ]);
     }
 }

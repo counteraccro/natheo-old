@@ -1,0 +1,49 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+    <div id="admin-create-update-tag">
+        <h1>{{ title }}</h1>
+
+        {{ breadcrumb | breadcrumb | raw }}
+
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        {{ "admin_menu#Information sur le menu" | trans }}
+                    </div>
+                    <div class="card-body">
+                        {{ form_start(form) }}
+
+                        {{ form_row(form.valider) }}
+
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        {{ "admin_menu#Exemple de rendu" | trans }}
+                    </div>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+
+    <script>
+        $(document).ready(function () {
+            Menu.Launch();
+            Menu.CreateUpdate();
+        });
+    </script>
+
+{% endblock %}
+
