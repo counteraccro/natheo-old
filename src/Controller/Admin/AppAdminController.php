@@ -108,7 +108,7 @@ class AppAdminController extends AbstractController
     protected PageService $pageService;
 
     /**
-     * @var SystemService 
+     * @var SystemService
      */
     protected SystemService $systemService;
 
