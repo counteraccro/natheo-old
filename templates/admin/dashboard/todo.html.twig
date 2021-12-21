@@ -12,18 +12,74 @@
             la V1 sortie
         </div>
 
+        <h3>Reste à faire</h3>
         <ul>
-            <li><b>Authentification</b></li>
+            <li>
+                <b>Administration</b>
                 <ul>
-                    <li><s><span class="badge bg-danger">BUG</span><span class="text-danger">l'Authentification ne fonctionne plus depuis le passage en 6.0.1, l'erreur est <kbd>Invalid CSRF token</kbd></span><br />
-                    Solution de contournement actuellement : <br />
-                     - Tentative de connection => erreur <kbd>Invalid CSRF token</kbd> <br />
-                     - Retour arrière via le navigateur puis nouvelle connexion <br />
-                     - Erreur pas de redirection définie, c'est que l'authentification à marché <br >
-                        - Saisir manuellement l'url du back pour y acceder avec une session valide</s>
-                        <span class="badge bg-primary"><i class="fa fa-check"></i> FIXE</span> le 10/12/2021 - commit : <a href="https://github.com/counteraccro/natheo/commit/c048c9377640945b6287f8be489e293cd01bf05f">c048...</a>
+                    <li>Modules
+                        <ul>
+                            <li>Gestion des menus</li>
+                            <li>Blog</li>
+                        </ul>
+                    </li>
+                    <li>
+                        Configuration
+                        <ul>
+                            <li>Config de la recherche</li>
+                            <li>Config du blog</li>
+                            <li>Config email</li>
+                        </ul>
+                    </li>
+                    <li>
+                        Installation : Mise en place d'un système d'installation semi-automatique
+                    </li>
+                    <li>
+                        Divers
+                        <ul>
+                            <li>Système de log interne pour tracer les actions faites sur l'admin</li>
+                            <li>Envoi d'un email automatique pour certaines actions</li>
+                        </ul>
                     </li>
                 </ul>
+            </li>
+            <li>
+                <b>Front</b>
+                <ul>
+                    <li>Pages génériques</li>
+                    <li>Pages Spéciales :
+                        <ul>
+                            <li>Index</li>
+                            <li>Résultat recherche</li>
+                            <li>Sitemap</li>
+                            <li>Modules
+                                <ul>
+                                    <li>Pages FAQ</li>
+                                    <li>Pages Blogs</li>
+                                    <li>Pages Tags</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>Pages pour l'installation semi-automatique</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>Correction / Evolution</h3>
+        <ul>
+            <li><b>Authentification</b></li>
+            <ul>
+                <li><s><span class="badge bg-danger">BUG</span><span class="text-danger">l'Authentification ne fonctionne plus depuis le passage en 6.0.1, l'erreur est <kbd>Invalid CSRF token</kbd></span><br/>
+                        Solution de contournement actuellement : <br/>
+                        - Tentative de connection => erreur <kbd>Invalid CSRF token</kbd> <br/>
+                        - Retour arrière via le navigateur puis nouvelle connexion <br/>
+                        - Erreur pas de redirection définie, c'est que l'authentification à marché <br>
+                        - Saisir manuellement l'url du back pour y acceder avec une session valide</s>
+                    <span class="badge bg-primary"><i class="fa fa-check"></i> FIXE</span> le 10/12/2021 - commit : <a
+                            href="https://github.com/counteraccro/natheo/commit/c048c9377640945b6287f8be489e293cd01bf05f">c048...</a>
+                </li>
+            </ul>
             <li><b>Mise à jour des routes</b>
                 <ul>
                     <li><span class="badge bg-danger">BUG</span> Dans <kbd>App\Service\Admin\System\AccessService::isGranted</kbd>
@@ -41,8 +97,10 @@
                         utilisateur par John Doe sur toute les données associées à un utilisateur que l'on veux
                         supprimer
                     </li>
-                    <li><s><span class="badge bg-danger">BUG</span> Sur la page <b>Edition d'un utilisateur</b> L'édition de n'importe quel user, modifiait les droits en session du user connecté</s>
-                        <span class="badge bg-primary"><i class="fa fa-check"></i> FIXE</span> le 29/11/2021 - commit : <a href="https://github.com/counteraccro/natheo/commit/f54d9a095c3e1ecd495492c381bba1255298f2c5">f54d...</a>
+                    <li><s><span class="badge bg-danger">BUG</span> Sur la page <b>Edition d'un utilisateur</b>
+                            L'édition de n'importe quel user, modifiait les droits en session du user connecté</s>
+                        <span class="badge bg-primary"><i class="fa fa-check"></i> FIXE</span> le 29/11/2021 - commit :
+                        <a href="https://github.com/counteraccro/natheo/commit/f54d9a095c3e1ecd495492c381bba1255298f2c5">f54d...</a>
                     </li>
                 </ul>
             </li>
@@ -51,30 +109,35 @@
                     <li><span class="badge bg-primary">Evolution</span> A l'ajout ou édition d'un dossier, refaire
                         l'affichage du choix du dossier parent, idéalement l'afficher en forme d'arbre
                     </li>
-                    <li><span class="badge bg-danger">BUG</span> Dans <kbd>public/assets/js/admin/MediaLib.js</kbd> la fonction <kbd>MediaLib.RecursiveOpenFolder()</kbd> provoque cette erreur
-                        <br />
+                    <li><span class="badge bg-danger">BUG</span> Dans <kbd>public/assets/js/admin/MediaLib.js</kbd> la
+                        fonction <kbd>MediaLib.RecursiveOpenFolder()</kbd> provoque cette erreur
+                        <br/>
                         <code>
-                            Uncaught RangeError: Maximum call stack size exceeded <br />
-                            at String.replace (&lsaquo;anonymous&rsaquo;) <br />
-                                at se (jquery-3.6.0.min.js:2) <br />
-                                at Function.se.matches (jquery-3.6.0.min.js:2) <br />
-                                at Function.S.filter (jquery-3.6.0.min.js:2) <br />
-                                at S.fn.init.S.fn.&lsaquo;computed&rsaquo; [as next] (jquery-3.6.0.min.js:2) <br />
-                                    at Object.MediaLib.RecursiveOpenFolder (MediaLib.js?version=v1:323) <br />
-                                    at Object.MediaLib.RecursiveOpenFolder (MediaLib.js?version=v1:330) <br />
-                                    at Object.MediaLib.RecursiveOpenFolder (MediaLib.js?version=v1:330) <br />
-                                    at Object.MediaLib.RecursiveOpenFolder (MediaLib.js?version=v1:330) <br />
-                                    at Object.MediaLib.RecursiveOpenFolder (MediaLib.js?version=v1:330) <br />
+                            Uncaught RangeError: Maximum call stack size exceeded <br/>
+                            at String.replace (&lsaquo;anonymous&rsaquo;) <br/>
+                            at se (jquery-3.6.0.min.js:2) <br/>
+                            at Function.se.matches (jquery-3.6.0.min.js:2) <br/>
+                            at Function.S.filter (jquery-3.6.0.min.js:2) <br/>
+                            at S.fn.init.S.fn.&lsaquo;computed&rsaquo; [as next] (jquery-3.6.0.min.js:2) <br/>
+                            at Object.MediaLib.RecursiveOpenFolder (MediaLib.js?version=v1:323) <br/>
+                            at Object.MediaLib.RecursiveOpenFolder (MediaLib.js?version=v1:330) <br/>
+                            at Object.MediaLib.RecursiveOpenFolder (MediaLib.js?version=v1:330) <br/>
+                            at Object.MediaLib.RecursiveOpenFolder (MediaLib.js?version=v1:330) <br/>
+                            at Object.MediaLib.RecursiveOpenFolder (MediaLib.js?version=v1:330) <br/>
                         </code>
                     </li>
                     <li>
-                        <s><span class="badge bg-danger">BUG</span> Il est possible de déplacer un dossier parent dans un de ses enfants => Crash. Ce cas ne doit pas être possible</s>
-                         <span class="badge bg-primary"><i class="fa fa-check"></i> FIXE</span> le 08/11/2021 - commit : <a href="https://github.com/counteraccro/natheo/commit/5dd5461ecea9607f22ebe5b8741217bfc87dcf03">5dd5...</a>
+                        <s><span class="badge bg-danger">BUG</span> Il est possible de déplacer un dossier parent dans
+                            un de ses enfants => Crash. Ce cas ne doit pas être possible</s>
+                        <span class="badge bg-primary"><i class="fa fa-check"></i> FIXE</span> le 08/11/2021 - commit :
+                        <a href="https://github.com/counteraccro/natheo/commit/5dd5461ecea9607f22ebe5b8741217bfc87dcf03">5dd5...</a>
                     </li>
-                    <li><span class="badge bg-primary">Evolution</span> Ajout des statistiques du média dans la modal information
+                    <li><span class="badge bg-primary">Evolution</span> Ajout des statistiques du média dans la modal
+                        information
                         dans <kbd>src/Controller/Admin/MediaLibController::modalInfoMedia()</kbd>
                     </li>
-                    <li><span class="badge bg-primary">Evolution</span> Mettre en place une pagination dans le listing des médias</kbd>
+                    <li><span class="badge bg-primary">Evolution</span> Mettre en place une pagination dans le listing
+                        des médias</kbd>
                     </li>
                 </ul>
             </li>
@@ -85,18 +148,26 @@
             </li>
             <li><b>FAQ</b>
                 <ul>
-                    <li><s><span class="badge bg-primary">Evolution</span> FAQ Catégorie, pouvoir créer/éditer que pour X langues et non toutes les langues comme maintenant</s>
-                        <span class="badge bg-primary"><i class="fa fa-check"></i> FIXE</span> le 30/11/2021 - commit : <a href="https://github.com/counteraccro/natheo/commit/115952e827f43b1170a2d9b239ad34f96ff790d6">1159...</a>
+                    <li><s><span class="badge bg-primary">Evolution</span> FAQ Catégorie, pouvoir créer/éditer que pour
+                            X langues et non toutes les langues comme maintenant</s>
+                        <span class="badge bg-primary"><i class="fa fa-check"></i> FIXE</span> le 30/11/2021 - commit :
+                        <a href="https://github.com/counteraccro/natheo/commit/115952e827f43b1170a2d9b239ad34f96ff790d6">1159...</a>
                     </li>
                 </ul>
             </li>
             <li><b>Gestion thèmes</b>
                 <ul>
-                    <li><s><span class="badge bg-danger">BUG</span> Sur la page <b>Détail du thème</b> l'arborescence du dossier ne s'affiche pas correctement</s>
-                        <span class="badge bg-primary"><i class="fa fa-check"></i> FIXE</span> le 18/11/2021 - commit : <a href="https://github.com/counteraccro/natheo/commit/c9f6247896bd0dcd6f837f982effea9b0565aa8b">c9f6...</a>
+                    <li><s><span class="badge bg-danger">BUG</span> Sur la page <b>Détail du thème</b> l'arborescence du
+                            dossier ne s'affiche pas correctement</s>
+                        <span class="badge bg-primary"><i class="fa fa-check"></i> FIXE</span> le 18/11/2021 - commit :
+                        <a href="https://github.com/counteraccro/natheo/commit/c9f6247896bd0dcd6f837f982effea9b0565aa8b">c9f6...</a>
                     </li>
-                    <li><span class="badge bg-primary">Evolution</span> Sur la page <b>Détail du thème</b> Voir le contenu du fichier dans l'arborescence du dossier</li>
-                    <li><span class="badge bg-primary">Evolution</span> Lors de l'ajout d'un nouveau thème prise en compte des update de la structure du thème</li>
+                    <li><span class="badge bg-primary">Evolution</span> Sur la page <b>Détail du thème</b> Voir le
+                        contenu du fichier dans l'arborescence du dossier
+                    </li>
+                    <li><span class="badge bg-primary">Evolution</span> Lors de l'ajout d'un nouveau thème prise en
+                        compte des update de la structure du thème
+                    </li>
                     <li>
                         <span class="badge bg-warning">TODO</span> Mettre à jour la doc pour la page <kbd>template/admin/theme/upload-theme.html.twig</kbd>
                     </li>
