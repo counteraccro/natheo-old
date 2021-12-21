@@ -10,6 +10,9 @@ namespace App\Service\Admin\System;
 
 use App\Entity\Admin\DataSystem;
 use App\Service\AppService;
+use Symfony\Bundle\FrameworkBundle\Console\Application;
+use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Console\Output\NullOutput;
 
 class DataSystemService extends AppService
 {
@@ -84,6 +87,25 @@ class DataSystemService extends AppService
         $this->doctrine->getManager()->persist($dataSystem);
         $this->doctrine->getManager()->flush();
         return $dataSystem;
+    }
+
+    /**
+     * Permet de vider le cache applicatif
+     * @return void
+     * @throws \Exception
+     */
+    public function clearCacheInterne()
+    {
+        // On vide le cache applicatif
+        $application = new Application($this->kernel);
+        $application->setAutoExit(false);
+
+        $input = new ArrayInput([
+            'command' => 'cache:clear',
+            '--no-warmup' => true,
+        ]);
+        $output = new NullOutput();
+        $application->run($input, $output);
     }
 
 }

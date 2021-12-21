@@ -74,20 +74,7 @@ class TranslationService extends AppService
             $yaml = Yaml::dump($tabTrans);
             file_put_contents($path_translation . '/messages+intl-icu.' . $locale . '.yaml', $yaml);
         }
-
-        // On vide le cache applicatif
-        $application = new Application($this->kernel);
-        $application->setAutoExit(false);
-
-        $input = new ArrayInput([
-            'command' => 'cache:clear',
-            '--no-warmup' => true,
-        ]);
-        $output = new NullOutput();
-        $application->run($input, $output);
-
         $this->dataSystemService->update(DataSystemService::DATA_SYSTEM_TRANSLATION_GENERATE, 0, DataSystemService::REMPLACE);
-
     }
 
     /**
