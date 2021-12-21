@@ -2,6 +2,7 @@
 
 namespace App\Entity\Admin\Page;
 
+use App\Entity\Modules\Menu\MenuElement;
 use App\Entity\User;
 use App\Repository\Admin\Page\PageRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -88,12 +89,18 @@ class Page
      */
     private $pageMedia;
 
+    /**
+     * @ORM\OneToMany(targetEntity=MenuElement::class, mappedBy="page")
+     */
+    private $menuElements;
+
     public function __construct()
     {
         $this->children = new ArrayCollection();
         $this->pageTranslations = new ArrayCollection();
         $this->tags = new ArrayCollection();
         $this->pageMedia = new ArrayCollection();
+        $this->menuElements = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -323,6 +330,36 @@ class Page
             // set the owning side to null (unless already changed)
             if ($pageMedium->getPage() === $this) {
                 $pageMedium->setPage(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|MenuElement[]
+     */
+    public function getMenuElements(): Collection
+    {
+        return $this->menuElements;
+    }
+
+    public function addMenuElement(MenuElement $menuElement): self
+    {
+        if (!$this->menuElements->contains($menuElement)) {
+            $this->menuElements[] = $menuElement;
+            $menuElement->setPage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMenuElement(MenuElement $menuElement): self
+    {
+        if ($this->menuElements->removeElement($menuElement)) {
+            // set the owning side to null (unless already changed)
+            if ($menuElement->getPage() === $this) {
+                $menuElement->setPage(null);
             }
         }
 

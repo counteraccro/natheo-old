@@ -7,6 +7,7 @@ use App\Entity\Admin\Page\PageMedia;
 use App\Entity\Admin\Page\PageTag;
 use App\Entity\Admin\Role;
 use App\Entity\Modules\FAQ\FaqQuestionAnswerTag;
+use App\Entity\Modules\Menu\Menu;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -111,6 +112,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $pageMedia;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Menu::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $menus;
+
     public function __construct()
     {
         $this->rolesCms = new ArrayCollection();
@@ -118,6 +124,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->pages = new ArrayCollection();
         $this->pageTags = new ArrayCollection();
         $this->pageMedia = new ArrayCollection();
+        $this->menus = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -448,6 +455,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($pageMedium->getUser() === $this) {
                 $pageMedium->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Menu[]
+     */
+    public function getMenus(): Collection
+    {
+        return $this->menus;
+    }
+
+    public function addMenu(Menu $menu): self
+    {
+        if (!$this->menus->contains($menu)) {
+            $this->menus[] = $menu;
+            $menu->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMenu(Menu $menu): self
+    {
+        if ($this->menus->removeElement($menu)) {
+            // set the owning side to null (unless already changed)
+            if ($menu->getUser() === $this) {
+                $menu->setUser(null);
             }
         }
 
