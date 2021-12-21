@@ -14,6 +14,7 @@ use App\Service\Admin\PageService;
 use App\Service\Admin\System\DataSystemService;
 use App\Service\Admin\System\FileService;
 use App\Service\Admin\System\OptionService;
+use App\Service\Admin\System\SystemService;
 use App\Service\Admin\System\TranslationService;
 use App\Service\Admin\ThemeService;
 use App\Service\Module\FAQ\FaqService;
@@ -101,7 +102,15 @@ class AppAdminController extends AbstractController
      */
     protected TagService $tagService;
 
+    /**
+     * @var PageService
+     */
     protected PageService $pageService;
+
+    /**
+     * @var SystemService 
+     */
+    protected SystemService $systemService;
 
     /**
      * @param TranslatorInterface $translator
@@ -117,11 +126,13 @@ class AppAdminController extends AbstractController
      * @param FaqService $faqService
      * @param Doctrine $doctrine
      * @param TagService $tagService
+     * @param PageService $pageService
+     * @param SystemService $systemService
      */
     public function __construct(TranslatorInterface $translator, RequestStack $request, OptionService $optionService,
                                 TranslationService  $translationService, DataSystemService $dataSystemService, KernelInterface $kernel,
                                 FileService         $fileService, MediaService $mediaService, ThemeService $themeService, Security $security,
-                                FaqService $faqService, Doctrine $doctrine, TagService $tagService, PageService $pageService)
+                                FaqService $faqService, Doctrine $doctrine, TagService $tagService, PageService $pageService, SystemService $systemService)
     {
         $this->translator = $translator;
         $this->request = $request;
@@ -138,6 +149,7 @@ class AppAdminController extends AbstractController
         $this->doctrine = $doctrine;
         $this->tagService = $tagService;
         $this->pageService = $pageService;
+        $this->systemService = $systemService;
     }
 
     /**

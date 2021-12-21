@@ -88,24 +88,4 @@ class DataSystemService extends AppService
         $this->doctrine->getManager()->flush();
         return $dataSystem;
     }
-
-    /**
-     * Permet de vider le cache applicatif
-     * @return void
-     * @throws \Exception
-     */
-    public function clearCacheInterne()
-    {
-        // On vide le cache applicatif
-        $application = new Application($this->kernel);
-        $application->setAutoExit(false);
-
-        $input = new ArrayInput([
-            'command' => 'cache:clear',
-            '--no-warmup' => true,
-        ]);
-        $output = new NullOutput();
-        $application->run($input, $output);
-    }
-
 }

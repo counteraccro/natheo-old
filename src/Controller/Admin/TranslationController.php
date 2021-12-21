@@ -93,12 +93,15 @@ class TranslationController extends AppAdminController
 
     /**
      * Permet de régénérer les traductions depuis la base de données
+     * @param TranslationService $translationService
+     * @return JsonResponse
+     * @throws \Exception
      */
     #[Route('/ajax/reload-translation', name: 'ajax_reload')]
-    public function ReloadAllTranslation(TranslationService $translationService, DataSystemService $dataSystemService): JsonResponse
+    public function ReloadAllTranslation(TranslationService $translationService): JsonResponse
     {
         $translationService->updateTranslateFromBDDtoYamlFile();
-        $dataSystemService->clearCacheInterne();
+        $this->systemService->clearCacheInterne();
         return $this->json(['success' => true]);
     }
 

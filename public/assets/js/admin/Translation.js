@@ -110,7 +110,6 @@ Translation.Launch = function () {
             url: url,
         })
             .done(function (json) {
-                console.log(json);
                 $(id).html(json.msg);
             });
     }
