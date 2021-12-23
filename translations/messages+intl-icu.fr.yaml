@@ -637,3 +637,9 @@
 'admin_menu#Valider': Valider
 'admin_menu#Information sur le menu': 'Information sur le menu'
 'admin_menu#Exemple de rendu': 'Exemple de rendu'
+'admin_menu#Titre du menu': 'Titre du menu'
+'admin_menu#Permet de retrouver facilement le menu dans le choix de menu': 'Permet de retrouver facilement le menu dans le choix de menu'
+'admin_menu#Description du menu': 'Description du menu'
+'admin_menu#Permet de définir un descriptif du menu pour l''administration': 'Permet de définir un descriptif du menu pour l''administration'
+'admin_menu#Désactiver le menu': 'Désactiver le menu'
+'admin_menu#Un menu désactivé n''apparaitra plus dans le choix de menu ni sur le front': 'Un menu désactivé n''apparaitra plus dans le choix de menu ni sur le front'

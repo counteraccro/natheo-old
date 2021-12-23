@@ -17,6 +17,12 @@
                     <div class="card-body">
                         {{ form_start(form) }}
 
+                        {{ form_row(form.title) }}
+
+                        {{ form_row(form.description) }}
+
+                        {{ form_row(form.disabled) }}
+
                         {{ form_row(form.valider) }}
 
                         {{ form_end(form) }}

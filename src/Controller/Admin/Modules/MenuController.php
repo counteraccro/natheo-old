@@ -13,6 +13,7 @@ use App\Form\Modules\Menu\MenuType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\Date;
 
 #[Route('/admin/menu', name: 'admin_menu_')]
 class MenuController extends AppAdminController
@@ -103,15 +104,25 @@ class MenuController extends AppAdminController
         $form->handleRequest($this->request->getCurrentRequest());
         if ($form->isSubmitted() && $form->isValid()) {
 
-            //$this->doctrine->getManager()->persist($tag);
-            //$this->doctrine->getManager()->flush();
+            /** @var Menu $menu */
+            $menu = $form->getData();
+            $menu->setUser($this->security->getUser());
+            if($action == 'add')
+            {
+                $menu->setCreateOn(new \DateTime());
+            }
+            $menu->setEditOn(new \DateTime());
+
+
+            $this->doctrine->getManager()->persist($menu);
+            $this->doctrine->getManager()->flush();
 
             $param = [];
             $this->addFlash('success', $flashMsg);
             if ($action == 'edit') {
                 $param = ['page' => $this->getPageInSession(self::SESSION_KEY_PAGE)];
             }
-            //return $this->redirectToRoute('admin_tag_index', $param);
+            return $this->redirectToRoute('admin_menu_index', $param);
         }
 
         return $this->render('admin/modules/menu/create-update.html.twig', [

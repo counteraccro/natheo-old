@@ -52,6 +52,11 @@ class Menu
      */
     private $disabled;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $editOn;
+
     public function __construct()
     {
         $this->menuElements = new ArrayCollection();
@@ -148,6 +153,18 @@ class Menu
     public function setDisabled(bool $disabled): self
     {
         $this->disabled = $disabled;
+
+        return $this;
+    }
+
+    public function getEditOn(): ?\DateTimeInterface
+    {
+        return $this->editOn;
+    }
+
+    public function setEditOn(\DateTimeInterface $editOn): self
+    {
+        $this->editOn = $editOn;
 
         return $this;
     }
