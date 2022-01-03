@@ -32,9 +32,22 @@
             <div class="col-6">
                 <div class="card">
                     <div class="card-header">
+                        {{ "admin_menu#Elements du menu" | trans }}
+                    </div>
+                    <div class="card-body">
+                        <div id="block-element" data-url="{{ path('admin_menu_ajax_menu_element') }}" data-loading="{{ "admin_menu#Chargement des elements du menu" | trans }}">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="card mt-4">
+                    <div class="card-header">
                         {{ "admin_menu#Exemple de rendu" | trans }}
                     </div>
                     <div class="card-body">
+                        <div id="exemple-render" data-url="{{ path('admin_menu_ajax_exemple_render') }}" data-loading="{{ "admin_menu#Chargement du rendu du menu" | trans }}">
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -48,6 +61,8 @@
         $(document).ready(function () {
             Menu.Launch();
             Menu.CreateUpdate();
+            Menu.LoadExempleRender();
+            Menu.LoadMenuElement();
         });
     </script>
 

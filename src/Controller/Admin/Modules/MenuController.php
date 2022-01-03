@@ -9,6 +9,8 @@ namespace App\Controller\Admin\Modules;
 
 use App\Controller\Admin\AppAdminController;
 use App\Entity\Modules\Menu\Menu;
+use App\Entity\Modules\Menu\MenuElement;
+use App\Form\Modules\Menu\MenuElementType;
 use App\Form\Modules\Menu\MenuType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -131,6 +133,76 @@ class MenuController extends AppAdminController
             'title' => $title,
             'menu' => $menu,
             'action' => $action,
+        ]);
+    }
+
+    /**
+     * Permet de voir le rendu du menu
+     * @param int $mode
+     * @return RedirectResponse|Response
+     */
+    #[Route('/ajax/exemple-render/', name: 'ajax_exemple_render')]
+    public function showMenuRender(int $mode = 1): RedirectResponse|Response
+    {
+        return $this->render('admin/modules/menu/ajax/exemple-render.html.twig', [
+
+        ]);
+    }
+
+    /**
+     * Permet de voir les elements du menu
+     * @return RedirectResponse|Response
+     */
+    #[Route('/ajax/element-menu/', name: 'ajax_menu_element')]
+    public function showElementMenu(): RedirectResponse|Response
+    {
+        return $this->render('admin/modules/menu/ajax/menu-elements.html.twig', [
+
+        ]);
+    }
+
+    /**
+     * Popin d'ajout / suppression d'un element de menu
+     * @param MenuElement|null $menuElement
+     * @return RedirectResponse|Response
+     */
+    #[Route('/ajax/element-menu/add', name: 'ajax_menu_element_add')]
+    #[Route('/ajax/element-menu/edit/{id}', name: 'ajax_menu_element_edit')]
+    public function modalCreateUpdateMenuElement(MenuElement $menuElement = null): RedirectResponse|Response
+    {
+
+        if($menuElement == null)
+        {
+            $action = 'add';
+            $menuElement = new MenuElement();
+            $title = $this->translator->trans('admin_menu#Ajouter un element au menu');
+            $url = $this->generateUrl('admin_menu_ajax_menu_element_add');
+            $msg_loading = $this->translator->trans("admin_menu#Création de l'élément du menu en cours....");
+        }
+        else {
+            $action = 'edit';
+            $title = $this->translator->trans('admin_menu#Edition de l\'element') . ' #' . $menuElement->getId();
+            $url = $this->generateUrl('admin_menu_ajax_menu_element_edit', ['id' => $menuElement->getId()]);
+            $msg_loading = $this->translator->trans("admin_menu#Edition de l'élément du menu en cours....");
+        }
+
+        $form = $this->createForm(MenuElementType::class, $menuElement, [
+            'attr' => [
+                'id' => 'form-create-update-menu-element',
+                'data-loading' => $msg_loading,
+            ],
+            'positions' => []
+        ]);
+
+        $form->handleRequest($this->request->getCurrentRequest());
+        if ($form->isSubmitted() && $form->isValid()) {
+            var_dump($form->getData());
+        }
+
+        return $this->render('admin/modules/menu/ajax/modal-menu-elements.html.twig', [
+            'title' => $title,
+            'form' => $form->createView(),
+            'url' => $url,
         ]);
     }
 }
