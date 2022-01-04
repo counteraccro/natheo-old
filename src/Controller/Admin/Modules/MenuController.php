@@ -186,13 +186,13 @@ class MenuController extends AppAdminController
         {
             $action = 'add';
             $menuElement = new MenuElement();
-            $title = $this->translator->trans('admin_menu#Ajouter un element au menu');
+            $title = $this->translator->trans('admin_menu#Ajouter un élément au menu');
             $url = $this->generateUrl('admin_menu_ajax_menu_element_add');
             $msg_loading = $this->translator->trans("admin_menu#Création de l'élément du menu en cours....");
         }
         else {
             $action = 'edit';
-            $title = $this->translator->trans('admin_menu#Edition de l\'element') . ' #' . $menuElement->getId();
+            $title = $this->translator->trans('admin_menu#Edition de l\'élément') . ' #' . $menuElement->getId();
             $url = $this->generateUrl('admin_menu_ajax_menu_element_edit', ['id' => $menuElement->getId()]);
             $msg_loading = $this->translator->trans("admin_menu#Edition de l'élément du menu en cours....");
         }

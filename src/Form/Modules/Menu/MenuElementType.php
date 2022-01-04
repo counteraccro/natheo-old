@@ -23,8 +23,8 @@ class MenuElementType extends AppType
     {
         $optionParent = [
             'choices' => $options['parent'],
-            'label' => $this->translator->trans('admin_menu#Element de menu parent'),
-            'help' => $this->translator->trans('admin_menu#Selectionner le menu element qui sera parent de celui ci'),
+            'label' => $this->translator->trans('admin_menu#Elément de menu parent'),
+            'help' => $this->translator->trans('admin_menu#Selectionner le menu élément qui sera parent de celui ci'),
             'placeholder' => $this->translator->trans('admin_menu#Racine du menu'),
         ];
 
