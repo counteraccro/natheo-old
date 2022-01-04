@@ -18,10 +18,16 @@ class MenuService extends AppService
 
     /**
      * Retourne la liste des menus elements trier par parents / enfants
+     * @return array
      */
     public function getListeMenuElementOrderByParentChildren(): array
     {
         $tabMenuElement = $this->request->getSession()->get(self::SESSION_KEY_ELEMENT_MENU);
+
+        if(empty($tabMenuElement))
+        {
+            return [];
+        }
 
         function cmp($a, $b): int
         {
