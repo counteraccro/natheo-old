@@ -12,6 +12,7 @@ use App\Entity\Modules\Menu\Menu;
 use App\Entity\Modules\Menu\MenuElement;
 use App\Form\Modules\Menu\MenuElementType;
 use App\Form\Modules\Menu\MenuType;
+use App\Service\Module\Menu\MenuService;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -30,6 +31,9 @@ class MenuController extends AppAdminController
     #[Route('/index/{page}', name: 'index')]
     public function index(int $page = 1): Response
     {
+
+        $this->session->remove(MenuService::SESSION_KEY_MENU_ID);
+        $this->session->remove(MenuService::SESSION_KEY_ELEMENT_MENU);
 
         $breadcrumb = [
             $this->translator->trans('admin_dashboard#Dashboard') => 'admin_dashboard_index',
@@ -94,12 +98,17 @@ class MenuController extends AppAdminController
             $title = $this->translator->trans('admin_menu#Ajouter un menu');
             $breadcrumb[$title] = '';
             $flashMsg = $this->translator->trans('admin_menu#Menu Créé avec succès');
+            $this->session->set(MenuService::SESSION_KEY_MENU_ID, 0);
+            $this->session->set(MenuService::SESSION_KEY_ELEMENT_MENU, 0);
         } else {
             $action = 'edit';
             $title = $this->translator->trans('admin_menu#Edition du menu ') . '#' . $menu->getId();
             $breadcrumb[$title] = '';
             $flashMsg = $this->translator->trans('admin_menu#Menu édité avec succès');
+            $this->session->set(MenuService::SESSION_KEY_MENU_ID, $menu->getId());
+            $this->session->set(MenuService::SESSION_KEY_ELEMENT_MENU, $menu->getMenuElements()->toArray());
         }
+
 
         $form = $this->createForm(MenuType::class, $menu);
 
@@ -171,6 +180,8 @@ class MenuController extends AppAdminController
     public function modalCreateUpdateMenuElement(MenuElement $menuElement = null): RedirectResponse|Response
     {
 
+        $menu_id = $this->session->get(MenuService::SESSION_KEY_MENU_ID);
+
         if($menuElement == null)
         {
             $action = 'add';
@@ -186,16 +197,21 @@ class MenuController extends AppAdminController
             $msg_loading = $this->translator->trans("admin_menu#Edition de l'élément du menu en cours....");
         }
 
+        $parent = $this->menuService->getListeMenuElementOrderByParentChildren();
+
+
+
         $form = $this->createForm(MenuElementType::class, $menuElement, [
             'attr' => [
                 'id' => 'form-create-update-menu-element',
                 'data-loading' => $msg_loading,
             ],
-            'positions' => []
+            'parent' => $parent
         ]);
 
         $form->handleRequest($this->request->getCurrentRequest());
         if ($form->isSubmitted() && $form->isValid()) {
+
             var_dump($form->getData());
         }
 

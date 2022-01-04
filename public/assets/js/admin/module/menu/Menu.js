@@ -57,10 +57,28 @@ Menu.Launch = function () {
             }
         }
 
-        $('#menu_element_isDirectLink').change(function () {
+        /**
+         * Permet de charger la liste de position en fonction d'un parent
+         * @constructor
+         */
+        Menu.LoadPosition = function() {
+
+        }
+
+        /**
+         * Event sur le changement de la checkbox
+         */
+        $('#modal-create-update-menu-element #menu_element_isDirectLink').change(function () {
             Menu.ShowUrlInput();
         })
 
+        $('#modal-create-update-menu-element #menu_element_parent').change(function() {
+
+        })
+
+        /**
+         * Au submit du formulaire
+         */
         $('#modal-create-update-menu-element #form-create-update-menu-element').submit(function (e) {
             e.preventDefault();
 

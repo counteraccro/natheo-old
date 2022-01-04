@@ -18,6 +18,7 @@ use App\Service\Admin\System\SystemService;
 use App\Service\Admin\System\TranslationService;
 use App\Service\Admin\ThemeService;
 use App\Service\Module\FAQ\FaqService;
+use App\Service\Module\Menu\MenuService;
 use App\Service\Module\TagService;
 use Doctrine\Persistence\ManagerRegistry as Doctrine;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -113,6 +114,11 @@ class AppAdminController extends AbstractController
     protected SystemService $systemService;
 
     /**
+     * @var MenuService
+     */
+    protected MenuService $menuService;
+
+    /**
      * @param TranslatorInterface $translator
      * @param RequestStack $request
      * @param OptionService $optionService
@@ -132,7 +138,8 @@ class AppAdminController extends AbstractController
     public function __construct(TranslatorInterface $translator, RequestStack $request, OptionService $optionService,
                                 TranslationService  $translationService, DataSystemService $dataSystemService, KernelInterface $kernel,
                                 FileService         $fileService, MediaService $mediaService, ThemeService $themeService, Security $security,
-                                FaqService $faqService, Doctrine $doctrine, TagService $tagService, PageService $pageService, SystemService $systemService)
+                                FaqService $faqService, Doctrine $doctrine, TagService $tagService, PageService $pageService, SystemService $systemService,
+                                MenuService $menuService)
     {
         $this->translator = $translator;
         $this->request = $request;
@@ -150,6 +157,7 @@ class AppAdminController extends AbstractController
         $this->tagService = $tagService;
         $this->pageService = $pageService;
         $this->systemService = $systemService;
+        $this->menuService = $menuService;
     }
 
     /**

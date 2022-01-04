@@ -4,6 +4,8 @@ namespace App\Form\Modules\Menu;
 
 use App\Entity\Modules\Menu\MenuElement;
 use App\Form\AppType;
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -14,17 +16,20 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class MenuElementType extends AppType
 {
+
+    private int $menuId = 0;
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-
-        $optionChoiceType = [
-            'choices' => $options['positions'],
-            'label' => $this->translator->trans('admin_menu#Position de l\'element dans le menu'),
-            'help' => $this->translator->trans('admin_menu#L\'element du menu sera placée à la position choisie, les autres elements seront décalés de 1 vers le bas ')
+        $optionParent = [
+            'choices' => $options['parent'],
+            'label' => $this->translator->trans('admin_menu#Element de menu parent'),
+            'help' => $this->translator->trans('admin_menu#Selectionner le menu element qui sera parent de celui ci'),
+            'placeholder' => $this->translator->trans('admin_menu#Racine du menu'),
         ];
 
         $builder
-            ->add('position', ChoiceType::class, $optionChoiceType)
+            ->add('parent', ChoiceType::class, $optionParent)
             ->add('url', TextType::class, [
                 'label' => $this->translator->trans('admin_menu#Lien direct'),
                 'attr' => ['placeholder' => $this->translator->trans('admin_menu#Lien direct')],
@@ -49,7 +54,8 @@ class MenuElementType extends AppType
     {
         $resolver->setDefaults([
             'data_class' => MenuElement::class,
-            'positions' => [],
+            'parent' => [],
+            'allow_extra_fields' => true,
         ]);
     }
 }

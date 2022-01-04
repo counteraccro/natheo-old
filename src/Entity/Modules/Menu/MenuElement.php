@@ -54,12 +54,12 @@ class MenuElement
 
     /**
      * @ORM\ManyToOne(targetEntity=Page::class, inversedBy="menuElements")
-     * @ORM\JoinColumn(name="parent", referencedColumnName="id")
      */
     private $page;
 
     /**
      * @ORM\ManyToOne(targetEntity=MenuElement::class, inversedBy="children")
+     * @ORM\JoinColumn(name="parent", referencedColumnName="id")
      */
     private $parent;
 
@@ -67,6 +67,11 @@ class MenuElement
      * @ORM\OneToMany(targetEntity=MenuElement::class, mappedBy="parent")
      */
     private $children;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $label;
 
     public function __construct()
     {
@@ -200,6 +205,18 @@ class MenuElement
                 $child->setParent(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLabel(): ?string
+    {
+        return $this->label;
+    }
+
+    public function setLabel(?string $label): self
+    {
+        $this->label = $label;
 
         return $this;
     }

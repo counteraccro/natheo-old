@@ -8,7 +8,11 @@
             <div class="modal-body">
                 {{ form_start(form, { 'id' : 'form-create-update-menu-element', 'action': url }) }}
 
-                {{ form_row(form.position) }}
+                {{ form_row(form.parent) }}
+
+                <div id="field_position">
+
+                </div>
 
                 {{ form_row(form.isDirectLink) }}
 
