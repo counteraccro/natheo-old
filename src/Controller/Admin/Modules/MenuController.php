@@ -165,10 +165,18 @@ class MenuController extends AppAdminController
     #[Route('/ajax/element-menu/', name: 'ajax_menu_element')]
     public function showElementMenu(): RedirectResponse|Response
     {
-
+        $menuElements = $this->menuService->getMenuElements();
+        $tab = [];
+        foreach($menuElements as $menuElement)
+        {
+            if($menuElement->getParent() == null)
+            {
+                $tab = $this->menuService->treeMenuElement($menuElement, $tab, 0, true);
+            }
+        }
 
         return $this->render('admin/modules/menu/ajax/menu-elements.html.twig', [
-
+            'menuElements' => $tab
         ]);
     }
 

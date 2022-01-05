@@ -2,6 +2,14 @@
     <div id="btn-add-menu-element" class="btn btn-primary float-end" data-url="{{ path('admin_menu_ajax_menu_element_add') }}" data-loading="{{ "admin_menu#Chargement de la modale d'ajout d'un menu element" | trans }}">
         {{ "admin_menu#Ajouter un élément" | trans }}
     </div>
+
+    {% for element in menuElements %}
+
+        <div class="ms-{{ element.deep }}">
+            {{ element.obj.label }}
+        </div>
+    {% endfor %}
+
 </div>
 
 {% block javascripts %}
