@@ -61,7 +61,7 @@ class MenuElement
      * @ORM\ManyToOne(targetEntity=MenuElement::class, inversedBy="children")
      * @ORM\JoinColumn(name="parent", referencedColumnName="id")
      */
-    private $parent;
+    private ?MenuElement $parent;
 
     /**
      * @ORM\OneToMany(targetEntity=MenuElement::class, mappedBy="parent")
