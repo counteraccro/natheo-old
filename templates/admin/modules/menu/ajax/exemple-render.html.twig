@@ -1,0 +1,14 @@
+{{ "admin_menu#Thème utilisé" | trans }} : {{ theme }}
+
+<div class="row">
+
+    <div class="col-4">
+        <link rel="stylesheet" href="{{ asset('assets/css/themes/' ~ theme~ '/style.css') }}">
+        {% include 'themes/'~ theme ~'/'~ pathThemeModule ~ '/menu/vertical-sidebar-sub-menu.html.twig' with {'menu': menu} %}
+    </div>
+    <div class="col-8">
+
+    </div>
+
+</div>
+

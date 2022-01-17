@@ -146,15 +146,35 @@ class MenuController extends AppAdminController
     }
 
     /**
-     * Permet de voir le rendu du menu
+     * Permet de voir le rendu du menu en fonction du thème selectionné
      * @param int $mode
      * @return RedirectResponse|Response
      */
     #[Route('/ajax/exemple-render/', name: 'ajax_exemple_render')]
     public function showMenuRender(int $mode = 1): RedirectResponse|Response
     {
-        return $this->render('admin/modules/menu/ajax/exemple-render.html.twig', [
 
+        $theme = $this->themeService->getCurrentTheme();
+        $pathThemeModule = $this->themeService::RELATIVE_PATH_MODULES;
+        $pathThemeCss = $this->themeService::RELATIVE_PATH_ASSET_CSS;
+
+        $menuElements = $this->menuService->getMenuElements();
+        /*$tab = [];
+        foreach($menuElements as $menuElement)
+        {
+            if($menuElement->getParent() == null)
+            {
+                $tab = $this->menuService->treeMenuElement($menuElement, $tab, 0, true);
+            }
+        }*/
+
+        //var_dump($menuElements);
+
+        return $this->render('admin/modules/menu/ajax/exemple-render.html.twig', [
+            'theme' => $theme,
+            'menu' => $menuElements,
+            'pathThemeModule' => $pathThemeModule,
+            'pathThemeCss' => $pathThemeCss
         ]);
     }
 

@@ -31,8 +31,11 @@ class ThemeService extends AppService
     const RELATIVE_PATH_CONFIG = 'config';
     const RELATIVE_PATH_CONFIG_FILE = self::RELATIVE_PATH_CONFIG . DIRECTORY_SEPARATOR . 'config.yaml';
     const RELATIVE_PATH_ASSET = 'assets';
+    const RELATIVE_PATH_VIEWS = 'views';
     const RELATIVE_PATH_ASSET_JS = self::RELATIVE_PATH_ASSET . DIRECTORY_SEPARATOR . 'js';
     const RELATIVE_PATH_ASSET_CSS = self::RELATIVE_PATH_ASSET . DIRECTORY_SEPARATOR . 'css';
+    const RELATIVE_PATH_MODULES = self::RELATIVE_PATH_VIEWS .DIRECTORY_SEPARATOR . 'modules';
+
 
     const KEY_SESSION_CURRENT_THEME = "session-current-theme";
 

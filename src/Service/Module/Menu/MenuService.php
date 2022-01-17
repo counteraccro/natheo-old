@@ -106,19 +106,19 @@ class MenuService extends AppService
             $tabMenuElement = $this->request->getSession()->get(self::SESSION_KEY_ELEMENT_MENU);
         }
 
-        function cmp($a, $b): int
+        /*function cmp($a, $b): int
         {
             /*if ($a->getparent() == $b->getparent() && $a->getPosition() == $b->getPosition()) {
                 return 0;
             }
-            return ($a->getparent() < $b->getparent() && $a->getPosition() < $b->getPosition()) ? -1 : 1;*/
+            return ($a->getparent() < $b->getparent() && $a->getPosition() < $b->getPosition()) ? -1 : 1;
 
             if ($a->getPosition() == $b->getPosition()) {
                 return 0;
             }
             return ($a->getPosition() < $b->getPosition()) ? -1 : 1;
         }
-        uasort($tabMenuElement, 'App\Service\Module\Menu\cmp');
+        uasort($tabMenuElement, 'App\Service\Module\Menu\cmp'); */
 
         return $tabMenuElement;
     }
