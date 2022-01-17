@@ -4,43 +4,32 @@
 }
 
 /** CSS VERTICAL-SIDEBAR-SUB-MENU **/
-@media all and (min-width: 992px) {
-
-    .sidebar-left li, .sidebar-right li {
-        position: relative;
-    }
-
-    .sidebar-left li .submenu {
-        position: absolute;
-        left: 100%;
-        top: -9px;
-        min-width: 240px;
-        display: none;
-    }
-
-    .sidebar-right li .submenu {
-        position: absolute;
-        right: 100%;
-        top: -9px;
-        min-width: 240px;
-        display: none;
-    }
-
-    .sidebar-left li:hover > .submenu, .sidebar-right li:hover > .submenu {
-        display: block;
-    }
-
+.sidebar li:hover {
+    background-color: var(--bs-light);
 }
 
-@media (max-width: 991px) {
+.sidebar li {
+    position: relative;
+}
 
-    .sidebar .submenu, .sidebar .dropdown-menu {
-        position: static !important;
-        margin-left: 0.7rem;
-        margin-right: 0.7rem;
-        margin-bottom: .5rem;
-    }
+.sidebar-left li .submenu {
+    position: absolute;
+    left: 100%;
+    top: -9px;
+    min-width: 240px;
+    display: none;
+}
 
+.sidebar-right li .submenu {
+    position: absolute;
+    right: 100%;
+    top: -9px;
+    min-width: 240px;
+    display: none;
+}
+
+.sidebar li:hover > .submenu {
+    display: block;
 }
 
 /** END CSS VERTICAL-SIDEBAR-SUB-MENU **/

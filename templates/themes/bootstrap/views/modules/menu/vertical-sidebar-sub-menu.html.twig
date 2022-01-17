@@ -1,72 +1,35 @@
-<nav class="sidebar sidebar-right card py-2 mb-4">
-{% for element in menu %}
-
+<nav class="sidebar sidebar-right card py-2 mb-2">
     <ul class="nav flex-column">
-    {% if element.parent == null %}
-            {% if element.children | length > 0 %}
-                <li class="nav-item"><a class="nav-link" href="#">{{ element.label }} <b class="float-end">&raquo;</b></a>
-                    <ul class="submenu dropdown-menu">
+        {% for element in menu %}
+            {% if element.parent == null %}
+                {% if element.children | length > 0 %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">{{ element.label }} <b class="float-end">&raquo;</b></a>
+                        <ul class="submenu dropdown-menu">
 
-                        {% for child1 in element.children %}
-                            {% if child1.children | length > 0 %}
-                                <li><a class="nav-link" href="#">{{ child1.label }} <b class="float-end">&raquo;</b></a>
-                                    <ul class="submenu dropdown-menu">
-                                        {% for child2 in child1.children %}
-                                            {% if child2.children | length > 0 %}
-                                                <li><a class="nav-link" href="#">{{ child2.label }} <b class="float-end">&raquo;</b></a></li>
-                                            {% else %}
-                                                <li><a class="nav-link" href="#">{{ child2.label}} </a></li>
-                                            {% endif %}
-                                        {% endfor %}
-                                    </ul>
-                                </li>
-                            {% else %}
-                                <li><a class="nav-link" href="#">{{ child1.label}} </a></li>
-                            {% endif %}
-                        {% endfor %}
-
-                    </ul>
-                </li>
-            {% else %}
-                <li class="nav-item"><a class="nav-link" href="#">{{ element.label }}</a></li>
+                            {% for child1 in element.children %}
+                                {% if child1.children | length > 0 %}
+                                    <li><a class="nav-link" href="#">{{ child1.label }} <b class="float-end">&raquo;</b></a>
+                                        <ul class="submenu dropdown-menu">
+                                            {% for child2 in child1.children %}
+                                                {% if child2.children | length > 0 %}
+                                                    <li><a class="nav-link" href="#">{{ child2.label }} <b class="float-end">&raquo;</b></a></li>
+                                                {% else %}
+                                                    <li><a class="nav-link" href="#">{{ child2.label }} </a></li>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                {% else %}
+                                    <li><a class="nav-link" href="#">{{ child1.label }} </a></li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% else %}
+                    <li class="nav-item"><a class="nav-link" href="#">{{ element.label }}</a></li>
+                {% endif %}
             {% endif %}
-    {% endif %}
+        {% endfor %}
     </ul>
-
-{% endfor %}
 </nav>
-
-
-<script>
-
-    /*document.addEventListener("DOMContentLoaded", function(){
-        // make it as accordion for smaller screens
-        if (window.innerWidth < 992) {
-
-            document.querySelectorAll('.sidebar .nav-link').forEach(function(element){
-
-                console.log(element);
-
-                element.addEventListener('click', function (e) {
-
-                    alert('ici');
-
-                    let nextEl = element.nextElementSibling;
-                    let parentEl  = element.parentElement;
-                    let allSubmenus_array =	parentEl.querySelectorAll('.submenu');
-
-                    if(nextEl && nextEl.classList.contains('submenu')) {
-                        e.preventDefault();
-                        if(nextEl.style.display == 'block'){
-                            nextEl.style.display = 'none';
-                        } else {
-                            nextEl.style.display = 'block';
-                        }
-                    }
-                });
-            })
-        }
-// end if innerWidth
-    });*/
-
-</script>
