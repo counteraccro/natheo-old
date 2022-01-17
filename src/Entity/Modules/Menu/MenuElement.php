@@ -65,6 +65,7 @@ class MenuElement
 
     /**
      * @ORM\OneToMany(targetEntity=MenuElement::class, mappedBy="parent")
+     * @ORM\OrderBy({"position" = "ASC"})
      */
     private $children;
 
