@@ -1,0 +1,32 @@
+<ul class="navbar-nav cms-navbar-nav">
+    {% for element in menu %}
+        {% if element.parent == null %}
+            {% if element.children | length > 0 %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"> {{ element.label }}</a>
+                    <ul class="dropdown-menu">
+                        {% for child1 in element.children %}
+                            {% if child1.children | length > 0 %}
+                                <li><a class="dropdown-item" href="#">{{ child1.label }} &raquo;</a>
+                                    <ul class="submenu dropdown-menu">
+                                        {% for child2 in child1.children %}
+                                            {% if child2.children | length > 0 %}
+                                                <li><a class="dropdown-item" href="#">{{ child2.label }} &raquo;</a></li>
+                                            {% else %}
+                                                <li><a class="dropdown-item" href="#">{{ child2.label }} </a></li>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                            {% else %}
+                                <li><a class="dropdown-item" href="#">{{ child1.label }} </a></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% else %}
+                <li class="nav-item active"> <a class="nav-link" href="#">{{ element.label }} </a> </li>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+</ul>

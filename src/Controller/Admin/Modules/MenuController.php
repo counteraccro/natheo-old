@@ -150,8 +150,8 @@ class MenuController extends AppAdminController
      * @param int $mode
      * @return RedirectResponse|Response
      */
-    #[Route('/ajax/exemple-render/', name: 'ajax_exemple_render')]
-    public function showMenuRender(int $mode = 1): RedirectResponse|Response
+    #[Route('/ajax/exemple-render/{type}', name: 'ajax_exemple_render')]
+    public function showMenuRender(string $type = 'left'): RedirectResponse|Response
     {
 
         $theme = $this->themeService->getCurrentTheme();
@@ -159,22 +159,13 @@ class MenuController extends AppAdminController
         $pathThemeCss = $this->themeService::RELATIVE_PATH_ASSET_CSS;
 
         $menuElements = $this->menuService->getMenuElements();
-        /*$tab = [];
-        foreach($menuElements as $menuElement)
-        {
-            if($menuElement->getParent() == null)
-            {
-                $tab = $this->menuService->treeMenuElement($menuElement, $tab, 0, true);
-            }
-        }*/
-
-        //var_dump($menuElements);
 
         return $this->render('admin/modules/menu/ajax/exemple-render.html.twig', [
             'theme' => $theme,
             'menu' => $menuElements,
             'pathThemeModule' => $pathThemeModule,
-            'pathThemeCss' => $pathThemeCss
+            'pathThemeCss' => $pathThemeCss,
+            'type' => $type
         ]);
     }
 

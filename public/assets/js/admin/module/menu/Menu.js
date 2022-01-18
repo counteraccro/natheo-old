@@ -104,9 +104,14 @@ Menu.Launch = function () {
      * Permet de charger le rendu du menu exemple
      * @constructor
      */
-    Menu.LoadExempleRender = function () {
-        let id = ' #admin-create-update-tag #exemple-render';
+    Menu.LoadExempleRender = function (param) {
+        let id = ' #admin-create-update-menu #exemple-render';
         let url = $(id).data('url');
+
+        if(param !== '')
+        {
+            url = url + '/' + param;
+        }
 
         let str_loading = $(id).data('loading');
         System.Ajax(url, id, true, str_loading);
@@ -117,11 +122,19 @@ Menu.Launch = function () {
      * @constructor
      */
     Menu.LoadMenuElement = function () {
-        let id = ' #admin-create-update-tag #block-element';
+        let id = ' #admin-create-update-menu #block-element';
         let url = $(id).data('url');
 
         let str_loading = $(id).data('loading');
         System.Ajax(url, id, true, str_loading);
+    }
+
+    /** Event pour le changement des exemples de rendu **/
+    Menu.SwitchExempleRender = function() {
+        $('#admin-create-update-menu #select-render-menu').change(function() {
+            let val = $(this).val();
+            Menu.LoadExempleRender(val);
+        })
     }
 
     /**

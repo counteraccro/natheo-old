@@ -1,0 +1,41 @@
+{% for element in menu %}
+        {% if element.parent == null %}
+            {% if element.children | length > 0 %}
+                <div class="col">
+                    <h5>{{ element.label }}</h5>
+                    <ul>
+                        {% for child1 in element.children %}
+                            {% if child1.children | length > 0 %}
+                                <li><a href="#">{{ child1.label }} </a>
+                                <ul>
+                                    {% for child2 in child1.children %}
+                                        {% if child2.children | length > 0 %}
+                                            <li><a href="#">{{ child2.label }} </a></li>
+                                        {% else %}
+                                            <li><a href="#">{{ child2.label }} </a></li>
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul></li>
+                            {% else %}
+                                <li><a href="#">{{ child1.label }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        {% endif %}
+{% endfor %}
+{% set nb = 0 %}
+<div class="col">
+    {% for element in menu %}
+        {% if element.parent == null and element.children | length == 0 %}
+            {% if nb == 0 %}
+                <h5>{{ 'front_front#Autres' | trans }}</h5>
+                <ul>
+                {% set nb = 1 %}
+            {% endif %}
+            <li><a href="#">{{ element.label }}</a></li>
+        {% endif %}
+    {% endfor %}
+                </ul>
+</div>

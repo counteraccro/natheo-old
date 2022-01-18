@@ -658,3 +658,9 @@
 'front_auth#Mot de passe': '__Mot de passe'
 'front_auth#Ce souvenir de moi': '__Ce souvenir de moi'
 'front_auth#Me connecter': '__Me connecter'
+'admin_menu#Thème utilisé': '__Thème utilisé'
+'admin_menu#Menu à gauche': '__Menu à gauche'
+'admin_menu#Menu à droite': '__Menu à droite'
+'admin_menu#Menu top': '__Menu top'
+'admin_menu#Menu footer': '__Menu footer'
+'front_front#Autres': __Autres

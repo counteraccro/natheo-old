@@ -33,3 +33,31 @@
 }
 
 /** END CSS VERTICAL-SIDEBAR-SUB-MENU **/
+
+/** CSS TOP NAVBAR-SUB-MENU **/
+
+.dropdown-menu li {
+    position: relative;
+}
+
+.cms-navbar-nav .nav-item .submenu {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: -7px;
+}
+
+.cms-navbar-nav .nav-item .submenu-left {
+    right: 100%;
+    left: auto;
+}
+
+.dropdown-menu > li:hover {
+    background-color: #f1f1f1
+}
+
+.dropdown-menu > li:hover > .submenu {
+    display: block;
+}
+
+/** END CSS TOP NAVBAR-SUB-MENU **/

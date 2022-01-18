@@ -3,7 +3,7 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block body %}
-    <div id="admin-create-update-tag">
+    <div id="admin-create-update-menu">
         <h1>{{ title }}</h1>
 
         {{ breadcrumb | breadcrumb | raw }}
@@ -61,7 +61,7 @@
         $(document).ready(function () {
             Menu.Launch();
             Menu.CreateUpdate();
-            Menu.LoadExempleRender();
+            Menu.LoadExempleRender('');
             Menu.LoadMenuElement();
         });
     </script>
