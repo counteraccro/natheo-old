@@ -1,0 +1,26 @@
+<div class="mb-3" id="block-liste-position-element">
+    <label class="form-label" for="menu_position_liste">{{ "admin_menu#Position de l'élément" | trans }}</label>
+    <select id="menu_position_liste" name="menu_position_liste" class="form-select">
+        {% if(menuElement == null) %}
+            <option value="1">{{ "admin_menu#Position 1" | trans }}</option>
+        {% else %}
+            {% set position = 1 %}
+            {% for children in  menuElement.children %}
+                {% set position = children.position %}
+                <option value="{{ children.position }}">{{ "admin_menu#Avant " | trans }} {{ children.label }}</option>
+            {% endfor %}
+            <option value="{{ (position + 1) }}">{{ "admin_menu#En dernière position" | trans }}</option>
+        {% endif %}
+    </select>
+</div>
+
+{% block javascripts %}
+
+    <script>
+        $(document).ready(function () {
+            let val = $('#block-liste-position-element #menu_position_liste').val();
+            $('#modal-create-update-menu-element #menu_element_parent').val(val);
+        });
+    </script>
+
+{% endblock %}

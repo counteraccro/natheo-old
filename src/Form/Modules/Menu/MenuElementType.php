@@ -9,6 +9,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -21,15 +22,28 @@ class MenuElementType extends AppType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $optionParent = [
-            'choices' => $options['parent'],
-            'label' => $this->translator->trans('admin_menu#Elément de menu parent'),
-            'help' => $this->translator->trans('admin_menu#Selectionner le menu élément qui sera parent de celui ci'),
-            'placeholder' => $this->translator->trans('admin_menu#Racine du menu'),
-        ];
 
         $builder
-            ->add('parent', ChoiceType::class, $optionParent)
+            ->add('parent', EntityType::class, [
+                'label' => $this->translator->trans('admin_menu#Elément de menu parent'),
+                'help' => $this->translator->trans('admin_menu#Selectionner le menu élément qui sera parent de celui ci'),
+                'query_builder' => function (EntityRepository $er) {
+
+                    return $er->createQueryBuilder('mp')
+                        ->orderBy('mp.position', 'ASC');
+                },
+                'label_html' => true,
+                'class' => MenuElement::class,
+                'multiple' => false,
+                'expanded' => false,
+                'required' => false,
+                'placeholder' => $this->translator->trans('admin_menu#Racine du menu'),
+                'choice_label' => function (MenuElement $menuElement) {
+
+                   return $menuElement->getLabel();
+                },
+            ])
+            ->add('position', HiddenType::class)
             ->add('url', TextType::class, [
                 'label' => $this->translator->trans('admin_menu#Lien direct'),
                 'attr' => ['placeholder' => $this->translator->trans('admin_menu#Lien direct')],

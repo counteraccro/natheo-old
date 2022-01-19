@@ -61,8 +61,15 @@ Menu.Launch = function () {
          * Permet de charger la liste de position en fonction d'un parent
          * @constructor
          */
-        Menu.LoadPosition = function() {
+        Menu.LoadPosition = function(param) {
 
+            let id = ' #modal-create-update-menu-element #field_position';
+            let url = $(id).data('url');
+
+            url = url.replace('element-parent', param);
+
+            let str_loading = $(id).data('loading');
+            System.Ajax(url, id, true, str_loading);
         }
 
         /**
@@ -73,7 +80,7 @@ Menu.Launch = function () {
         })
 
         $('#modal-create-update-menu-element #menu_element_parent').change(function() {
-
+            Menu.LoadPosition($(this).val());
         })
 
         /**

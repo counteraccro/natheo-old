@@ -99,7 +99,7 @@ class MenuController extends AppAdminController
             $breadcrumb[$title] = '';
             $flashMsg = $this->translator->trans('admin_menu#Menu Créé avec succès');
             $this->session->set(MenuService::SESSION_KEY_MENU_ID, 0);
-            $this->session->set(MenuService::SESSION_KEY_ELEMENT_MENU, 0);
+            $this->session->set(MenuService::SESSION_KEY_ELEMENT_MENU, []);
         } else {
             $action = 'edit';
             $title = $this->translator->trans('admin_menu#Edition du menu ') . '#' . $menu->getId();
@@ -240,6 +240,19 @@ class MenuController extends AppAdminController
             'title' => $title,
             'form' => $form->createView(),
             'url' => $url,
+        ]);
+    }
+
+    /**
+     * Calcul la liste des positions en fonction d'un element parent
+     * @param MenuElement|null $menuElement
+     * @return RedirectResponse|Response
+     */
+    #[Route('/ajax/position-parent/{id}', name: 'ajax_menu_position')]
+    public function calculPositionByParent(MenuElement $menuElement = null): RedirectResponse|Response
+    {
+        return $this->render('admin/modules/menu/ajax/liste-position-parent.html.twig', [
+            'menuElement' => $menuElement
         ]);
     }
 }

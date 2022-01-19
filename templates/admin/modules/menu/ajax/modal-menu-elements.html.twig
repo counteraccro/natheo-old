@@ -10,9 +10,11 @@
 
                 {{ form_row(form.parent) }}
 
-                <div id="field_position">
+                <div id="field_position" data-url="{{ path('admin_menu_ajax_menu_position', {'id' : 'element-parent'}) }}" data-loading="{{ "admin_menu#Chargement des positions" | trans }}">
 
                 </div>
+
+                {{ form_row(form.position) }}
 
                 {{ form_row(form.isDirectLink) }}
 
@@ -38,6 +40,7 @@
             modal.toggle();
 
             Menu.EventModalMenuElement(modal);
+            Menu.LoadPosition(0);
         });
     </script>
 
