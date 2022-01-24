@@ -8,14 +8,17 @@
 namespace App\Controller\Admin\Modules;
 
 use App\Controller\Admin\AppAdminController;
+use App\Entity\Admin\Page\Page;
 use App\Entity\Modules\Menu\Menu;
 use App\Entity\Modules\Menu\MenuElement;
 use App\Form\Modules\Menu\MenuElementType;
 use App\Form\Modules\Menu\MenuType;
 use App\Service\Module\Menu\MenuService;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Validator\Constraints\Date;
 
 #[Route('/admin/menu', name: 'admin_menu_')]
@@ -201,6 +204,7 @@ class MenuController extends AppAdminController
     public function modalCreateUpdateMenuElement(MenuElement $menuElement = null): RedirectResponse|Response
     {
 
+        $local = $this->request->getCurrentRequest()->getLocale();
         $menu_id = $this->session->get(MenuService::SESSION_KEY_MENU_ID);
 
         if($menuElement == null)
@@ -227,7 +231,9 @@ class MenuController extends AppAdminController
                 'id' => 'form-create-update-menu-element',
                 'data-loading' => $msg_loading,
             ],
-            'parent' => $parent
+            'parent' => $parent,
+            'menu_id' => $menu_id,
+            'current_local' => $local
         ]);
 
         $form->handleRequest($this->request->getCurrentRequest());
@@ -254,5 +260,36 @@ class MenuController extends AppAdminController
         return $this->render('admin/modules/menu/ajax/liste-position-parent.html.twig', [
             'menuElement' => $menuElement
         ]);
+    }
+
+    /**
+     * Permet de générer l'url de la page courante
+     * @param Page $page
+     * @return JsonResponse
+     */
+    #[Route('/ajax/generate-url-page/{id}', name: 'ajax_menu_url_page')]
+    public function getUrlByPage(Page $page = null): JsonResponse
+    {
+
+        $local = $this->request->getCurrentRequest()->getLocale();
+        $frontUrl = $this->generateUrl('front_front_slug', ['slug' => 'slug'], UrlGeneratorInterface::ABSOLUTE_URL);
+        $url = $this->translator->trans('admin_menu#Url') . ': ';
+
+        if($page != null)
+        {
+            $slug = $page->getPageTranslations()->first()->getSlug();
+            foreach ($page->getPageTranslations() as $pageTranslation)
+            {
+                if($pageTranslation->getLanguage() == $local)
+                {
+                    $slug = $pageTranslation->getSlug();
+                }
+            }
+
+            $frontUrl = str_replace('slug', $slug, $frontUrl);
+            return $this->json(['url' => $url . $frontUrl]);
+        }
+
+        return $this->json(['url' => '']);
     }
 }

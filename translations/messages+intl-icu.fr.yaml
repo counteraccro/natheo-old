@@ -664,3 +664,15 @@
 'admin_menu#Menu top': 'Menu top'
 'admin_menu#Menu footer': 'Menu footer'
 'front_front#Autres': Autres
+'admin_menu#Pour fonctionner correctement l''url doit être complète.': 'Pour fonctionner correctement l''url doit être complète.'
+'admin_menu#Pages à liées au menu': 'Pages à liées au menu'
+'admin_menu#Uniquement les pages publiées peuvent être liées à un menu': 'Uniquement les pages publiées peuvent être liées à un menu'
+'admin_menu#Aucune page': 'Aucune page'
+'admin_menu#Slug custom': 'Slug custom'
+'admin_menu#Laisser vide si vous souhaitez utilisé le slug rattaché à l''élément choisi': 'Laisser vide si vous souhaitez utilisé le slug rattaché à l''élément choisi'
+'admin_menu#Aucun rendu possible pour le moment': 'Aucun rendu possible pour le moment'
+'admin_menu#Position de l''élément': 'Position de l''élément'
+'admin_menu#Position 1': 'Position 1'
+'admin_menu#Avant': Avant
+'admin_menu#En dernière position': 'En dernière position'
+'admin_menu#Chargement des positions': 'Chargement des positions'

@@ -20,6 +20,10 @@
 
                 {{ form_row(form.url) }}
 
+                {{ form_row(form.page, {'attr' : {'data-url' : path('admin_menu_ajax_menu_url_page', {'id' : 'id-page'})}}) }}
+
+                {{ form_row(form.slug) }}
+
                 {{ form_row(form.valider) }}
 
                 {{ form_end(form) }}

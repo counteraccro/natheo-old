@@ -22,6 +22,9 @@ class PageService extends AppService
     const BASE_TOP_LEFT_CONTENT_FOOTER = 'base-top-left-content-footer';
     const BASE_TOP_CONTENT_RIGHT_FOOTER = 'base-top-content-right-footer';
 
+    const PAGE_STATUS_MASQUER = 0;
+    const PAGE_STATUS_PUBLIER = 1;
+
 
     /**
      * Tableau de référence pour le choix des templates

@@ -46,14 +46,18 @@ Menu.Launch = function () {
      */
     Menu.EventModalMenuElement = function (modal) {
         /**
-         * Affiche ou masque le champ url en fonction de isDirectLink
+         * Affiche ou masque le champ url et les autres champs dépendants en fonction de isDirectLink
          * @constructor
          */
         Menu.ShowUrlInput = function () {
             if (!$('#menu_element_isDirectLink').prop('checked')) {
                 $('#menu_element_url').parent().hide();
+                $('#menu_element_page').parent().show();
+                $('#menu_element_slug').parent().show();
             } else {
                 $('#menu_element_url').parent().show();
+                $('#menu_element_page').parent().hide();
+                $('#menu_element_slug').parent().hide();
             }
         }
 
@@ -62,6 +66,11 @@ Menu.Launch = function () {
          * @constructor
          */
         Menu.LoadPosition = function(param) {
+
+            if(param === "")
+            {
+                param = 0;
+            }
 
             let id = ' #modal-create-update-menu-element #field_position';
             let url = $(id).data('url');
@@ -79,8 +88,44 @@ Menu.Launch = function () {
             Menu.ShowUrlInput();
         })
 
+        /**
+         * Event sur le choix d'un element parent
+         */
         $('#modal-create-update-menu-element #menu_element_parent').change(function() {
             Menu.LoadPosition($(this).val());
+        })
+
+        /**
+         * Event sur le choix d'une page (pour l'url)
+         */
+        $('#modal-create-update-menu-element #menu_element_page').change(function () {
+
+            let val = $(this).val();
+            if(val === "")
+            {
+                val = 0;
+            }
+
+            let url = $(this).data('url');
+            url = url.replace('id-page', val);
+
+            $.ajax({
+                method: 'GET',
+                url: url,
+            })
+                .done(function (html) {
+                   $('#modal-create-update-menu-element #menu_element_page_help').html(html.url);
+                });
+        })
+
+        $('#modal-create-update-menu-element #menu_element_slug').change(function() {
+            let slug = System.stringToSlug($(this).val());
+
+            let url = $('#modal-create-update-menu-element #menu_element_page_help').html();
+
+            let str = url.substr(url.lastIndexOf('/') + 1) + '$';
+            url = url.replace(new RegExp(str), slug);
+            $('#modal-create-update-menu-element #menu_element_page_help').html(url);
         })
 
         /**

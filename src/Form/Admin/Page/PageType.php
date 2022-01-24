@@ -5,6 +5,7 @@ namespace App\Form\Admin\Page;
 use App\Entity\Admin\Page\Page;
 use App\Entity\Media\Folder;
 use App\Form\AppType;
+use App\Service\Admin\PageService;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -43,8 +44,8 @@ class PageType extends AppType
             ])
             ->add('status', ChoiceType::class, [
                 'choices'  => [
-                    $this->translator->trans('admin_page#Masquer') => 0,
-                    $this->translator->trans('admin_page#Publier') => 1,
+                    $this->translator->trans('admin_page#Masquer') => PageService::PAGE_STATUS_MASQUER,
+                    $this->translator->trans('admin_page#Publier') => PageService::PAGE_STATUS_PUBLIER,
                 ] ,
                 'expanded' => true,
                 'multiple' => false,
