@@ -214,12 +214,14 @@ class MenuController extends AppAdminController
             $title = $this->translator->trans('admin_menu#Ajouter un élément au menu');
             $url = $this->generateUrl('admin_menu_ajax_menu_element_add');
             $msg_loading = $this->translator->trans("admin_menu#Création de l'élément du menu en cours....");
+            $menu_element_id = 0;
         }
         else {
             $action = 'edit';
             $title = $this->translator->trans('admin_menu#Edition de l\'élément') . ' #' . $menuElement->getId();
             $url = $this->generateUrl('admin_menu_ajax_menu_element_edit', ['id' => $menuElement->getId()]);
             $msg_loading = $this->translator->trans("admin_menu#Edition de l'élément du menu en cours....");
+            $menu_element_id = $menuElement->getId();
         }
 
         $parent = $this->menuService->getListeMenuElementOrderByParentChildren();
@@ -239,13 +241,14 @@ class MenuController extends AppAdminController
         $form->handleRequest($this->request->getCurrentRequest());
         if ($form->isSubmitted() && $form->isValid()) {
 
-            var_dump($form->getData());
+            //var_dump($form->getData());
         }
 
         return $this->render('admin/modules/menu/ajax/modal-menu-elements.html.twig', [
             'title' => $title,
             'form' => $form->createView(),
             'url' => $url,
+            'menu_element_id' => $menu_element_id
         ]);
     }
 
@@ -264,7 +267,7 @@ class MenuController extends AppAdminController
 
     /**
      * Permet de générer l'url de la page courante
-     * @param Page $page
+     * @param Page|null $page
      * @return JsonResponse
      */
     #[Route('/ajax/generate-url-page/{id}', name: 'ajax_menu_url_page')]
@@ -289,7 +292,36 @@ class MenuController extends AppAdminController
             $frontUrl = str_replace('slug', $slug, $frontUrl);
             return $this->json(['url' => $url . $frontUrl]);
         }
-
         return $this->json(['url' => '']);
+    }
+
+    /**
+     * Permet de verifier si le slug du menu element est unique ou non
+     * @param string $slug
+     * @param MenuElement|null $menuElement
+     * @return JsonResponse
+     */
+    #[Route('/ajax/check-slug-menu-element/{slug}/{id}', name: 'ajax_menu_element_check_slug')]
+    public function checkSlugMenuElement(string $slug = "", MenuElement $menuElement = null): JsonResponse
+    {
+        $returnOk = ['success' => true, 'msg' => ""];
+        $returnKo = ['success' => false, 'msg' => $this->translator->trans('admin_menu#Un élément de menu existe déjà avec ce slug')];
+
+        $menuElementRepo = $this->doctrine->getRepository(MenuElement::class);
+        $result = $menuElementRepo->findOneBy(['slug' => $slug]);
+
+        if($result != null)
+        {
+            if($menuElement != null)
+            {
+                if($menuElement->getSlug() == $slug)
+                {
+                    return $this->json($returnOk);
+                }
+                return $this->json($returnKo);
+            }
+            return $this->json($returnKo);
+        }
+        return $this->json($returnOk);
     }
 }

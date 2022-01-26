@@ -22,7 +22,8 @@
 
                 {{ form_row(form.page, {'attr' : {'data-url' : path('admin_menu_ajax_menu_url_page', {'id' : 'id-page'})}}) }}
 
-                {{ form_row(form.slug) }}
+                {% set help = 'admin_menu#Laisser vide si vous souhaitez utilisé le slug rattaché à l\'élément choisi' | trans %}
+                {{ form_row(form.slug, {'attr' : {'data-url' : path('admin_menu_ajax_menu_element_check_slug', {'id' : menu_element_id, 'slug' : 'param-slug'}), 'data-help' : help}}) }}
 
                 {{ form_row(form.valider) }}
 

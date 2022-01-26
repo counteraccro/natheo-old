@@ -53,7 +53,7 @@ Menu.Launch = function () {
             if (!$('#menu_element_isDirectLink').prop('checked')) {
                 $('#menu_element_url').parent().hide();
                 $('#menu_element_page').parent().show();
-                $('#menu_element_slug').parent().show();
+                $('#menu_element_slug').parent().hide();
             } else {
                 $('#menu_element_url').parent().show();
                 $('#menu_element_page').parent().hide();
@@ -65,10 +65,9 @@ Menu.Launch = function () {
          * Permet de charger la liste de position en fonction d'un parent
          * @constructor
          */
-        Menu.LoadPosition = function(param) {
+        Menu.LoadPosition = function (param) {
 
-            if(param === "")
-            {
+            if (param === "") {
                 param = 0;
             }
 
@@ -91,7 +90,7 @@ Menu.Launch = function () {
         /**
          * Event sur le choix d'un element parent
          */
-        $('#modal-create-update-menu-element #menu_element_parent').change(function() {
+        $('#modal-create-update-menu-element #menu_element_parent').change(function () {
             Menu.LoadPosition($(this).val());
         })
 
@@ -101,8 +100,7 @@ Menu.Launch = function () {
         $('#modal-create-update-menu-element #menu_element_page').change(function () {
 
             let val = $(this).val();
-            if(val === "")
-            {
+            if (val === "") {
                 val = 0;
             }
 
@@ -114,18 +112,57 @@ Menu.Launch = function () {
                 url: url,
             })
                 .done(function (html) {
-                   $('#modal-create-update-menu-element #menu_element_page_help').html(html.url);
+                    if(html.url === "")
+                    {
+                        $('#modal-create-update-menu-element #menu_element_slug').parent().hide();
+                        let help = $('#modal-create-update-menu-element #menu_element_slug').data('help');
+                        $('#modal-create-update-menu-element #menu_element_slug_help').html(help).removeClass('text-danger');
+                        $('#modal-create-update-menu-element #menu_element_slug').val('');
+                    }
+                    else {
+                        $('#modal-create-update-menu-element #menu_element_page_help').html(html.url);
+                        $('#modal-create-update-menu-element #menu_element_slug').parent().show();
+                    }
+
                 });
         })
 
-        $('#modal-create-update-menu-element #menu_element_slug').change(function() {
+        /**
+         * Event sur le champ slug
+         */
+        $('#modal-create-update-menu-element #menu_element_slug').change(function () {
+
+            if ($(this).val() === "") {
+                $('#modal-create-update-menu-element #menu_element_page').trigger('change');
+                return false;
+            }
+
             let slug = System.stringToSlug($(this).val());
+            let help = $(this).data('help');
 
-            let url = $('#modal-create-update-menu-element #menu_element_page_help').html();
+            let url = $(this).data('url');
+            url = url.replace('param-slug', slug);
 
-            let str = url.substr(url.lastIndexOf('/') + 1) + '$';
-            url = url.replace(new RegExp(str), slug);
-            $('#modal-create-update-menu-element #menu_element_page_help').html(url);
+            $.ajax({
+                method: 'GET',
+                url: url,
+            })
+                .done(function (response) {
+
+                    if(response.success === false)
+                    {
+                        $('#modal-create-update-menu-element #menu_element_slug_help').html(response.msg).addClass('text-danger');
+                    }
+                    else {
+
+                        $('#modal-create-update-menu-element #menu_element_slug_help').html(help).removeClass('text-danger');
+
+                        let url = $('#modal-create-update-menu-element #menu_element_page_help').html();
+                        let str = url.substr(url.lastIndexOf('/') + 1) + '$';
+                        url = url.replace(new RegExp(str), slug);
+                        $('#modal-create-update-menu-element #menu_element_page_help').html(url);
+                    }
+                });
         })
 
         /**
@@ -160,8 +197,7 @@ Menu.Launch = function () {
         let id = ' #admin-create-update-menu #exemple-render';
         let url = $(id).data('url');
 
-        if(param !== '')
-        {
+        if (param !== '') {
             url = url + '/' + param;
         }
 
@@ -182,8 +218,8 @@ Menu.Launch = function () {
     }
 
     /** Event pour le changement des exemples de rendu **/
-    Menu.SwitchExempleRender = function() {
-        $('#admin-create-update-menu #select-render-menu').change(function() {
+    Menu.SwitchExempleRender = function () {
+        $('#admin-create-update-menu #select-render-menu').change(function () {
             let val = $(this).val();
             Menu.LoadExempleRender(val);
         })
